@@ -1,134 +1,85 @@
-import Reveal from "@/app/components/Reveal";
+import Link from "next/link";
 
-export default function Technology() {
+export default function TechnologyPage() {
   return (
-    <main className="bg-neutral-950 text-neutral-100">
-
-      {/* ================= HERO ================= */}
-      <section className="py-36 px-6 text-center">
-        <Reveal>
-          <div className="text-xs uppercase tracking-widest text-neutral-500">
-            Domain Intelligence
-          </div>
-          <h1 className="mt-4 text-4xl md:text-6xl font-semibold tracking-tight">
-            AquaOS™ Biological Intelligence Architecture
-          </h1>
-          <p className="mt-8 text-neutral-400 max-w-3xl mx-auto">
-            Infrastructure-integrated modeling for survival optimization,
-            molt timing prediction, mortality risk classification,
-            and carbon-accountable aquaculture.
+    <main className="bg-neutral-50 text-neutral-900">
+      <section className="border-b border-neutral-200 bg-white">
+        <div className="max-w-6xl mx-auto px-6 py-20 md:py-24">
+          <p className="text-xs uppercase tracking-[0.2em] text-neutral-600">
+            Technology
           </p>
-        </Reveal>
+          <h1 className="mt-5 text-4xl md:text-5xl font-semibold tracking-tight max-w-4xl">
+            AquaOS Biological Intelligence Architecture
+          </h1>
+          <p className="mt-7 text-lg text-neutral-700 max-w-3xl leading-relaxed">
+            Infrastructure-integrated modeling for survival optimization,
+            molt-timing estimation, mortality risk classification, and
+            production accountability.
+          </p>
+        </div>
       </section>
 
-      {/* ================= ARCHITECTURE STACK ================= */}
-      <section className="py-36 px-6 border-t border-white/10">
+      <section className="py-16 md:py-20 px-6 border-b border-neutral-200">
         <div className="max-w-6xl mx-auto">
-
-          <Reveal>
-            <div className="text-xs uppercase tracking-widest text-neutral-500">
-              System Architecture
-            </div>
-            <h2 className="mt-4 text-3xl md:text-4xl font-semibold tracking-tight">
-              Closed-Loop Infrastructure Intelligence
-            </h2>
-          </Reveal>
-
-          <div className="mt-20 grid gap-8 text-neutral-400">
-
+          <h2 className="text-2xl md:text-3xl font-semibold tracking-tight">
+            Closed-loop infrastructure intelligence
+          </h2>
+          <div className="mt-8 grid gap-4">
             {[
-              ["Physical Layer", "Vertical RAS infrastructure, individual grow-out boxes, controlled water systems."],
+              ["Physical Layer", "Vertical RAS infrastructure, individual grow-out boxes, and controlled water systems."],
               ["Sensor Layer", "Dissolved oxygen, nitrate, temperature, salinity, and lifecycle event capture."],
               ["Data Layer", "Structured identity, environmental, operational, and yield metrics."],
-              ["Model Layer", "Molt timing prediction, mortality risk classification, survival optimization."],
-              ["Decision Layer", "Harvest window optimization, feeding control, cost-per-kg stabilization."],
-            ].map(([title, desc], i) => (
-              <Reveal key={i}>
-                <div className="border border-white/10 p-8 rounded-md">
-                  <h3 className="text-lg font-semibold text-neutral-100">
-                    {title}
-                  </h3>
-                  <p className="mt-4 text-sm">{desc}</p>
-                </div>
-              </Reveal>
+              ["Model Layer", "Molt-timing estimation, mortality risk classification, and survival optimization."],
+              ["Decision Layer", "Harvest window optimization, feeding control, and cost-per-kg stabilization."],
+            ].map(([title, text]) => (
+              <article key={title} className="border border-neutral-200 bg-white p-6">
+                <h3 className="font-semibold">{title}</h3>
+                <p className="mt-2 text-sm text-neutral-700">{text}</p>
+              </article>
             ))}
-
           </div>
         </div>
       </section>
 
-      {/* ================= BIOLOGICAL MODULES ================= */}
-      <section className="py-36 px-6 border-t border-white/10 bg-neutral-900">
-        <div className="max-w-6xl mx-auto">
-
-          <Reveal>
-            <div className="text-xs uppercase tracking-widest text-neutral-500">
-              Intelligence Modules
-            </div>
-            <h2 className="mt-4 text-3xl md:text-4xl font-semibold tracking-tight">
-              Biological Risk Stabilization
-            </h2>
-          </Reveal>
-
-          <div className="mt-20 grid md:grid-cols-3 gap-16 text-neutral-400">
-
-            <Reveal>
-              <div>
-                <h3 className="text-neutral-100 font-semibold">
-                  Molt Timing Prediction
-                </h3>
-                <p className="mt-4 text-sm">
-                  Identifies high-risk molting windows to reduce cannibalism and mortality.
-                </p>
-              </div>
-            </Reveal>
-
-            <Reveal>
-              <div>
-                <h3 className="text-neutral-100 font-semibold">
-                  Mortality Risk Modeling
-                </h3>
-                <p className="mt-4 text-sm">
-                  Forecasts water quality stress patterns before lethal thresholds occur.
-                </p>
-              </div>
-            </Reveal>
-
-            <Reveal>
-              <div>
-                <h3 className="text-neutral-100 font-semibold">
-                  Harvest Optimization
-                </h3>
-                <p className="mt-4 text-sm">
-                  Aligns size progression, cycle timing, and export-grade yield targets.
-                </p>
-              </div>
-            </Reveal>
-
-          </div>
-        </div>
-      </section>
-
-      {/* ================= CARBON LAYER ================= */}
-      <section className="py-36 px-6 border-t border-white/10">
-        <div className="max-w-5xl mx-auto text-center">
-
-          <Reveal>
-            <div className="text-xs uppercase tracking-widest text-neutral-500">
-              Carbon Accountability
-            </div>
-            <h2 className="mt-4 text-3xl md:text-4xl font-semibold tracking-tight">
-              Crab Carbon Index (CCI™)
-            </h2>
-            <p className="mt-8 text-neutral-400 max-w-3xl mx-auto">
-              Integrates production data with environmental modeling to
-              quantify carbon-aligned aquaculture output within Blue Economy frameworks.
+      <section className="py-16 md:py-20 px-6">
+        <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-6">
+          <article className="border border-neutral-200 bg-white p-6">
+            <h3 className="font-semibold">Molt timing intelligence</h3>
+            <p className="mt-2 text-sm text-neutral-700">
+              Identifies high-risk windows to reduce mortality and improve intervention timing.
             </p>
-          </Reveal>
-
+          </article>
+          <article className="border border-neutral-200 bg-white p-6">
+            <h3 className="font-semibold">Risk stabilization</h3>
+            <p className="mt-2 text-sm text-neutral-700">
+              Forecasts stress conditions before thresholds are crossed.
+            </p>
+          </article>
+          <article className="border border-neutral-200 bg-white p-6">
+            <h3 className="font-semibold">Crab Carbon Index (CCI)</h3>
+            <p className="mt-2 text-sm text-neutral-700">
+              Connects production events to carbon-accountable reporting.
+            </p>
+          </article>
         </div>
       </section>
 
+      <section className="py-16 px-6 border-t border-neutral-200 bg-white">
+        <div className="max-w-6xl mx-auto">
+          <p className="text-sm text-neutral-700 max-w-3xl">
+            AquaOS explains the operating logic. This page details the broader
+            technical stack that supports production reliability.
+          </p>
+          <div className="mt-6 flex flex-col md:flex-row gap-4">
+            <Link href="/aquaos" className="px-6 py-3 border border-neutral-300 text-sm font-medium hover:bg-neutral-100">
+              Go to AquaOS Overview
+            </Link>
+            <Link href="/platform" className="px-6 py-3 border border-neutral-300 text-sm font-medium hover:bg-neutral-100">
+              Go to Platform Infrastructure
+            </Link>
+          </div>
+        </div>
+      </section>
     </main>
   );
 }

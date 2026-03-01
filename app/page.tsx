@@ -1,234 +1,166 @@
-import Image from "next/image";
-import Reveal from "./components/Reveal";
+import Link from "next/link";
 
 export default function Home() {
   return (
-    <main className="bg-neutral-950 text-neutral-100">
-      <div className="border-b border-white/5 py-3 text-[11px] tracking-wider uppercase text-neutral-500">
-        <div className="max-w-6xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-2">
-          <span>600-Box Integrated Pilot</span>
-          <span>80%+ Survival Target</span>
-          <span>~1 Ton Annualized Output</span>
-          <span>Blue Economy Aligned</span>
-        </div>
-      </div>
-
-      <section className="relative min-h-screen flex items-center px-6 border-b border-white/5">
-        <div className="max-w-5xl mx-auto pt-32">
-          <Reveal>
-            <div className="text-xs uppercase tracking-[0.25em] text-neutral-500">
-              Biological Infrastructure Intelligence
-            </div>
-          </Reveal>
-
-          <Reveal>
-            <h1 className="mt-6 text-5xl md:text-7xl font-medium tracking-tight leading-[1.05]">
-              Engineering Predictable
-              <br />
-              Mud Crab Production.
-            </h1>
-          </Reveal>
-
-          <Reveal>
-            <p className="mt-10 text-lg md:text-xl text-neutral-400 max-w-2xl leading-relaxed">
-              Infrastructure-integrated modeling and controlled RAS architecture
-              enabling stable survival, lifecycle predictability, and
-              carbon-accountable aquaculture.
-            </p>
-          </Reveal>
-
-          <Reveal>
-            <div className="mt-16 flex flex-col sm:flex-row gap-4 sm:gap-6">
-              <a
-                href="/platform"
-                className="px-10 py-4 bg-white text-black text-sm font-medium tracking-wide text-center"
-              >
-                View Platform
-              </a>
-
-              <a
-                href="/technology"
-                className="px-10 py-4 border border-white/20 text-sm tracking-wide text-neutral-300 hover:bg-white hover:text-black transition text-center"
-              >
-                Explore Architecture
-              </a>
-            </div>
-          </Reveal>
+    <main className="bg-neutral-50 text-neutral-900">
+      <section className="border-b border-neutral-200 bg-white">
+        <div className="max-w-6xl mx-auto px-6 py-4 grid grid-cols-2 md:grid-cols-4 gap-2 text-[11px] tracking-wider uppercase text-neutral-600">
+          <span>Modular RAS Grow-Out</span>
+          <span>600-Box Pilot Scale</span>
+          <span>AquaOS MVP</span>
+          <span>Execution Focused</span>
         </div>
       </section>
 
-      <section className="py-28 px-6 border-b border-white/5">
-        <div className="max-w-5xl mx-auto">
-          <div className="text-xs uppercase tracking-[0.25em] text-neutral-500">
-            Constraint
-          </div>
-
-          <h2 className="mt-4 text-3xl font-medium tracking-tight">
-            Structural Limitations of Traditional Pond Systems
-          </h2>
-
-          <div className="mt-14 grid md:grid-cols-2 gap-16 text-neutral-400">
-            {[
-              "Territorial Behavior and Density Conflict",
-              "Molting Mortality and Vulnerability Windows",
-              "Environmental Variability",
-              "Uncontrolled Cannibalism",
-            ].map((item, i) => (
-              <div key={i}>
-                <p className="text-neutral-100">{item}</p>
-                <p className="mt-3 text-sm text-neutral-500">
-                  Infrastructure-level isolation and environmental control are
-                  required to stabilize survival curves.
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ================= INFRASTRUCTURE ================= */}
-      <section className="py-32 px-6 border-t border-white/10 bg-neutral-900">
-        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-20 items-center">
-          <Reveal>
-            <div>
-              <div className="text-xs uppercase tracking-widest text-neutral-500">
-                Infrastructure
-              </div>
-              <h2 className="mt-4 text-3xl md:text-4xl font-semibold tracking-tight">
-                Modular Vertical RAS Architecture
-              </h2>
-              <p className="mt-8 text-neutral-400">
-                Individual grow-out boxes integrated into a controlled RAS loop,
-                engineered for predictable survival and scalable deployment.
-              </p>
-            </div>
-          </Reveal>
-
-          <Reveal>
-            <div className="relative h-[380px]">
-              <Image
-                src="/infrastructure.png"
-                alt="RAS Infrastructure"
-                fill
-                className="object-contain"
-              />
-            </div>
-          </Reveal>
-        </div>
-
-        <div className="max-w-6xl mx-auto mt-14 grid md:grid-cols-3 gap-10 text-xs uppercase tracking-wider text-neutral-500">
-          <div>
-            <div className="text-neutral-100 text-lg font-medium">
-              Individualized Units
-            </div>
-            <div className="mt-2">Zero Cannibalism Density</div>
-          </div>
-          <div>
-            <div className="text-neutral-100 text-lg font-medium">
-              Closed-Loop RAS
-            </div>
-            <div className="mt-2">Water Stability Control</div>
-          </div>
-          <div>
-            <div className="text-neutral-100 text-lg font-medium">
-              Integrated Sensing
-            </div>
-            <div className="mt-2">Lifecycle Monitoring</div>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-32 px-6 border-t border-white/10">
-        <div className="max-w-6xl mx-auto">
-          <Reveal>
-            <div className="text-xs uppercase tracking-widest text-neutral-500">
-              Validation
-            </div>
-            <h2 className="mt-4 text-3xl md:text-4xl font-semibold tracking-tight">
-              600-Box Integrated Pilot
-            </h2>
-          </Reveal>
-
-          <div className="mt-20 grid md:grid-cols-4 gap-16 text-neutral-400">
-            {[
-              ["Units", "600"],
-              ["Target Survival", "≥80%"],
-              ["Annualized Output", "~1 Ton"],
-              ["Production Model", "365 Days"],
-            ].map(([label, value], i) => (
-              <Reveal key={i}>
-                <div>
-                  <p className="text-xs uppercase tracking-widest text-neutral-500">
-                    {label}
-                  </p>
-                  <p className="text-4xl font-semibold mt-3 text-neutral-100">
-                    {value}
-                  </p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ================= TECHNOLOGY PREVIEW ================= */}
-      <section className="py-32 px-6 border-t border-white/10 bg-neutral-900">
-        <div className="max-w-6xl mx-auto">
-          <Reveal>
-            <div className="text-xs uppercase tracking-widest text-neutral-500">
-              Technology
-            </div>
-            <h2 className="mt-4 text-3xl md:text-4xl font-semibold tracking-tight">
-              AquaOS™ Biological Intelligence
-            </h2>
-            <p className="mt-8 text-neutral-400 max-w-3xl">
-              Infrastructure-integrated modeling for survival optimization,
-              molt timing prediction, mortality risk classification,
-              and carbon-accountable aquaculture.
-            </p>
-          </Reveal>
-
-          <div className="mt-16 grid md:grid-cols-3 gap-12 text-neutral-400">
-            <div>
-              <h3 className="text-neutral-100 font-semibold">
-                Closed-Loop Architecture
-              </h3>
-              <p className="mt-4 text-sm">
-                Physical infrastructure, sensors, and predictive models unified
-                into a single operational intelligence layer.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="text-neutral-100 font-semibold">
-                Biological Risk Stabilization
-              </h3>
-              <p className="mt-4 text-sm">
-                Reduced molting mortality through lifecycle modeling.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="text-neutral-100 font-semibold">
-                Crab Carbon Index (CCI™)
-              </h3>
-              <p className="mt-4 text-sm">
-                Production-linked carbon accountability aligned with Blue Economy frameworks.
-              </p>
-            </div>
-          </div>
-
-          <div className="mt-16">
-            <a
-              href="/technology"
-              className="inline-block px-8 py-4 bg-white text-black rounded-md shadow-lg shadow-white/10 hover:opacity-90 transition"
+      <section className="border-b border-neutral-200 bg-white">
+        <div className="max-w-6xl mx-auto px-6 py-20 md:py-28">
+          <p className="text-xs uppercase tracking-[0.2em] text-neutral-600">
+            Crabionics Aquaculture Pvt. Ltd.
+          </p>
+          <h1 className="mt-6 text-4xl md:text-6xl font-semibold tracking-tight leading-tight max-w-5xl">
+            From Biological Chaos to Predictable Crab Production
+          </h1>
+          <p className="mt-8 text-lg text-neutral-700 max-w-3xl leading-relaxed">
+            Turning mud crab farming into a controllable production system using
+            modular RAS and AquaOS.
+          </p>
+          <div className="mt-10 flex flex-col sm:flex-row gap-4">
+            <Link
+              href="/aquaos"
+              className="inline-block px-6 py-3 bg-neutral-900 text-white text-sm font-medium tracking-wide"
             >
-              Explore Full Architecture
-            </a>
+              Explore AquaOS
+            </Link>
+            <Link
+              href="/pilot-roadmap"
+              className="inline-block px-6 py-3 border border-neutral-300 text-sm font-medium tracking-wide text-neutral-800 hover:bg-neutral-100"
+            >
+              View Pilot &amp; Roadmap
+            </Link>
           </div>
         </div>
       </section>
 
+      <section className="py-16 md:py-20 px-6 border-b border-neutral-200">
+        <div className="max-w-5xl mx-auto">
+          <h2 className="text-2xl md:text-3xl font-semibold tracking-tight">
+            Why traditional pond-based mud crab farming fails
+          </h2>
+          <div className="mt-8 grid md:grid-cols-2 gap-6 text-neutral-700">
+            <article className="border border-neutral-200 bg-white p-6">
+              <h3 className="font-semibold">Cannibalism in dense ponds</h3>
+              <p className="mt-3 text-sm">
+                Territorial behavior makes shared-density grow-out unstable,
+                especially during vulnerable molting periods.
+              </p>
+            </article>
+            <article className="border border-neutral-200 bg-white p-6">
+              <h3 className="font-semibold">High mortality windows</h3>
+              <p className="mt-3 text-sm">
+                Molting and stress events can cause sudden losses when animals
+                are not isolated and monitored at unit level.
+              </p>
+            </article>
+            <article className="border border-neutral-200 bg-white p-6">
+              <h3 className="font-semibold">Environmental variability</h3>
+              <p className="mt-3 text-sm">
+                Pond conditions fluctuate with weather and local factors,
+                creating inconsistent cycle outcomes.
+              </p>
+            </article>
+            <article className="border border-neutral-200 bg-white p-6">
+              <h3 className="font-semibold">Unpredictable economics</h3>
+              <p className="mt-3 text-sm">
+                Mortality and uneven growth directly reduce harvest confidence
+                and planning reliability.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 md:py-20 px-6 border-b border-neutral-200 bg-white">
+        <div className="max-w-5xl mx-auto">
+          <h2 className="text-2xl md:text-3xl font-semibold tracking-tight">
+            Why batch farming works for shrimp and fish, but breaks for crabs
+          </h2>
+          <p className="mt-6 text-neutral-700 leading-relaxed">
+            Batch systems assume group compatibility and relatively uniform
+            growth behavior. Mud crabs do not behave this way. Their aggressive
+            territorial dynamics and molt vulnerability make grouped grow-out
+            unreliable unless infrastructure is designed for individual control.
+          </p>
+        </div>
+      </section>
+
+      <section className="py-16 md:py-20 px-6">
+        <div className="max-w-5xl mx-auto">
+          <h2 className="text-2xl md:text-3xl font-semibold tracking-tight">
+            Operating logic in three steps
+          </h2>
+          <div className="mt-10 grid md:grid-cols-3 gap-4">
+            <div className="border border-neutral-200 bg-white p-6">
+              <p className="text-xs uppercase tracking-widest text-neutral-600">
+                1
+              </p>
+              <h3 className="mt-2 font-semibold">Biology</h3>
+              <p className="mt-3 text-sm text-neutral-700">
+                Individual crab identity, molt events, and environment signals.
+              </p>
+            </div>
+            <div className="border border-neutral-200 bg-white p-6">
+              <p className="text-xs uppercase tracking-widest text-neutral-600">
+                2
+              </p>
+              <h3 className="mt-2 font-semibold">Decisions</h3>
+              <p className="mt-3 text-sm text-neutral-700">
+                Rule-based decisions in AquaOS for feeding, isolation timing,
+                intervention, and cycle control.
+              </p>
+            </div>
+            <div className="border border-neutral-200 bg-white p-6">
+              <p className="text-xs uppercase tracking-widest text-neutral-600">
+                3
+              </p>
+              <h3 className="mt-2 font-semibold">Outcomes</h3>
+              <p className="mt-3 text-sm text-neutral-700">
+                Survival stability, lower cycle uncertainty, and predictable
+                harvest planning.
+              </p>
+            </div>
+          </div>
+          <div className="mt-10">
+            <Link
+              href="/team"
+              className="inline-block px-6 py-3 border border-neutral-300 text-sm font-medium tracking-wide text-neutral-800 hover:bg-neutral-100"
+            >
+              Meet the Team
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 px-6 border-t border-neutral-200 bg-white">
+        <div className="max-w-5xl mx-auto">
+          <h2 className="text-2xl font-semibold tracking-tight">
+            Continue by area
+          </h2>
+          <div className="mt-8 grid md:grid-cols-3 gap-4">
+            <Link href="/platform" className="border border-neutral-200 p-5 hover:bg-neutral-100">
+              <p className="font-semibold">Platform</p>
+              <p className="mt-2 text-sm text-neutral-700">Modular RAS infrastructure and deployment logic.</p>
+            </Link>
+            <Link href="/aquaos" className="border border-neutral-200 p-5 hover:bg-neutral-100">
+              <p className="font-semibold">AquaOS</p>
+              <p className="mt-2 text-sm text-neutral-700">Production operating system and decision engine.</p>
+            </Link>
+            <Link href="/pilot-roadmap" className="border border-neutral-200 p-5 hover:bg-neutral-100">
+              <p className="font-semibold">Pilot &amp; Roadmap</p>
+              <p className="mt-2 text-sm text-neutral-700">Execution status, milestones, and next 12 months.</p>
+            </Link>
+          </div>
+        </div>
+      </section>
     </main>
   );
 }
