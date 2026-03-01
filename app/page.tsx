@@ -1,4 +1,11 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Predictable Mud Crab Grow-Out",
+  description:
+    "Predictable mud crab harvest cycles with modular RAS and AquaOS automation. Review pilot signals, KPIs, and deployment roadmap.",
+};
 
 export default function Home() {
   return (
@@ -7,74 +14,81 @@ export default function Home() {
         <div className="max-w-6xl mx-auto px-6 py-4 grid grid-cols-2 md:grid-cols-4 gap-2 text-sm tracking-wider uppercase text-neutral-600">
           <span>Modular RAS Grow-Out</span>
           <span>600-Box Pilot Scale</span>
-          <span>AquaOS MVP</span>
-          <span>Execution Focused</span>
+          <span>AquaOS MVP Live</span>
+          <span>TRL 6-7 Progress</span>
         </div>
       </section>
 
       <section className="border-b border-neutral-200 bg-white">
-        <div className="max-w-6xl mx-auto px-6 py-20 md:py-28">
+        <div className="max-w-6xl mx-auto px-6 py-16 md:py-24">
           <p className="text-sm uppercase tracking-[0.2em] text-neutral-600">
             Crabionics Aquaculture Pvt. Ltd.
           </p>
           <h1 className="mt-6 text-4xl md:text-6xl font-semibold tracking-tight leading-tight max-w-5xl">
-            From Biological Chaos to Predictable Crab Production
+            Predictable mud crab harvest cycles with higher survival stability
           </h1>
           <p className="mt-8 text-lg text-neutral-700 max-w-3xl leading-relaxed">
-            Turning mud crab farming into a controllable production system using
-            modular RAS and AquaOS.
+            We combine modular RAS infrastructure with AquaOS automation to turn
+            mud crab grow-out into an operationally controlled production system.
           </p>
+          <p className="mt-4 text-base font-medium text-neutral-800">
+            Pilot target: up to 2x survival vs conventional pond grow-out under
+            comparable operating windows.
+          </p>
+
           <div className="mt-10 flex flex-col sm:flex-row gap-4">
             <Link
-              href="/aquaos"
+              href="/contact"
               className="inline-block px-6 py-3 bg-neutral-900 text-white text-base font-medium tracking-wide"
             >
-              Explore AquaOS
+              Request Technical Brief / Demo
             </Link>
             <Link
               href="/pilot-roadmap"
               className="inline-block px-6 py-3 border border-neutral-300 text-base font-medium tracking-wide text-neutral-800 hover:bg-neutral-100"
             >
-              View Pilot &amp; Roadmap
+              See Pilot Results &amp; KPIs
             </Link>
+          </div>
+
+          <div className="mt-10 grid md:grid-cols-3 gap-4">
+            <article className="border border-neutral-200 bg-neutral-50 p-5">
+              <p className="text-sm uppercase tracking-wider text-neutral-600">Pilot Signal</p>
+              <p className="mt-2 text-xl font-semibold">600-box integrated setup</p>
+              <p className="mt-2 text-base text-neutral-700">Modular system is live for reliability-focused grow-out operations.</p>
+            </article>
+            <article className="border border-neutral-200 bg-neutral-50 p-5">
+              <p className="text-sm uppercase tracking-wider text-neutral-600">Operating Layer</p>
+              <p className="mt-2 text-xl font-semibold">AquaOS MVP active</p>
+              <p className="mt-2 text-base text-neutral-700">Rule-based interventions and event capture are in current pilot workflows.</p>
+            </article>
+            <article className="border border-neutral-200 bg-neutral-50 p-5">
+              <p className="text-sm uppercase tracking-wider text-neutral-600">Programs</p>
+              <p className="mt-2 text-xl font-semibold">BIRAC BIG + NIDHI</p>
+              <p className="mt-2 text-base text-neutral-700">Execution aligned with institution-backed aquaculture innovation tracks.</p>
+            </article>
           </div>
         </div>
       </section>
 
       <section className="py-16 md:py-20 px-6 border-b border-neutral-200">
-        <div className="max-w-5xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           <h2 className="text-2xl md:text-3xl font-semibold tracking-tight">
-            Why traditional pond-based mud crab farming fails
+            Choose your path
           </h2>
-          <div className="mt-8 grid md:grid-cols-2 gap-6 text-neutral-700">
-            <article className="border border-neutral-200 bg-white p-6">
-              <h3 className="font-semibold">Cannibalism in dense ponds</h3>
-              <p className="mt-3 text-base">
-                Territorial behavior makes shared-density grow-out unstable,
-                especially during vulnerable molting periods.
-              </p>
-            </article>
-            <article className="border border-neutral-200 bg-white p-6">
-              <h3 className="font-semibold">High mortality windows</h3>
-              <p className="mt-3 text-base">
-                Molting and stress events can cause sudden losses when animals
-                are not isolated and monitored at unit level.
-              </p>
-            </article>
-            <article className="border border-neutral-200 bg-white p-6">
-              <h3 className="font-semibold">Environmental variability</h3>
-              <p className="mt-3 text-base">
-                Pond conditions fluctuate with weather and local factors,
-                creating inconsistent cycle outcomes.
-              </p>
-            </article>
-            <article className="border border-neutral-200 bg-white p-6">
-              <h3 className="font-semibold">Unpredictable economics</h3>
-              <p className="mt-3 text-base">
-                Mortality and uneven growth directly reduce harvest confidence
-                and planning reliability.
-              </p>
-            </article>
+          <div className="mt-8 grid md:grid-cols-3 gap-6">
+            <Link href="/capital" className="border border-neutral-200 bg-white p-6 hover:bg-neutral-100">
+              <p className="font-semibold">For Investors</p>
+              <p className="mt-3 text-base text-neutral-700">Review traction, KPIs, roadmap, and capital readiness milestones.</p>
+            </Link>
+            <Link href="/contact" className="border border-neutral-200 bg-white p-6 hover:bg-neutral-100">
+              <p className="font-semibold">For Farmers</p>
+              <p className="mt-3 text-base text-neutral-700">Discuss pilot collaboration, operating model, and farm deployment fit.</p>
+            </Link>
+            <Link href="/pilot-roadmap" className="border border-neutral-200 bg-white p-6 hover:bg-neutral-100">
+              <p className="font-semibold">For Partners</p>
+              <p className="mt-3 text-base text-neutral-700">See measurable pilot status and upcoming milestones for integration.</p>
+            </Link>
           </div>
         </div>
       </section>
@@ -82,60 +96,62 @@ export default function Home() {
       <section className="py-16 md:py-20 px-6 border-b border-neutral-200 bg-white">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-2xl md:text-3xl font-semibold tracking-tight">
-            Why batch farming works for shrimp and fish, but breaks for crabs
+            Why RAS for crabs?
           </h2>
-          <p className="mt-6 text-neutral-700 leading-relaxed">
-            Batch systems assume group compatibility and relatively uniform
-            growth behavior. Mud crabs do not behave this way. Their aggressive
-            territorial dynamics and molt vulnerability make grouped grow-out
-            unreliable unless infrastructure is designed for individual control.
-          </p>
+          <div className="mt-8 grid md:grid-cols-3 gap-4">
+            <article className="border border-neutral-200 bg-neutral-50 p-6">
+              <p className="text-sm font-medium text-neutral-600">Territoriality</p>
+              <h3 className="mt-2 font-semibold">Problem</h3>
+              <p className="mt-3 text-base text-neutral-700">
+                Pond density amplifies aggression and molt-period losses.
+              </p>
+            </article>
+            <article className="border border-neutral-200 bg-neutral-50 p-6">
+              <p className="text-sm font-medium text-neutral-600">Modular RAS</p>
+              <h3 className="mt-2 font-semibold">Solution</h3>
+              <p className="mt-3 text-base text-neutral-700">
+                Unit-level control reduces biological conflict and environment
+                variability.
+              </p>
+            </article>
+            <article className="border border-neutral-200 bg-neutral-50 p-6">
+              <p className="text-sm font-medium text-neutral-600">Production</p>
+              <h3 className="mt-2 font-semibold">Outcome</h3>
+              <p className="mt-3 text-base text-neutral-700">
+                Better cycle reliability for planning, harvest windows, and cash
+                predictability.
+              </p>
+            </article>
+          </div>
         </div>
       </section>
 
-      <section className="py-16 md:py-20 px-6">
+      <section className="py-16 md:py-20 px-6 border-b border-neutral-200">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-2xl md:text-3xl font-semibold tracking-tight">
-            Operating logic in three steps
+            How AquaOS improves survival
           </h2>
-          <div className="mt-10 grid md:grid-cols-3 gap-4">
+          <p className="mt-6 text-neutral-700 leading-relaxed">
+            AquaOS structures decisions around animal identity, molt timing,
+            feeding windows, and intervention triggers so operations shift from
+            reactive to rule-based execution.
+          </p>
+          <div className="mt-8 grid md:grid-cols-3 gap-4">
             <div className="border border-neutral-200 bg-white p-6">
-              <p className="text-sm uppercase tracking-widest text-neutral-600">
-                1
-              </p>
-              <h3 className="mt-2 font-semibold">Biology</h3>
-              <p className="mt-3 text-base text-neutral-700">
-                Individual crab identity, molt events, and environment signals.
-              </p>
+              <p className="text-sm uppercase tracking-widest text-neutral-600">1</p>
+              <p className="mt-2 font-semibold">Capture events</p>
+              <p className="mt-3 text-base text-neutral-700">Track biological and system events at unit level.</p>
             </div>
             <div className="border border-neutral-200 bg-white p-6">
-              <p className="text-sm uppercase tracking-widest text-neutral-600">
-                2
-              </p>
-              <h3 className="mt-2 font-semibold">Decisions</h3>
-              <p className="mt-3 text-base text-neutral-700">
-                Rule-based decisions in AquaOS for feeding, isolation timing,
-                intervention, and cycle control.
-              </p>
+              <p className="text-sm uppercase tracking-widest text-neutral-600">2</p>
+              <p className="mt-2 font-semibold">Apply rules</p>
+              <p className="mt-3 text-base text-neutral-700">Run intervention logic for feeding, isolation, and recovery timing.</p>
             </div>
             <div className="border border-neutral-200 bg-white p-6">
-              <p className="text-sm uppercase tracking-widest text-neutral-600">
-                3
-              </p>
-              <h3 className="mt-2 font-semibold">Outcomes</h3>
-              <p className="mt-3 text-base text-neutral-700">
-                Survival stability, lower cycle uncertainty, and predictable
-                harvest planning.
-              </p>
+              <p className="text-sm uppercase tracking-widest text-neutral-600">3</p>
+              <p className="mt-2 font-semibold">Review outcomes</p>
+              <p className="mt-3 text-base text-neutral-700">Measure survival stability, growth uniformity, and cycle performance.</p>
             </div>
-          </div>
-          <div className="mt-10">
-            <Link
-              href="/team"
-              className="inline-block px-6 py-3 border border-neutral-300 text-base font-medium tracking-wide text-neutral-800 hover:bg-neutral-100"
-            >
-              Meet the Team
-            </Link>
           </div>
         </div>
       </section>
@@ -143,20 +159,20 @@ export default function Home() {
       <section className="py-16 px-6 border-t border-neutral-200 bg-white">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-2xl font-semibold tracking-tight">
-            Continue by area
+            Quick take and deep dive
           </h2>
           <div className="mt-8 grid md:grid-cols-3 gap-4">
             <Link href="/platform" className="border border-neutral-200 p-5 hover:bg-neutral-100">
-              <p className="font-semibold">Platform</p>
-              <p className="mt-2 text-base text-neutral-700">Modular RAS infrastructure and deployment logic.</p>
+              <p className="font-semibold">Infrastructure</p>
+              <p className="mt-2 text-base text-neutral-700">Modular RAS architecture and deployment logic.</p>
             </Link>
-            <Link href="/aquaos" className="border border-neutral-200 p-5 hover:bg-neutral-100">
-              <p className="font-semibold">AquaOS</p>
-              <p className="mt-2 text-base text-neutral-700">Production operating system and decision engine.</p>
+            <Link href="/technology" className="border border-neutral-200 p-5 hover:bg-neutral-100">
+              <p className="font-semibold">Technology &amp; How It Works</p>
+              <p className="mt-2 text-base text-neutral-700">Biological logic, operating model, and control structure.</p>
             </Link>
             <Link href="/pilot-roadmap" className="border border-neutral-200 p-5 hover:bg-neutral-100">
-              <p className="font-semibold">Pilot &amp; Roadmap</p>
-              <p className="mt-2 text-base text-neutral-700">Execution status, milestones, and next 12 months.</p>
+              <p className="font-semibold">Pilots &amp; Data</p>
+              <p className="mt-2 text-base text-neutral-700">Execution status, KPI tracking, and next milestones.</p>
             </Link>
           </div>
         </div>

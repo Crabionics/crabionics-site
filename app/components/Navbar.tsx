@@ -5,12 +5,12 @@ import Link from "next/link";
 
 const navLinks = [
   { href: "/", label: "Home" },
-  { href: "/platform", label: "Platform" },
+  { href: "/platform", label: "Infrastructure" },
   { href: "/aquaos", label: "AquaOS" },
-  { href: "/technology", label: "Technology" },
-  { href: "/pilot-roadmap", label: "Pilot & Roadmap" },
-  { href: "/blue-economy", label: "Blue Economy" },
-  { href: "/capital", label: "Capital" },
+  { href: "/technology", label: "Technology & How It Works" },
+  { href: "/pilot-roadmap", label: "Pilots & Data" },
+  { href: "/blue-economy", label: "Impact" },
+  { href: "/capital", label: "Investors" },
   { href: "/team", label: "Team" },
   { href: "/contact", label: "Contact" },
 ];
@@ -25,12 +25,20 @@ export default function Navbar() {
           Crabionics
         </Link>
 
-        <div className="hidden lg:flex flex-wrap justify-end gap-x-5 gap-y-2 text-sm text-neutral-700">
-          {navLinks.map((item) => (
-            <Link key={item.href} href={item.href} className="hover:text-neutral-900 transition">
-              {item.label}
-            </Link>
-          ))}
+        <div className="hidden lg:flex items-center gap-6">
+          <div className="flex flex-wrap justify-end gap-x-5 gap-y-2 text-sm text-neutral-700">
+            {navLinks.map((item) => (
+              <Link key={item.href} href={item.href} className="hover:text-neutral-900 transition">
+                {item.label}
+              </Link>
+            ))}
+          </div>
+          <Link
+            href="/contact"
+            className="inline-flex items-center px-4 py-2.5 bg-neutral-900 text-white text-sm font-medium tracking-wide hover:bg-neutral-700 transition"
+          >
+            Request Demo
+          </Link>
         </div>
 
         <button
@@ -55,6 +63,13 @@ export default function Navbar() {
                 {item.label}
               </Link>
             ))}
+            <Link
+              href="/contact"
+              onClick={() => setIsOpen(false)}
+              className="col-span-2 mt-2 inline-flex items-center justify-center px-4 py-3 bg-neutral-900 text-white text-base font-medium"
+            >
+              Request Technical Brief / Demo
+            </Link>
           </div>
         </div>
       ) : null}

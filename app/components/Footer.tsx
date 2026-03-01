@@ -24,11 +24,11 @@ export default function Footer() {
           <div className="mt-3 grid grid-cols-2 gap-x-4 gap-y-2">
             <Link href="/">Home</Link>
             <Link href="/aquaos">AquaOS</Link>
-            <Link href="/technology">Technology</Link>
-            <Link href="/platform">Platform</Link>
-            <Link href="/pilot-roadmap">Pilot &amp; Roadmap</Link>
-            <Link href="/blue-economy">Blue Economy</Link>
-            <Link href="/capital">Capital</Link>
+            <Link href="/technology">Technology &amp; How It Works</Link>
+            <Link href="/platform">Infrastructure</Link>
+            <Link href="/pilot-roadmap">Pilots &amp; Data</Link>
+            <Link href="/blue-economy">Impact</Link>
+            <Link href="/capital">Investors</Link>
             <Link href="/team">Team</Link>
             <Link href="/contact">Contact</Link>
           </div>

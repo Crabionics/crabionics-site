@@ -6,14 +6,17 @@ import Footer from "./components/Footer";
 export const metadata: Metadata = {
   metadataBase: new URL("https://crabionics.com"),
   title: {
-    default: "Crabionics | Modular RAS + AquaOS",
+    default: "Mud Crab RAS Automation | Crabionics",
     template: "%s | Crabionics",
   },
   description:
-    "Credibility-focused site for Crabionics Aquaculture Pvt. Ltd. building controllable mud crab production using modular RAS and AquaOS.",
+    "Crabionics builds modular RAS and AquaOS automation for predictable mud crab grow-out, higher survival stability, and measurable pilot outcomes.",
   keywords: [
     "Crabionics",
     "mud crab farming",
+    "mud crab RAS automation",
+    "predictable grow-out",
+    "mud crab survival optimization",
     "modular RAS",
     "aquaculture technology",
     "AquaOS",
@@ -21,9 +24,9 @@ export const metadata: Metadata = {
     "NIDHI",
   ],
   openGraph: {
-    title: "Crabionics | Modular RAS + AquaOS",
+    title: "Mud Crab RAS Automation | Crabionics",
     description:
-      "From biological chaos to predictable crab production through modular RAS and AquaOS.",
+      "Predictable mud crab grow-out with modular RAS and AquaOS automation.",
     url: "https://crabionics.com",
     siteName: "Crabionics",
     type: "website",

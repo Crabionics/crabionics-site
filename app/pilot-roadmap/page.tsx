@@ -73,6 +73,42 @@ export default function PilotRoadmapPage() {
         </div>
       </section>
 
+      <section className="py-16 md:py-20 px-6 border-b border-neutral-200">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-2xl md:text-3xl font-semibold tracking-tight">
+            Pilot results &amp; KPI tracker
+          </h2>
+          <p className="mt-6 text-neutral-700 max-w-4xl leading-relaxed">
+            We publish measurable pilot signals here. Where a metric is pending
+            publication, we clearly mark it as in-progress instead of making
+            forward claims.
+          </p>
+
+          <div className="mt-8 grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <article className="border border-neutral-200 bg-white p-5">
+              <p className="text-sm uppercase tracking-wider text-neutral-600">Modules Deployed</p>
+              <p className="mt-2 text-2xl font-semibold">600</p>
+              <p className="mt-2 text-base text-neutral-700">Integrated modular RAS boxes in pilot setup.</p>
+            </article>
+            <article className="border border-neutral-200 bg-white p-5">
+              <p className="text-sm uppercase tracking-wider text-neutral-600">System Maturity</p>
+              <p className="mt-2 text-2xl font-semibold">TRL 6-7</p>
+              <p className="mt-2 text-base text-neutral-700">Pilot-stage operating system and infrastructure maturity.</p>
+            </article>
+            <article className="border border-neutral-200 bg-white p-5">
+              <p className="text-sm uppercase tracking-wider text-neutral-600">AquaOS Status</p>
+              <p className="mt-2 text-2xl font-semibold">MVP Live</p>
+              <p className="mt-2 text-base text-neutral-700">Rule-based event capture and intervention workflows active.</p>
+            </article>
+            <article className="border border-neutral-200 bg-white p-5">
+              <p className="text-sm uppercase tracking-wider text-neutral-600">Current Cycle KPIs</p>
+              <p className="mt-2 text-2xl font-semibold">In Progress</p>
+              <p className="mt-2 text-base text-neutral-700">Survival, growth uniformity, and cycle duration publishing after restart cycle closes.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
       <section className="py-16 md:py-20 px-6">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-2xl md:text-3xl font-semibold tracking-tight">
