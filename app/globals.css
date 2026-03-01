@@ -11,7 +11,23 @@
 }
 
 body {
-  background: var(--background);
+  background:
+    radial-gradient(1200px 500px at 0% -10%, #e9f5ff 0%, transparent 60%),
+    radial-gradient(900px 400px at 100% -10%, #f4f7ec 0%, transparent 55%),
+    var(--background);
   color: var(--foreground);
   font-family: "Avenir Next", "Trebuchet MS", "Segoe UI", sans-serif;
+  font-size: 17px;
+  line-height: 1.65;
+}
+
+/* Modernize repeated panel surfaces used across pages */
+:where(.border.border-neutral-200.bg-white) {
+  border-radius: 1rem;
+  border-color: rgb(229 229 229 / 0.9);
+  box-shadow: 0 10px 28px rgb(0 0 0 / 0.04);
+}
+
+:where(.border.border-neutral-300) {
+  border-radius: 0.8rem;
 }

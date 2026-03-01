@@ -5,7 +5,7 @@ export default function TechnologyPage() {
     <main className="bg-neutral-50 text-neutral-900">
       <section className="border-b border-neutral-200 bg-white">
         <div className="max-w-6xl mx-auto px-6 py-20 md:py-24">
-          <p className="text-xs uppercase tracking-[0.2em] text-neutral-600">
+          <p className="text-sm uppercase tracking-[0.2em] text-neutral-600">
             Technology
           </p>
           <h1 className="mt-5 text-4xl md:text-5xl font-semibold tracking-tight max-w-4xl">
@@ -34,7 +34,7 @@ export default function TechnologyPage() {
             ].map(([title, text]) => (
               <article key={title} className="border border-neutral-200 bg-white p-6">
                 <h3 className="font-semibold">{title}</h3>
-                <p className="mt-2 text-sm text-neutral-700">{text}</p>
+                <p className="mt-2 text-base text-neutral-700">{text}</p>
               </article>
             ))}
           </div>
@@ -45,19 +45,19 @@ export default function TechnologyPage() {
         <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-6">
           <article className="border border-neutral-200 bg-white p-6">
             <h3 className="font-semibold">Molt timing intelligence</h3>
-            <p className="mt-2 text-sm text-neutral-700">
+            <p className="mt-2 text-base text-neutral-700">
               Identifies high-risk windows to reduce mortality and improve intervention timing.
             </p>
           </article>
           <article className="border border-neutral-200 bg-white p-6">
             <h3 className="font-semibold">Risk stabilization</h3>
-            <p className="mt-2 text-sm text-neutral-700">
+            <p className="mt-2 text-base text-neutral-700">
               Forecasts stress conditions before thresholds are crossed.
             </p>
           </article>
           <article className="border border-neutral-200 bg-white p-6">
             <h3 className="font-semibold">Crab Carbon Index (CCI)</h3>
-            <p className="mt-2 text-sm text-neutral-700">
+            <p className="mt-2 text-base text-neutral-700">
               Connects production events to carbon-accountable reporting.
             </p>
           </article>
@@ -66,15 +66,15 @@ export default function TechnologyPage() {
 
       <section className="py-16 px-6 border-t border-neutral-200 bg-white">
         <div className="max-w-6xl mx-auto">
-          <p className="text-sm text-neutral-700 max-w-3xl">
+          <p className="text-base text-neutral-700 max-w-3xl">
             AquaOS explains the operating logic. This page details the broader
             technical stack that supports production reliability.
           </p>
           <div className="mt-6 flex flex-col md:flex-row gap-4">
-            <Link href="/aquaos" className="px-6 py-3 border border-neutral-300 text-sm font-medium hover:bg-neutral-100">
+            <Link href="/aquaos" className="px-6 py-3 border border-neutral-300 text-base font-medium hover:bg-neutral-100">
               Go to AquaOS Overview
             </Link>
-            <Link href="/platform" className="px-6 py-3 border border-neutral-300 text-sm font-medium hover:bg-neutral-100">
+            <Link href="/platform" className="px-6 py-3 border border-neutral-300 text-base font-medium hover:bg-neutral-100">
               Go to Platform Infrastructure
             </Link>
           </div>

@@ -5,7 +5,7 @@ export default function PlatformPage() {
     <main className="bg-neutral-50 text-neutral-900">
       <section className="border-b border-neutral-200 bg-white">
         <div className="max-w-6xl mx-auto px-6 py-20 md:py-24">
-          <p className="text-xs uppercase tracking-[0.2em] text-neutral-600">
+          <p className="text-sm uppercase tracking-[0.2em] text-neutral-600">
             Platform
           </p>
           <h1 className="mt-5 text-4xl md:text-5xl font-semibold tracking-tight max-w-4xl">
@@ -28,7 +28,7 @@ export default function PlatformPage() {
           ].map(([title, text]) => (
             <article key={title} className="border border-neutral-200 bg-white p-6">
               <h2 className="text-lg font-semibold">{title}</h2>
-              <p className="mt-3 text-sm text-neutral-700">{text}</p>
+              <p className="mt-3 text-base text-neutral-700">{text}</p>
             </article>
           ))}
         </div>
@@ -47,9 +47,9 @@ export default function PlatformPage() {
               ["Phase 4", "Global", "Export-aligned operating model"],
             ].map(([phase, value, text]) => (
               <div key={phase} className="border border-neutral-200 p-5">
-                <p className="text-xs uppercase tracking-widest text-neutral-600">{phase}</p>
+                <p className="text-sm uppercase tracking-widest text-neutral-600">{phase}</p>
                 <p className="mt-2 text-2xl font-semibold">{value}</p>
-                <p className="mt-2 text-sm text-neutral-700">{text}</p>
+                <p className="mt-2 text-base text-neutral-700">{text}</p>
               </div>
             ))}
           </div>
@@ -58,10 +58,10 @@ export default function PlatformPage() {
 
       <section className="py-16 md:py-20 px-6">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row gap-4">
-          <Link href="/technology" className="inline-block px-6 py-3 border border-neutral-300 text-sm font-medium hover:bg-neutral-100">
+          <Link href="/technology" className="inline-block px-6 py-3 border border-neutral-300 text-base font-medium hover:bg-neutral-100">
             Explore Technology
           </Link>
-          <Link href="/pilot-roadmap" className="inline-block px-6 py-3 border border-neutral-300 text-sm font-medium hover:bg-neutral-100">
+          <Link href="/pilot-roadmap" className="inline-block px-6 py-3 border border-neutral-300 text-base font-medium hover:bg-neutral-100">
             Review Pilot &amp; Roadmap
           </Link>
         </div>

@@ -5,7 +5,7 @@ export default function CapitalPage() {
     <main className="bg-neutral-50 text-neutral-900">
       <section className="border-b border-neutral-200 bg-white">
         <div className="max-w-6xl mx-auto px-6 py-20 md:py-24">
-          <p className="text-xs uppercase tracking-[0.2em] text-neutral-600">
+          <p className="text-sm uppercase tracking-[0.2em] text-neutral-600">
             Capital
           </p>
           <h1 className="mt-5 text-4xl md:text-5xl font-semibold tracking-tight max-w-4xl">
@@ -27,9 +27,9 @@ export default function CapitalPage() {
             ["Operating Model", "365 days", "Continuous production windows"],
           ].map(([label, value, text]) => (
             <article key={label} className="border border-neutral-200 bg-white p-6">
-              <p className="text-xs uppercase tracking-widest text-neutral-600">{label}</p>
+              <p className="text-sm uppercase tracking-widest text-neutral-600">{label}</p>
               <p className="mt-2 text-3xl font-semibold">{value}</p>
-              <p className="mt-2 text-sm text-neutral-700">{text}</p>
+              <p className="mt-2 text-base text-neutral-700">{text}</p>
             </article>
           ))}
         </div>
@@ -42,10 +42,10 @@ export default function CapitalPage() {
             For deck requests and diligence access, contact the team directly.
           </p>
           <div className="mt-6 flex flex-col md:flex-row gap-4">
-            <Link href="/team" className="inline-block px-6 py-3 border border-neutral-300 text-sm font-medium hover:bg-neutral-100">
+            <Link href="/team" className="inline-block px-6 py-3 border border-neutral-300 text-base font-medium hover:bg-neutral-100">
               Founder Profile
             </Link>
-            <Link href="/contact" className="inline-block px-6 py-3 border border-neutral-300 text-sm font-medium hover:bg-neutral-100">
+            <Link href="/contact" className="inline-block px-6 py-3 border border-neutral-300 text-base font-medium hover:bg-neutral-100">
               Contact Team
             </Link>
           </div>

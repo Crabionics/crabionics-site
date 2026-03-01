@@ -3,7 +3,7 @@ import Link from "next/link";
 export default function Footer() {
   return (
     <footer className="border-t border-neutral-200 bg-white py-16 px-6">
-      <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-8 text-neutral-600 text-sm">
+      <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-8 text-neutral-600 text-base">
         <div>
           <p className="text-neutral-900 font-semibold tracking-tight">
             Crabionics Aquaculture Pvt. Ltd.

@@ -42,7 +42,7 @@ export default function RootLayout({
     <html lang="en">
       <body className="bg-neutral-50 text-neutral-900 antialiased">
         <Navbar />
-        <div className="pt-20">
+        <div className="pt-24">
           {children}
         </div>
         <Footer />

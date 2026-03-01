@@ -5,7 +5,7 @@ export default function BlueEconomyPage() {
     <main className="bg-neutral-50 text-neutral-900">
       <section className="border-b border-neutral-200 bg-white">
         <div className="max-w-6xl mx-auto px-6 py-20 md:py-24">
-          <p className="text-xs uppercase tracking-[0.2em] text-neutral-600">
+          <p className="text-sm uppercase tracking-[0.2em] text-neutral-600">
             Blue Economy
           </p>
           <h1 className="mt-5 text-4xl md:text-5xl font-semibold tracking-tight max-w-4xl">
@@ -28,7 +28,7 @@ export default function BlueEconomyPage() {
           ].map(([title, text]) => (
             <article key={title} className="border border-neutral-200 bg-white p-6">
               <h2 className="text-lg font-semibold">{title}</h2>
-              <p className="mt-3 text-sm text-neutral-700">{text}</p>
+              <p className="mt-3 text-base text-neutral-700">{text}</p>
             </article>
           ))}
         </div>
@@ -36,7 +36,7 @@ export default function BlueEconomyPage() {
 
       <section className="py-16 md:py-20 px-6">
         <div className="max-w-6xl mx-auto border border-neutral-200 bg-white p-8">
-          <p className="text-xs uppercase tracking-widest text-neutral-600">Accountability</p>
+          <p className="text-sm uppercase tracking-widest text-neutral-600">Accountability</p>
           <h2 className="mt-3 text-2xl md:text-3xl font-semibold tracking-tight">
             Crab Carbon Index (CCI) framework
           </h2>
@@ -46,10 +46,10 @@ export default function BlueEconomyPage() {
             time.
           </p>
           <div className="mt-6 flex flex-col md:flex-row gap-4">
-            <Link href="/pilot-roadmap" className="px-6 py-3 border border-neutral-300 text-sm font-medium hover:bg-neutral-100">
+            <Link href="/pilot-roadmap" className="px-6 py-3 border border-neutral-300 text-base font-medium hover:bg-neutral-100">
               See Execution Roadmap
             </Link>
-            <Link href="/capital" className="px-6 py-3 border border-neutral-300 text-sm font-medium hover:bg-neutral-100">
+            <Link href="/capital" className="px-6 py-3 border border-neutral-300 text-base font-medium hover:bg-neutral-100">
               See Capital Context
             </Link>
           </div>

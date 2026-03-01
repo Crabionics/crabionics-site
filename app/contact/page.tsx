@@ -5,7 +5,7 @@ export default function ContactPage() {
     <main className="bg-neutral-50 text-neutral-900">
       <section className="border-b border-neutral-200 bg-white">
         <div className="max-w-6xl mx-auto px-6 py-20 md:py-24">
-          <p className="text-xs uppercase tracking-[0.2em] text-neutral-600">
+          <p className="text-sm uppercase tracking-[0.2em] text-neutral-600">
             Contact
           </p>
           <h1 className="mt-5 text-4xl md:text-5xl font-semibold tracking-tight max-w-4xl">
@@ -20,7 +20,7 @@ export default function ContactPage() {
 
       <section className="py-16 md:py-20 px-6">
         <div className="max-w-4xl mx-auto border border-neutral-200 bg-white p-8 md:p-10">
-          <p className="text-sm uppercase tracking-widest text-neutral-600">Email</p>
+          <p className="text-base uppercase tracking-widest text-neutral-600">Email</p>
           <a
             href="mailto:sameer@crabionics.com"
             className="mt-3 inline-block text-2xl font-semibold tracking-tight text-neutral-900 hover:underline"
@@ -28,7 +28,7 @@ export default function ContactPage() {
             sameer@crabionics.com
           </a>
 
-          <div className="mt-10 grid md:grid-cols-2 gap-6 text-sm text-neutral-700">
+          <div className="mt-10 grid md:grid-cols-2 gap-6 text-base text-neutral-700">
             <div>
               <p className="font-semibold">WhatsApp</p>
               <p className="mt-2">Placeholder: add preferred contact number</p>
@@ -40,12 +40,12 @@ export default function ContactPage() {
           </div>
 
           <div className="mt-10 border-t border-neutral-200 pt-8">
-            <p className="text-sm font-semibold text-neutral-800">Before contacting, review:</p>
+            <p className="text-base font-semibold text-neutral-800">Before contacting, review:</p>
             <div className="mt-4 flex flex-col md:flex-row gap-4">
-              <Link href="/pilot-roadmap" className="px-6 py-3 border border-neutral-300 text-sm font-medium hover:bg-neutral-100">
+              <Link href="/pilot-roadmap" className="px-6 py-3 border border-neutral-300 text-base font-medium hover:bg-neutral-100">
                 Pilot &amp; Roadmap
               </Link>
-              <Link href="/aquaos" className="px-6 py-3 border border-neutral-300 text-sm font-medium hover:bg-neutral-100">
+              <Link href="/aquaos" className="px-6 py-3 border border-neutral-300 text-base font-medium hover:bg-neutral-100">
                 AquaOS Overview
               </Link>
             </div>
