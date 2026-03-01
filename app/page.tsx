@@ -4,93 +4,87 @@ import Reveal from "./components/Reveal";
 export default function Home() {
   return (
     <main className="bg-neutral-950 text-neutral-100">
-
-     <div className="border-b border-white/5 py-3 text-[11px] tracking-wider uppercase text-neutral-500">
-  <div className="max-w-6xl mx-auto px-6 flex justify-between">
-    <span>600-Box Integrated Pilot</span>
-    <span>≥80% Survival Target</span>
-    <span>~1 Ton Annualized Output</span>
-    <span>Blue Economy Aligned</span>
-  </div>
-</div>
-
-{/* ================= HERO ================= */}
-<section className="relative min-h-screen flex items-center px-6 border-b border-white/5">
-
-  <div className="max-w-5xl mx-auto pt-32">
-
-    <Reveal>
-      <div className="text-xs uppercase tracking-[0.25em] text-neutral-500">
-        Biological Infrastructure Intelligence
-      </div>
-    </Reveal>
-
-    <Reveal>
-      <h1 className="mt-6 text-5xl md:text-7xl font-medium tracking-tight leading-[1.05]">
-        Engineering Predictable<br />
-        Mud Crab Production.
-      </h1>
-    </Reveal>
-
-    <Reveal>
-      <p className="mt-10 text-lg md:text-xl text-neutral-400 max-w-2xl leading-relaxed">
-        Infrastructure-integrated modeling and controlled RAS architecture
-        enabling stable survival, lifecycle predictability, and
-        carbon-accountable aquaculture.
-      </p>
-    </Reveal>
-
-    <Reveal>
-      <div className="mt-16 flex gap-6">
-        <a
-          href="/platform"
-          className="px-10 py-4 bg-white text-black text-sm font-medium tracking-wide"
-        >
-          View Platform
-        </a>
-
-        <a
-          href="/technology"
-          className="px-10 py-4 border border-white/20 text-sm tracking-wide text-neutral-300 hover:bg-white hover:text-black transition"
-        >
-          Explore Architecture
-        </a>
-      </div>
-    </Reveal>
-
-  </div>
-</section>
-
-     <section className="py-28 px-6 border-b border-white/5">
-  <div className="max-w-5xl mx-auto">
-
-    <div className="text-xs uppercase tracking-[0.25em] text-neutral-500">
-      Constraint
-    </div>
-
-    <h2 className="mt-4 text-3xl font-medium tracking-tight">
-      Structural Limitations of Traditional Pond Systems
-    </h2>
-
-    <div className="mt-14 grid md:grid-cols-2 gap-16 text-neutral-400">
-      {[
-        "Territorial Behavior and Density Conflict",
-        "Molting Mortality and Vulnerability Windows",
-        "Environmental Variability",
-        "Uncontrolled Cannibalism",
-      ].map((item, i) => (
-        <div key={i}>
-          <p className="text-neutral-100">{item}</p>
-          <p className="mt-3 text-sm text-neutral-500">
-            Infrastructure-level isolation and environmental control
-            are required to stabilize survival curves.
-          </p>
+      <div className="border-b border-white/5 py-3 text-[11px] tracking-wider uppercase text-neutral-500">
+        <div className="max-w-6xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-2">
+          <span>600-Box Integrated Pilot</span>
+          <span>80%+ Survival Target</span>
+          <span>~1 Ton Annualized Output</span>
+          <span>Blue Economy Aligned</span>
         </div>
-      ))}
-    </div>
+      </div>
 
-  </div>
-</section>
+      <section className="relative min-h-screen flex items-center px-6 border-b border-white/5">
+        <div className="max-w-5xl mx-auto pt-32">
+          <Reveal>
+            <div className="text-xs uppercase tracking-[0.25em] text-neutral-500">
+              Biological Infrastructure Intelligence
+            </div>
+          </Reveal>
+
+          <Reveal>
+            <h1 className="mt-6 text-5xl md:text-7xl font-medium tracking-tight leading-[1.05]">
+              Engineering Predictable
+              <br />
+              Mud Crab Production.
+            </h1>
+          </Reveal>
+
+          <Reveal>
+            <p className="mt-10 text-lg md:text-xl text-neutral-400 max-w-2xl leading-relaxed">
+              Infrastructure-integrated modeling and controlled RAS architecture
+              enabling stable survival, lifecycle predictability, and
+              carbon-accountable aquaculture.
+            </p>
+          </Reveal>
+
+          <Reveal>
+            <div className="mt-16 flex flex-col sm:flex-row gap-4 sm:gap-6">
+              <a
+                href="/platform"
+                className="px-10 py-4 bg-white text-black text-sm font-medium tracking-wide text-center"
+              >
+                View Platform
+              </a>
+
+              <a
+                href="/technology"
+                className="px-10 py-4 border border-white/20 text-sm tracking-wide text-neutral-300 hover:bg-white hover:text-black transition text-center"
+              >
+                Explore Architecture
+              </a>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="py-28 px-6 border-b border-white/5">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-xs uppercase tracking-[0.25em] text-neutral-500">
+            Constraint
+          </div>
+
+          <h2 className="mt-4 text-3xl font-medium tracking-tight">
+            Structural Limitations of Traditional Pond Systems
+          </h2>
+
+          <div className="mt-14 grid md:grid-cols-2 gap-16 text-neutral-400">
+            {[
+              "Territorial Behavior and Density Conflict",
+              "Molting Mortality and Vulnerability Windows",
+              "Environmental Variability",
+              "Uncontrolled Cannibalism",
+            ].map((item, i) => (
+              <div key={i}>
+                <p className="text-neutral-100">{item}</p>
+                <p className="mt-3 text-sm text-neutral-500">
+                  Infrastructure-level isolation and environmental control are
+                  required to stabilize survival curves.
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* ================= INFRASTRUCTURE ================= */}
       <section className="py-32 px-6 border-t border-white/10 bg-neutral-900">
@@ -121,22 +115,29 @@ export default function Home() {
             </div>
           </Reveal>
         </div>
+
+        <div className="max-w-6xl mx-auto mt-14 grid md:grid-cols-3 gap-10 text-xs uppercase tracking-wider text-neutral-500">
+          <div>
+            <div className="text-neutral-100 text-lg font-medium">
+              Individualized Units
+            </div>
+            <div className="mt-2">Zero Cannibalism Density</div>
+          </div>
+          <div>
+            <div className="text-neutral-100 text-lg font-medium">
+              Closed-Loop RAS
+            </div>
+            <div className="mt-2">Water Stability Control</div>
+          </div>
+          <div>
+            <div className="text-neutral-100 text-lg font-medium">
+              Integrated Sensing
+            </div>
+            <div className="mt-2">Lifecycle Monitoring</div>
+          </div>
+        </div>
       </section>
-<div className="mt-12 grid grid-cols-3 gap-12 text-xs uppercase tracking-wider text-neutral-500">
-  <div>
-    <div className="text-neutral-100 text-lg font-medium">Individualized Units</div>
-    <div className="mt-2">Zero Cannibalism Density</div>
-  </div>
-  <div>
-    <div className="text-neutral-100 text-lg font-medium">Closed-Loop RAS</div>
-    <div className="mt-2">Water Stability Control</div>
-  </div>
-  <div>
-    <div className="text-neutral-100 text-lg font-medium">Integrated Sensing</div>
-    <div className="mt-2">Lifecycle Monitoring</div>
-  </div>
-</div>
-      {/* ================= PILOT VALIDATION ================= */}
+
       <section className="py-32 px-6 border-t border-white/10">
         <div className="max-w-6xl mx-auto">
           <Reveal>

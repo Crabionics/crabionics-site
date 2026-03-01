@@ -1,9 +1,6 @@
 import './globals.css'
 import Navbar from "@/app/components/Navbar";
 import Footer from "./components/Footer";
-import { Inter } from 'next/font/google'
-
-const inter = Inter({ subsets: ['latin'], display: 'swap' })
 
 export const metadata = {
   title: 'Crabionics',
@@ -17,7 +14,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} bg-black text-neutral-100`}>
+      <body className="bg-black text-neutral-100">
         <Navbar />
         <div className="pt-20">
           {children}
