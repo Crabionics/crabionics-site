@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 const sitemapLinks = [
@@ -17,14 +18,17 @@ export default function Footer() {
     <footer className="border-t border-slate-200 bg-white/95 px-6 py-16 backdrop-blur">
       <div className="mx-auto grid max-w-6xl gap-10 text-base text-slate-600 md:grid-cols-3">
         <div>
-          <p className="text-lg font-semibold tracking-tight text-slate-900">
-            Crabionics Aquaculture Pvt. Ltd.
-          </p>
+          <div className="flex items-center gap-3">
+            <Image src="/logo.png" alt="Crabionics logo" width={38} height={40} />
+            <p className="text-lg font-semibold tracking-tight text-slate-900">
+              Crabionics Aquaculture Pvt. Ltd.
+            </p>
+          </div>
           <p className="mt-3 max-w-md">
             Building controllable mud crab production through modular RAS
             infrastructure and AquaOS-driven operations.
           </p>
-          <p className="mt-4 text-sm text-slate-500">Built in India · Focused on execution.</p>
+          <p className="mt-4 text-sm text-slate-500">Smart. Sustainable. Scalable.</p>
         </div>
 
         <div>

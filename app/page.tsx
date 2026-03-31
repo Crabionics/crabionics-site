@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -7,75 +8,107 @@ export const metadata: Metadata = {
     "Predictable mud crab harvest cycles with modular RAS and AquaOS automation. Review pilot signals, KPIs, and deployment roadmap.",
 };
 
+const heroPills = [
+  "Modular RAS Grow-Out",
+  "600-Box Pilot Scale",
+  "AquaOS MVP Live",
+  "TRL 6-7 Progress",
+];
+
 export default function Home() {
   return (
     <main className="bg-neutral-50 text-neutral-900">
-      <section className="border-b border-neutral-200 bg-white">
-        <div className="max-w-6xl mx-auto px-6 py-4 grid grid-cols-2 md:grid-cols-4 gap-2 text-sm tracking-wider uppercase text-neutral-600">
-          <span>Modular RAS Grow-Out</span>
-          <span>600-Box Pilot Scale</span>
-          <span>AquaOS MVP Live</span>
-          <span>TRL 6-7 Progress</span>
+      <section className="border-b border-neutral-200 bg-white/80">
+        <div className="mx-auto grid max-w-6xl grid-cols-2 gap-2 px-6 py-4 text-xs uppercase tracking-[0.15em] text-neutral-600 md:grid-cols-4">
+          {heroPills.map((pill) => (
+            <span key={pill} className="rounded-full border border-slate-200 bg-white px-3 py-2 text-center">
+              {pill}
+            </span>
+          ))}
         </div>
       </section>
 
       <section className="border-b border-neutral-200 bg-white">
-        <div className="max-w-6xl mx-auto px-6 py-16 md:py-24">
-          <p className="text-sm uppercase tracking-[0.2em] text-neutral-600">
-            Crabionics Aquaculture Pvt. Ltd.
-          </p>
-          <h1 className="mt-6 text-4xl md:text-6xl font-semibold tracking-tight leading-tight max-w-5xl">
-            Predictable mud crab harvest cycles with higher survival stability
-          </h1>
-          <p className="mt-8 text-lg text-neutral-700 max-w-3xl leading-relaxed">
-            We combine modular RAS infrastructure with AquaOS automation to turn
-            mud crab grow-out into an operationally controlled production system.
-          </p>
-          <p className="mt-4 text-base font-medium text-neutral-800">
-            Pilot target: up to 2x survival vs conventional pond grow-out under
-            comparable operating windows.
-          </p>
+        <div className="mx-auto grid max-w-6xl gap-10 px-6 py-16 md:grid-cols-12 md:py-24">
+          <div className="md:col-span-7">
+            <p className="text-sm uppercase tracking-[0.2em] text-neutral-600">Crabionics Aquaculture Pvt. Ltd.</p>
+            <h1 className="mt-6 max-w-4xl text-4xl font-semibold leading-tight tracking-tight md:text-6xl">
+              Smart, sustainable and scalable mud crab production
+            </h1>
+            <p className="mt-8 max-w-3xl text-lg leading-relaxed text-neutral-700">
+              We combine modular RAS infrastructure with AquaOS automation to turn mud crab grow-out
+              into a reliable, operationally controlled production system.
+            </p>
+            <p className="mt-4 text-base font-medium text-neutral-800">
+              Pilot target: up to 2x survival vs conventional pond grow-out under comparable operating windows.
+            </p>
 
-          <div className="mt-10 flex flex-col sm:flex-row gap-4">
-            <Link
-              href="/contact"
-              className="inline-block px-6 py-3 bg-neutral-900 text-white text-base font-medium tracking-wide"
-            >
-              Request Technical Brief / Demo
-            </Link>
-            <Link
-              href="/pilot-roadmap"
-              className="inline-block px-6 py-3 border border-neutral-300 text-base font-medium tracking-wide text-neutral-800 hover:bg-neutral-100"
-            >
-              See Pilot Results &amp; KPIs
-            </Link>
+            <div className="mt-10 flex flex-col gap-4 sm:flex-row">
+              <Link href="/contact" className="inline-block bg-neutral-900 px-6 py-3 text-base font-medium tracking-wide text-white">
+                Request Technical Brief / Demo
+              </Link>
+              <Link
+                href="/pilot-roadmap"
+                className="inline-block border border-neutral-300 px-6 py-3 text-base font-medium tracking-wide text-neutral-800 hover:bg-neutral-100"
+              >
+                See Pilot Results &amp; KPIs
+              </Link>
+            </div>
           </div>
 
-          <div className="mt-10 grid md:grid-cols-3 gap-4">
-            <article className="border border-neutral-200 bg-neutral-50 p-5">
-              <p className="text-sm uppercase tracking-wider text-neutral-600">Pilot Signal</p>
-              <p className="mt-2 text-xl font-semibold">600-box integrated setup</p>
-              <p className="mt-2 text-base text-neutral-700">Modular system is live for reliability-focused grow-out operations.</p>
+          <div className="md:col-span-5">
+            <article className="border border-neutral-200 bg-gradient-to-b from-white to-slate-50 p-6">
+              <div className="flex items-center gap-3">
+                <Image src="/logo.png" alt="Crabionics symbol" width={56} height={60} priority />
+                <div>
+                  <p className="text-lg font-semibold tracking-tight text-slate-900">CRABIONICS</p>
+                  <p className="text-xs uppercase tracking-[0.2em] text-slate-500">Aquaculture Pvt. Ltd.</p>
+                </div>
+              </div>
+              <p className="mt-5 text-base text-slate-700">Smart. Sustainable. Scalable.</p>
+
+              <div className="mt-6 grid grid-cols-3 gap-3 text-center">
+                <div className="rounded-xl border border-slate-200 bg-white px-3 py-4">
+                  <p className="text-xl font-semibold text-slate-900">600</p>
+                  <p className="mt-1 text-xs uppercase tracking-wide text-slate-500">Pilot Boxes</p>
+                </div>
+                <div className="rounded-xl border border-slate-200 bg-white px-3 py-4">
+                  <p className="text-xl font-semibold text-slate-900">TRL 6-7</p>
+                  <p className="mt-1 text-xs uppercase tracking-wide text-slate-500">System Maturity</p>
+                </div>
+                <div className="rounded-xl border border-slate-200 bg-white px-3 py-4">
+                  <p className="text-xl font-semibold text-slate-900">MVP</p>
+                  <p className="mt-1 text-xs uppercase tracking-wide text-slate-500">AquaOS Live</p>
+                </div>
+              </div>
             </article>
-            <article className="border border-neutral-200 bg-neutral-50 p-5">
-              <p className="text-sm uppercase tracking-wider text-neutral-600">Operating Layer</p>
-              <p className="mt-2 text-xl font-semibold">AquaOS MVP active</p>
-              <p className="mt-2 text-base text-neutral-700">Rule-based interventions and event capture are in current pilot workflows.</p>
-            </article>
-            <article className="border border-neutral-200 bg-neutral-50 p-5">
-              <p className="text-sm uppercase tracking-wider text-neutral-600">Programs</p>
-              <p className="mt-2 text-xl font-semibold">BIRAC BIG + NIDHI</p>
-              <p className="mt-2 text-base text-neutral-700">Execution aligned with institution-backed aquaculture innovation tracks.</p>
-            </article>
+          </div>
+
+          <div className="md:col-span-12">
+            <div className="mt-2 grid gap-4 md:grid-cols-3">
+              <article className="border border-neutral-200 bg-neutral-50 p-5">
+                <p className="text-sm uppercase tracking-wider text-neutral-600">Pilot Signal</p>
+                <p className="mt-2 text-xl font-semibold">600-box integrated setup</p>
+                <p className="mt-2 text-base text-neutral-700">Modular system is live for reliability-focused grow-out operations.</p>
+              </article>
+              <article className="border border-neutral-200 bg-neutral-50 p-5">
+                <p className="text-sm uppercase tracking-wider text-neutral-600">Operating Layer</p>
+                <p className="mt-2 text-xl font-semibold">AquaOS MVP active</p>
+                <p className="mt-2 text-base text-neutral-700">Rule-based interventions and event capture are in current pilot workflows.</p>
+              </article>
+              <article className="border border-neutral-200 bg-neutral-50 p-5">
+                <p className="text-sm uppercase tracking-wider text-neutral-600">Programs</p>
+                <p className="mt-2 text-xl font-semibold">BIRAC BIG + NIDHI</p>
+                <p className="mt-2 text-base text-neutral-700">Execution aligned with institution-backed aquaculture innovation tracks.</p>
+              </article>
+            </div>
           </div>
         </div>
       </section>
 
       <section className="py-16 md:py-20 px-6 border-b border-neutral-200">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-2xl md:text-3xl font-semibold tracking-tight">
-            Choose your path
-          </h2>
+          <h2 className="text-2xl md:text-3xl font-semibold tracking-tight">Choose your path</h2>
           <div className="mt-8 grid md:grid-cols-3 gap-6">
             <Link href="/capital" className="border border-neutral-200 bg-white p-6 hover:bg-neutral-100">
               <p className="font-semibold">For Investors</p>
@@ -95,31 +128,25 @@ export default function Home() {
 
       <section className="py-16 md:py-20 px-6 border-b border-neutral-200 bg-white">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-2xl md:text-3xl font-semibold tracking-tight">
-            Why RAS for crabs?
-          </h2>
+          <h2 className="text-2xl md:text-3xl font-semibold tracking-tight">Why RAS for crabs?</h2>
           <div className="mt-8 grid md:grid-cols-3 gap-4">
             <article className="border border-neutral-200 bg-neutral-50 p-6">
               <p className="text-sm font-medium text-neutral-600">Territoriality</p>
               <h3 className="mt-2 font-semibold">Problem</h3>
-              <p className="mt-3 text-base text-neutral-700">
-                Pond density amplifies aggression and molt-period losses.
-              </p>
+              <p className="mt-3 text-base text-neutral-700">Pond density amplifies aggression and molt-period losses.</p>
             </article>
             <article className="border border-neutral-200 bg-neutral-50 p-6">
               <p className="text-sm font-medium text-neutral-600">Modular RAS</p>
               <h3 className="mt-2 font-semibold">Solution</h3>
               <p className="mt-3 text-base text-neutral-700">
-                Unit-level control reduces biological conflict and environment
-                variability.
+                Unit-level control reduces biological conflict and environment variability.
               </p>
             </article>
             <article className="border border-neutral-200 bg-neutral-50 p-6">
               <p className="text-sm font-medium text-neutral-600">Production</p>
               <h3 className="mt-2 font-semibold">Outcome</h3>
               <p className="mt-3 text-base text-neutral-700">
-                Better cycle reliability for planning, harvest windows, and cash
-                predictability.
+                Better cycle reliability for planning, harvest windows, and cash predictability.
               </p>
             </article>
           </div>
@@ -128,13 +155,10 @@ export default function Home() {
 
       <section className="py-16 md:py-20 px-6 border-b border-neutral-200">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-2xl md:text-3xl font-semibold tracking-tight">
-            How AquaOS improves survival
-          </h2>
+          <h2 className="text-2xl md:text-3xl font-semibold tracking-tight">How AquaOS improves survival</h2>
           <p className="mt-6 text-neutral-700 leading-relaxed">
-            AquaOS structures decisions around animal identity, molt timing,
-            feeding windows, and intervention triggers so operations shift from
-            reactive to rule-based execution.
+            AquaOS structures decisions around animal identity, molt timing, feeding windows, and intervention
+            triggers so operations shift from reactive to rule-based execution.
           </p>
           <div className="mt-8 grid md:grid-cols-3 gap-4">
             <div className="border border-neutral-200 bg-white p-6">
@@ -158,9 +182,7 @@ export default function Home() {
 
       <section className="py-16 px-6 border-t border-neutral-200 bg-white">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-2xl font-semibold tracking-tight">
-            Quick take and deep dive
-          </h2>
+          <h2 className="text-2xl font-semibold tracking-tight">Quick take and deep dive</h2>
           <div className="mt-8 grid md:grid-cols-3 gap-4">
             <Link href="/platform" className="border border-neutral-200 p-5 hover:bg-neutral-100">
               <p className="font-semibold">Infrastructure</p>

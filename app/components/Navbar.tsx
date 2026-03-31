@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
@@ -33,8 +34,14 @@ export default function Navbar() {
   return (
     <nav className="fixed top-0 z-50 w-full border-b border-slate-200/80 bg-white/90 backdrop-blur-xl">
       <div className="mx-auto flex h-20 max-w-6xl items-center justify-between gap-4 px-5 sm:px-6">
-        <Link href="/" className="text-xl font-semibold tracking-tight text-slate-900">
-          <span className="text-teal-700">Crab</span>ionics
+        <Link href="/" className="flex items-center gap-3 text-slate-900" onClick={() => setIsOpen(false)}>
+          <Image src="/logo.png" alt="Crabionics logo" width={38} height={40} priority />
+          <div className="leading-tight">
+            <p className="text-lg font-semibold tracking-tight">
+              <span className="text-teal-700">Crab</span>ionics
+            </p>
+            <p className="text-[11px] uppercase tracking-[0.14em] text-slate-500">Aquaculture Pvt. Ltd.</p>
+          </div>
         </Link>
 
         <div className="hidden items-center gap-3 lg:flex">
