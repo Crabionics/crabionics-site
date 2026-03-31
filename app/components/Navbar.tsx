@@ -1,13 +1,14 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useState } from "react";
 
 const navLinks = [
   { href: "/", label: "Home" },
   { href: "/platform", label: "Infrastructure" },
   { href: "/aquaos", label: "AquaOS" },
-  { href: "/technology", label: "Technology & How It Works" },
+  { href: "/technology", label: "Technology" },
   { href: "/pilot-roadmap", label: "Pilots & Data" },
   { href: "/blue-economy", label: "Impact" },
   { href: "/capital", label: "Investors" },
@@ -17,25 +18,36 @@ const navLinks = [
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
+
+  const linkClass = (href: string) => {
+    const isActive = pathname === href;
+    return [
+      "rounded-md px-3 py-2 text-sm font-medium transition",
+      isActive
+        ? "bg-teal-50 text-teal-800"
+        : "text-slate-600 hover:bg-slate-100 hover:text-slate-900",
+    ].join(" ");
+  };
 
   return (
-    <nav className="fixed top-0 w-full bg-white/92 backdrop-blur border-b border-neutral-200 z-50">
-      <div className="max-w-6xl mx-auto px-6 h-24 flex items-center justify-between gap-4">
-        <Link href="/" className="font-semibold text-xl tracking-tight text-neutral-900">
-          Crabionics
+    <nav className="fixed top-0 z-50 w-full border-b border-slate-200/80 bg-white/90 backdrop-blur-xl">
+      <div className="mx-auto flex h-20 max-w-6xl items-center justify-between gap-4 px-5 sm:px-6">
+        <Link href="/" className="text-xl font-semibold tracking-tight text-slate-900">
+          <span className="text-teal-700">Crab</span>ionics
         </Link>
 
-        <div className="hidden lg:flex items-center gap-6">
-          <div className="flex flex-wrap justify-end gap-x-5 gap-y-2 text-sm text-neutral-700">
+        <div className="hidden items-center gap-3 lg:flex">
+          <div className="flex flex-wrap justify-end gap-1">
             {navLinks.map((item) => (
-              <Link key={item.href} href={item.href} className="hover:text-neutral-900 transition">
+              <Link key={item.href} href={item.href} className={linkClass(item.href)}>
                 {item.label}
               </Link>
             ))}
           </div>
           <Link
             href="/contact"
-            className="inline-flex items-center px-4 py-2.5 bg-neutral-900 text-white text-sm font-medium tracking-wide hover:bg-neutral-700 transition"
+            className="inline-flex items-center px-4 py-2.5 text-sm font-semibold text-white"
           >
             Request Demo
           </Link>
@@ -44,21 +56,23 @@ export default function Navbar() {
         <button
           type="button"
           onClick={() => setIsOpen((prev) => !prev)}
-          className="lg:hidden px-4 py-2.5 border border-neutral-300 rounded text-base text-neutral-800 hover:bg-neutral-100 transition"
+          className="rounded-md border border-slate-300 px-4 py-2.5 text-sm font-medium text-slate-700 hover:bg-slate-100 lg:hidden"
+          aria-expanded={isOpen}
+          aria-label="Toggle menu"
         >
-          Menu
+          {isOpen ? "Close" : "Menu"}
         </button>
       </div>
 
       {isOpen ? (
-        <div className="lg:hidden border-t border-neutral-200 bg-white">
-          <div className="max-w-6xl mx-auto px-6 py-5 grid grid-cols-2 gap-4 text-base text-neutral-700">
+        <div className="border-t border-slate-200 bg-white/95 px-5 py-4 shadow-sm backdrop-blur lg:hidden">
+          <div className="mx-auto grid max-w-6xl grid-cols-1 gap-2 sm:grid-cols-2">
             {navLinks.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
                 onClick={() => setIsOpen(false)}
-                className="hover:text-neutral-900 transition"
+                className={linkClass(item.href)}
               >
                 {item.label}
               </Link>
@@ -66,7 +80,7 @@ export default function Navbar() {
             <Link
               href="/contact"
               onClick={() => setIsOpen(false)}
-              className="col-span-2 mt-2 inline-flex items-center justify-center px-4 py-3 bg-neutral-900 text-white text-base font-medium"
+              className="mt-2 inline-flex items-center justify-center rounded-md px-4 py-3 text-sm font-semibold text-white sm:col-span-2"
             >
               Request Technical Brief / Demo
             </Link>
