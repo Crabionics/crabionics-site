@@ -32,18 +32,8 @@ export default function Footer() {
         </div>
 
         <div>
-          <p className="font-semibold text-slate-900">Get in touch</p>
-          <a
-            className="mt-3 inline-block text-slate-700 hover:text-teal-700"
-            href="mailto:sameer@crabionics.com"
-          >
-            sameer@crabionics.com
-          </a>
-          <p className="mt-2 text-sm text-slate-500">WhatsApp: +91-7008302108</p>
-          <p className="mt-3 text-sm text-slate-500">
-            For pilot collaboration, technical brief requests, and investment
-            diligence.
-          </p>
+          <p>Built in India</p>
+          <p className="mt-2">Focused on execution, not hype.</p>
         </div>
 
         <div>

@@ -29,53 +29,35 @@ export default function Home() {
       </section>
 
       <section className="border-b border-neutral-200 bg-white">
-        <div className="mx-auto grid max-w-6xl gap-10 px-6 py-16 md:grid-cols-12 md:py-24">
-          <div className="md:col-span-8">
-            <div className="inline-flex items-center gap-3 rounded-full border border-slate-200 bg-slate-50 px-4 py-2">
-              <Image src="/logo.png" alt="Crabionics logo" width={28} height={30} priority />
-              <p className="text-xs font-medium uppercase tracking-[0.15em] text-slate-600">Crabionics Aquaculture Pvt. Ltd.</p>
-            </div>
+        <div className="max-w-6xl mx-auto px-6 py-16 md:py-24">
+          <p className="text-sm uppercase tracking-[0.2em] text-neutral-600">
+            Crabionics Aquaculture Pvt. Ltd.
+          </p>
+          <h1 className="mt-6 text-4xl md:text-6xl font-semibold tracking-tight leading-tight max-w-5xl">
+            Predictable mud crab harvest cycles with higher survival stability
+          </h1>
+          <p className="mt-8 text-lg text-neutral-700 max-w-3xl leading-relaxed">
+            We combine modular RAS infrastructure with AquaOS automation to turn
+            mud crab grow-out into an operationally controlled production system.
+          </p>
+          <p className="mt-4 text-base font-medium text-neutral-800">
+            Pilot target: up to 2x survival vs conventional pond grow-out under
+            comparable operating windows.
+          </p>
 
-            <h1 className="mt-6 max-w-4xl text-4xl font-semibold leading-tight tracking-tight md:text-6xl">
-              Predictable mud crab harvest cycles with higher survival stability
-            </h1>
-            <p className="mt-8 max-w-3xl text-lg leading-relaxed text-neutral-700">
-              We combine modular RAS infrastructure with AquaOS automation to turn mud crab grow-out into a
-              reliable, operationally controlled production system.
-            </p>
-            <p className="mt-4 text-base font-medium text-neutral-800">Smart. Sustainable. Scalable.</p>
-
-            <div className="mt-10 flex flex-col gap-4 sm:flex-row">
-              <Link href="/contact" className="inline-block bg-neutral-900 px-6 py-3 text-base font-medium tracking-wide text-white">
-                Request Technical Brief / Demo
-              </Link>
-              <Link
-                href="/pilot-roadmap"
-                className="inline-block border border-neutral-300 px-6 py-3 text-base font-medium tracking-wide text-neutral-800 hover:bg-neutral-100"
-              >
-                See Pilot Results &amp; KPIs
-              </Link>
-            </div>
-          </div>
-
-          <div className="md:col-span-4">
-            <article className="border border-neutral-200 bg-gradient-to-b from-white to-slate-50 p-6">
-              <p className="text-sm uppercase tracking-wider text-neutral-600">Current Signals</p>
-              <div className="mt-5 space-y-3">
-                <div className="rounded-xl border border-slate-200 bg-white px-4 py-3">
-                  <p className="text-xs uppercase tracking-wide text-slate-500">Pilot Capacity</p>
-                  <p className="mt-1 text-xl font-semibold text-slate-900">600 Integrated Boxes</p>
-                </div>
-                <div className="rounded-xl border border-slate-200 bg-white px-4 py-3">
-                  <p className="text-xs uppercase tracking-wide text-slate-500">Operating Layer</p>
-                  <p className="mt-1 text-xl font-semibold text-slate-900">AquaOS MVP Live</p>
-                </div>
-                <div className="rounded-xl border border-slate-200 bg-white px-4 py-3">
-                  <p className="text-xs uppercase tracking-wide text-slate-500">Maturity</p>
-                  <p className="mt-1 text-xl font-semibold text-slate-900">TRL 6-7 Progress</p>
-                </div>
-              </div>
-            </article>
+          <div className="mt-10 flex flex-col sm:flex-row gap-4">
+            <Link
+              href="/contact"
+              className="inline-block px-6 py-3 bg-neutral-900 text-white text-base font-medium tracking-wide"
+            >
+              Request Technical Brief / Demo
+            </Link>
+            <Link
+              href="/pilot-roadmap"
+              className="inline-block px-6 py-3 border border-neutral-300 text-base font-medium tracking-wide text-neutral-800 hover:bg-neutral-100"
+            >
+              See Pilot Results &amp; KPIs
+            </Link>
           </div>
 
           <div className="md:col-span-12">
