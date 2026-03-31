@@ -38,16 +38,14 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode;
-}) {
+}>) {
   return (
     <html lang="en">
-      <body className="bg-neutral-50 text-neutral-900 antialiased">
+      <body className="bg-slate-50 text-slate-900 antialiased">
         <Navbar />
-        <div className="pt-24">
-          {children}
-        </div>
+        <div className="pt-20">{children}</div>
         <Footer />
       </body>
     </html>

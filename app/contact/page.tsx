@@ -31,7 +31,14 @@ export default function ContactPage() {
           <div className="mt-10 grid md:grid-cols-2 gap-6 text-base text-neutral-700">
             <div>
               <p className="font-semibold">WhatsApp</p>
-              <p className="mt-2">Placeholder: add preferred contact number</p>
+              <a
+                href="https://wa.me/917008302108"
+                className="mt-2 inline-block text-neutral-900 hover:underline"
+                target="_blank"
+                rel="noreferrer"
+              >
+                +91-7008302108
+              </a>
             </div>
             <div>
               <p className="font-semibold">Calendly</p>
