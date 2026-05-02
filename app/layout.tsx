@@ -6,27 +6,26 @@ import Footer from "./components/Footer";
 export const metadata: Metadata = {
   metadataBase: new URL("https://crabionics.com"),
   title: {
-    default: "Mud Crab RAS Automation | Crabionics",
+    default: "Crabionics | Aquaculture OS",
     template: "%s | Crabionics",
   },
   description:
-    "Crabionics builds modular RAS and AquaOS automation for predictable mud crab grow-out, higher survival stability, and measurable pilot outcomes.",
+    "Crabionics builds a closed-loop aquaculture operating system combining modular RAS, real-time sensing, and biological control logic for predictable production.",
   keywords: [
     "Crabionics",
+    "Aquaculture OS",
     "mud crab farming",
-    "mud crab RAS automation",
-    "predictable grow-out",
-    "mud crab survival optimization",
-    "modular RAS",
-    "aquaculture technology",
+    "RAS automation",
     "AquaOS",
+    "predictable aquaculture",
+    "IoT aquaculture",
     "BIRAC",
     "NIDHI",
   ],
   openGraph: {
-    title: "Mud Crab RAS Automation | Crabionics",
+    title: "Crabionics | Aquaculture OS",
     description:
-      "Predictable mud crab grow-out with modular RAS and AquaOS automation.",
+      "Closed-loop biological control system for predictable aquaculture production.",
     url: "https://crabionics.com",
     siteName: "Crabionics",
     type: "website",
@@ -38,15 +37,24 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en">
-      <body className="bg-slate-50 text-slate-900 antialiased">
+      <body className="bg-white text-slate-900 antialiased">
+
+        {/* NAVBAR (fixed) */}
         <Navbar />
-        <div className="pt-20">{children}</div>
+
+        {/* MAIN CONTENT */}
+        <main className="relative pt-20">
+          {children}
+        </main>
+
+        {/* FOOTER */}
         <Footer />
+
       </body>
     </html>
   );
