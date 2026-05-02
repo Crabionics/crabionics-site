@@ -47,7 +47,7 @@ export default function RootLayout({
         <Navbar />
 
         {/* ❌ NO padding here */}
-        <main className="relative">
+        <main className="relative pt-20">
           {children}
         </main>
 
