@@ -33,14 +33,13 @@ export default function Home() {
           <div className="md:col-span-7">
             <p className="text-sm uppercase tracking-[0.2em] text-neutral-600">Crabionics Aquaculture Pvt. Ltd.</p>
             <h1 className="mt-6 max-w-4xl text-4xl font-semibold leading-tight tracking-tight md:text-6xl">
-              Smart, sustainable and scalable mud crab production
+              Engineering Predictable Crustacean Production
             </h1>
             <p className="mt-8 max-w-3xl text-lg leading-relaxed text-neutral-700">
-              We combine modular RAS infrastructure with AquaOS automation to turn mud crab grow-out
-              into a reliable, operationally controlled production system.
+              Crabionics builds a closed-loop aquaculture operating system combining modular RAS, real-time sensing, and biological control logic.
             </p>
             <p className="mt-4 text-base font-medium text-neutral-800">
-              Pilot target: up to 2x survival vs conventional pond grow-out under comparable operating windows.
+              From biological uncertainty to controlled production systems
             </p>
 
             <div className="mt-10 flex flex-col gap-4 sm:flex-row">
@@ -59,7 +58,7 @@ export default function Home() {
           <div className="md:col-span-5">
             <article className="border border-neutral-200 bg-gradient-to-b from-white to-slate-50 p-6">
               <div className="flex items-center gap-3">
-                <Image src="/logo.png" alt="Crabionics symbol" width={56} height={60} priority />
+                <Image src="/logo.png" alt="Crabionics symbol" width={40} height={40} className="h-10 w-auto" priority />
                 <div>
                   <p className="text-lg font-semibold tracking-tight text-slate-900">CRABIONICS</p>
                   <p className="text-xs uppercase tracking-[0.2em] text-slate-500">Aquaculture Pvt. Ltd.</p>
@@ -103,6 +102,29 @@ export default function Home() {
               </article>
             </div>
           </div>
+        </div>
+      </section>
+
+      <section className="px-6 py-16 md:py-20 border-b border-neutral-200 bg-white">
+        <div className="mx-auto max-w-5xl text-center">
+          <h2 className="text-2xl md:text-3xl font-semibold tracking-tight">AquaOS Control Loop</h2>
+          <p className="mt-4 text-base md:text-lg text-neutral-700">
+            From biological signals to automated decisions and predictable outcomes
+          </p>
+
+          <div className="mt-10 flex justify-center">
+            <Image
+              src="/aquaos-diagram.png"
+              alt="AquaOS control loop system diagram"
+              width={1600}
+              height={900}
+              className="h-auto w-full max-w-4xl rounded-lg shadow-md"
+            />
+          </div>
+
+          <p className="mt-6 text-base text-neutral-800">
+            This is a closed-loop biological control system — not just monitoring.
+          </p>
         </div>
       </section>
 
