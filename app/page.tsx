@@ -213,7 +213,81 @@ export default function HomePage() {
     </main>
   );
 }
+{/* ================= HYBRID FLOW ================= */}
+<section className="bg-slate-50 py-28">
 
+  {/* HEADER */}
+  <div className="max-w-6xl mx-auto px-6 text-center">
+
+    <motion.h2
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      className="text-3xl md:text-4xl font-semibold text-slate-900"
+    >
+      Hybrid Production Model
+    </motion.h2>
+
+    <motion.p
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      className="mt-4 text-slate-600 max-w-2xl mx-auto"
+    >
+      Combining low-cost pond biomass with high-precision RAS finishing to deliver
+      predictable, export-grade production.
+    </motion.p>
+
+  </div>
+
+  {/* FLOW */}
+  <div className="mt-20 max-w-7xl mx-auto px-6">
+
+    <div className="flex flex-col md:flex-row items-center justify-between gap-10">
+
+      <FlowStep
+        delay={0}
+        title="Hatchery"
+        desc="Crablet production (Zoea → Megalopa)"
+      />
+
+      <FlowConnector delay={0.2} />
+
+      <FlowStep
+        delay={0.3}
+        title="Farmer Ponds"
+        desc="Low-cost biomass growth (20g → 120g)"
+      />
+
+      <FlowConnector delay={0.5} />
+
+      <FlowStep
+        delay={0.6}
+        title="RAS Finishing"
+        desc="Individual box system (200g → 500g)"
+        highlight
+      />
+
+      <FlowConnector delay={0.8} />
+
+      <FlowStep
+        delay={0.9}
+        title="Export Market"
+        desc="Premium grade, traceable output"
+      />
+
+    </div>
+
+  </div>
+
+  {/* METRICS */}
+  <div className="mt-16 max-w-6xl mx-auto px-6 grid gap-6 sm:grid-cols-3 text-center">
+
+    <Metric value="5x" label="Higher Yield per Area" />
+    <Metric value="~80%" label="Survival Rate" />
+    <Metric value="4 Cycles" label="Per Year Production" />
+
+  </div>
+
+</section>
 
 /* ================= COMPONENTS ================= */
 
@@ -263,5 +337,53 @@ function Connector({ delay }: { delay: number }) {
       transition={{ delay }}
       className="h-[2px] bg-teal-500 hidden md:block"
     />
+  );
+}
+function FlowStep({
+  title,
+  desc,
+  delay,
+  highlight = false,
+}: {
+  title: string;
+  desc: string;
+  delay: number;
+  highlight?: boolean;
+}) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ delay }}
+      className={`p-6 rounded-xl border text-center w-56
+        ${highlight ? "bg-teal-50 border-teal-500" : "bg-white"}`}
+    >
+      <h3 className="font-semibold text-slate-900">{title}</h3>
+      <p className="text-sm text-slate-500 mt-2">{desc}</p>
+    </motion.div>
+  );
+}
+
+function FlowConnector({ delay }: { delay: number }) {
+  return (
+    <motion.div
+      initial={{ width: 0 }}
+      whileInView={{ width: 50 }}
+      transition={{ delay }}
+      className="h-[2px] bg-teal-500 hidden md:block"
+    />
+  );
+}
+
+function Metric({ value, label }: { value: string; label: string }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      className="p-6"
+    >
+      <p className="text-3xl font-semibold text-teal-600">{value}</p>
+      <p className="text-sm text-slate-600 mt-2">{label}</p>
+    </motion.div>
   );
 }
