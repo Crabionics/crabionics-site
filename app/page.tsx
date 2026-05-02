@@ -6,7 +6,7 @@ export default function HomePage() {
     <main className="w-full">
 
       {/* ================= HERO ================= */}
-      <section className="relative h-[100vh] w-full overflow-hidden">
+      <section className="relative h-[85vh] sm:h-[100vh] w-full overflow-hidden">
 
         {/* Background Image */}
         <Image
@@ -14,25 +14,25 @@ export default function HomePage() {
           alt="Crabionics AquaOS"
           fill
           priority
-          className="object-cover object-center"
+          className="object-cover object-[65%_center] sm:object-center"
         />
 
         {/* Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/10 to-black/40" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/10 to-black/50" />
 
-        {/* CTA (Minimal, Bottom Left) */}
-        <div className="absolute bottom-12 left-6 z-10 flex gap-4">
+        {/* CTA (Bottom Left Responsive) */}
+        <div className="absolute bottom-8 left-4 sm:bottom-12 sm:left-6 z-10 flex gap-3 sm:gap-4">
 
           <Link
             href="/contact"
-            className="bg-teal-600 px-6 py-3 text-white text-sm font-medium hover:bg-teal-700 transition"
+            className="bg-teal-600 px-4 py-2 sm:px-6 sm:py-3 text-white text-xs sm:text-sm font-medium hover:bg-teal-700 transition"
           >
             Request Technical Brief
           </Link>
 
           <Link
             href="/pilot-roadmap"
-            className="border border-white px-6 py-3 text-white text-sm hover:bg-white hover:text-black transition"
+            className="border border-white px-4 py-2 sm:px-6 sm:py-3 text-white text-xs sm:text-sm hover:bg-white hover:text-black transition"
           >
             View Pilot Data
           </Link>
@@ -41,7 +41,7 @@ export default function HomePage() {
       </section>
 
 
-      {/* ================= SECTION 2: CORE STATEMENT ================= */}
+      {/* ================= SECTION 2 ================= */}
       <section className="bg-white py-20">
         <div className="mx-auto max-w-5xl px-6 text-center">
 
@@ -62,26 +62,32 @@ export default function HomePage() {
       </section>
 
 
-      {/* ================= SECTION 3: KEY CAPABILITIES ================= */}
+      {/* ================= SECTION 3 ================= */}
       <section className="bg-slate-50 py-16">
         <div className="mx-auto max-w-6xl px-6 grid gap-6 sm:grid-cols-3">
 
-          <div className="rounded-xl border bg-white p-6 text-center">
-            <h3 className="text-lg font-semibold text-slate-900">AI for Precision</h3>
+          <div className="rounded-xl border bg-white p-6 text-center shadow-sm hover:shadow-md transition">
+            <h3 className="text-lg font-semibold text-slate-900">
+              AI for Precision
+            </h3>
             <p className="text-sm text-slate-600 mt-2">
               Real-time biological monitoring and predictive decision models.
             </p>
           </div>
 
-          <div className="rounded-xl border bg-white p-6 text-center">
-            <h3 className="text-lg font-semibold text-slate-900">Carbon Smart Farming</h3>
+          <div className="rounded-xl border bg-white p-6 text-center shadow-sm hover:shadow-md transition">
+            <h3 className="text-lg font-semibold text-slate-900">
+              Carbon Smart Farming
+            </h3>
             <p className="text-sm text-slate-600 mt-2">
               Integrated mangrove-based systems and sustainable aquaculture practices.
             </p>
           </div>
 
-          <div className="rounded-xl border bg-white p-6 text-center">
-            <h3 className="text-lg font-semibold text-slate-900">Data-Driven Scaling</h3>
+          <div className="rounded-xl border bg-white p-6 text-center shadow-sm hover:shadow-md transition">
+            <h3 className="text-lg font-semibold text-slate-900">
+              Data-Driven Scaling
+            </h3>
             <p className="text-sm text-slate-600 mt-2">
               Continuous learning loops enabling predictable and repeatable production.
             </p>
@@ -91,7 +97,7 @@ export default function HomePage() {
       </section>
 
 
-      {/* ================= SECTION 4: CTA ================= */}
+      {/* ================= SECTION 4 ================= */}
       <section className="bg-slate-900 py-20 text-center text-white">
         <div className="mx-auto max-w-3xl px-6">
 
@@ -103,7 +109,7 @@ export default function HomePage() {
             Explore AquaOS, infrastructure modules, and pilot deployments.
           </p>
 
-          <div className="mt-8 flex justify-center gap-4">
+          <div className="mt-8 flex flex-col sm:flex-row justify-center gap-4">
 
             <Link
               href="/aquaos"
