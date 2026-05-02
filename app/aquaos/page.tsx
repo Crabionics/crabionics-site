@@ -1,4 +1,5 @@
 import Link from "next/link";
+import AquaOSControlLoop from "../components/AquaOSControlLoop";
 
 export default function AquaOSPage() {
   return (
@@ -33,42 +34,7 @@ export default function AquaOSPage() {
         </div>
       </section>
 
-      <section className="py-16 md:py-20 px-6 border-b border-neutral-200 bg-white">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-2xl md:text-3xl font-semibold tracking-tight">
-            Architecture
-          </h2>
-
-          <div className="mt-8 rounded border border-neutral-300 bg-neutral-100 p-5 text-base text-neutral-700">
-            <p className="font-semibold">Simple diagram placeholder</p>
-            <p className="mt-3">Asset &amp; Event Layer -&gt; Decision Engine -&gt; Outcome Layer</p>
-          </div>
-
-          <div className="mt-8 grid md:grid-cols-3 gap-6">
-            <article className="border border-neutral-200 p-6">
-              <h3 className="font-semibold">Asset &amp; Event Layer</h3>
-              <p className="mt-3 text-base text-neutral-700">
-                Individual crab identity, molt events, feeding history, and
-                environment signals are logged in a structured way.
-              </p>
-            </article>
-            <article className="border border-neutral-200 p-6">
-              <h3 className="font-semibold">Decision Engine</h3>
-              <p className="mt-3 text-base text-neutral-700">
-                Rule-based logic currently guides interventions. Over time, this
-                layer will become more model-driven as cycle data grows.
-              </p>
-            </article>
-            <article className="border border-neutral-200 p-6">
-              <h3 className="font-semibold">Outcome Layer</h3>
-              <p className="mt-3 text-base text-neutral-700">
-                Measures survival percentage, cycle-time stability, and harvest
-                value per kilogram as core production outcomes.
-              </p>
-            </article>
-          </div>
-        </div>
-      </section>
+      <AquaOSControlLoop />
 
       <section className="py-16 md:py-20 px-6">
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-6">
