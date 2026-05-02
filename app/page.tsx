@@ -105,6 +105,29 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="px-6 py-16 md:py-20 border-b border-neutral-200 bg-white">
+        <div className="mx-auto max-w-5xl text-center">
+          <h2 className="text-2xl md:text-3xl font-semibold tracking-tight">AquaOS Control Loop</h2>
+          <p className="mt-4 text-base md:text-lg text-neutral-700">
+            From biological signals to automated decisions and predictable outcomes
+          </p>
+
+          <div className="mt-10 flex justify-center">
+            <Image
+              src="/aquaos-diagram.png"
+              alt="AquaOS control loop system diagram"
+              width={1600}
+              height={900}
+              className="h-auto w-full max-w-4xl rounded-lg shadow-md"
+            />
+          </div>
+
+          <p className="mt-6 text-base text-neutral-800">
+            This is a closed-loop biological control system — not just monitoring.
+          </p>
+        </div>
+      </section>
+
       <section className="py-16 md:py-20 px-6 border-b border-neutral-200">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-2xl md:text-3xl font-semibold tracking-tight">Choose your path</h2>
