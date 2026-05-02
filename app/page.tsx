@@ -58,7 +58,7 @@ export default function Home() {
           <div className="md:col-span-5">
             <article className="border border-neutral-200 bg-gradient-to-b from-white to-slate-50 p-6">
               <div className="flex items-center gap-3">
-                <Image src="/logo.png" alt="Crabionics symbol" width={56} height={60} priority />
+                <Image src="/logo.png" alt="Crabionics symbol" width={40} height={40} className="h-10 w-auto" priority />
                 <div>
                   <p className="text-lg font-semibold tracking-tight text-slate-900">CRABIONICS</p>
                   <p className="text-xs uppercase tracking-[0.2em] text-slate-500">Aquaculture Pvt. Ltd.</p>
