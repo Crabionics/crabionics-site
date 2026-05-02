@@ -33,14 +33,13 @@ export default function Home() {
           <div className="md:col-span-7">
             <p className="text-sm uppercase tracking-[0.2em] text-neutral-600">Crabionics Aquaculture Pvt. Ltd.</p>
             <h1 className="mt-6 max-w-4xl text-4xl font-semibold leading-tight tracking-tight md:text-6xl">
-              Smart, sustainable and scalable mud crab production
+              Engineering Predictable Crustacean Production
             </h1>
             <p className="mt-8 max-w-3xl text-lg leading-relaxed text-neutral-700">
-              We combine modular RAS infrastructure with AquaOS automation to turn mud crab grow-out
-              into a reliable, operationally controlled production system.
+              Crabionics builds a closed-loop aquaculture operating system combining modular RAS, real-time sensing, and biological control logic.
             </p>
             <p className="mt-4 text-base font-medium text-neutral-800">
-              Pilot target: up to 2x survival vs conventional pond grow-out under comparable operating windows.
+              From biological uncertainty to controlled production systems
             </p>
 
             <div className="mt-10 flex flex-col gap-4 sm:flex-row">
