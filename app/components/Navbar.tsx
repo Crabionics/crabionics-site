@@ -22,6 +22,17 @@ export default function Navbar() {
   const pathname = usePathname();
 
   useEffect(() => {
+    setIsOpen(false);
+  }, [pathname]);
+
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isOpen]);
+
+  useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 40);
     };
@@ -123,6 +134,10 @@ export default function Navbar() {
 
         {/* MOBILE BUTTON */}
         <button
+          type="button"
+          aria-expanded={isOpen}
+          aria-controls="mobile-navigation"
+          aria-label={isOpen ? "Close menu" : "Open menu"}
           onClick={() => setIsOpen((prev) => !prev)}
           className={`lg:hidden px-3 py-2 text-sm border ${
             scrolled
@@ -136,7 +151,10 @@ export default function Navbar() {
 
       {/* MOBILE MENU */}
       {isOpen && (
-        <div className="border-t border-slate-200 bg-white px-6 py-4 lg:hidden">
+        <div
+          id="mobile-navigation"
+          className="border-t border-slate-200 bg-white px-6 py-4 lg:hidden"
+        >
           <div className="flex flex-col gap-3">
             {navLinks.map((item) => (
               <Link
