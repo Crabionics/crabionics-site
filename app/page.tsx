@@ -23,12 +23,12 @@ export default function HomePage() {
       <section className="relative w-full h-screen overflow-hidden">
 
         <Image
-          src="/hero-crabionics.png"
-          alt="Crabionics AquaOS"
+          src="/infrastructure.png"
+          alt="Crabionics modular aquaculture infrastructure"
           fill
           priority
           sizes="100vw"
-          className="object-cover object-[75%_center] sm:object-[65%_center] md:object-center"
+          className="object-cover object-center"
         />
 
         <HeroParticles />
