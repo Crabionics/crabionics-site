@@ -8,35 +8,17 @@ export const metadata: Metadata = {
     "Crabionics builds a closed-loop aquaculture operating system combining modular RAS, sensing, and biological control.",
 };
 
-const heroPills = [
-  "Modular RAS Grow-Out",
-  "600-Box Pilot Scale",
-  "AquaOS MVP Live",
-  "TRL 6-7 Progress",
-];
-
 export default function Home() {
   return (
     <main className="bg-neutral-50 text-neutral-900">
 
-      {/* TOP PILLS */}
-      <section className="border-b border-neutral-200 bg-white/80">
-        <div className="mx-auto grid max-w-6xl grid-cols-2 gap-2 px-6 py-4 text-xs uppercase tracking-[0.15em] text-neutral-600 md:grid-cols-4">
-          {heroPills.map((pill) => (
-            <span key={pill} className="rounded-full border border-slate-200 bg-white px-3 py-2 text-center">
-              {pill}
-            </span>
-          ))}
-        </div>
-      </section>
-
       {/* HERO */}
-      <section className="border-b border-neutral-200 bg-white">
-        <div className="mx-auto grid max-w-6xl gap-10 px-6 py-16 md:grid-cols-12 md:py-24">
+      <section className="border-b border-neutral-200 bg-white mt-6 md:mt-10">
+        <div className="mx-auto grid max-w-6xl gap-10 px-6 py-20 md:grid-cols-12 md:py-28">
 
           <div className="md:col-span-7">
             <p className="text-sm uppercase tracking-[0.2em] text-neutral-600">
-              Crabionics Aquaculture Pvt. Ltd.
+              Crabionics Aquaculture OS
             </p>
 
             <h1 className="mt-6 text-4xl font-semibold leading-tight tracking-tight md:text-6xl">
@@ -65,37 +47,41 @@ export default function Home() {
 
           {/* RIGHT CARD */}
           <div className="md:col-span-5">
-            <article className="border border-neutral-200 bg-gradient-to-b from-white to-slate-50 p-6">
+            <article className="border border-neutral-200 bg-white p-6 shadow-sm">
               <div className="flex items-center gap-3">
                 <Image src="/logo.png" alt="Crabionics" width={40} height={40} />
                 <div>
-                  <p className="font-semibold">CRABIONICS</p>
-                  <p className="text-xs uppercase text-slate-500">Aquaculture Pvt. Ltd.</p>
+                  <p className="font-semibold tracking-tight">CRABIONICS</p>
+                  <p className="text-xs uppercase text-neutral-500">
+                    Aquaculture OS
+                  </p>
                 </div>
               </div>
 
-              <p className="mt-5 text-slate-700">Smart. Sustainable. Scalable.</p>
+              <p className="mt-5 text-neutral-700">
+                Closed-loop biological control for predictable production.
+              </p>
 
               <div className="mt-6 grid grid-cols-3 gap-3 text-center">
-                <Stat value="600" label="Pilot Boxes" />
-                <Stat value="TRL 6-7" label="System Maturity" />
-                <Stat value="MVP" label="AquaOS Live" />
+                <Stat value="600" label="Active Units" />
+                <Stat value="TRL 6–7" label="System Stage" />
+                <Stat value="Live" label="AquaOS Status" />
               </div>
             </article>
           </div>
 
           {/* SIGNAL CARDS */}
           <div className="md:col-span-12">
-            <div className="grid gap-4 md:grid-cols-3 mt-4">
-              <Card title="Pilot Signal" text="600-box integrated system live for controlled grow-out." />
-              <Card title="Operating Layer" text="AquaOS executing rule-based biological control." />
-              <Card title="Programs" text="BIRAC BIG and NIDHI aligned execution." />
+            <div className="grid gap-4 md:grid-cols-3 mt-6">
+              <Card title="Deployment" text="600-unit modular RAS system operating under controlled conditions." />
+              <Card title="Control Layer" text="AquaOS executing rule-based biological decisions across cycles." />
+              <Card title="Execution Track" text="BIRAC BIG and NIDHI aligned for scaled deployment." />
             </div>
           </div>
         </div>
       </section>
 
-      {/* 🔥 AQUAOS CONTROL LOOP */}
+      {/* AQUAOS CONTROL LOOP */}
       <section className="px-6 py-20 border-b border-neutral-200 bg-white">
         <div className="mx-auto max-w-5xl text-center">
 
@@ -174,21 +160,6 @@ export default function Home() {
             <Card title="Decide" text="Run risk-based decision logic." />
             <Card title="Act" text="Execute interventions automatically." />
           </div>
-        </div>
-      </section>
-
-      {/* FOOT LINKS */}
-      <section className="py-16 px-6">
-        <div className="max-w-5xl mx-auto grid md:grid-cols-3 gap-4">
-          <Link href="/platform" className="border p-5 hover:bg-neutral-100">
-            Infrastructure
-          </Link>
-          <Link href="/technology" className="border p-5 hover:bg-neutral-100">
-            Technology
-          </Link>
-          <Link href="/pilot-roadmap" className="border p-5 hover:bg-neutral-100">
-            Pilots & Data
-          </Link>
         </div>
       </section>
 
