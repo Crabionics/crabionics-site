@@ -46,27 +46,7 @@ export default function HomePage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
               className="max-w-xl"
-            >
-
-              <p className="text-teal-400 text-xs tracking-widest uppercase mb-4">
-                Crabionics Aquaculture OS
-              </p>
-
-              <h1 className="text-white text-4xl sm:text-5xl md:text-6xl font-semibold leading-tight">
-                Engineering{" "}
-                <span className="text-teal-400 animate-pulse">
-                  Predictable
-                </span>
-                <br />
-                Crustacean Production
-              </h1>
-
-              <p className="mt-6 text-slate-300 text-base sm:text-lg leading-relaxed">
-                Closed-loop biological control powered by modular RAS,
-                real-time sensing, and AI-driven decision systems.
-              </p>
-
-            </motion.div>
+            />
           </div>
         </div>
 
