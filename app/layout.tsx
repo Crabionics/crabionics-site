@@ -42,19 +42,18 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="bg-white text-slate-900 antialiased">
+      {/* 🔥 FIX 1: remove white background */}
+      <body className="bg-black text-slate-900 antialiased">
 
-        {/* NAVBAR (fixed) */}
+        {/* Navbar (fixed) */}
         <Navbar />
 
-        {/* MAIN CONTENT */}
-        <main className="relative pt-20">
+        {/* 🔥 FIX 2: REMOVE pt-20 */}
+        <main className="relative">
           {children}
         </main>
 
-        {/* FOOTER */}
         <Footer />
-
       </body>
     </html>
   );

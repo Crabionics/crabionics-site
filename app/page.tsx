@@ -4,7 +4,7 @@ import Link from "next/link";
 export default function HomePage() {
   return (
     <main className="w-full">
-
+<section className="relative h-[90vh] w-full overflow-hidden pt-20"></section>
       {/* ================= HERO ================= */}
       <section className="relative h-[85vh] sm:h-[100vh] w-full overflow-hidden">
 
