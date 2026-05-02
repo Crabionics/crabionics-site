@@ -6,40 +6,55 @@ export default function HomePage() {
     <main className="w-full">
 <section className="relative h-[90vh] w-full overflow-hidden pt-20"></section>
       {/* ================= HERO ================= */}
-      <section className="relative h-[85vh] sm:h-[100vh] w-full overflow-hidden">
+     <section className="relative h-[100vh] w-full overflow-hidden">
 
-        {/* Background Image */}
-        <Image
-          src="/hero-crabionics.png"
-          alt="Crabionics AquaOS"
-          fill
-          priority
-          className="object-cover object-[65%_center] sm:object-center"
-        />
+  {/* Background Image */}
+  <Image
+    src="/hero-crabionics.png"
+    alt="Crabionics AquaOS"
+    fill
+    priority
+    className="object-cover object-[75%_center] sm:object-center"
+  />
 
-        {/* Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/10 to-black/50" />
+  {/* Overlay for readability */}
+  <div className="absolute inset-0 bg-black/30" />
 
-        {/* CTA (Bottom Left Responsive) */}
-        <div className="absolute bottom-8 left-4 sm:bottom-12 sm:left-6 z-10 flex gap-3 sm:gap-4">
+  {/* Content */}
+  <div className="absolute inset-0 z-10 flex items-end sm:items-center">
 
-          <Link
-            href="/contact"
-            className="bg-teal-600 px-4 py-2 sm:px-6 sm:py-3 text-white text-xs sm:text-sm font-medium hover:bg-teal-700 transition"
-          >
-            Request Technical Brief
-          </Link>
+    <div className="px-6 pb-12 sm:pb-0 max-w-2xl text-white">
 
-          <Link
-            href="/pilot-roadmap"
-            className="border border-white px-4 py-2 sm:px-6 sm:py-3 text-white text-xs sm:text-sm hover:bg-white hover:text-black transition"
-          >
-            View Pilot Data
-          </Link>
+      <h1 className="text-3xl sm:text-5xl font-semibold leading-tight">
+        Engineering Predictable
+        <br />
+        Crustacean Production
+      </h1>
 
-        </div>
-      </section>
+      <p className="mt-4 text-sm sm:text-base text-slate-200">
+        Closed-loop biological control powered by modular RAS, real-time sensing,
+        and AI-driven decision systems.
+      </p>
 
+      <div className="mt-6 flex gap-4">
+        <Link
+          href="/contact"
+          className="bg-teal-600 px-5 py-3 text-sm font-medium hover:bg-teal-700"
+        >
+          Request Technical Brief
+        </Link>
+
+        <Link
+          href="/pilot-roadmap"
+          className="border border-white px-5 py-3 text-sm hover:bg-white hover:text-black"
+        >
+          View Pilot Data
+        </Link>
+      </div>
+
+    </div>
+  </div>
+</section>
 
       {/* ================= SECTION 2 ================= */}
       <section className="bg-white py-20">

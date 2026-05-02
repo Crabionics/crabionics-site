@@ -10,29 +10,7 @@ export const metadata: Metadata = {
     template: "%s | Crabionics",
   },
   description:
-    "Crabionics builds a closed-loop aquaculture operating system combining modular RAS, real-time sensing, and biological control logic for predictable production.",
-  keywords: [
-    "Crabionics",
-    "Aquaculture OS",
-    "mud crab farming",
-    "RAS automation",
-    "AquaOS",
-    "predictable aquaculture",
-    "IoT aquaculture",
-    "BIRAC",
-    "NIDHI",
-  ],
-  openGraph: {
-    title: "Crabionics | Aquaculture OS",
-    description:
-      "Closed-loop biological control system for predictable aquaculture production.",
-    url: "https://crabionics.com",
-    siteName: "Crabionics",
-    type: "website",
-  },
-  alternates: {
-    canonical: "/",
-  },
+    "Closed-loop aquaculture operating system for predictable crab production.",
 };
 
 export default function RootLayout({
@@ -42,14 +20,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      {/* 🔥 FIX 1: remove white background */}
       <body className="bg-black text-slate-900 antialiased">
 
-        {/* Navbar (fixed) */}
         <Navbar />
 
-        {/* 🔥 FIX 2: REMOVE pt-20 */}
-        <main className="relative">
+        {/* FIX: push content BELOW navbar globally */}
+        <main className="pt-20">
           {children}
         </main>
 
