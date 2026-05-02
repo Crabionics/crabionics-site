@@ -5,7 +5,7 @@ export default function HomePage() {
   return (
     <main className="w-full">
 
- {/* ================= HERO ================= */}
+{/* ================= HERO ================= */}
 <section className="relative h-screen w-full overflow-hidden">
 
   {/* Background Image */}
@@ -17,44 +17,29 @@ export default function HomePage() {
     className="object-cover object-center"
   />
 
-  {/* Overlay */}
-  <div className="absolute inset-0 bg-black/30" />
+  {/* Subtle overlay for readability */}
+  <div className="absolute inset-0 bg-black/25" />
 
-  {/* CONTENT */}
-  <div className="absolute inset-0 flex items-end pb-16 px-6 z-10">
+  {/* CTA ONLY — no headline */}
+  <div className="absolute bottom-12 left-6 z-10 flex flex-col sm:flex-row gap-4">
 
-    <div className="max-w-xl text-white">
+    <Link
+      href="/contact"
+      className="bg-teal-600 px-6 py-3 text-white text-sm font-medium hover:bg-teal-700 transition"
+    >
+      Request Technical Brief
+    </Link>
 
-      {/* REMOVE THIS IF USING IMAGE TEXT */}
-      {/* <h1>...</h1> */}
-
-      <p className="text-sm sm:text-base opacity-90 mb-6">
-        Closed-loop biological control powered by modular RAS, real-time sensing, and AI-driven decision systems.
-      </p>
-
-      <div className="flex gap-4 flex-wrap">
-
-        <Link
-          href="/contact"
-          className="bg-teal-600 px-6 py-3 text-white text-sm font-medium hover:bg-teal-700 transition"
-        >
-          Request Technical Brief
-        </Link>
-
-        <Link
-          href="/pilot-roadmap"
-          className="border border-white px-6 py-3 text-white text-sm hover:bg-white hover:text-black transition"
-        >
-          View Pilot Data
-        </Link>
-
-      </div>
-
-    </div>
+    <Link
+      href="/pilot-roadmap"
+      className="border border-white px-6 py-3 text-white text-sm hover:bg-white hover:text-black transition"
+    >
+      View Pilot Data
+    </Link>
 
   </div>
-</section>
 
+</section>
       {/* ================= SECTION 2 ================= */}
       <section className="bg-white py-20">
         <div className="mx-auto max-w-5xl px-6 text-center">
