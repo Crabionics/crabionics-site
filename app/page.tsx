@@ -288,7 +288,71 @@ export default function HomePage() {
   </div>
 
 </section>
+{/* ================= PILOT VALIDATION ================= */}
+<section className="bg-white py-28">
 
+  {/* HEADER */}
+  <div className="max-w-6xl mx-auto px-6 text-center">
+
+    <motion.h2
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      className="text-3xl md:text-4xl font-semibold text-slate-900"
+    >
+      Validated Through Real-World Pilot Systems
+    </motion.h2>
+
+    <motion.p
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      className="mt-4 text-slate-600 max-w-2xl mx-auto"
+    >
+      Data-driven validation of survival, growth stability, and closed-loop control under live farming conditions.
+    </motion.p>
+
+  </div>
+
+  {/* METRICS */}
+  <div className="mt-16 max-w-6xl mx-auto px-6 grid gap-6 sm:grid-cols-3 text-center">
+
+    <Metric value="~80%" label="Survival Rate (RAS System)" />
+    <Metric value="5x" label="Yield Improvement vs Pond" />
+    <Metric value="3 Month" label="Finishing Cycle Duration" />
+
+  </div>
+
+  {/* CONTROL LOOP DEMO */}
+  <div className="mt-20 max-w-5xl mx-auto px-6">
+
+    <motion.div
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      className="rounded-xl border p-8 bg-slate-50"
+    >
+
+      <h3 className="text-lg font-semibold text-slate-900 mb-4 text-center">
+        Example: Ammonia Spike → Automated Correction
+      </h3>
+
+      <div className="flex flex-col md:flex-row items-center justify-between gap-6 text-sm text-slate-600">
+
+        <LoopStep title="Detection" desc="NH3 spike detected via sensors" />
+        <Arrow />
+        <LoopStep title="Risk Scoring" desc="High stress / mortality risk" />
+        <Arrow />
+        <LoopStep title="Decision" desc="Flush triggered automatically" />
+        <Arrow />
+        <LoopStep title="Action" desc="Water exchange + aeration" />
+        <Arrow />
+        <LoopStep title="Outcome" desc="NH3 reduced, stability restored" />
+
+      </div>
+
+    </motion.div>
+
+  </div>
+
+</section>
 /* ================= COMPONENTS ================= */
 
 function FeatureCard({ title, desc }: { title: string; desc: string }) {
@@ -385,5 +449,25 @@ function Metric({ value, label }: { value: string; label: string }) {
       <p className="text-3xl font-semibold text-teal-600">{value}</p>
       <p className="text-sm text-slate-600 mt-2">{label}</p>
     </motion.div>
+  );
+}
+function LoopStep({
+  title,
+  desc,
+}: {
+  title: string;
+  desc: string;
+}) {
+  return (
+    <div className="text-center max-w-[140px]">
+      <p className="font-medium text-slate-900">{title}</p>
+      <p className="text-xs mt-1">{desc}</p>
+    </div>
+  );
+}
+
+function Arrow() {
+  return (
+    <div className="hidden md:block text-teal-500">→</div>
   );
 }
