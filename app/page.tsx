@@ -20,24 +20,6 @@ export default function HomePage() {
   {/* Subtle overlay for readability */}
   <div className="absolute inset-0 bg-black/25" />
 
-  {/* CTA ONLY — no headline */}
-  <div className="absolute bottom-12 left-6 z-10 flex flex-col sm:flex-row gap-4">
-
-    <Link
-      href="/contact"
-      className="bg-teal-600 px-6 py-3 text-white text-sm font-medium hover:bg-teal-700 transition"
-    >
-      Request Technical Brief
-    </Link>
-
-    <Link
-      href="/pilot-roadmap"
-      className="border border-white px-6 py-3 text-white text-sm hover:bg-white hover:text-black transition"
-    >
-      View Pilot Data
-    </Link>
-
-  </div>
 
 </section>
       {/* ================= SECTION 2 ================= */}
