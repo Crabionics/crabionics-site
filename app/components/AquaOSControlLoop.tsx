@@ -1,126 +1,160 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useState } from "react";
 
-type Step = {
-  id: string;
-  name: string;
-  label: string;
-  title: string;
-  description: string;
-  details: string[];
-};
-
-const steps: Step[] = [
+const steps = [
   {
     id: "capture",
-    name: "Capture",
-    label: "Sense",
-    title: "Capture (Sense)",
-    description: "Collect real-time biological and environmental data",
-    details: ["Crab ID", "Molt stage", "DO", "pH", "Ammonia"],
+    title: "Capture",
+    desc: "Collect biological & environmental data",
   },
   {
     id: "decide",
-    name: "Decide",
-    label: "Think",
-    title: "Decide (Think)",
-    description: "Analyze signals and compute risk",
-    details: ["Uses production rules", "Uses scoring and predictive models"],
+    title: "Decide",
+    desc: "Analyze signals & compute risk",
   },
   {
     id: "act",
-    name: "Act",
-    label: "Execute",
-    title: "Act (Execute)",
-    description: "Trigger automated interventions",
-    details: ["Feeding", "Aeration", "Isolation"],
+    title: "Act",
+    desc: "Trigger automated interventions",
   },
   {
     id: "learn",
-    name: "Learn",
-    label: "Feedback",
-    title: "Learn (Feedback)",
-    description: "Update models based on outcomes",
-    details: ["Improves thresholds", "Improves future decisions"],
+    title: "Learn",
+    desc: "Update models from outcomes",
   },
 ];
 
-export default function AquaOSControlLoop() {
-  const [activeId, setActiveId] = useState<string>(steps[0].id);
-
-  const activeStep = useMemo(
-    () => steps.find((step) => step.id === activeId) ?? steps[0],
-    [activeId],
-  );
+export default function ControlLoop() {
+  const [active, setActive] = useState("decide");
 
   return (
-    <section className="py-16 md:py-20 px-6 border-b border-neutral-200 bg-white">
-      <div className="max-w-6xl mx-auto">
-        <h2 className="text-2xl md:text-3xl font-semibold tracking-tight">
+    <section className="py-24 bg-white">
+      <div className="max-w-6xl mx-auto text-center mb-12 px-6">
+        <h2 className="text-4xl font-semibold mb-4">
           AquaOS Control Loop
         </h2>
-        <p className="mt-4 text-neutral-700 max-w-3xl leading-relaxed">
-          A closed-loop operating cycle connecting sensing, decision support,
-          intervention, and learning around the AquaOS Core.
+        <p className="text-gray-600">
+          From biological signals to automated decisions and controlled outcomes
         </p>
+      </div>
 
-        <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:col-span-2 gap-4">
-            {steps.map((step) => {
-              const isActive = step.id === activeId;
+      <div className="relative flex items-center justify-center h-[500px]">
 
-              return (
-                <button
-                  key={step.id}
-                  type="button"
-                  onMouseEnter={() => setActiveId(step.id)}
-                  onFocus={() => setActiveId(step.id)}
-                  onClick={() => setActiveId(step.id)}
-                  className={`group rounded-xl border p-5 text-left transition-all duration-300 ease-out ${
-                    isActive
-                      ? "border-cyan-500 bg-cyan-50 shadow-sm"
-                      : "border-neutral-200 bg-white hover:border-cyan-300 hover:bg-cyan-50/40"
-                  }`}
-                >
-                  <p className="text-xs uppercase tracking-[0.16em] text-neutral-500">
-                    Step
-                  </p>
-                  <h3 className="mt-2 text-lg font-semibold text-neutral-900">
-                    {step.title}
-                  </h3>
-                  <p className="mt-2 text-sm text-neutral-700 leading-relaxed">
-                    {step.description}
-                  </p>
-                </button>
-              );
-            })}
-          </div>
-
-          <div className="md:justify-self-center">
-            <div className="mx-auto h-44 w-44 rounded-full border-4 border-cyan-200 bg-cyan-100 text-cyan-900 flex items-center justify-center text-center p-6 shadow-sm transition-all duration-500">
-              <span className="text-lg font-semibold leading-tight">AquaOS Core</span>
-            </div>
+        {/* CENTER CORE */}
+        <div className="absolute w-40 h-40 rounded-full flex items-center justify-center
+          bg-gradient-to-br from-blue-600 to-indigo-700 text-white shadow-xl animate-pulse">
+          <div className="text-center">
+            <p className="text-xs opacity-80">CORE</p>
+            <p className="font-semibold">AquaOS</p>
           </div>
         </div>
 
-        <div className="mt-8 rounded-xl border border-neutral-200 bg-neutral-50 p-6 transition-all duration-300">
-          <p className="text-xs uppercase tracking-[0.16em] text-neutral-500">
-            Active Step
-          </p>
-          <h3 className="mt-2 text-xl font-semibold text-neutral-900">
-            {activeStep.title}
-          </h3>
-          <p className="mt-3 text-neutral-700">{activeStep.description}</p>
-          <ul className="mt-4 grid sm:grid-cols-2 gap-2 text-sm text-neutral-700">
-            {activeStep.details.map((item) => (
-              <li key={item} className="rounded-md border border-neutral-200 bg-white px-3 py-2">
-                {item}
-              </li>
-            ))}
-          </ul>
+        {/* TOP */}
+        <div
+          onClick={() => setActive("capture")}
+          className={`absolute top-0 cursor-pointer transition ${
+            active === "capture" ? "scale-105" : ""
+          }`}
+        >
+          <StepCard title="Capture" desc="Sense data" active={active==="capture"} />
         </div>
+
+        {/* RIGHT */}
+        <div
+          onClick={() => setActive("decide")}
+          className={`absolute right-0 cursor-pointer transition ${
+            active === "decide" ? "scale-105" : ""
+          }`}
+        >
+          <StepCard title="Decide" desc="Compute risk" active={active==="decide"} />
+        </div>
+
+        {/* BOTTOM */}
+        <div
+          onClick={() => setActive("act")}
+          className={`absolute bottom-0 cursor-pointer transition ${
+            active === "act" ? "scale-105" : ""
+          }`}
+        >
+          <StepCard title="Act" desc="Execute control" active={active==="act"} />
+        </div>
+
+        {/* LEFT */}
+        <div
+          onClick={() => setActive("learn")}
+          className={`absolute left-0 cursor-pointer transition ${
+            active === "learn" ? "scale-105" : ""
+          }`}
+        >
+          <StepCard title="Learn" desc="Improve system" active={active==="learn"} />
+        </div>
+
+        {/* SIMPLE FLOW INDICATORS */}
+        <div className="absolute top-20 text-gray-400 text-xl">↓</div>
+        <div className="absolute right-24 text-gray-400 text-xl">→</div>
+        <div className="absolute bottom-20 text-gray-400 text-xl">↑</div>
+        <div className="absolute left-24 text-gray-400 text-xl">←</div>
+
+      </div>
+
+      {/* DETAIL PANEL */}
+      <div className="max-w-3xl mx-auto mt-16 px-6">
+        <div className="border rounded-xl p-6 shadow-sm">
+          {active === "capture" && (
+            <Detail
+              title="Capture (Sense)"
+              text="Collect real-time biological and environmental data including DO, pH, ammonia, feeding activity and molt signals."
+            />
+          )}
+          {active === "decide" && (
+            <Detail
+              title="Decide (Think)"
+              text="Analyze signal patterns and compute risk using rule engines and biological models."
+            />
+          )}
+          {active === "act" && (
+            <Detail
+              title="Act (Execute)"
+              text="Trigger feeding adjustments, aeration, flushing and isolation to stabilize the system."
+            />
+          )}
+          {active === "learn" && (
+            <Detail
+              title="Learn (Feedback)"
+              text="Continuously improve models based on survival, growth and cycle performance."
+            />
+          )}
+        </div>
+
+        <p className="text-center text-sm text-gray-500 mt-6">
+          This is not monitoring. This is a closed-loop biological control system.
+        </p>
       </div>
     </section>
+  );
+}
+
+function StepCard({ title, desc, active }: any) {
+  return (
+    <div
+      className={`w-48 p-4 rounded-xl border text-center ${
+        active
+          ? "border-blue-600 bg-blue-50"
+          : "border-gray-200"
+      }`}
+    >
+      <h3 className="font-semibold">{title}</h3>
+      <p className="text-sm text-gray-500">{desc}</p>
+    </div>
+  );
+}
+
+function Detail({ title, text }: any) {
+  return (
+    <>
+      <h3 className="text-xl font-semibold mb-2">{title}</h3>
+      <p className="text-gray-600">{text}</p>
+    </>
   );
 }

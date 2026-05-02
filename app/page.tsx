@@ -5,7 +5,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Predictable Mud Crab Grow-Out",
   description:
-    "Predictable mud crab harvest cycles with modular RAS and AquaOS automation. Review pilot signals, KPIs, and deployment roadmap.",
+    "Crabionics builds a closed-loop aquaculture operating system combining modular RAS, sensing, and biological control.",
 };
 
 const heroPills = [
@@ -18,6 +18,8 @@ const heroPills = [
 export default function Home() {
   return (
     <main className="bg-neutral-50 text-neutral-900">
+
+      {/* TOP PILLS */}
       <section className="border-b border-neutral-200 bg-white/80">
         <div className="mx-auto grid max-w-6xl grid-cols-2 gap-2 px-6 py-4 text-xs uppercase tracking-[0.15em] text-neutral-600 md:grid-cols-4">
           {heroPills.map((pill) => (
@@ -28,199 +30,186 @@ export default function Home() {
         </div>
       </section>
 
+      {/* HERO */}
       <section className="border-b border-neutral-200 bg-white">
         <div className="mx-auto grid max-w-6xl gap-10 px-6 py-16 md:grid-cols-12 md:py-24">
+
           <div className="md:col-span-7">
-            <p className="text-sm uppercase tracking-[0.2em] text-neutral-600">Crabionics Aquaculture Pvt. Ltd.</p>
-            <h1 className="mt-6 max-w-4xl text-4xl font-semibold leading-tight tracking-tight md:text-6xl">
+            <p className="text-sm uppercase tracking-[0.2em] text-neutral-600">
+              Crabionics Aquaculture Pvt. Ltd.
+            </p>
+
+            <h1 className="mt-6 text-4xl font-semibold leading-tight tracking-tight md:text-6xl">
               Engineering Predictable Crustacean Production
             </h1>
-            <p className="mt-8 max-w-3xl text-lg leading-relaxed text-neutral-700">
-              Crabionics builds a closed-loop aquaculture operating system combining modular RAS, real-time sensing, and biological control logic.
+
+            <p className="mt-8 text-lg text-neutral-700">
+              Crabionics builds a closed-loop aquaculture operating system combining modular RAS,
+              real-time sensing, and biological control logic.
             </p>
-            <p className="mt-4 text-base font-medium text-neutral-800">
+
+            <p className="mt-4 font-medium text-neutral-800">
               From biological uncertainty to controlled production systems
             </p>
 
             <div className="mt-10 flex flex-col gap-4 sm:flex-row">
-              <Link href="/contact" className="inline-block bg-neutral-900 px-6 py-3 text-base font-medium tracking-wide text-white">
+              <Link href="/contact" className="bg-neutral-900 px-6 py-3 text-white">
                 Request Technical Brief / Demo
               </Link>
-              <Link
-                href="/pilot-roadmap"
-                className="inline-block border border-neutral-300 px-6 py-3 text-base font-medium tracking-wide text-neutral-800 hover:bg-neutral-100"
-              >
-                See Pilot Results &amp; KPIs
+
+              <Link href="/pilot-roadmap" className="border border-neutral-300 px-6 py-3 hover:bg-neutral-100">
+                See Pilot Results & KPIs
               </Link>
             </div>
           </div>
 
+          {/* RIGHT CARD */}
           <div className="md:col-span-5">
             <article className="border border-neutral-200 bg-gradient-to-b from-white to-slate-50 p-6">
               <div className="flex items-center gap-3">
-                <Image src="/logo.png" alt="Crabionics symbol" width={40} height={40} className="h-10 w-auto" priority />
+                <Image src="/logo.png" alt="Crabionics" width={40} height={40} />
                 <div>
-                  <p className="text-lg font-semibold tracking-tight text-slate-900">CRABIONICS</p>
-                  <p className="text-xs uppercase tracking-[0.2em] text-slate-500">Aquaculture Pvt. Ltd.</p>
+                  <p className="font-semibold">CRABIONICS</p>
+                  <p className="text-xs uppercase text-slate-500">Aquaculture Pvt. Ltd.</p>
                 </div>
               </div>
-              <p className="mt-5 text-base text-slate-700">Smart. Sustainable. Scalable.</p>
+
+              <p className="mt-5 text-slate-700">Smart. Sustainable. Scalable.</p>
 
               <div className="mt-6 grid grid-cols-3 gap-3 text-center">
-                <div className="rounded-xl border border-slate-200 bg-white px-3 py-4">
-                  <p className="text-xl font-semibold text-slate-900">600</p>
-                  <p className="mt-1 text-xs uppercase tracking-wide text-slate-500">Pilot Boxes</p>
-                </div>
-                <div className="rounded-xl border border-slate-200 bg-white px-3 py-4">
-                  <p className="text-xl font-semibold text-slate-900">TRL 6-7</p>
-                  <p className="mt-1 text-xs uppercase tracking-wide text-slate-500">System Maturity</p>
-                </div>
-                <div className="rounded-xl border border-slate-200 bg-white px-3 py-4">
-                  <p className="text-xl font-semibold text-slate-900">MVP</p>
-                  <p className="mt-1 text-xs uppercase tracking-wide text-slate-500">AquaOS Live</p>
-                </div>
+                <Stat value="600" label="Pilot Boxes" />
+                <Stat value="TRL 6-7" label="System Maturity" />
+                <Stat value="MVP" label="AquaOS Live" />
               </div>
             </article>
           </div>
 
+          {/* SIGNAL CARDS */}
           <div className="md:col-span-12">
-            <div className="mt-2 grid gap-4 md:grid-cols-3">
-              <article className="border border-neutral-200 bg-neutral-50 p-5">
-                <p className="text-sm uppercase tracking-wider text-neutral-600">Pilot Signal</p>
-                <p className="mt-2 text-xl font-semibold">600-box integrated setup</p>
-                <p className="mt-2 text-base text-neutral-700">Modular system is live for reliability-focused grow-out operations.</p>
-              </article>
-              <article className="border border-neutral-200 bg-neutral-50 p-5">
-                <p className="text-sm uppercase tracking-wider text-neutral-600">Operating Layer</p>
-                <p className="mt-2 text-xl font-semibold">AquaOS MVP active</p>
-                <p className="mt-2 text-base text-neutral-700">Rule-based interventions and event capture are in current pilot workflows.</p>
-              </article>
-              <article className="border border-neutral-200 bg-neutral-50 p-5">
-                <p className="text-sm uppercase tracking-wider text-neutral-600">Programs</p>
-                <p className="mt-2 text-xl font-semibold">BIRAC BIG + NIDHI</p>
-                <p className="mt-2 text-base text-neutral-700">Execution aligned with institution-backed aquaculture innovation tracks.</p>
-              </article>
+            <div className="grid gap-4 md:grid-cols-3 mt-4">
+              <Card title="Pilot Signal" text="600-box integrated system live for controlled grow-out." />
+              <Card title="Operating Layer" text="AquaOS executing rule-based biological control." />
+              <Card title="Programs" text="BIRAC BIG and NIDHI aligned execution." />
             </div>
           </div>
         </div>
       </section>
 
-      <section className="px-6 py-16 md:py-20 border-b border-neutral-200 bg-white">
+      {/* 🔥 AQUAOS CONTROL LOOP */}
+      <section className="px-6 py-20 border-b border-neutral-200 bg-white">
         <div className="mx-auto max-w-5xl text-center">
-          <h2 className="text-2xl md:text-3xl font-semibold tracking-tight">AquaOS Control Loop</h2>
-          <p className="mt-4 text-base md:text-lg text-neutral-700">
-            From biological signals to automated decisions and predictable outcomes
+
+          <h2 className="text-3xl font-semibold">
+            AquaOS Control Loop
+          </h2>
+
+          <p className="mt-4 text-neutral-700">
+            AquaOS converts biological signals into decisions and actions through a continuous closed-loop system.
           </p>
 
-          <div className="mt-10 flex justify-center">
+          <div className="mt-10">
             <Image
               src="/aquaos-diagram.png"
-              alt="AquaOS control loop system diagram"
-              width={1600}
-              height={900}
-              className="h-auto w-full max-w-4xl rounded-lg shadow-md"
+              alt="AquaOS system"
+              width={1400}
+              height={800}
+              className="rounded-lg shadow-md"
             />
           </div>
 
-          <p className="mt-6 text-base text-neutral-800">
-            This is a closed-loop biological control system — not just monitoring.
+          <p className="mt-6 font-medium text-neutral-800">
+            This is not monitoring. This is a biological control system.
           </p>
         </div>
       </section>
 
-      <section className="py-16 md:py-20 px-6 border-b border-neutral-200">
+      {/* CHOOSE PATH */}
+      <section className="py-20 px-6 border-b border-neutral-200">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-2xl md:text-3xl font-semibold tracking-tight">Choose your path</h2>
+          <h2 className="text-3xl font-semibold">Choose your path</h2>
+
           <div className="mt-8 grid md:grid-cols-3 gap-6">
-            <Link href="/capital" className="border border-neutral-200 bg-white p-6 hover:bg-neutral-100">
+            <Link href="/capital" className="border p-6 hover:bg-neutral-100">
               <p className="font-semibold">For Investors</p>
-              <p className="mt-3 text-base text-neutral-700">Review traction, KPIs, roadmap, and capital readiness milestones.</p>
+              <p className="mt-3 text-neutral-700">Review KPIs, roadmap, and capital readiness.</p>
             </Link>
-            <Link href="/contact" className="border border-neutral-200 bg-white p-6 hover:bg-neutral-100">
+
+            <Link href="/contact" className="border p-6 hover:bg-neutral-100">
               <p className="font-semibold">For Farmers</p>
-              <p className="mt-3 text-base text-neutral-700">Discuss pilot collaboration, operating model, and farm deployment fit.</p>
+              <p className="mt-3 text-neutral-700">Discuss deployment and pilot collaboration.</p>
             </Link>
-            <Link href="/pilot-roadmap" className="border border-neutral-200 bg-white p-6 hover:bg-neutral-100">
+
+            <Link href="/pilot-roadmap" className="border p-6 hover:bg-neutral-100">
               <p className="font-semibold">For Partners</p>
-              <p className="mt-3 text-base text-neutral-700">See measurable pilot status and upcoming milestones for integration.</p>
+              <p className="mt-3 text-neutral-700">See integration roadmap and milestones.</p>
             </Link>
           </div>
         </div>
       </section>
 
-      <section className="py-16 md:py-20 px-6 border-b border-neutral-200 bg-white">
+      {/* WHY RAS */}
+      <section className="py-20 px-6 border-b border-neutral-200 bg-white">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-2xl md:text-3xl font-semibold tracking-tight">Why RAS for crabs?</h2>
+          <h2 className="text-3xl font-semibold">Why RAS for crabs?</h2>
+
           <div className="mt-8 grid md:grid-cols-3 gap-4">
-            <article className="border border-neutral-200 bg-neutral-50 p-6">
-              <p className="text-sm font-medium text-neutral-600">Territoriality</p>
-              <h3 className="mt-2 font-semibold">Problem</h3>
-              <p className="mt-3 text-base text-neutral-700">Pond density amplifies aggression and molt-period losses.</p>
-            </article>
-            <article className="border border-neutral-200 bg-neutral-50 p-6">
-              <p className="text-sm font-medium text-neutral-600">Modular RAS</p>
-              <h3 className="mt-2 font-semibold">Solution</h3>
-              <p className="mt-3 text-base text-neutral-700">
-                Unit-level control reduces biological conflict and environment variability.
-              </p>
-            </article>
-            <article className="border border-neutral-200 bg-neutral-50 p-6">
-              <p className="text-sm font-medium text-neutral-600">Production</p>
-              <h3 className="mt-2 font-semibold">Outcome</h3>
-              <p className="mt-3 text-base text-neutral-700">
-                Better cycle reliability for planning, harvest windows, and cash predictability.
-              </p>
-            </article>
+            <Card title="Problem" text="Cannibalism and molting losses in ponds." />
+            <Card title="System" text="Individual control via modular RAS." />
+            <Card title="Outcome" text="Predictable cycles and higher survival." />
           </div>
         </div>
       </section>
 
-      <section className="py-16 md:py-20 px-6 border-b border-neutral-200">
+      {/* AQUAOS LOGIC */}
+      <section className="py-20 px-6 border-b border-neutral-200">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-2xl md:text-3xl font-semibold tracking-tight">How AquaOS improves survival</h2>
-          <p className="mt-6 text-neutral-700 leading-relaxed">
-            AquaOS structures decisions around animal identity, molt timing, feeding windows, and intervention
-            triggers so operations shift from reactive to rule-based execution.
+          <h2 className="text-3xl font-semibold">How AquaOS improves survival</h2>
+
+          <p className="mt-6 text-neutral-700">
+            AquaOS converts environmental and behavioral signals into executable decisions across feeding, isolation, and recovery.
           </p>
+
           <div className="mt-8 grid md:grid-cols-3 gap-4">
-            <div className="border border-neutral-200 bg-white p-6">
-              <p className="text-sm uppercase tracking-widest text-neutral-600">1</p>
-              <p className="mt-2 font-semibold">Capture events</p>
-              <p className="mt-3 text-base text-neutral-700">Track biological and system events at unit level.</p>
-            </div>
-            <div className="border border-neutral-200 bg-white p-6">
-              <p className="text-sm uppercase tracking-widest text-neutral-600">2</p>
-              <p className="mt-2 font-semibold">Apply rules</p>
-              <p className="mt-3 text-base text-neutral-700">Run intervention logic for feeding, isolation, and recovery timing.</p>
-            </div>
-            <div className="border border-neutral-200 bg-white p-6">
-              <p className="text-sm uppercase tracking-widest text-neutral-600">3</p>
-              <p className="mt-2 font-semibold">Review outcomes</p>
-              <p className="mt-3 text-base text-neutral-700">Measure survival stability, growth uniformity, and cycle performance.</p>
-            </div>
+            <Card title="Capture" text="Track biological events at unit level." />
+            <Card title="Decide" text="Run risk-based decision logic." />
+            <Card title="Act" text="Execute interventions automatically." />
           </div>
         </div>
       </section>
 
-      <section className="py-16 px-6 border-t border-neutral-200 bg-white">
-        <div className="max-w-5xl mx-auto">
-          <h2 className="text-2xl font-semibold tracking-tight">Quick take and deep dive</h2>
-          <div className="mt-8 grid md:grid-cols-3 gap-4">
-            <Link href="/platform" className="border border-neutral-200 p-5 hover:bg-neutral-100">
-              <p className="font-semibold">Infrastructure</p>
-              <p className="mt-2 text-base text-neutral-700">Modular RAS architecture and deployment logic.</p>
-            </Link>
-            <Link href="/technology" className="border border-neutral-200 p-5 hover:bg-neutral-100">
-              <p className="font-semibold">Technology &amp; How It Works</p>
-              <p className="mt-2 text-base text-neutral-700">Biological logic, operating model, and control structure.</p>
-            </Link>
-            <Link href="/pilot-roadmap" className="border border-neutral-200 p-5 hover:bg-neutral-100">
-              <p className="font-semibold">Pilots &amp; Data</p>
-              <p className="mt-2 text-base text-neutral-700">Execution status, KPI tracking, and next milestones.</p>
-            </Link>
-          </div>
+      {/* FOOT LINKS */}
+      <section className="py-16 px-6">
+        <div className="max-w-5xl mx-auto grid md:grid-cols-3 gap-4">
+          <Link href="/platform" className="border p-5 hover:bg-neutral-100">
+            Infrastructure
+          </Link>
+          <Link href="/technology" className="border p-5 hover:bg-neutral-100">
+            Technology
+          </Link>
+          <Link href="/pilot-roadmap" className="border p-5 hover:bg-neutral-100">
+            Pilots & Data
+          </Link>
         </div>
       </section>
+
     </main>
+  );
+}
+
+function Card({ title, text }: any) {
+  return (
+    <div className="border border-neutral-200 bg-white p-6">
+      <p className="font-semibold">{title}</p>
+      <p className="mt-2 text-neutral-700">{text}</p>
+    </div>
+  );
+}
+
+function Stat({ value, label }: any) {
+  return (
+    <div className="border bg-white p-4">
+      <p className="font-semibold">{value}</p>
+      <p className="text-xs text-neutral-500">{label}</p>
+    </div>
   );
 }
