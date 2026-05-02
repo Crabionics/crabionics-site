@@ -19,7 +19,7 @@ export default function Footer() {
       <div className="mx-auto grid max-w-6xl gap-10 text-base text-slate-600 md:grid-cols-3">
         <div>
           <div className="flex items-center gap-3">
-            <Image src="/logo.png" alt="Crabionics logo" width={38} height={40} />
+            <Image src="/logo.png" alt="Crabionics logo" width={40} height={40} className="h-10 w-auto" />
             <p className="text-lg font-semibold tracking-tight text-slate-900">
               Crabionics Aquaculture Pvt. Ltd.
             </p>
