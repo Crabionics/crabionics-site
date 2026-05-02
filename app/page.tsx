@@ -4,57 +4,60 @@ import Link from "next/link";
 export default function HomePage() {
   return (
     <main className="w-full">
-<section className="relative h-[90vh] w-full overflow-hidden pt-20"></section>
+
       {/* ================= HERO ================= */}
-     <section className="relative h-[100vh] w-full overflow-hidden">
+      <section className="relative h-[100vh] w-full overflow-hidden">
 
-  {/* Background Image */}
-  <Image
-    src="/hero-crabionics.png"
-    alt="Crabionics AquaOS"
-    fill
-    priority
-    className="object-cover object-[75%_center] sm:object-center"
-  />
+        {/* Background Image */}
+        <Image
+          src="/hero-crabionics.png"
+          alt="Crabionics AquaOS"
+          fill
+          priority
+          className="object-cover object-[75%_center] sm:object-center"
+        />
 
-  {/* Overlay for readability */}
-  <div className="absolute inset-0 bg-black/30" />
+        {/* Overlay */}
+        <div className="absolute inset-0 bg-black/40" />
 
-  {/* Content */}
-  <div className="absolute inset-0 z-10 flex items-end sm:items-center">
+        {/* Content */}
+        <div className="absolute inset-0 z-10 flex items-end sm:items-center">
 
-    <div className="px-6 pb-12 sm:pb-0 max-w-2xl text-white">
+          <div className="px-6 pb-12 sm:pb-0 max-w-2xl text-white">
 
-      <h1 className="text-3xl sm:text-5xl font-semibold leading-tight">
-        Engineering Predictable
-        <br />
-        Crustacean Production
-      </h1>
+            <h1 className="text-3xl sm:text-5xl font-semibold leading-tight">
+              Engineering Predictable
+              <br />
+              Crustacean Production
+            </h1>
 
-      <p className="mt-4 text-sm sm:text-base text-slate-200">
-        Closed-loop biological control powered by modular RAS, real-time sensing,
-        and AI-driven decision systems.
-      </p>
+            <p className="mt-4 text-sm sm:text-base text-slate-200">
+              Closed-loop biological control powered by modular RAS,
+              real-time sensing, and AI-driven decision systems.
+            </p>
 
-      <div className="mt-6 flex gap-4">
-        <Link
-          href="/contact"
-          className="bg-teal-600 px-5 py-3 text-sm font-medium hover:bg-teal-700"
-        >
-          Request Technical Brief
-        </Link>
+            <div className="mt-6 flex gap-4">
 
-        <Link
-          href="/pilot-roadmap"
-          className="border border-white px-5 py-3 text-sm hover:bg-white hover:text-black"
-        >
-          View Pilot Data
-        </Link>
-      </div>
+              <Link
+                href="/contact"
+                className="bg-teal-600 px-5 py-3 text-sm font-medium hover:bg-teal-700 transition"
+              >
+                Request Technical Brief
+              </Link>
 
-    </div>
-  </div>
-</section>
+              <Link
+                href="/pilot-roadmap"
+                className="border border-white px-5 py-3 text-sm hover:bg-white hover:text-black transition"
+              >
+                View Pilot Data
+              </Link>
+
+            </div>
+
+          </div>
+        </div>
+      </section>
+
 
       {/* ================= SECTION 2 ================= */}
       <section className="bg-white py-20">
@@ -81,7 +84,7 @@ export default function HomePage() {
       <section className="bg-slate-50 py-16">
         <div className="mx-auto max-w-6xl px-6 grid gap-6 sm:grid-cols-3">
 
-          <div className="rounded-xl border bg-white p-6 text-center shadow-sm hover:shadow-md transition">
+          <div className="rounded-xl border bg-white p-6 text-center">
             <h3 className="text-lg font-semibold text-slate-900">
               AI for Precision
             </h3>
@@ -90,7 +93,7 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="rounded-xl border bg-white p-6 text-center shadow-sm hover:shadow-md transition">
+          <div className="rounded-xl border bg-white p-6 text-center">
             <h3 className="text-lg font-semibold text-slate-900">
               Carbon Smart Farming
             </h3>
@@ -99,7 +102,7 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="rounded-xl border bg-white p-6 text-center shadow-sm hover:shadow-md transition">
+          <div className="rounded-xl border bg-white p-6 text-center">
             <h3 className="text-lg font-semibold text-slate-900">
               Data-Driven Scaling
             </h3>
@@ -124,7 +127,7 @@ export default function HomePage() {
             Explore AquaOS, infrastructure modules, and pilot deployments.
           </p>
 
-          <div className="mt-8 flex flex-col sm:flex-row justify-center gap-4">
+          <div className="mt-8 flex justify-center gap-4">
 
             <Link
               href="/aquaos"
