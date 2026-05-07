@@ -3,180 +3,185 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const navLinks = [
   { href: "/", label: "Home" },
-  { href: "/platform", label: "Infrastructure" },
+  { href: "/platform", label: "Platform" },
   { href: "/aquaos", label: "AquaOS" },
   { href: "/technology", label: "Technology" },
-  { href: "/pilot-roadmap", label: "Pilots & Data" },
-  { href: "/blue-economy", label: "Impact" },
-  { href: "/capital", label: "Investors" },
-  { href: "/team", label: "Team" },
+  { href: "/infrastructure", label: "Infrastructure" },
+  { href: "/capital", label: "Capital" },
 ];
 
 export default function Navbar() {
+  const pathname = usePathname();
+
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const pathname = usePathname();
 
   useEffect(() => {
     setIsOpen(false);
   }, [pathname]);
 
   useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "";
+
     return () => {
       document.body.style.overflow = "";
     };
   }, [isOpen]);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 40);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  const linkClass = (href: string) => {
-    const isActive = pathname === href;
-
-    return `relative px-2 py-1 text-sm transition ${
-      scrolled
-        ? isActive
-          ? "text-slate-900 font-medium"
-          : "text-slate-600 hover:text-slate-900"
-        : isActive
-        ? "text-white font-medium"
-        : "text-white/80 hover:text-white"
-    }`;
-  };
-
   return (
-    <nav
-      className={`fixed top-0 z-50 w-full transition-all duration-300 ${
+    <header
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-white/70 backdrop-blur-xl border-b border-white/50 shadow-[0_8px_30px_rgb(15_23_42/0.08)]"
+          ? "border-b border-white/10 bg-[#050816]/80 backdrop-blur-2xl"
           : "bg-transparent"
       }`}
     >
-      <div className="mx-auto flex h-20 max-w-6xl items-center justify-between px-6">
+      <div className="container-shell">
+        <div className="flex h-20 items-center justify-between">
 
-        {/* LEFT - BRAND */}
-        <Link
-          href="/"
-          className="flex items-center gap-3"
-          onClick={() => setIsOpen(false)}
-        >
-          <Image
-            src="/logo.png"
-            alt="Crabionics logo"
-            width={34}
-            height={34}
-            priority
-          />
-
-          <div className="leading-tight">
-            <p
-              className={`text-sm font-semibold tracking-tight ${
-                scrolled ? "text-slate-900" : "text-white"
-              }`}
-            >
-              Crabionics
-            </p>
-            <p
-              className={`text-[11px] uppercase tracking-wide ${
-                scrolled ? "text-slate-500" : "text-white/70"
-              }`}
-            >
-              Aquaculture OS
-            </p>
-          </div>
-        </Link>
-
-        {/* CENTER NAV */}
-        <div className="hidden lg:flex items-center gap-6">
-          {navLinks.map((item) => {
-            const isActive = pathname === item.href;
-
-            return (
-              <Link key={item.href} href={item.href} className={linkClass(item.href)}>
-                {item.label}
-
-                {/* Active underline */}
-                {isActive && (
-                  <span
-                    className={`absolute left-0 -bottom-1 w-full h-[2px] ${
-                      scrolled ? "bg-slate-900" : "bg-white"
-                    }`}
-                  />
-                )}
-              </Link>
-            );
-          })}
-        </div>
-
-        {/* RIGHT CTA */}
-        <div className="hidden lg:block">
+          {/* LEFT */}
           <Link
-            href="/contact"
-            className={`text-sm px-4 py-2 border transition ${
-              scrolled
-                ? "border-slate-300 text-slate-900 hover:bg-slate-100"
-                : "border-white/40 text-white hover:bg-white hover:text-black"
-            }`}
+            href="/"
+            className="relative z-50 flex items-center gap-3"
           >
-            Contact
-          </Link>
-        </div>
+            <Image
+              src="/logo.png"
+              alt="Crabionics"
+              width={36}
+              height={36}
+              priority
+            />
 
-        {/* MOBILE BUTTON */}
-        <button
-          type="button"
-          aria-expanded={isOpen}
-          aria-controls="mobile-navigation"
-          aria-label={isOpen ? "Close menu" : "Open menu"}
-          onClick={() => setIsOpen((prev) => !prev)}
-          className={`lg:hidden px-3 py-2 text-sm border ${
-            scrolled
-              ? "border-slate-300 text-slate-900"
-              : "border-white/40 text-white"
-          }`}
-        >
-          {isOpen ? "Close" : "Menu"}
-        </button>
+            <div className="leading-tight">
+              <p className="text-sm font-semibold tracking-tight text-white">
+                Crabionics
+              </p>
+
+              <p className="text-[10px] uppercase tracking-[0.24em] text-cyan-200/60">
+                Precision Aquaculture
+              </p>
+            </div>
+          </Link>
+
+          {/* DESKTOP NAV */}
+          <nav className="hidden lg:flex items-center gap-8">
+            {navLinks.map((item) => {
+              const isActive = pathname === item.href;
+
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={`relative text-sm transition ${
+                    isActive
+                      ? "text-white"
+                      : "text-slate-300 hover:text-white"
+                  }`}
+                >
+                  {item.label}
+
+                  {isActive && (
+                    <span className="absolute -bottom-2 left-0 h-[2px] w-full bg-cyan-300" />
+                  )}
+                </Link>
+              );
+            })}
+          </nav>
+
+          {/* RIGHT CTA */}
+          <div className="hidden lg:flex items-center gap-3">
+            <Link
+              href="/contact"
+              className="primary-button text-sm"
+            >
+              Request Demo
+            </Link>
+          </div>
+
+          {/* MOBILE BUTTON */}
+          <button
+            type="button"
+            aria-label="Toggle menu"
+            onClick={() => setIsOpen((prev) => !prev)}
+            className="relative z-50 flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-white backdrop-blur-xl lg:hidden"
+          >
+            <div className="flex flex-col gap-1">
+              <span
+                className={`block h-[2px] w-5 bg-white transition ${
+                  isOpen ? "translate-y-[6px] rotate-45" : ""
+                }`}
+              />
+
+              <span
+                className={`block h-[2px] w-5 bg-white transition ${
+                  isOpen ? "opacity-0" : ""
+                }`}
+              />
+
+              <span
+                className={`block h-[2px] w-5 bg-white transition ${
+                  isOpen ? "-translate-y-[6px] -rotate-45" : ""
+                }`}
+              />
+            </div>
+          </button>
+        </div>
       </div>
 
       {/* MOBILE MENU */}
-      {isOpen && (
-        <div
-          id="mobile-navigation"
-          className="border-t border-slate-200 bg-white px-6 py-4 lg:hidden"
-        >
-          <div className="flex flex-col gap-3">
-            {navLinks.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                onClick={() => setIsOpen(false)}
-                className="text-sm text-slate-700 hover:text-slate-900"
-              >
-                {item.label}
-              </Link>
-            ))}
+      <div
+        className={`fixed inset-0 z-40 bg-[#050816] transition-all duration-300 lg:hidden ${
+          isOpen
+            ? "pointer-events-auto opacity-100"
+            : "pointer-events-none opacity-0"
+        }`}
+      >
+        <div className="flex h-full flex-col justify-center px-8">
 
+          <div className="flex flex-col gap-8">
+            {navLinks.map((item) => {
+              const isActive = pathname === item.href;
+
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={`text-3xl font-semibold tracking-tight transition ${
+                    isActive
+                      ? "text-white"
+                      : "text-slate-400 hover:text-white"
+                  }`}
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
+          </div>
+
+          <div className="mt-12">
             <Link
               href="/contact"
-              onClick={() => setIsOpen(false)}
-              className="mt-3 border border-slate-300 px-4 py-2 text-center text-sm"
+              className="primary-button w-full justify-center"
             >
-              Contact
+              Request Demo
             </Link>
           </div>
         </div>
-      )}
-    </nav>
+      </div>
+    </header>
   );
 }
