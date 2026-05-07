@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import ClosedLoopSection from "@/app/components/sections/ClosedLoopSection";
+import PlatformStackSection from "@/app/components/sections/PlatformStackSection";
 export default function HomePage() {
   return (
     <main className="relative overflow-hidden">
@@ -282,6 +283,7 @@ export default function HomePage() {
 
       </section>
 <ClosedLoopSection />
+<PlatformStackSection />
     </main>
   );
 }
