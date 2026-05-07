@@ -1,71 +1,226 @@
 import Link from "next/link";
 
+import GlassCard from "@/app/components/ui/GlassCard";
+import SectionHeading from "@/app/components/ui/SectionHeading";
+import SectionWrapper from "@/app/components/ui/SectionWrapper";
+
+const infrastructure = [
+  {
+    title: "Isolation Architecture",
+    description:
+      "Each crab is cultivated within dedicated modular infrastructure to minimize biological conflict and improve survival predictability.",
+  },
+
+  {
+    title: "Closed-loop Water Systems",
+    description:
+      "Integrated RAS infrastructure stabilizes environmental parameters through filtration, recirculation, and synchronized water management.",
+  },
+
+  {
+    title: "Operational Telemetry",
+    description:
+      "Continuous environmental and infrastructure monitoring creates structured operational intelligence.",
+  },
+
+  {
+    title: "Automation Layer",
+    description:
+      "Dynamic flushing systems, oxygen control, and telemetry synchronization reduce operational instability.",
+  },
+
+  {
+    title: "Modular Deployment",
+    description:
+      "Infrastructure can scale from pilot systems to distributed coastal production clusters.",
+  },
+
+  {
+    title: "Production Standardization",
+    description:
+      "Controlled operating conditions improve consistency, traceability, and export-aligned production quality.",
+  },
+];
+
+const deployment = [
+  {
+    phase: "Phase 01",
+    value: "600+",
+    label: "Pilot Infrastructure",
+  },
+
+  {
+    phase: "Phase 02",
+    value: "2,000+",
+    label: "Commercial Scaling",
+  },
+
+  {
+    phase: "Phase 03",
+    value: "Multi-site",
+    label: "Regional Clusters",
+  },
+
+  {
+    phase: "Phase 04",
+    value: "Global",
+    label: "Infrastructure Expansion",
+  },
+];
+
 export default function PlatformPage() {
   return (
-    <main className="bg-neutral-50 text-neutral-900">
-      <section className="border-b border-neutral-200 bg-white">
-        <div className="max-w-6xl mx-auto px-6 py-20 md:py-24">
-          <p className="text-sm uppercase tracking-[0.2em] text-neutral-600">
-            Platform
-          </p>
-          <h1 className="mt-5 text-4xl md:text-5xl font-semibold tracking-tight max-w-4xl">
-            Physical infrastructure for predictable survival curves
-          </h1>
-          <p className="mt-7 text-lg text-neutral-700 max-w-3xl leading-relaxed">
-            Crabionics combines modular grow-out hardware, closed-loop water
-            treatment, and operating protocols into one deployable system for
-            controlled mud crab cultivation.
-          </p>
-        </div>
-      </section>
+    <main className="relative overflow-hidden">
 
-      <section className="py-16 md:py-20 px-6 border-b border-neutral-200">
-        <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-6">
-          {[
-            ["Box-level isolation", "Each crab is grown in an individual unit to remove territorial conflict and reduce cannibalism risk."],
-            ["RAS water control", "Centralized treatment, filtration, and recirculation maintain stable parameters through the cycle."],
-            ["Operational instrumentation", "Sensor streams and operational events are captured as decision-ready production data."],
-          ].map(([title, text]) => (
-            <article key={title} className="border border-neutral-200 bg-white p-6">
-              <h2 className="text-lg font-semibold">{title}</h2>
-              <p className="mt-3 text-base text-neutral-700">{text}</p>
-            </article>
-          ))}
-        </div>
-      </section>
+      {/* HERO */}
+      <section className="relative overflow-hidden border-b border-white/10">
 
-      <section className="py-16 md:py-20 px-6 border-b border-neutral-200 bg-white">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-2xl md:text-3xl font-semibold tracking-tight">
-            Deployment model
-          </h2>
-          <div className="mt-8 grid md:grid-cols-4 gap-6">
-            {[
-              ["Phase 1", "600 boxes", "Integrated production pilot"],
-              ["Phase 2", "2,000+ boxes", "Commercial cluster expansion"],
-              ["Phase 3", "Multi-site", "Regional infrastructure rollout"],
-              ["Phase 4", "Global", "Export-aligned operating model"],
-            ].map(([phase, value, text]) => (
-              <div key={phase} className="border border-neutral-200 p-5">
-                <p className="text-sm uppercase tracking-widest text-neutral-600">{phase}</p>
-                <p className="mt-2 text-2xl font-semibold">{value}</p>
-                <p className="mt-2 text-base text-neutral-700">{text}</p>
-              </div>
-            ))}
+        {/* GLOW */}
+        <div className="absolute left-[-10%] top-[-20%] h-[420px] w-[420px] rounded-full bg-cyan-400/10 blur-3xl" />
+
+        <div className="container-shell relative z-10 py-28 lg:py-36">
+
+          <div className="max-w-5xl">
+
+            {/* EYEBROW */}
+            <div className="inline-flex rounded-full border border-cyan-400/20 bg-cyan-400/10 px-4 py-2 text-xs uppercase tracking-[0.22em] text-cyan-200">
+              Platform Infrastructure
+            </div>
+
+            {/* TITLE */}
+            <h1 className="mt-8 max-w-4xl">
+              Physical Infrastructure for Predictable Biological Production
+            </h1>
+
+            {/* TEXT */}
+            <p className="mt-8 max-w-3xl text-lg">
+              Crabionics combines modular grow-out systems,
+              closed-loop RAS infrastructure, telemetry networks,
+              and operational protocols into deployable precision
+              aquaculture infrastructure.
+            </p>
           </div>
         </div>
       </section>
 
-      <section className="py-16 md:py-20 px-6">
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row gap-4">
-          <Link href="/technology" className="inline-block px-6 py-3 border border-neutral-300 text-base font-medium hover:bg-neutral-100">
-            Explore Technology
-          </Link>
-          <Link href="/pilot-roadmap" className="inline-block px-6 py-3 border border-neutral-300 text-base font-medium hover:bg-neutral-100">
-            Review Pilot &amp; Roadmap
-          </Link>
+      {/* CORE GRID */}
+      <SectionWrapper className="section-divider">
+
+        <SectionHeading
+          eyebrow="Core Infrastructure"
+          title="Designed for Stability, Isolation, and Operational Control"
+          subtitle="The Crabionics platform integrates physical infrastructure, automation systems, and operational intelligence into one scalable production architecture."
+          align="center"
+        />
+
+        <div className="mt-20 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+
+          {infrastructure.map((item) => (
+            <GlassCard
+              key={item.title}
+              className="p-8"
+            >
+
+              <div className="h-3 w-3 rounded-full bg-cyan-300" />
+
+              <h3 className="mt-6">
+                {item.title}
+              </h3>
+
+              <p className="mt-5">
+                {item.description}
+              </p>
+            </GlassCard>
+          ))}
         </div>
-      </section>
+      </SectionWrapper>
+
+      {/* DEPLOYMENT */}
+      <SectionWrapper className="overflow-hidden">
+
+        <SectionHeading
+          eyebrow="Deployment Model"
+          title="Scalable Production Infrastructure"
+          subtitle="Crabionics infrastructure is designed to scale from pilot systems into distributed regional production networks."
+          align="center"
+        />
+
+        <div className="mx-auto mt-20 grid max-w-6xl gap-6 md:grid-cols-2 xl:grid-cols-4">
+
+          {deployment.map((item) => (
+            <GlassCard
+              key={item.phase}
+              className="relative overflow-hidden p-8"
+            >
+
+              {/* GLOW */}
+              <div className="absolute right-[-20%] top-[-20%] h-[180px] w-[180px] rounded-full bg-cyan-400/10 blur-3xl" />
+
+              <div className="relative z-10">
+
+                <div className="inline-flex rounded-full border border-cyan-400/20 bg-cyan-400/10 px-4 py-2 text-xs uppercase tracking-[0.16em] text-cyan-200">
+                  {item.phase}
+                </div>
+
+                <p className="mt-6 text-5xl font-semibold text-white">
+                  {item.value}
+                </p>
+
+                <p className="mt-4 text-sm text-slate-400">
+                  {item.label}
+                </p>
+              </div>
+            </GlassCard>
+          ))}
+        </div>
+      </SectionWrapper>
+
+      {/* LOWER CTA */}
+      <SectionWrapper>
+
+        <div className="glass-card overflow-hidden p-10 lg:p-14">
+
+          <div className="grid items-center gap-10 lg:grid-cols-[1fr_auto]">
+
+            {/* LEFT */}
+            <div>
+
+              <p className="text-sm uppercase tracking-[0.18em] text-cyan-200">
+                Infrastructure Expansion
+              </p>
+
+              <h2 className="mt-5 max-w-3xl">
+                Building the Infrastructure Layer for Precision Aquaculture
+              </h2>
+
+              <p className="mt-6 max-w-2xl text-lg">
+                Explore the telemetry systems, operational architecture,
+                and biological intelligence layers powering the Crabionics platform.
+              </p>
+            </div>
+
+            {/* RIGHT */}
+            <div className="flex flex-col gap-4 sm:flex-row lg:flex-col">
+
+              <Link
+                href="/technology"
+                className="primary-button"
+              >
+                Explore Technology
+              </Link>
+
+              <Link
+                href="/aquaos"
+                className="secondary-button"
+              >
+                View AquaOS
+              </Link>
+            </div>
+          </div>
+        </div>
+
+      </SectionWrapper>
+
     </main>
   );
 }

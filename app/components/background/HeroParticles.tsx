@@ -2,56 +2,194 @@
 
 import { useEffect, useRef } from "react";
 
+type Node = {
+  x: number;
+  y: number;
+  vx: number;
+  vy: number;
+  radius: number;
+};
+
 export default function HeroParticles() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
   useEffect(() => {
-    const canvas = canvasRef.current!;
-    const ctx = canvas.getContext("2d")!;
+    const canvas = canvasRef.current;
 
-    let particles: any[] = [];
-    const numParticles = 60;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext("2d");
+
+    if (!ctx) return;
+
+    let animationFrame = 0;
+
+    let width = window.innerWidth;
+    let height = window.innerHeight;
+
+    const DPR = window.devicePixelRatio || 1;
 
     const resize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      width = window.innerWidth;
+      height = window.innerHeight;
+
+      canvas.width = width * DPR;
+      canvas.height = height * DPR;
+
+      canvas.style.width = `${width}px`;
+      canvas.style.height = `${height}px`;
+
+      ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
     };
 
     resize();
+
     window.addEventListener("resize", resize);
 
-    // Create particles
-    for (let i = 0; i < numParticles; i++) {
-      particles.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        radius: Math.random() * 1.5,
-        speed: Math.random() * 0.5,
+    const NODE_COUNT = width < 768 ? 38 : 70;
+
+    const nodes: Node[] = [];
+
+    for (let i = 0; i < NODE_COUNT; i++) {
+      nodes.push({
+        x: Math.random() * width,
+        y: Math.random() * height,
+
+        vx: (Math.random() - 0.5) * 0.18,
+        vy: (Math.random() - 0.5) * 0.18,
+
+        radius: Math.random() * 1.8 + 0.6,
       });
     }
 
-    const draw = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    const drawGrid = () => {
+      const gridSize = 72;
 
-      particles.forEach((p) => {
-        p.y -= p.speed;
-        if (p.y < 0) {
-          p.y = canvas.height;
-          p.x = Math.random() * canvas.width;
+      ctx.beginPath();
+
+      for (let x = 0; x <= width; x += gridSize) {
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, height);
+      }
+
+      for (let y = 0; y <= height; y += gridSize) {
+        ctx.moveTo(0, y);
+        ctx.lineTo(width, y);
+      }
+
+      ctx.strokeStyle = "rgba(255,255,255,0.025)";
+      ctx.lineWidth = 1;
+
+      ctx.stroke();
+    };
+
+    const drawConnections = () => {
+      for (let i = 0; i < nodes.length; i++) {
+        for (let j = i + 1; j < nodes.length; j++) {
+
+          const a = nodes[i];
+          const b = nodes[j];
+
+          const dx = a.x - b.x;
+          const dy = a.y - b.y;
+
+          const distance = Math.sqrt(dx * dx + dy * dy);
+
+          if (distance < 130) {
+
+            const opacity = 1 - distance / 130;
+
+            ctx.beginPath();
+
+            ctx.moveTo(a.x, a.y);
+            ctx.lineTo(b.x, b.y);
+
+            ctx.strokeStyle = `rgba(34,211,238,${opacity * 0.12})`;
+
+            ctx.lineWidth = 1;
+
+            ctx.stroke();
+          }
+        }
+      }
+    };
+
+    const drawNodes = () => {
+      nodes.forEach((node) => {
+
+        node.x += node.vx;
+        node.y += node.vy;
+
+        if (node.x <= 0 || node.x >= width) {
+          node.vx *= -1;
+        }
+
+        if (node.y <= 0 || node.y >= height) {
+          node.vy *= -1;
         }
 
         ctx.beginPath();
-        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-        ctx.fillStyle = "rgba(0, 255, 200, 0.4)";
+
+        ctx.arc(
+          node.x,
+          node.y,
+          node.radius,
+          0,
+          Math.PI * 2
+        );
+
+        ctx.fillStyle = "rgba(103,232,249,0.75)";
+
+        ctx.shadowBlur = 10;
+        ctx.shadowColor = "rgba(34,211,238,0.5)";
+
         ctx.fill();
       });
-
-      requestAnimationFrame(draw);
     };
 
-    draw();
+    const drawScanlines = () => {
+
+      const time = Date.now() * 0.00008;
+
+      for (let i = 0; i < 3; i++) {
+
+        const y =
+          ((time * 1000 + i * 280) % (height + 200)) - 100;
+
+        const gradient = ctx.createLinearGradient(
+          0,
+          y,
+          0,
+          y + 120
+        );
+
+        gradient.addColorStop(0, "rgba(34,211,238,0)");
+        gradient.addColorStop(0.5, "rgba(34,211,238,0.035)");
+        gradient.addColorStop(1, "rgba(34,211,238,0)");
+
+        ctx.fillStyle = gradient;
+
+        ctx.fillRect(0, y, width, 120);
+      }
+    };
+
+    const animate = () => {
+
+      ctx.clearRect(0, 0, width, height);
+
+      drawGrid();
+      drawConnections();
+      drawNodes();
+      drawScanlines();
+
+      animationFrame = requestAnimationFrame(animate);
+    };
+
+    animate();
 
     return () => {
+      cancelAnimationFrame(animationFrame);
+
       window.removeEventListener("resize", resize);
     };
   }, []);
@@ -59,7 +197,7 @@ export default function HeroParticles() {
   return (
     <canvas
       ref={canvasRef}
-      className="absolute inset-0 z-[1] pointer-events-none"
+      className="pointer-events-none absolute inset-0 z-[1] opacity-90"
     />
   );
 }
