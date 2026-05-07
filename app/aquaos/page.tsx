@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import AquaOSControlLoop from "../components/AquaOSControlLoop";
+import AquaOSControlLoop from "../components/sections/AquaOSControlLoop";
 
 import GlassCard from "@/app/components/ui/GlassCard";
 import SectionHeading from "@/app/components/ui/SectionHeading";
