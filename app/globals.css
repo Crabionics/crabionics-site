@@ -394,3 +394,23 @@ a:hover {
     padding-block: 4rem;
   }
 }
+
+.telemetry-lines {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    rgba(34, 211, 238, 0.08) 0,
+    rgba(34, 211, 238, 0.08) 1px,
+    transparent 1px,
+    transparent 18px
+  );
+  animation: scanDrift 12s linear infinite;
+}
+
+@keyframes scanDrift {
+  from { transform: translateY(-6px); }
+  to { transform: translateY(18px); }
+}
+
+@media (max-width: 768px) {
+  .section-padding { padding-block: 3.5rem; }
+}
