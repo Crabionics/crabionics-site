@@ -53,8 +53,10 @@ html,
 body {
   margin: 0;
   padding: 0;
+
   min-height: 100%;
   width: 100%;
+
   overflow-x: hidden;
 }
 
@@ -77,6 +79,15 @@ body {
 }
 
 /* ------------------------------------------------ */
+/* IMAGE FIX */
+/* ------------------------------------------------ */
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ------------------------------------------------ */
 /* GLOBAL BACKGROUND SYSTEM */
 /* ------------------------------------------------ */
 
@@ -85,13 +96,17 @@ body {
   inset: 0;
 
   background:
-    radial-gradient(circle at top left,
+    radial-gradient(
+      circle at top left,
       rgba(34, 211, 238, 0.12),
-      transparent 28%),
+      transparent 28%
+    ),
 
-    radial-gradient(circle at bottom right,
+    radial-gradient(
+      circle at bottom right,
       rgba(20, 184, 166, 0.10),
-      transparent 30%),
+      transparent 30%
+    ),
 
     linear-gradient(
       180deg,
@@ -103,7 +118,9 @@ body {
   z-index: 0;
 }
 
-/* subtle grid overlay */
+/* ------------------------------------------------ */
+/* GRID OVERLAY */
+/* ------------------------------------------------ */
 
 .site-background::before {
   content: "";
@@ -112,15 +129,24 @@ body {
   inset: 0;
 
   background-image:
-    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    linear-gradient(
+      rgba(255,255,255,0.03) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255,255,255,0.03) 1px,
+      transparent 1px
+    );
 
   background-size: 60px 60px;
 
   mask-image:
-    radial-gradient(circle at center,
+    radial-gradient(
+      circle at center,
       black 35%,
-      transparent 100%);
+      transparent 100%
+    );
 }
 
 /* ------------------------------------------------ */
@@ -136,28 +162,31 @@ h6 {
   margin: 0;
 
   font-weight: 700;
-  line-height: 1.05;
   letter-spacing: -0.03em;
 
   color: var(--text);
 }
 
 h1 {
-  font-size: clamp(4rem, 8vw, 7rem);
+  font-size: clamp(2.8rem, 5vw, 5.2rem);
+  line-height: 0.98;
 }
 
 h2 {
-  font-size: clamp(2.75rem, 5vw, 4.5rem);
+  font-size: clamp(2rem, 3.5vw, 3.2rem);
+  line-height: 1.08;
 }
 
 h3 {
-  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  font-size: clamp(1.4rem, 2.5vw, 2rem);
+  line-height: 1.15;
 }
 
 p {
   color: var(--muted);
-  line-height: 1.8;
-  font-size: 1.05rem;
+
+  line-height: 1.75;
+  font-size: 1rem;
 }
 
 /* ------------------------------------------------ */
@@ -184,18 +213,47 @@ a:hover {
 
 .container-shell {
   width: 100%;
-  max-width: 1440px;
+  max-width: 1320px;
 
   margin-inline: auto;
   padding-inline: 1.5rem;
 }
 
 .section-padding {
-  padding-block: 8rem;
+  padding-block: clamp(4.5rem, 8vw, 6rem);
 }
 
 .section-tight {
-  padding-block: 5rem;
+  padding-block: 4rem;
+}
+
+/* ------------------------------------------------ */
+/* SECTION DIVIDER */
+/* ------------------------------------------------ */
+
+.section-divider {
+  position: relative;
+}
+
+.section-divider::after {
+  content: "";
+
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+
+  width: 65%;
+  height: 1px;
+
+  transform: translateX(-50%);
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255,255,255,0.08),
+      transparent
+    );
 }
 
 /* ------------------------------------------------ */
@@ -203,17 +261,26 @@ a:hover {
 /* ------------------------------------------------ */
 
 .glass-card {
-  background: rgba(17, 24, 39, 0.55);
+  background: rgba(17, 24, 39, 0.52);
 
   border: 1px solid var(--border);
 
-  border-radius: 1.5rem;
+  border-radius: 1.4rem;
 
-  backdrop-filter: blur(18px);
+  backdrop-filter: blur(16px);
 
   box-shadow:
-    0 10px 40px rgba(0,0,0,0.22),
+    0 10px 30px rgba(0,0,0,0.18),
     inset 0 1px 0 rgba(255,255,255,0.04);
+
+  transition:
+    transform 220ms ease,
+    border-color 220ms ease,
+    background 220ms ease;
+}
+
+.glass-card:hover {
+  border-color: rgba(103, 232, 249, 0.18);
 }
 
 /* ------------------------------------------------ */
@@ -298,4 +365,31 @@ a:hover {
 
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(255,255,255,0.18);
+}
+
+/* ------------------------------------------------ */
+/* MOBILE OPTIMIZATION */
+/* ------------------------------------------------ */
+
+@media (max-width: 768px) {
+
+  h1 {
+    line-height: 1.02;
+  }
+
+  h2 {
+    line-height: 1.12;
+  }
+
+  .container-shell {
+    padding-inline: 1.2rem;
+  }
+
+  .glass-card {
+    border-radius: 1.2rem;
+  }
+
+  .section-padding {
+    padding-block: 4.5rem;
+  }
 }

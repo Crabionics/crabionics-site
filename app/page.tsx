@@ -7,14 +7,16 @@ import ClosedLoopSection from "@/app/components/sections/ClosedLoopSection";
 import PlatformStackSection from "@/app/components/sections/PlatformStackSection";
 import AquaOSSection from "@/app/components/sections/AquaOSSection";
 import DataIntelligenceSection from "@/app/components/sections/DataIntelligenceSection";
+import RoadmapSection from "@/app/components/sections/RoadmapSection";
+import FinalCTASection from "@/app/components/sections/FinalCTASection";
+import ValidationSection from "@/app/components/sections/ValidationSection";
 import InfrastructureSection from "@/app/components/sections/InfrastructureSection";
 export default function HomePage() {
   return (
     <main className="relative overflow-hidden">
 
       {/* HERO */}
-      <section className="relative min-h-screen overflow-hidden">
-
+      <section className="relative min-h-[92vh] overflow-hidden">
         {/* BACKGROUND IMAGE */}
         <div className="absolute inset-0">
           <Image
@@ -39,7 +41,7 @@ export default function HomePage() {
         <div className="relative z-10 flex min-h-screen items-center">
           <div className="container-shell">
 
-            <div className="grid items-center gap-16 lg:grid-cols-2">
+            <div className="grid items-center gap-12 lg:grid-cols-2">
 
               {/* LEFT */}
               <motion.div
@@ -54,16 +56,15 @@ export default function HomePage() {
                 </div>
 
                 {/* HEADLINE */}
-                <h1 className="max-w-4xl">
+                <h1 className="max-w-3xl">
                   Engineering the Operating System for Precision Mud Crab Aquaculture
                 </h1>
 
                 {/* SUBTEXT */}
                 <p className="mt-8 max-w-2xl text-lg sm:text-xl">
-                  Crabionics integrates modular RAS infrastructure,
-                  biological intelligence, automation, and closed-loop
-                  production control to transform crab farming into a
-                  predictable manufacturing system.
+                  Closed-loop aquaculture infrastructure integrating
+                  modular RAS systems, biological intelligence,
+                  telemetry, and operational automation.
                 </p>
 
                 {/* CTA */}
@@ -85,7 +86,7 @@ export default function HomePage() {
                 </div>
 
                 {/* METRICS */}
-                <div className="mt-16 grid grid-cols-2 gap-6 sm:grid-cols-4">
+                <div className="mt-12 grid grid-cols-2 gap-5 sm:grid-cols-4">
 
                   <div>
                     <p className="text-3xl font-semibold text-white">
@@ -290,6 +291,9 @@ export default function HomePage() {
 <AquaOSSection />
 <InfrastructureSection />
 <DataIntelligenceSection />
+<ValidationSection />
+<RoadmapSection />
+<FinalCTASection />
     </main>
   );
 }
