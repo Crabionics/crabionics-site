@@ -5,6 +5,9 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import ClosedLoopSection from "@/app/components/sections/ClosedLoopSection";
 import PlatformStackSection from "@/app/components/sections/PlatformStackSection";
+import AquaOSSection from "@/app/components/sections/AquaOSSection";
+import DataIntelligenceSection from "@/app/components/sections/DataIntelligenceSection";
+import InfrastructureSection from "@/app/components/sections/InfrastructureSection";
 export default function HomePage() {
   return (
     <main className="relative overflow-hidden">
@@ -284,6 +287,9 @@ export default function HomePage() {
       </section>
 <ClosedLoopSection />
 <PlatformStackSection />
+<AquaOSSection />
+<InfrastructureSection />
+<DataIntelligenceSection />
     </main>
   );
 }
