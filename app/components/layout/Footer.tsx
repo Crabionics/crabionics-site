@@ -2,87 +2,125 @@ import Image from "next/image";
 import Link from "next/link";
 
 const platformLinks = [
-  { href: "/platform", label: "Platform" },
-  { href: "/aquaos", label: "AquaOS" },
-  { href: "/technology", label: "Technology" },
-  { href: "/infrastructure", label: "Infrastructure" },
+  {
+    label: "Platform",
+    href: "/platform",
+  },
+
+  {
+    label: "AquaOS",
+    href: "/aquaos",
+  },
+
+  {
+    label: "Technology",
+    href: "/technology",
+  },
+
+  {
+    label: "Infrastructure",
+    href: "/platform",
+  },
 ];
 
 const companyLinks = [
-  { href: "/capital", label: "Capital" },
-  { href: "/blue-economy", label: "Blue Economy" },
-  { href: "/team", label: "Team" },
-  { href: "/contact", label: "Contact" },
+  {
+    label: "Capital",
+    href: "/capital",
+  },
+
+  {
+    label: "Blue Economy",
+    href: "/blue-economy",
+  },
+
+  {
+    label: "Team",
+    href: "/team",
+  },
+
+  {
+    label: "Contact",
+    href: "/contact",
+  },
 ];
 
 export default function Footer() {
   return (
     <footer className="relative overflow-hidden border-t border-white/10">
 
-      {/* BACKGROUND GLOW */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent to-cyan-400/[0.03]" />
+      {/* GLOW */}
+      <div className="absolute left-[-10%] bottom-[-20%] h-[320px] w-[320px] rounded-full bg-cyan-400/10 blur-3xl" />
 
-      <div className="container-shell relative z-10">
+      <div className="container-shell relative z-10 py-20">
 
-        {/* TOP */}
-        <div className="grid gap-16 py-20 lg:grid-cols-[1.4fr_1fr_1fr]">
+        <div className="grid gap-14 lg:grid-cols-[1.2fr_0.7fr_0.8fr]">
 
-          {/* BRAND */}
+          {/* LEFT */}
           <div>
 
-            <div className="flex items-center gap-4">
+            {/* LOGO */}
+            <div className="flex items-start gap-4">
 
               <Image
                 src="/logo.png"
                 alt="Crabionics"
-                width={44}
-                height={44}
-                className="h-11 w-auto"
+                width={52}
+                height={52}
+                className="h-12 w-auto"
               />
 
               <div>
-                <p className="text-lg font-semibold tracking-tight text-white">
+
+                <p className="text-2xl font-semibold text-white">
                   Crabionics
                 </p>
 
-                <p className="text-xs uppercase tracking-[0.22em] text-cyan-200/60">
+                <p className="mt-2 text-sm uppercase tracking-[0.28em] text-slate-400">
                   Precision Aquaculture Infrastructure
                 </p>
               </div>
             </div>
 
-            <p className="mt-6 max-w-lg text-slate-400">
-              Building closed-loop biological infrastructure for predictable
-              mud crab production through modular RAS systems, AquaOS,
-              automation, and intelligence-driven operations.
+            {/* TEXT */}
+            <p className="mt-10 max-w-xl text-lg leading-relaxed text-slate-400">
+              Building closed-loop biological infrastructure
+              for predictable mud crab production through modular
+              RAS systems, AquaOS, telemetry, automation,
+              and intelligence-driven operations.
             </p>
 
-            {/* STATUS */}
-            <div className="mt-8 flex flex-wrap gap-3">
+            {/* TAGS */}
+            <div className="mt-10 flex flex-wrap gap-3">
 
-              <div className="rounded-full border border-emerald-400/20 bg-emerald-400/10 px-4 py-2 text-xs text-emerald-300">
-                AquaOS Active
-              </div>
-
-              <div className="rounded-full border border-cyan-400/20 bg-cyan-400/10 px-4 py-2 text-xs text-cyan-200">
-                Closed-loop Infrastructure
-              </div>
+              {[
+                "AquaOS Active",
+                "Closed-loop Infrastructure",
+              ].map((item) => (
+                <div
+                  key={item}
+                  className="rounded-full border border-cyan-400/20 bg-cyan-400/10 px-5 py-3 text-sm text-cyan-200"
+                >
+                  {item}
+                </div>
+              ))}
             </div>
           </div>
 
           {/* PLATFORM */}
           <div>
 
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-white">
+            <p className="text-sm uppercase tracking-[0.24em] text-slate-400">
               Platform
             </p>
 
-            <div className="mt-6 flex flex-col gap-4">
+            <div className="mt-8 flex flex-col gap-5">
+
               {platformLinks.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="text-slate-400 transition hover:text-white"
+                  className="text-2xl text-slate-300 transition hover:text-white"
                 >
                   {item.label}
                 </Link>
@@ -93,16 +131,17 @@ export default function Footer() {
           {/* COMPANY */}
           <div>
 
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-white">
+            <p className="text-sm uppercase tracking-[0.24em] text-slate-400">
               Company
             </p>
 
-            <div className="mt-6 flex flex-col gap-4">
+            <div className="mt-8 flex flex-col gap-5">
+
               {companyLinks.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="text-slate-400 transition hover:text-white"
+                  className="text-2xl text-slate-300 transition hover:text-white"
                 >
                   {item.label}
                 </Link>
@@ -110,20 +149,20 @@ export default function Footer() {
             </div>
 
             {/* CONTACT */}
-            <div className="mt-10">
+            <div className="mt-14">
 
-              <p className="text-sm text-slate-500">
+              <p className="text-sm uppercase tracking-[0.22em] text-slate-500">
                 Contact
               </p>
 
               <a
                 href="mailto:sameer@crabionics.com"
-                className="mt-2 inline-block text-cyan-200 hover:text-white"
+                className="mt-5 inline-block text-3xl font-medium text-cyan-200 transition hover:text-cyan-100"
               >
                 sameer@crabionics.com
               </a>
 
-              <p className="mt-4 text-sm text-slate-500">
+              <p className="mt-6 text-base leading-relaxed text-slate-400">
                 For partnerships, pilot deployments,
                 technical collaboration, and investment inquiries.
               </p>
@@ -131,18 +170,16 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* BOTTOM */}
-        <div className="flex flex-col gap-4 border-t border-white/10 py-6 text-sm text-slate-500 md:flex-row md:items-center md:justify-between">
+        {/* LOWER */}
+        <div className="mt-20 flex flex-col gap-5 border-t border-white/10 pt-8 text-sm text-slate-500 md:flex-row md:items-center md:justify-between">
 
           <p>
             © {new Date().getFullYear()} Crabionics Aquaculture Pvt. Ltd.
           </p>
 
-          <div className="flex items-center gap-6">
-            <span>Precision Aquaculture</span>
-            <span>Biological Infrastructure</span>
-            <span>AquaOS</span>
-          </div>
+          <p>
+            Closed-loop Precision Aquaculture Infrastructure
+          </p>
         </div>
       </div>
     </footer>
