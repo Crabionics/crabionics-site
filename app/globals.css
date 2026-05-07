@@ -89,3 +89,15 @@ main {
   outline: 3px solid var(--ring);
   outline-offset: 2px;
 }
+
+html {
+  scroll-behavior: smooth;
+}
+
+.glass-card {
+  border: 1px solid rgb(255 255 255 / 0.25);
+  border-radius: 1.25rem;
+  background: linear-gradient(145deg, rgb(255 255 255 / 0.17), rgb(255 255 255 / 0.06));
+  backdrop-filter: blur(12px);
+  box-shadow: 0 20px 45px rgb(15 23 42 / 0.24);
+}
