@@ -10,7 +10,6 @@ const navLinks = [
   { href: "/platform", label: "Platform" },
   { href: "/aquaos", label: "AquaOS" },
   { href: "/technology", label: "Technology" },
-  { href: "/platform", label: "Platform" },
   { href: "/capital", label: "Capital" },
 ];
 
@@ -105,7 +104,9 @@ export default function Navbar() {
           {/* RIGHT CTA */}
           <div className="hidden lg:flex items-center gap-3">
             <Link
-              href="/contact"
+              href="mailto:sameer@crabionics.com"
+              target="_blank"
+              rel="noopener noreferrer"
               className="primary-button text-sm"
             >
               Request Demo
@@ -174,8 +175,10 @@ export default function Navbar() {
 
           <div className="mt-12">
             <Link
-              href="/contact"
-              className="primary-button w-full justify-center"
+              href="mailto:sameer@crabionics.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="primary-button"
             >
               Request Demo
             </Link>
