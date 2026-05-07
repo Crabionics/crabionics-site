@@ -1,57 +1,220 @@
 import Link from "next/link";
 
+import GlassCard from "@/app/components/ui/GlassCard";
+import SectionHeading from "@/app/components/ui/SectionHeading";
+import SectionWrapper from "@/app/components/ui/SectionWrapper";
+
+const contactChannels = [
+  {
+    title: "Technical Collaboration",
+    description:
+      "Infrastructure systems, telemetry architecture, biological intelligence, and automation discussions.",
+  },
+
+  {
+    title: "Pilot Deployment",
+    description:
+      "Production infrastructure pilots, field implementation, and operational partnerships.",
+  },
+
+  {
+    title: "Investment & Grants",
+    description:
+      "Strategic capital, grant collaboration, infrastructure scaling, and ecosystem partnerships.",
+  },
+];
+
 export default function ContactPage() {
   return (
-    <main className="bg-neutral-50 text-neutral-900">
-      <section className="border-b border-neutral-200 bg-white">
-        <div className="max-w-6xl mx-auto px-6 py-20 md:py-24">
-          <p className="text-sm uppercase tracking-[0.2em] text-neutral-600">
-            Contact
-          </p>
-          <h1 className="mt-5 text-4xl md:text-5xl font-semibold tracking-tight max-w-4xl">
-            One clear next step
-          </h1>
-          <p className="mt-6 text-lg text-neutral-700 max-w-3xl">
-            For accelerator, grant, investor, or technical collaboration
-            conversations, email directly.
-          </p>
+    <main className="relative overflow-hidden">
+
+      {/* HERO */}
+      <section className="relative overflow-hidden border-b border-white/10">
+
+        {/* GLOW */}
+        <div className="absolute left-[-10%] top-[-20%] h-[420px] w-[420px] rounded-full bg-cyan-400/10 blur-3xl" />
+
+        <div className="container-shell relative z-10 py-28 lg:py-36">
+
+          <div className="max-w-5xl">
+
+            {/* EYEBROW */}
+            <div className="inline-flex rounded-full border border-cyan-400/20 bg-cyan-400/10 px-4 py-2 text-xs uppercase tracking-[0.22em] text-cyan-200">
+              Contact
+            </div>
+
+            {/* TITLE */}
+            <h1 className="mt-8 max-w-4xl">
+              Infrastructure, Intelligence, and Strategic Collaboration
+            </h1>
+
+            {/* TEXT */}
+            <p className="mt-8 max-w-3xl text-lg">
+              For infrastructure partnerships, pilot deployments,
+              technical collaboration, investment discussions,
+              and ecosystem opportunities, connect directly
+              with the Crabionics team.
+            </p>
+          </div>
         </div>
       </section>
 
-      <section className="py-16 md:py-20 px-6">
-        <div className="max-w-4xl mx-auto border border-neutral-200 bg-white p-8 md:p-10">
-          <p className="text-base uppercase tracking-widest text-neutral-600">Email</p>
-          <a
-            href="mailto:sameer@crabionics.com"
-            className="mt-3 inline-block text-2xl font-semibold tracking-tight text-neutral-900 hover:underline"
+      {/* CONTACT CHANNELS */}
+      <SectionWrapper className="section-divider">
+
+        <SectionHeading
+          eyebrow="Collaboration Areas"
+          title="Designed for Strategic Infrastructure Partnerships"
+          subtitle="Crabionics collaborates across aquaculture infrastructure, operational intelligence, biological systems, and scalable production deployment."
+          align="center"
+        />
+
+        <div className="mt-20 grid gap-6 md:grid-cols-3">
+
+          {contactChannels.map((item) => (
+            <GlassCard
+              key={item.title}
+              className="p-8"
+            >
+
+              <div className="h-3 w-3 rounded-full bg-cyan-300" />
+
+              <h3 className="mt-6">
+                {item.title}
+              </h3>
+
+              <p className="mt-5">
+                {item.description}
+              </p>
+            </GlassCard>
+          ))}
+        </div>
+      </SectionWrapper>
+
+      {/* CONTACT PANEL */}
+      <SectionWrapper className="section-divider overflow-hidden">
+
+        <div className="relative mx-auto max-w-5xl">
+
+          {/* GLOW */}
+          <div className="absolute inset-0 rounded-[40px] bg-cyan-400/10 blur-3xl" />
+
+          <GlassCard className="relative overflow-hidden p-10 lg:p-14">
+
+            <div className="grid gap-12 lg:grid-cols-[1fr_0.8fr]">
+
+              {/* LEFT */}
+              <div>
+
+                <p className="text-sm uppercase tracking-[0.18em] text-cyan-200">
+                  Direct Contact
+                </p>
+
+                <h2 className="mt-6 max-w-2xl">
+                  One Clear Communication Channel
+                </h2>
+
+                <p className="mt-6 max-w-xl text-lg">
+                  We prefer direct founder-level conversations
+                  for technical, infrastructure, and strategic
+                  collaboration discussions.
+                </p>
+
+                {/* EMAIL */}
+                <div className="mt-12">
+
+                  <p className="text-sm uppercase tracking-[0.16em] text-slate-500">
+                    Email
+                  </p>
+
+                  <a
+                    href="mailto:sameer@crabionics.com"
+                    className="mt-5 inline-block text-3xl font-semibold text-cyan-200 transition hover:text-cyan-100"
+                  >
+                    sameer@crabionics.com
+                  </a>
+                </div>
+              </div>
+
+              {/* RIGHT */}
+              <div className="space-y-6">
+
+                {[
+                  {
+                    label: "Infrastructure",
+                    value: "Closed-loop RAS Systems",
+                  },
+
+                  {
+                    label: "Operational Layer",
+                    value: "AquaOS + CIN",
+                  },
+
+                  {
+                    label: "Focus Area",
+                    value: "Precision Aquaculture",
+                  },
+
+                  {
+                    label: "Deployment",
+                    value: "Pilot to Distributed Scaling",
+                  },
+                ].map((item) => (
+                  <div
+                    key={item.label}
+                    className="rounded-2xl border border-white/10 bg-white/[0.03] p-5"
+                  >
+
+                    <p className="text-sm uppercase tracking-[0.14em] text-slate-500">
+                      {item.label}
+                    </p>
+
+                    <p className="mt-3 text-lg font-medium text-white">
+                      {item.value}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </GlassCard>
+        </div>
+      </SectionWrapper>
+
+      {/* PRE-READ */}
+      <SectionWrapper>
+
+        <SectionHeading
+          eyebrow="Before Connecting"
+          title="Explore the Core Infrastructure Stack"
+          subtitle="Review the platform architecture, operational intelligence systems, and biological infrastructure before initiating strategic discussions."
+          align="center"
+        />
+
+        <div className="mx-auto mt-16 flex max-w-5xl flex-wrap items-center justify-center gap-5">
+
+          <Link
+            href="/platform"
+            className="primary-button"
           >
-            sameer@crabionics.com
-          </a>
+            Platform Infrastructure
+          </Link>
 
-          <div className="mt-10 grid md:grid-cols-2 gap-6 text-base text-neutral-700">
-            <div>
-              <p className="font-semibold">WhatsApp</p>
-              <p className="mt-2">Placeholder: add preferred contact number</p>
-            </div>
-            <div>
-              <p className="font-semibold">Calendly</p>
-              <p className="mt-2">Placeholder: add meeting link for diligence calls</p>
-            </div>
-          </div>
+          <Link
+            href="/aquaos"
+            className="secondary-button"
+          >
+            Explore AquaOS
+          </Link>
 
-          <div className="mt-10 border-t border-neutral-200 pt-8">
-            <p className="text-base font-semibold text-neutral-800">Before contacting, review:</p>
-            <div className="mt-4 flex flex-col md:flex-row gap-4">
-              <Link href="/pilot-roadmap" className="px-6 py-3 border border-neutral-300 text-base font-medium hover:bg-neutral-100">
-                Pilot &amp; Roadmap
-              </Link>
-              <Link href="/aquaos" className="px-6 py-3 border border-neutral-300 text-base font-medium hover:bg-neutral-100">
-                AquaOS Overview
-              </Link>
-            </div>
-          </div>
+          <Link
+            href="/technology"
+            className="secondary-button"
+          >
+            Technology Architecture
+          </Link>
         </div>
-      </section>
+      </SectionWrapper>
+
     </main>
   );
 }
