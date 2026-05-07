@@ -18,30 +18,25 @@ const platformLinks = [
   },
 
   {
-    label: "Infrastructure",
-    href: "/platform",
+    label: "Capital",
+    href: "/capital",
   },
 ];
 
 const companyLinks = [
   {
-    label: "Capital",
-    href: "/capital",
-  },
-
-  {
-    label: "Blue Economy",
-    href: "/blue-economy",
-  },
-
-  {
-    label: "Team",
-    href: "/team",
-  },
-
-  {
     label: "Contact",
     href: "/contact",
+  },
+
+  {
+    label: "Technology",
+    href: "/technology",
+  },
+
+  {
+    label: "Platform",
+    href: "/platform",
   },
 ];
 
