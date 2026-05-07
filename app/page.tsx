@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-
+import ClosedLoopSection from "@/app/components/sections/ClosedLoopSection";
 export default function HomePage() {
   return (
     <main className="relative overflow-hidden">
@@ -281,7 +281,7 @@ export default function HomePage() {
         </div>
 
       </section>
-
+<ClosedLoopSection />
     </main>
   );
 }

@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
-import Navbar from "@/app/components/Navbar";
-import Footer from "./components/Footer";
+import Navbar from "@/app/components/navigation/Navbar";
+import Footer from "./components/layout/Footer";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://crabionics.com"),
