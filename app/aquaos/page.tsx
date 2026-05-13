@@ -198,7 +198,7 @@ export default function AquaOSPage() {
 
               <div className="inline-flex items-center gap-3 rounded-full border border-emerald-400/20 bg-emerald-400/10 px-4 py-2">
 
-                <span className="h-2 w-2 rounded-full bg-emerald-400" />
+                <span aria-hidden="true" className="h-2 w-2 rounded-full bg-emerald-400" />
 
                 <span className="text-xs text-emerald-300">
                   Operational
@@ -207,7 +207,7 @@ export default function AquaOSPage() {
             </div>
 
             {/* GRID */}
-            <div className="mt-8 grid gap-5 lg:grid-cols-3">
+            <ul className="mt-8 grid gap-5 lg:grid-cols-3">
 
               {[
                 "RAS Cluster",
@@ -217,9 +217,10 @@ export default function AquaOSPage() {
                 "Molting Detection",
                 "Operational Sync",
               ].map((item) => (
-                <div
+                <li
                   key={item}
                   className="rounded-2xl border border-white/10 bg-white/[0.03] p-5"
+                  aria-label={`${item}: Active synchronization`}
                 >
 
                   <div className="flex items-center justify-between">
@@ -228,7 +229,7 @@ export default function AquaOSPage() {
                       {item}
                     </p>
 
-                    <span className="h-2 w-2 rounded-full bg-emerald-400" />
+                    <span aria-hidden="true" className="h-2 w-2 rounded-full bg-emerald-400" />
                   </div>
 
                   <div className="mt-5 h-2 overflow-hidden rounded-full bg-white/5">
@@ -239,9 +240,9 @@ export default function AquaOSPage() {
                   <p className="mt-4 text-xs text-slate-400">
                     Active synchronization
                   </p>
-                </div>
+                </li>
               ))}
-            </div>
+            </ul>
           </GlassCard>
         </div>
       </SectionWrapper>
