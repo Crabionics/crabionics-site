@@ -5,6 +5,7 @@ import ClosedLoopRing from "@/app/components/diagrams/ClosedLoopRing";
 import HomePlatformBrief from "@/app/components/sections/HomePlatformBrief";
 import HomeValidationStrip from "@/app/components/sections/HomeValidationStrip";
 import HomeHeroAnimated from "@/app/components/sections/HomeHeroAnimated";
+import SystemsInMotionSection from "@/app/components/sections/SystemsInMotionSection";
 
 const problems = [
   {
@@ -74,6 +75,8 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      <SystemsInMotionSection />
 
       {/* ===========================================================
            PROBLEM — light

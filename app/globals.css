@@ -498,3 +498,131 @@ a:hover {
     padding-block: 4rem;
   }
 }
+
+/* ------------------------------------------------ */
+/* SYSTEMS IN MOTION ANIMATIONS */
+/* ------------------------------------------------ */
+
+.systems-motion .motion-grid {
+  background-image: linear-gradient(rgba(14, 116, 144, 0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(14, 116, 144, 0.08) 1px, transparent 1px);
+  background-size: 42px 42px;
+  mask-image: radial-gradient(circle at center, black 45%, transparent 100%);
+  animation: gridDrift 16s linear infinite;
+}
+
+.tank-shell {
+  position: relative;
+  overflow: hidden;
+  height: 220px;
+  border-radius: 1.25rem;
+  border: 1px solid rgba(14, 116, 144, 0.2);
+  background: linear-gradient(180deg, rgba(186, 230, 253, 0.65), rgba(125, 211, 252, 0.35));
+}
+
+.water-layer {
+  position: absolute;
+  left: -10%;
+  right: -10%;
+  bottom: -20px;
+  height: 55%;
+  background: radial-gradient(ellipse at top, rgba(34, 211, 238, 0.65), rgba(8, 145, 178, 0.7));
+  border-radius: 46% 54% 62% 38% / 48% 42% 58% 52%;
+  animation: waterPulse 4.8s ease-in-out infinite;
+}
+
+.water-layer-2 {
+  height: 45%;
+  opacity: 0.65;
+  animation-delay: -2s;
+}
+
+.pulse-dot {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  background: rgba(56, 189, 248, 0.95);
+  box-shadow: 0 0 0 0 rgba(14, 165, 233, 0.5);
+  animation: pingSoft 2.6s infinite;
+}
+
+.pulse-a { top: 42%; left: 24%; }
+.pulse-b { top: 36%; right: 22%; animation-delay: 1.2s; }
+
+.tank-state {
+  position: absolute;
+  left: 1rem;
+  right: 1rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.7rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  backdrop-filter: blur(10px);
+}
+
+.state-optimal {
+  top: 1rem;
+  color: #075985;
+  background: rgba(186, 230, 253, 0.85);
+  animation: stateSwapA 6s ease-in-out infinite;
+}
+
+.state-alert {
+  top: 3.5rem;
+  color: #0f172a;
+  background: rgba(253, 224, 71, 0.7);
+  animation: stateSwapB 6s ease-in-out infinite;
+}
+
+.architecture-track {
+  display: flex;
+  gap: 0.9rem;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.architecture-track span {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid rgba(8, 145, 178, 0.2);
+  background: rgba(236, 254, 255, 0.95);
+  color: #0f172a;
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  animation: ticker 13s linear infinite;
+}
+
+@keyframes gridDrift {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-42px, -42px, 0); }
+}
+
+@keyframes waterPulse {
+  0%, 100% { transform: translateY(0) scaleX(1); }
+  50% { transform: translateY(-10px) scaleX(1.06); }
+}
+
+@keyframes pingSoft {
+  0% { box-shadow: 0 0 0 0 rgba(14, 165, 233, 0.5); }
+  80%, 100% { box-shadow: 0 0 0 18px rgba(14, 165, 233, 0); }
+}
+
+@keyframes stateSwapA {
+  0%, 40% { opacity: 1; transform: translateY(0); }
+  50%, 100% { opacity: 0.45; transform: translateY(-4px); }
+}
+
+@keyframes stateSwapB {
+  0%, 40% { opacity: 0.45; transform: translateY(4px); }
+  50%, 100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes ticker {
+  from { transform: translateX(0); }
+  to { transform: translateX(-110%); }
+}
