@@ -2,13 +2,14 @@
 
 import { useState } from "react";
 
-type StepId = "capture" | "decide" | "act" | "learn";
-
 type Step = {
-  id: StepId;
+  id: "capture" | "decide" | "act" | "learn";
   title: string;
   desc: string;
-  short: string;
+  input: string;
+  output: string;
+  icon: string;
+  artifact: string;
   detailTitle: string;
   detailText: string;
 };
@@ -17,8 +18,11 @@ const steps: Step[] = [
   {
     id: "capture",
     title: "Capture",
-    desc: "Collect biological & environmental data",
-    short: "Sense data",
+    desc: "Sense data",
+    input: "Sensor + biological signals",
+    output: "Normalized telemetry",
+    icon: "📡",
+    artifact: "Telemetry stream",
     detailTitle: "Capture (Sense)",
     detailText:
       "Collect real-time biological and environmental data including DO, pH, ammonia, feeding activity and molt signals.",
@@ -26,8 +30,11 @@ const steps: Step[] = [
   {
     id: "decide",
     title: "Decide",
-    desc: "Analyze signals & compute risk",
-    short: "Compute risk",
+    desc: "Compute risk",
+    input: "Normalized telemetry",
+    output: "Risk score + control plan",
+    icon: "🧠",
+    artifact: "Control plan",
     detailTitle: "Decide (Think)",
     detailText:
       "Analyze signal patterns and compute risk using rule engines and biological models.",
@@ -35,8 +42,11 @@ const steps: Step[] = [
   {
     id: "act",
     title: "Act",
-    desc: "Trigger automated interventions",
-    short: "Execute control",
+    desc: "Execute control",
+    input: "Control plan",
+    output: "Automated adjustments",
+    icon: "⚙️",
+    artifact: "Intervention events",
     detailTitle: "Act (Execute)",
     detailText:
       "Trigger feeding adjustments, aeration, flushing and isolation to stabilize the system.",
@@ -44,13 +54,18 @@ const steps: Step[] = [
   {
     id: "learn",
     title: "Learn",
-    desc: "Update models from outcomes",
-    short: "Improve system",
+    desc: "Improve system",
+    input: "Outcome + intervention events",
+    output: "Updated model weights",
+    icon: "🔁",
+    artifact: "Model update",
     detailTitle: "Learn (Feedback)",
     detailText:
       "Continuously improve models based on survival, growth and cycle performance.",
   },
-];
+] as const;
+
+const orderedIds = [...steps.map((step) => step.id), "capture"];
 
 const STEP_POSITIONS: Record<StepId, string> = {
   capture: "md:col-start-2 md:row-start-1",
@@ -60,83 +75,139 @@ const STEP_POSITIONS: Record<StepId, string> = {
 };
 
 export default function ControlLoop() {
-  const [active, setActive] = useState<StepId>("decide");
-  const activeStep = steps.find((step) => step.id === active) ?? steps[1];
-  const detailRegionId = "aquaos-control-loop-detail";
+  const [active, setActive] = useState<Step["id"]>("decide");
+  const activeStep = steps.find((step) => step.id === active);
 
   return (
-    <section className="bg-white py-24">
-      <div className="mx-auto mb-12 max-w-6xl px-6 text-center">
-        <h2 className="mb-4 text-4xl font-semibold">AquaOS Control Loop</h2>
+    <section className="py-24 bg-white">
+      <div className="max-w-6xl mx-auto text-center mb-12 px-6">
+        <h2 className="text-4xl font-semibold mb-4">AquaOS Control Loop</h2>
         <p className="text-gray-600">
           From biological signals to automated decisions and controlled outcomes
         </p>
       </div>
 
-      <div className="mx-auto grid max-w-6xl grid-cols-1 gap-4 px-6 sm:grid-cols-2 md:grid-cols-3 md:grid-rows-3 md:gap-6">
-        <div className="order-1 flex justify-center sm:col-span-2 md:order-none md:col-start-2 md:row-start-2">
-          <div className="flex h-40 w-40 animate-pulse items-center justify-center rounded-full bg-gradient-to-br from-blue-600 to-indigo-700 text-white shadow-xl">
-            <div className="text-center">
-              <p className="text-xs opacity-80">CORE</p>
-              <p className="font-semibold">AquaOS</p>
-            </div>
+      <div className="relative flex items-center justify-center h-[500px]">
+        {/* CENTER CORE */}
+        <div
+          className="absolute w-40 h-40 rounded-full flex items-center justify-center
+          bg-gradient-to-br from-blue-600 to-indigo-700 text-white shadow-xl animate-pulse"
+        >
+          <div className="text-center">
+            <p className="text-xs opacity-80">CORE</p>
+            <p className="font-semibold">AquaOS</p>
           </div>
         </div>
 
-        {steps.map((step) => (
-          <button
-            key={step.id}
-            type="button"
-            onClick={() => setActive(step.id)}
-            aria-pressed={active === step.id}
-            aria-controls={detailRegionId}
-            className={`flex justify-center transition hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 ${
-              STEP_POSITIONS[step.id]
-            } ${active === step.id ? "scale-[1.02]" : ""}`}
-          >
-            <StepCard title={step.title} desc={step.short} active={active === step.id} />
-          </button>
-        ))}
-      </div>
-
-      <div className="mx-auto mt-16 max-w-3xl px-6">
-        <div id={detailRegionId} role="region" aria-live="polite" className="rounded-xl border p-6 shadow-sm">
-          <Detail title={activeStep.detailTitle} text={activeStep.detailText} />
+        {/* TOP */}
+        <div
+          onClick={() => setActive("capture")}
+          className={`absolute top-0 cursor-pointer transition ${
+            active === "capture" ? "scale-105" : ""
+          }`}
+        >
+          <StepCard step={steps[0]} active={active === "capture"} />
         </div>
 
-        <p className="mt-6 text-center text-sm text-gray-500">
-          This is not monitoring. This is a closed-loop biological control system.
+        {/* RIGHT */}
+        <div
+          onClick={() => setActive("decide")}
+          className={`absolute right-0 cursor-pointer transition ${
+            active === "decide" ? "scale-105" : ""
+          }`}
+        >
+          <StepCard step={steps[1]} active={active === "decide"} />
+        </div>
+
+        {/* BOTTOM */}
+        <div
+          onClick={() => setActive("act")}
+          className={`absolute bottom-0 cursor-pointer transition ${
+            active === "act" ? "scale-105" : ""
+          }`}
+        >
+          <StepCard step={steps[2]} active={active === "act"} />
+        </div>
+
+        {/* LEFT */}
+        <div
+          onClick={() => setActive("learn")}
+          className={`absolute left-0 cursor-pointer transition ${
+            active === "learn" ? "scale-105" : ""
+          }`}
+        >
+          <StepCard step={steps[3]} active={active === "learn"} />
+        </div>
+
+        {/* SIMPLE FLOW INDICATORS */}
+        <div className="absolute top-20 text-gray-400 text-xl">↓</div>
+        <div className="absolute right-24 text-gray-400 text-xl">→</div>
+        <div className="absolute bottom-20 text-gray-400 text-xl">↑</div>
+        <div className="absolute left-24 text-gray-400 text-xl">←</div>
+      </div>
+
+      <div className="max-w-6xl mx-auto px-6 mt-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+          {steps.map((step) => (
+            <button
+              key={step.id}
+              onClick={() => setActive(step.id)}
+              className={`text-left border rounded-lg p-3 transition ${
+                active === step.id
+                  ? "border-blue-500 bg-blue-50"
+                  : "border-gray-200 bg-white"
+              }`}
+            >
+              <p className="text-sm font-semibold text-gray-900">
+                <span className="mr-1" aria-hidden>
+                  {step.icon}
+                </span>
+                {step.title}
+              </p>
+              <p className="text-xs text-gray-500 mt-1">Artifact: {step.artifact}</p>
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* DETAIL PANEL */}
+      <div className="max-w-3xl mx-auto mt-16 px-6">
+        <div className="border rounded-xl p-6 shadow-sm">
+          {activeStep && <Detail title={activeStep.detailTitle} text={activeStep.detailText} />}
+        </div>
+
+        <p className="mt-6 text-center text-sm text-slate-400">
+          This is not monitoring. This is closed-loop biological control.
         </p>
       </div>
     </section>
   );
 }
 
-type StepCardProps = {
-  title: string;
-  desc: string;
-  active: boolean;
-};
-
-function StepCard({ title, desc, active }: StepCardProps) {
+function StepCard({ step, active }: { step: Step; active: boolean }) {
   return (
     <div
-      className={`w-full max-w-48 rounded-xl border p-4 text-center ${
+      className={`w-56 p-4 rounded-xl border text-left ${
         active ? "border-blue-600 bg-blue-50" : "border-gray-200"
       }`}
+      aria-pressed={active}
     >
-      <h3 className="font-semibold">{title}</h3>
-      <p className="text-sm text-gray-500">{desc}</p>
+      <h3 className="font-semibold flex items-center gap-2">
+        <span aria-hidden>{step.icon}</span>
+        {step.title}
+      </h3>
+      <p className="text-sm text-gray-500">{step.desc}</p>
+      <p className="text-xs text-gray-600 mt-2">
+        <span className="font-medium text-gray-800">Input:</span> {step.input}
+      </p>
+      <p className="text-xs text-gray-600">
+        <span className="font-medium text-gray-800">Output:</span> {step.output}
+      </p>
     </div>
   );
 }
 
-type DetailProps = {
-  title: string;
-  text: string;
-};
-
-function Detail({ title, text }: DetailProps) {
+function Detail({ title, text }: { title: string; text: string }) {
   return (
     <>
       <h3 className="mb-2 text-xl font-semibold">{title}</h3>
