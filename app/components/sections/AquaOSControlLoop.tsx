@@ -2,132 +2,109 @@
 
 import { useState } from "react";
 
-const steps = [
+type StepId = "capture" | "decide" | "act" | "learn";
+
+type Step = {
+  id: StepId;
+  title: string;
+  desc: string;
+  short: string;
+  detailTitle: string;
+  detailText: string;
+};
+
+const steps: Step[] = [
   {
     id: "capture",
     title: "Capture",
     desc: "Collect biological & environmental data",
+    short: "Sense data",
+    detailTitle: "Capture (Sense)",
+    detailText:
+      "Collect real-time biological and environmental data including DO, pH, ammonia, feeding activity and molt signals.",
   },
   {
     id: "decide",
     title: "Decide",
     desc: "Analyze signals & compute risk",
+    short: "Compute risk",
+    detailTitle: "Decide (Think)",
+    detailText:
+      "Analyze signal patterns and compute risk using rule engines and biological models.",
   },
   {
     id: "act",
     title: "Act",
     desc: "Trigger automated interventions",
+    short: "Execute control",
+    detailTitle: "Act (Execute)",
+    detailText:
+      "Trigger feeding adjustments, aeration, flushing and isolation to stabilize the system.",
   },
   {
     id: "learn",
     title: "Learn",
     desc: "Update models from outcomes",
+    short: "Improve system",
+    detailTitle: "Learn (Feedback)",
+    detailText:
+      "Continuously improve models based on survival, growth and cycle performance.",
   },
 ];
 
+const STEP_POSITIONS: Record<StepId, string> = {
+  capture: "md:col-start-2 md:row-start-1",
+  decide: "md:col-start-3 md:row-start-2",
+  act: "md:col-start-2 md:row-start-3",
+  learn: "md:col-start-1 md:row-start-2",
+};
+
 export default function ControlLoop() {
-  const [active, setActive] = useState("decide");
+  const [active, setActive] = useState<StepId>("decide");
+  const activeStep = steps.find((step) => step.id === active) ?? steps[1];
+  const detailRegionId = "aquaos-control-loop-detail";
 
   return (
-    <section className="py-24 bg-white">
-      <div className="max-w-6xl mx-auto text-center mb-12 px-6">
-        <h2 className="text-4xl font-semibold mb-4">
-          AquaOS Control Loop
-        </h2>
+    <section className="bg-white py-24">
+      <div className="mx-auto mb-12 max-w-6xl px-6 text-center">
+        <h2 className="mb-4 text-4xl font-semibold">AquaOS Control Loop</h2>
         <p className="text-gray-600">
           From biological signals to automated decisions and controlled outcomes
         </p>
       </div>
 
-      <div className="relative flex items-center justify-center h-[500px]">
-
-        {/* CENTER CORE */}
-        <div className="absolute w-40 h-40 rounded-full flex items-center justify-center
-          bg-gradient-to-br from-blue-600 to-indigo-700 text-white shadow-xl animate-pulse">
-          <div className="text-center">
-            <p className="text-xs opacity-80">CORE</p>
-            <p className="font-semibold">AquaOS</p>
+      <div className="mx-auto grid max-w-6xl grid-cols-1 gap-4 px-6 sm:grid-cols-2 md:grid-cols-3 md:grid-rows-3 md:gap-6">
+        <div className="order-1 flex justify-center sm:col-span-2 md:order-none md:col-start-2 md:row-start-2">
+          <div className="flex h-40 w-40 animate-pulse items-center justify-center rounded-full bg-gradient-to-br from-blue-600 to-indigo-700 text-white shadow-xl">
+            <div className="text-center">
+              <p className="text-xs opacity-80">CORE</p>
+              <p className="font-semibold">AquaOS</p>
+            </div>
           </div>
         </div>
 
-        {/* TOP */}
-        <div
-          onClick={() => setActive("capture")}
-          className={`absolute top-0 cursor-pointer transition ${
-            active === "capture" ? "scale-105" : ""
-          }`}
-        >
-          <StepCard title="Capture" desc="Sense data" active={active==="capture"} />
-        </div>
-
-        {/* RIGHT */}
-        <div
-          onClick={() => setActive("decide")}
-          className={`absolute right-0 cursor-pointer transition ${
-            active === "decide" ? "scale-105" : ""
-          }`}
-        >
-          <StepCard title="Decide" desc="Compute risk" active={active==="decide"} />
-        </div>
-
-        {/* BOTTOM */}
-        <div
-          onClick={() => setActive("act")}
-          className={`absolute bottom-0 cursor-pointer transition ${
-            active === "act" ? "scale-105" : ""
-          }`}
-        >
-          <StepCard title="Act" desc="Execute control" active={active==="act"} />
-        </div>
-
-        {/* LEFT */}
-        <div
-          onClick={() => setActive("learn")}
-          className={`absolute left-0 cursor-pointer transition ${
-            active === "learn" ? "scale-105" : ""
-          }`}
-        >
-          <StepCard title="Learn" desc="Improve system" active={active==="learn"} />
-        </div>
-
-        {/* SIMPLE FLOW INDICATORS */}
-        <div className="absolute top-20 text-gray-400 text-xl">↓</div>
-        <div className="absolute right-24 text-gray-400 text-xl">→</div>
-        <div className="absolute bottom-20 text-gray-400 text-xl">↑</div>
-        <div className="absolute left-24 text-gray-400 text-xl">←</div>
-
+        {steps.map((step) => (
+          <button
+            key={step.id}
+            type="button"
+            onClick={() => setActive(step.id)}
+            aria-pressed={active === step.id}
+            aria-controls={detailRegionId}
+            className={`flex justify-center transition hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 ${
+              STEP_POSITIONS[step.id]
+            } ${active === step.id ? "scale-[1.02]" : ""}`}
+          >
+            <StepCard title={step.title} desc={step.short} active={active === step.id} />
+          </button>
+        ))}
       </div>
 
-      {/* DETAIL PANEL */}
-      <div className="max-w-3xl mx-auto mt-16 px-6">
-        <div className="border rounded-xl p-6 shadow-sm">
-          {active === "capture" && (
-            <Detail
-              title="Capture (Sense)"
-              text="Collect real-time biological and environmental data including DO, pH, ammonia, feeding activity and molt signals."
-            />
-          )}
-          {active === "decide" && (
-            <Detail
-              title="Decide (Think)"
-              text="Analyze signal patterns and compute risk using rule engines and biological models."
-            />
-          )}
-          {active === "act" && (
-            <Detail
-              title="Act (Execute)"
-              text="Trigger feeding adjustments, aeration, flushing and isolation to stabilize the system."
-            />
-          )}
-          {active === "learn" && (
-            <Detail
-              title="Learn (Feedback)"
-              text="Continuously improve models based on survival, growth and cycle performance."
-            />
-          )}
+      <div className="mx-auto mt-16 max-w-3xl px-6">
+        <div id={detailRegionId} role="region" aria-live="polite" className="rounded-xl border p-6 shadow-sm">
+          <Detail title={activeStep.detailTitle} text={activeStep.detailText} />
         </div>
 
-        <p className="text-center text-sm text-gray-500 mt-6">
+        <p className="mt-6 text-center text-sm text-gray-500">
           This is not monitoring. This is a closed-loop biological control system.
         </p>
       </div>
@@ -135,13 +112,17 @@ export default function ControlLoop() {
   );
 }
 
-function StepCard({ title, desc, active }: any) {
+type StepCardProps = {
+  title: string;
+  desc: string;
+  active: boolean;
+};
+
+function StepCard({ title, desc, active }: StepCardProps) {
   return (
     <div
-      className={`w-48 p-4 rounded-xl border text-center ${
-        active
-          ? "border-blue-600 bg-blue-50"
-          : "border-gray-200"
+      className={`w-full max-w-48 rounded-xl border p-4 text-center ${
+        active ? "border-blue-600 bg-blue-50" : "border-gray-200"
       }`}
     >
       <h3 className="font-semibold">{title}</h3>
@@ -150,10 +131,15 @@ function StepCard({ title, desc, active }: any) {
   );
 }
 
-function Detail({ title, text }: any) {
+type DetailProps = {
+  title: string;
+  text: string;
+};
+
+function Detail({ title, text }: DetailProps) {
   return (
     <>
-      <h3 className="text-xl font-semibold mb-2">{title}</h3>
+      <h3 className="mb-2 text-xl font-semibold">{title}</h3>
       <p className="text-gray-600">{text}</p>
     </>
   );
