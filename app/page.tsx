@@ -59,8 +59,8 @@ export default function HomePage() {
 
             {/* H1 — serif display */}
             <h1
-              className="font-display mx-auto max-w-[18ch] text-slate-900"
-              style={{ fontSize: "clamp(2.8rem, 7.5vw, 6rem)", lineHeight: 1.02 }}
+              className="font-display mx-auto max-w-5xl text-center text-slate-900"
+              style={{ fontSize: "clamp(2.4rem, 6vw, 5.2rem)", lineHeight: 1.05 }}
             >
               Production Architecture for Precision Crustacean Aquaculture
             </h1>
@@ -253,7 +253,7 @@ export default function HomePage() {
         <div className="container-shell relative z-10 py-32 text-center lg:py-44">
 
           <h2
-            className="font-display mx-auto max-w-[14ch] text-white"
+            className="font-display mx-auto max-w-4xl text-center text-white"
             style={{ fontSize: "clamp(2.6rem, 6vw, 5rem)", lineHeight: 1.05 }}
           >
             Want to see it <em className="text-cyan-200">run?</em>
