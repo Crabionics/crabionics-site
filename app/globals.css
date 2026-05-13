@@ -284,6 +284,93 @@ a:hover {
 }
 
 /* ------------------------------------------------ */
+/* LIGHT SECTION SYSTEM                              */
+/* Use .section-light on a wrapper element to opt    */
+/* a single section into a light, airy palette.      */
+/* Cards and text inside it auto-adapt.              */
+/* ------------------------------------------------ */
+
+.section-light {
+  position: relative;
+  z-index: 1;
+
+  background:
+    radial-gradient(
+      ellipse at top,
+      rgba(34, 211, 238, 0.06),
+      transparent 60%
+    ),
+    linear-gradient(
+      180deg,
+      #fafbfd 0%,
+      #f1f4f9 100%
+    );
+
+  color: #0f172a;
+}
+
+.section-light h1,
+.section-light h2,
+.section-light h3,
+.section-light h4,
+.section-light h5,
+.section-light h6 {
+  color: #0b1320;
+}
+
+.section-light p {
+  color: #475569;
+}
+
+.section-light .glass-card,
+.section-light .card-light {
+  background: #ffffff;
+  border: 1px solid rgba(15, 23, 42, 0.06);
+  box-shadow:
+    0 1px 0 rgba(15, 23, 42, 0.03),
+    0 12px 30px -18px rgba(15, 23, 42, 0.12);
+  backdrop-filter: none;
+}
+
+.section-light .glass-card:hover,
+.section-light .card-light:hover {
+  border-color: rgba(34, 211, 238, 0.4);
+}
+
+/* Eyebrow / muted text inside light sections */
+.section-light .eyebrow,
+.section-light .text-cyan-200 {
+  color: #0e7490 !important; /* cyan-700, contrasts on light */
+}
+
+.section-light .text-slate-300,
+.section-light .text-slate-400 {
+  color: #475569 !important;
+}
+
+/* Secondary button in light sections */
+.section-light .secondary-button {
+  background: rgba(15, 23, 42, 0.04);
+  border-color: rgba(15, 23, 42, 0.10);
+  color: #0f172a;
+}
+
+.section-light .secondary-button:hover {
+  background: rgba(15, 23, 42, 0.07);
+}
+
+/* Section divider line — softer in light sections */
+.section-light.section-divider::after {
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(15, 23, 42, 0.10),
+      transparent
+    );
+}
+
+/* ------------------------------------------------ */
 /* BUTTONS */
 /* ------------------------------------------------ */
 

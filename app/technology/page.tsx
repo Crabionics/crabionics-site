@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+import CINNetworkMap from "@/app/components/diagrams/CINNetworkMap";
 import StackDiagram from "@/app/components/diagrams/StackDiagram";
 import GlassCard from "@/app/components/ui/GlassCard";
 import SectionHeading from "@/app/components/ui/SectionHeading";
@@ -297,6 +298,25 @@ export default function TechnologyPage() {
               </p>
             </GlassCard>
           ))}
+        </div>
+      </SectionWrapper>
+
+      {/* CIN NETWORK MAP — Stage 3 visualization */}
+      <SectionWrapper className="section-divider">
+
+        <SectionHeading
+          eyebrow="Stage 3 — Distributed Production Network"
+          title="The Crabionics Intelligence Network"
+          subtitle="As pilot sites and partner clusters come online, each contributes telemetry into a shared learning substrate. Live nodes feed real data today; pilot and planned nodes show the network's expansion path."
+          align="center"
+        />
+
+        <div className="mx-auto mt-16 max-w-6xl">
+
+          <GlassCard className="overflow-hidden p-6 lg:p-10">
+
+            <CINNetworkMap />
+          </GlassCard>
         </div>
       </SectionWrapper>
 
