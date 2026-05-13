@@ -1,8 +1,18 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
-const steps = [
+type Step = {
+  id: string;
+  title: string;
+  desc: string;
+  shortDesc: string;
+  detailTitle: string;
+  detailText: string;
+  index: number;
+};
+
+const steps: Step[] = [
   {
     id: "capture",
     title: "Capture",
@@ -48,6 +58,8 @@ const steps = [
     arrowGlyph: "←",
   },
 ] as const;
+
+const orderedIds = [...steps.map((step) => step.id), "capture"];
 
 export default function ControlLoop() {
   const [active, setActive] = useState<(typeof steps)[number]["id"]>("decide");
