@@ -69,10 +69,6 @@ export default function Navbar() {
               <p className="text-sm font-semibold tracking-tight text-white">
                 Crabionics Aquaculture
               </p>
-
-              <p className="text-[10px] uppercase tracking-[0.24em] text-cyan-200/60">
-                Production Architecture
-              </p>
             </div>
           </Link>
 
