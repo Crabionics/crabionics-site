@@ -63,7 +63,9 @@ const steps: Step[] = [
     detailText:
       "Continuously improve models based on survival, growth and cycle performance.",
   },
-];
+] as const;
+
+const orderedIds = [...steps.map((step) => step.id), "capture"];
 
 export default function ControlLoop() {
   const [active, setActive] = useState<Step["id"]>("decide");
@@ -167,8 +169,8 @@ export default function ControlLoop() {
           {activeStep && <Detail title={activeStep.detailTitle} text={activeStep.detailText} />}
         </div>
 
-        <p className="text-center text-sm text-gray-500 mt-6">
-          This is not monitoring. This is a closed-loop biological control system.
+        <p className="mt-6 text-center text-sm text-slate-400">
+          This is not monitoring. This is closed-loop biological control.
         </p>
       </div>
     </section>
@@ -181,6 +183,7 @@ function StepCard({ step, active }: { step: Step; active: boolean }) {
       className={`w-56 p-4 rounded-xl border text-left ${
         active ? "border-blue-600 bg-blue-50" : "border-gray-200"
       }`}
+      aria-pressed={active}
     >
       <h3 className="font-semibold flex items-center gap-2">
         <span aria-hidden>{step.icon}</span>
