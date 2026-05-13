@@ -6,14 +6,14 @@ import SectionHeading from "@/app/components/ui/SectionHeading";
 import SectionWrapper from "@/app/components/ui/SectionWrapper";
 
 export const metadata: Metadata = {
-  title: "Platform Infrastructure",
+  title: "Platform — The Hardware",
   description:
-    "Modular RAS systems, isolation architecture, telemetry, and automation — the physical infrastructure layer of Crabionics precision aquaculture.",
+    "Modular RAS, individual isolation, telemetry nodes, and automation — the physical layer of Crabionics crustacean production.",
   alternates: { canonical: "/platform" },
   openGraph: {
-    title: "Crabionics | Platform Infrastructure",
+    title: "Crabionics | The Hardware",
     description:
-      "Physical infrastructure for predictable biological production: modular RAS, isolation, telemetry, automation.",
+      "Modular RAS, isolation boxes, sensors, automation — the physical layer.",
     url: "https://crabionics.com/platform",
     type: "website",
   },
@@ -99,20 +99,19 @@ export default function PlatformPage() {
 
             {/* EYEBROW */}
             <div className="inline-flex rounded-full border border-cyan-400/20 bg-cyan-400/10 px-4 py-2 text-xs uppercase tracking-[0.22em] text-cyan-200">
-              Platform Infrastructure
+              The hardware
             </div>
 
             {/* TITLE */}
             <h1 className="mt-8 max-w-4xl">
-              Physical Infrastructure for Predictable Biological Production
+              The physical layer of controlled crustacean production
             </h1>
 
             {/* TEXT */}
             <p className="mt-8 max-w-3xl text-lg">
-              Crabionics combines modular grow-out systems,
-              closed-loop RAS infrastructure, telemetry networks,
-              and operational protocols into deployable precision
-              aquaculture infrastructure.
+              Modular grow-out, closed-loop water systems, telemetry
+              nodes, and on-site automation — built to be replicated
+              across pilot, regional, and export-scale deployments.
             </p>
           </div>
         </div>

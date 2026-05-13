@@ -4,31 +4,30 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 
-import ClosedLoopSection from "@/app/components/sections/ClosedLoopSection";
+import ClosedLoopRing from "@/app/components/diagrams/ClosedLoopRing";
 import HomePlatformBrief from "@/app/components/sections/HomePlatformBrief";
 import HomeValidationStrip from "@/app/components/sections/HomeValidationStrip";
-import FinalCTASection from "@/app/components/sections/FinalCTASection";
 
 const problems = [
   {
     lead: "Cannibalism",
     title: "Crabs kill each other",
-    text: "Put crabs together in a pond or tank and the strong ones kill the weak ones — especially during molt. Whole batches disappear before harvest.",
+    text: "Pack them together and the strong ones kill the weak ones — especially during molt. Entire batches vanish before harvest.",
   },
   {
     lead: "Vulnerability window",
     title: "Molt is a blind spot",
-    text: "For roughly a day after molting a crab is defenseless. Without per-crab visibility, you only learn it happened when the animal is already gone.",
+    text: "For roughly a day after molting, a crab is defenseless. Without per-animal visibility you only learn it happened when the animal is already gone.",
   },
   {
     lead: "Environmental drift",
     title: "Water shifts faster than you see it",
-    text: "Oxygen, salinity, ammonia and temperature swing with weather and feed load. By the time symptoms show up in the crab, the cycle is compromised.",
+    text: "Oxygen, salinity, ammonia, temperature — all swing with weather and feed load. By the time symptoms show up in the crab, the cycle is already compromised.",
   },
   {
     lead: "No causality",
-    title: "Nothing gets tracked individually",
-    text: "Traditional ponds give one number at harvest. There is no growth history, no molt log, no link between an action and an outcome — so nothing improves cycle to cycle.",
+    title: "Nothing is tracked individually",
+    text: "Traditional ponds give one number at harvest. No growth history, no molt log, no link between an action and an outcome — so nothing improves cycle to cycle.",
   },
 ];
 
@@ -36,144 +35,125 @@ export default function HomePage() {
   return (
     <main className="relative overflow-hidden">
 
-      {/* ----------------------------------------------------------- */}
-      {/* HERO — light                                                 */}
-      {/* ----------------------------------------------------------- */}
+      {/* ===========================================================
+           HERO — light, centered, serif H1
+         =========================================================== */}
       <section className="section-light relative overflow-hidden">
 
-        {/* Subtle decorative glow */}
-        <div className="pointer-events-none absolute right-[-10%] top-[-10%] h-[420px] w-[420px] rounded-full bg-cyan-300/20 blur-3xl" />
-        <div className="pointer-events-none absolute left-[-10%] bottom-[-10%] h-[360px] w-[360px] rounded-full bg-teal-300/15 blur-3xl" />
+        {/* decorative glows */}
+        <div className="pointer-events-none absolute right-[-20%] top-[-15%] h-[520px] w-[520px] rounded-full bg-cyan-300/15 blur-3xl" />
+        <div className="pointer-events-none absolute left-[-15%] bottom-[-30%] h-[460px] w-[460px] rounded-full bg-teal-300/12 blur-3xl" />
 
-        <div className="container-shell relative z-10 py-20 lg:py-28">
+        <div className="container-shell relative z-10 py-24 text-center lg:py-36">
 
-          <div className="grid items-center gap-12 lg:grid-cols-[1.1fr_1fr]">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7 }}
+          >
 
-            {/* LEFT — copy */}
-            <motion.div
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7 }}
+            {/* Eyebrow */}
+            <div className="mb-7 inline-flex items-center rounded-full border border-cyan-500/20 bg-cyan-50 px-4 py-2 text-[10px] uppercase tracking-[0.28em] text-cyan-700 sm:text-xs">
+              Production Architecture
+            </div>
+
+            {/* H1 — serif display */}
+            <h1
+              className="font-display mx-auto max-w-[18ch] text-slate-900"
+              style={{ fontSize: "clamp(2.8rem, 7.5vw, 6rem)", lineHeight: 1.02 }}
             >
+              Production Architecture for Precision Crustacean Aquaculture
+            </h1>
 
-              {/* Eyebrow */}
-              <div className="mb-6 inline-flex items-center rounded-full border border-cyan-500/20 bg-cyan-50 px-4 py-2 text-[10px] uppercase tracking-[0.24em] text-cyan-700 sm:text-xs">
-                Precision Aquaculture Infrastructure
-              </div>
+            {/* The deck — the strongest copy on the site */}
+            <div className="mx-auto mt-10 max-w-2xl">
+              <p className="text-xl text-slate-600 sm:text-2xl">
+                We are not building a better farm.
+              </p>
+              <p className="mt-3 text-xl font-semibold text-slate-900 sm:text-2xl">
+                We are building the system that makes industrial-scale crustacean production possible.
+              </p>
+            </div>
 
-              {/* Headline */}
-              <h1 className="max-w-2xl text-slate-900 sm:text-6xl lg:text-[5.2rem]">
-                The operating system for precision mud crab aquaculture.
-              </h1>
+            {/* CTAs */}
+            <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
 
-              {/* Subtext */}
-              <p className="mt-6 max-w-xl text-base leading-relaxed text-slate-600 sm:text-lg">
-                Closed-loop infrastructure combining modular RAS,
-                telemetry, biological intelligence, and operational
-                automation — built bottom-up at our KIIT-TBI pilot.
+              <Link href="/platform" className="primary-button w-full sm:w-auto">
+                Explore the Platform
+              </Link>
+
+              <Link href="/capital" className="secondary-button w-full sm:w-auto">
+                Investor Brief
+              </Link>
+            </div>
+
+            {/* Proof strip */}
+            <div className="mt-14">
+
+              <p className="text-[10px] uppercase tracking-[0.24em] text-slate-400">
+                Institutionally backed
               </p>
 
-              {/* CTAs */}
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <div className="mt-5 flex flex-wrap justify-center gap-3">
 
-                <Link href="/platform" className="primary-button w-full sm:w-auto">
-                  Explore Platform
-                </Link>
-
-                <Link href="/capital" className="secondary-button w-full sm:w-auto">
-                  Investor Brief
-                </Link>
-              </div>
-
-              {/* Proof strip */}
-              <div className="mt-10">
-
-                <p className="text-[10px] uppercase tracking-[0.22em] text-slate-400">
-                  Institutionally backed
-                </p>
-
-                <div className="mt-4 flex flex-wrap gap-3">
-
-                  {[
-                    "KIIT-TBI Incubated",
-                    "DST NIDHI PRAYAS Supported",
-                    "BIRAC BIG Grant Recipient",
-                  ].map((item) => (
-                    <div
-                      key={item}
-                      className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3.5 py-1.5"
-                    >
-                      <span className="h-1.5 w-1.5 rounded-full bg-cyan-500" />
-                      <span className="text-xs font-medium text-slate-800">
-                        {item}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </motion.div>
-
-            {/* RIGHT — image card */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.96 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.1 }}
-              className="relative"
-            >
-
-              <div className="relative overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-[0_30px_80px_-30px_rgba(15,23,42,0.25)]">
-
-                <div className="relative aspect-[4/5] w-full">
-
-                  <Image
-                    src="/infrastructure.png"
-                    alt="Crabionics modular infrastructure"
-                    fill
-                    priority
-                    sizes="(min-width: 1024px) 45vw, 100vw"
-                    className="object-cover"
-                  />
-
-                  {/* Soft caption overlay */}
-                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-900/80 via-slate-900/30 to-transparent p-6">
-
-                    <p className="text-[10px] uppercase tracking-[0.22em] text-cyan-200">
-                      Pilot infrastructure
-                    </p>
-
-                    <p className="mt-2 text-sm font-medium text-white">
-                      600-box modular grow-out architecture under development at KIIT-TBI.
-                    </p>
+                {[
+                  "KIIT-TBI Incubated",
+                  "DST NIDHI PRAYAS Supported",
+                  "BIRAC BIG Grant Recipient",
+                ].map((item) => (
+                  <div
+                    key={item}
+                    className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3.5 py-1.5"
+                  >
+                    <span className="h-1.5 w-1.5 rounded-full bg-cyan-500" />
+                    <span className="text-xs font-medium text-slate-800">
+                      {item}
+                    </span>
                   </div>
-                </div>
+                ))}
               </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
 
-              {/* Floating metric chip */}
-              <div className="absolute -bottom-6 -left-6 hidden rounded-2xl border border-slate-200 bg-white px-5 py-4 shadow-xl sm:block">
+      {/* ===========================================================
+           HERO IMAGE STRIP — wide, no caption
+         =========================================================== */}
+      <section className="section-light relative">
 
-                <p className="text-[10px] uppercase tracking-[0.22em] text-slate-400">
-                  Pilot scale
-                </p>
+        <div className="container-shell pb-16">
 
-                <p className="mt-1 text-2xl font-bold text-slate-900">
-                  600+ boxes
-                </p>
-              </div>
-            </motion.div>
+          <div className="relative overflow-hidden rounded-3xl border border-slate-200 shadow-[0_30px_60px_-30px_rgba(15,23,42,0.25)]">
+
+            <div className="relative aspect-[16/9] w-full">
+
+              <Image
+                src="/infrastructure.png"
+                alt="Crabionics modular grow-out and RAS hardware"
+                fill
+                priority
+                sizes="(min-width: 1280px) 1200px, 100vw"
+                className="object-cover"
+              />
+
+              {/* Subtle vignette at the edges */}
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-white/40 via-transparent to-white/20" />
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ----------------------------------------------------------- */}
-      {/* PROBLEM — light                                              */}
-      {/* ----------------------------------------------------------- */}
+      {/* ===========================================================
+           PROBLEM — light
+         =========================================================== */}
       <section className="section-light section-padding section-divider">
 
         <div className="container-shell">
 
           <div className="mx-auto max-w-3xl text-center">
 
-            <p className="text-xs uppercase tracking-[0.22em] text-cyan-700">
+            <p className="text-xs uppercase tracking-[0.24em] text-cyan-700">
               The problem
             </p>
 
@@ -182,13 +162,12 @@ export default function HomePage() {
             </h2>
 
             <p className="mt-6 text-lg">
-              Traditional production methods create unpredictable survival,
+              Traditional methods produce unpredictable survival,
               unstable yields, and fragmented supply chains. Four specific
               failure modes drive most of the loss.
             </p>
           </div>
 
-          {/* PROBLEM GRID */}
           <div className="mt-16 grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
 
             {problems.map((item) => (
@@ -211,32 +190,83 @@ export default function HomePage() {
             ))}
           </div>
 
-          {/* TAKEAWAY */}
           <p className="mx-auto mt-12 max-w-3xl text-center text-lg font-medium text-slate-700">
-            Crabionics converts biological uncertainty into predictable production.
+            Crabionics converts biological uncertainty into repeatable production.
           </p>
         </div>
       </section>
 
-      {/* ----------------------------------------------------------- */}
-      {/* CLOSED-LOOP — dark (the data / dashboard moment)             */}
-      {/* ----------------------------------------------------------- */}
-      <ClosedLoopSection />
+      {/* ===========================================================
+           CLOSED-LOOP RING — dark, the signature visual moment
+         =========================================================== */}
+      <section className="relative overflow-hidden section-padding">
 
-      {/* ----------------------------------------------------------- */}
-      {/* PLATFORM BRIEF — light                                       */}
-      {/* ----------------------------------------------------------- */}
+        {/* dark backdrop on top of the global background — reinforces darkness */}
+        <div className="pointer-events-none absolute inset-0 bg-[#04091a]" />
+
+        <div className="pointer-events-none absolute left-1/2 top-1/2 h-[700px] w-[700px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-400/[0.08] blur-3xl" />
+
+        <div className="container-shell relative z-10">
+
+          <div className="mx-auto max-w-3xl text-center">
+
+            <p className="text-xs uppercase tracking-[0.24em] text-cyan-300">
+              The operating principle
+            </p>
+
+            <h2 className="mt-5 text-white">
+              <span className="font-display italic text-cyan-200">Every cycle</span> teaches the next.
+            </h2>
+
+            <p className="mt-6 text-lg text-slate-300">
+              Sensors capture biological and environmental signals. The system
+              infers state, computes the right response, and acts — then logs
+              what happened so the next cycle starts smarter.
+            </p>
+          </div>
+
+          <div className="mt-16">
+            <ClosedLoopRing />
+          </div>
+        </div>
+      </section>
+
+      {/* ===========================================================
+           PLATFORM BRIEF — light
+         =========================================================== */}
       <HomePlatformBrief />
 
-      {/* ----------------------------------------------------------- */}
-      {/* VALIDATION STRIP — light                                     */}
-      {/* ----------------------------------------------------------- */}
+      {/* ===========================================================
+           VALIDATION STRIP — light
+         =========================================================== */}
       <HomeValidationStrip />
 
-      {/* ----------------------------------------------------------- */}
-      {/* FINAL CTA — dark                                             */}
-      {/* ----------------------------------------------------------- */}
-      <FinalCTASection />
+      {/* ===========================================================
+           FINAL CTA — dark, single statement
+         =========================================================== */}
+      <section className="relative overflow-hidden">
+
+        <div className="pointer-events-none absolute inset-0 bg-[#04091a]" />
+
+        <div className="pointer-events-none absolute left-1/2 top-1/2 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-400/[0.08] blur-3xl" />
+
+        <div className="container-shell relative z-10 py-32 text-center lg:py-44">
+
+          <h2
+            className="font-display mx-auto max-w-[14ch] text-white"
+            style={{ fontSize: "clamp(2.6rem, 6vw, 5rem)", lineHeight: 1.05 }}
+          >
+            Want to see it <em className="text-cyan-200">run?</em>
+          </h2>
+
+          <div className="mt-12">
+
+            <Link href="/contact" className="primary-button">
+              Contact founder
+            </Link>
+          </div>
+        </div>
+      </section>
 
     </main>
   );

@@ -172,6 +172,23 @@ h1 {
   line-height: 0.98;
 }
 
+/* Display serif — apply via .font-display only where wanted (e.g. hero H1). */
+.font-display {
+  font-family:
+    var(--font-display),
+    "Instrument Serif",
+    "Times New Roman",
+    serif;
+
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+
+.font-display em,
+.font-display i {
+  font-style: italic;
+}
+
 h2 {
   font-size: clamp(2rem, 3.5vw, 3.2rem);
   line-height: 1.08;

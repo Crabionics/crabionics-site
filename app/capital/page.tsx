@@ -6,14 +6,14 @@ import SectionHeading from "@/app/components/ui/SectionHeading";
 import SectionWrapper from "@/app/components/ui/SectionWrapper";
 
 export const metadata: Metadata = {
-  title: "Capital & Investment Thesis",
+  title: "Capital — Investment Thesis",
   description:
-    "Crabionics is building precision aquaculture infrastructure for predictable mud crab production. Institutionally validated by KIIT-TBI, DST NIDHI PRAYAS, and BIRAC BIG.",
+    "Crabionics is building the production architecture for industrial-scale crustacean aquaculture. Institutionally backed by KIIT-TBI, DST NIDHI PRAYAS, and BIRAC BIG.",
   alternates: { canonical: "/capital" },
   openGraph: {
-    title: "Crabionics | Capital & Investment Thesis",
+    title: "Crabionics | Investment Thesis",
     description:
-      "From proof-of-concept infrastructure to institutional pilot execution — Crabionics is building the operating layer for precision aquaculture.",
+      "From pilot execution to a distributed production network — the case for Crabionics.",
     url: "https://crabionics.com/capital",
     type: "website",
   },
@@ -149,17 +149,18 @@ export default function CapitalPage() {
           <div className="max-w-5xl">
 
             <div className="inline-flex rounded-full border border-cyan-400/20 bg-cyan-400/10 px-4 py-2 text-xs uppercase tracking-[0.22em] text-cyan-200">
-              Capital & Investment Thesis
+              Investment thesis
             </div>
 
             <h1 className="mt-8 max-w-4xl">
-              Infrastructure-led aquaculture with execution-driven milestones
+              Built on hardware, measured on milestones
             </h1>
 
             <p className="mt-8 max-w-3xl text-lg">
-              Crabionics is converting volatile aquaculture outcomes into a controllable,
-              data-governed production model. Backed by KIIT-TBI, DST NIDHI PRAYAS, and
-              BIRAC&apos;s Biotechnology Ignition Grant (BIG, 24th call).
+              Crabionics is converting one of aquaculture&apos;s most volatile
+              categories into a controllable, data-governed production model —
+              backed by KIIT-TBI, DST NIDHI PRAYAS, and BIRAC&apos;s Biotechnology
+              Ignition Grant (BIG, 24th call).
             </p>
 
             {/* PROOF STRIP */}

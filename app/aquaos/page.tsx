@@ -8,14 +8,14 @@ import SectionHeading from "@/app/components/ui/SectionHeading";
 import SectionWrapper from "@/app/components/ui/SectionWrapper";
 
 export const metadata: Metadata = {
-  title: "AquaOS — Operating System for Precision Aquaculture",
+  title: "AquaOS — The Control Layer",
   description:
-    "AquaOS is the production control layer for precision aquaculture: telemetry aggregation, biological state detection, decision logic, and closed-loop operations.",
+    "AquaOS coordinates telemetry, biological state inference, decision logic, and closed-loop response — the operating layer for controlled crustacean production.",
   alternates: { canonical: "/aquaos" },
   openGraph: {
-    title: "Crabionics AquaOS | Operational Intelligence for Aquaculture",
+    title: "Crabionics AquaOS | The Control Layer",
     description:
-      "Sensor → State → Decision → Action. AquaOS is the biological operating system for closed-loop aquaculture.",
+      "Sensor → State → Decision → Action. The operating layer for closed-loop crustacean production.",
     url: "https://crabionics.com/aquaos",
     type: "website",
   },
@@ -104,14 +104,15 @@ export default function AquaOSPage() {
 
             {/* TITLE */}
             <h1 className="mt-8 max-w-4xl">
-              An Operating System for Precision Aquaculture
+              The operating layer of the production system
             </h1>
 
             {/* TEXT */}
             <p className="mt-8 max-w-3xl text-lg">
               AquaOS coordinates telemetry, biological signals,
-              infrastructure systems, and operational workflows
-              into a unified production intelligence layer.
+              hardware response, and operator workflows into one
+              control surface — so every action is logged, every
+              outcome is traceable, and every cycle gets sharper.
             </p>
           </div>
         </div>

@@ -71,7 +71,7 @@ export default function Navbar() {
               </p>
 
               <p className="text-[10px] uppercase tracking-[0.24em] text-cyan-200/60">
-                Precision Aquaculture
+                Production Architecture
               </p>
             </div>
           </Link>

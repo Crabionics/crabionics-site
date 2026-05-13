@@ -60,15 +60,14 @@ export default function ContactPage() {
 
             {/* TITLE */}
             <h1 className="mt-8 max-w-4xl">
-              Infrastructure, Intelligence, and Strategic Collaboration
+              Talk to the team directly
             </h1>
 
             {/* TEXT */}
             <p className="mt-8 max-w-3xl text-lg">
-              For infrastructure partnerships, pilot deployments,
-              technical collaboration, investment discussions,
-              and ecosystem opportunities, connect directly
-              with the Crabionics team.
+              For pilot collaboration, technical conversations,
+              capital discussions, and partnership inquiries —
+              one channel, founder-level, no funnel.
             </p>
           </div>
         </div>

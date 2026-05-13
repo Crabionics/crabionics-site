@@ -8,14 +8,14 @@ import SectionHeading from "@/app/components/ui/SectionHeading";
 import SectionWrapper from "@/app/components/ui/SectionWrapper";
 
 export const metadata: Metadata = {
-  title: "Technology Architecture",
+  title: "Technology — How It Works",
   description:
-    "Crabionics technology stack: modular RAS infrastructure, telemetry, biological state engine, decision logic, and the Crabionics Intelligence Network.",
+    "How Crabionics works under the hood: modular RAS, telemetry, biological state inference, decision logic, and the Crabionics Intelligence Network.",
   alternates: { canonical: "/technology" },
   openGraph: {
-    title: "Crabionics | Technology Architecture",
+    title: "Crabionics | How It Works",
     description:
-      "Layered architecture linking infrastructure, telemetry, biology, and intelligence into closed-loop precision aquaculture.",
+      "Six layers, one closed loop — the technology stack behind controlled crustacean production.",
     url: "https://crabionics.com/technology",
     type: "website",
   },
@@ -137,17 +137,17 @@ export default function TechnologyPage() {
           <div className="max-w-5xl">
 
             <div className="inline-flex rounded-full border border-cyan-400/20 bg-cyan-400/10 px-4 py-2 text-xs uppercase tracking-[0.22em] text-cyan-200">
-              Technology Architecture
+              How it works
             </div>
 
             <h1 className="mt-8 max-w-4xl">
-              The technology stack linking infrastructure, telemetry, biology, and intelligence
+              Six layers, one closed loop
             </h1>
 
             <p className="mt-8 max-w-3xl text-lg">
-              Crabionics combines physical infrastructure with sensor telemetry, biological
-              state inference, and operational decision logic into a closed-loop production
-              architecture.
+              The Crabionics stack runs bottom-up: physical hardware on the floor,
+              sensors and telemetry above it, biological state inference, decision
+              logic, and a learning network on top — all feeding back into each other.
             </p>
           </div>
         </div>

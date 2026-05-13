@@ -72,17 +72,16 @@ export default function Footer() {
                 </p>
 
                 <p className="mt-2 text-sm uppercase tracking-[0.28em] text-slate-400">
-                  Precision Aquaculture Infrastructure
+                  Production Architecture
                 </p>
               </div>
             </div>
 
             {/* TEXT */}
             <p className="mt-10 max-w-xl text-lg leading-relaxed text-slate-400">
-              Building closed-loop biological infrastructure
-              for predictable mud crab production through modular
-              RAS systems, AquaOS, telemetry, automation,
-              and intelligence-driven operations.
+              Building the system that makes industrial-scale
+              crustacean production possible — modular RAS,
+              AquaOS, telemetry, and closed-loop control.
             </p>
 
             {/* TAGS */}
@@ -90,7 +89,7 @@ export default function Footer() {
 
               {[
                 "AquaOS Active",
-                "Closed-loop Infrastructure",
+                "Closed-loop Control",
               ].map((item) => (
                 <div
                   key={item}
@@ -173,7 +172,7 @@ export default function Footer() {
           </p>
 
           <p>
-            Closed-loop Precision Aquaculture Infrastructure
+            Production Architecture for Crustacean Aquaculture
           </p>
         </div>
       </div>
