@@ -52,11 +52,6 @@ export default function HomePage() {
             transition={{ duration: 0.7 }}
           >
 
-            {/* Eyebrow */}
-            <div className="mb-7 inline-flex items-center rounded-full border border-cyan-500/20 bg-cyan-50 px-4 py-2 text-[10px] uppercase tracking-[0.28em] text-cyan-700 sm:text-xs">
-              Production Architecture
-            </div>
-
             {/* H1 — serif display */}
             <h1
               className="font-display mx-auto max-w-5xl text-center text-slate-900"
