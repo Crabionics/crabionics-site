@@ -67,6 +67,13 @@ const steps: Step[] = [
 
 const orderedIds = [...steps.map((step) => step.id), "capture"];
 
+const STEP_POSITIONS: Record<StepId, string> = {
+  capture: "md:col-start-2 md:row-start-1",
+  decide: "md:col-start-3 md:row-start-2",
+  act: "md:col-start-2 md:row-start-3",
+  learn: "md:col-start-1 md:row-start-2",
+};
+
 export default function ControlLoop() {
   const [active, setActive] = useState<Step["id"]>("decide");
   const activeStep = steps.find((step) => step.id === active);
@@ -203,7 +210,7 @@ function StepCard({ step, active }: { step: Step; active: boolean }) {
 function Detail({ title, text }: { title: string; text: string }) {
   return (
     <>
-      <h3 className="text-xl font-semibold mb-2">{title}</h3>
+      <h3 className="mb-2 text-xl font-semibold">{title}</h3>
       <p className="text-gray-600">{text}</p>
     </>
   );
