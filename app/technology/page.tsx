@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+import StackDiagram from "@/app/components/diagrams/StackDiagram";
 import GlassCard from "@/app/components/ui/GlassCard";
 import SectionHeading from "@/app/components/ui/SectionHeading";
 import SectionWrapper from "@/app/components/ui/SectionWrapper";
@@ -204,28 +205,12 @@ export default function TechnologyPage() {
           ))}
         </div>
 
-        {/* DIAGRAM PLACEHOLDER */}
+        {/* MASTER ARCHITECTURE DIAGRAM */}
         <div className="mx-auto mt-16 max-w-5xl">
 
-          <GlassCard className="overflow-hidden">
+          <GlassCard className="overflow-hidden p-6 lg:p-10">
 
-            <div className="flex aspect-[16/9] items-center justify-center border-b border-white/10 bg-white/[0.02] text-center">
-
-              <div className="px-6">
-
-                <p className="text-[10px] uppercase tracking-[0.22em] text-cyan-200/70">
-                  Master architecture diagram placeholder
-                </p>
-
-                <p className="mt-3 font-mono text-xs text-slate-500">
-                  /public/diagrams/crabionics-stack.svg
-                </p>
-              </div>
-            </div>
-
-            <p className="px-6 py-5 text-sm text-slate-300">
-              Insert master topology diagram showing physical layer → sensor → telemetry → state → decision → intelligence, with the closed-loop feedback arrow.
-            </p>
+            <StackDiagram />
           </GlassCard>
         </div>
       </SectionWrapper>

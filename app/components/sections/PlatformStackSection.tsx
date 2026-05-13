@@ -4,24 +4,11 @@ import SectionWrapper from "../ui/SectionWrapper";
 
 const layers = [
   {
-    title: "HatchSync",
-    subtitle: "Hatchery intelligence and seed security layer",
+    title: "Modular RAS",
+    subtitle: "Biological production infrastructure",
     description:
-      "Continuous larval production, biological monitoring, and juvenile stabilization systems.",
-  },
-
-  {
-    title: "AquaOS",
-    subtitle: "Operational control and orchestration engine",
-    description:
-      "Telemetry aggregation, automation logic, predictive workflows, and operator infrastructure.",
-  },
-
-  {
-    title: "CIN",
-    subtitle: "Crabionics Intelligence Network",
-    description:
-      "Cross-farm benchmarking, biological learning systems, and distributed operational intelligence.",
+      "Closed-loop water systems, isolation modules, flushing systems, and precision grow-out architecture.",
+    status: "live" as const,
   },
 
   {
@@ -29,15 +16,48 @@ const layers = [
     subtitle: "Infrastructure edge computing layer",
     description:
       "Sensor integration, telemetry synchronization, and low-latency local infrastructure control.",
+    status: "developing" as const,
   },
 
   {
-    title: "Modular RAS",
-    subtitle: "Biological production infrastructure",
+    title: "AquaOS",
+    subtitle: "Operational control and orchestration engine",
     description:
-      "Closed-loop water systems, isolation modules, flushing systems, and precision grow-out architecture.",
+      "Telemetry aggregation, automation logic, predictive workflows, and operator infrastructure.",
+    status: "developing" as const,
+  },
+
+  {
+    title: "HatchSync",
+    subtitle: "Hatchery intelligence and seed security layer",
+    description:
+      "Continuous larval production, biological monitoring, and juvenile stabilization systems.",
+    status: "developing" as const,
+  },
+
+  {
+    title: "CIN",
+    subtitle: "Crabionics Intelligence Network",
+    description:
+      "Cross-farm benchmarking, biological learning systems, and distributed operational intelligence.",
+    status: "longterm" as const,
   },
 ];
+
+const statusBadge = {
+  live: {
+    label: "Stage 1 · Current",
+    classes: "border-emerald-400/20 bg-emerald-400/10 text-emerald-300",
+  },
+  developing: {
+    label: "Stage 2 · Developing",
+    classes: "border-cyan-400/20 bg-cyan-400/10 text-cyan-200",
+  },
+  longterm: {
+    label: "Stage 3 · Long-term",
+    classes: "border-white/10 bg-white/[0.04] text-slate-300",
+  },
+} as const;
 
 export default function PlatformStackSection() {
   return (
@@ -100,8 +120,8 @@ export default function PlatformStackSection() {
                   {/* STATUS */}
                   <div className="mt-8 flex flex-wrap gap-3">
 
-                    <div className="rounded-full border border-emerald-400/20 bg-emerald-400/10 px-4 py-2 text-xs text-emerald-300">
-                      Active Layer
+                    <div className={`rounded-full border px-4 py-2 text-xs ${statusBadge[layer.status].classes}`}>
+                      {statusBadge[layer.status].label}
                     </div>
 
                     <div className="rounded-full border border-white/10 bg-white/[0.03] px-4 py-2 text-xs text-slate-300">

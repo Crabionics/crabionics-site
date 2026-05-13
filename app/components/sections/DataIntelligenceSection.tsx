@@ -1,3 +1,4 @@
+import CINNetworkMap from "../diagrams/CINNetworkMap";
 import GlassCard from "../ui/GlassCard";
 import SectionHeading from "../ui/SectionHeading";
 import SectionWrapper from "../ui/SectionWrapper";
@@ -169,6 +170,35 @@ export default function DataIntelligenceSection() {
             </GlassCard>
           ))}
         </div>
+      </div>
+
+      {/* CIN NETWORK MAP */}
+      <div className="mx-auto mt-24 max-w-6xl">
+
+        <GlassCard className="overflow-hidden p-6 lg:p-10">
+
+          <div className="text-center">
+
+            <p className="text-sm uppercase tracking-[0.18em] text-cyan-200">
+              Distributed Production Network
+            </p>
+
+            <h3 className="mt-4">
+              One Hub, Many Nodes — Connected by Telemetry
+            </h3>
+
+            <p className="mx-auto mt-6 max-w-3xl">
+              The Crabionics Intelligence Network connects pilot, hatchery,
+              nursery, grow-out, and partner sites into a single learning
+              substrate. Live nodes feed real telemetry today; pilot and
+              planned nodes show the path of network expansion.
+            </p>
+          </div>
+
+          <div className="mt-10">
+            <CINNetworkMap />
+          </div>
+        </GlassCard>
       </div>
 
       {/* BOTTOM STATEMENT */}

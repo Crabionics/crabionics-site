@@ -174,27 +174,35 @@ export default function HomePage() {
 
             {[
               {
-                title: "Cannibalism",
-                text: "High mortality from batch-based production systems.",
+                title: "Crabs kill each other",
+                lead: "Cannibalism",
+                text: "Put crabs together in a pond or tank and the strong ones kill the weak ones — especially during molt. Whole batches disappear before harvest.",
               },
               {
-                title: "Molting Vulnerability",
-                text: "Invisible biological risk windows causing losses.",
+                title: "Molt is a blind spot",
+                lead: "Vulnerability window",
+                text: "For roughly a day after molting a crab is defenseless. Without per-crab visibility, you only learn it happened when the animal is already gone.",
               },
               {
-                title: "Water Instability",
-                text: "Reactive operations create cascading system failures.",
+                title: "Water shifts faster than you see it",
+                lead: "Environmental drift",
+                text: "Oxygen, salinity, ammonia and temperature swing with weather and feed load. By the time the symptoms show up in the crab, the cycle is already compromised.",
               },
               {
-                title: "No Individual Tracking",
-                text: "Lack of causality and predictive operational control.",
+                title: "Nothing gets tracked individually",
+                lead: "No causality",
+                text: "Traditional ponds give one number at harvest. There is no growth history, no molt log, no link between an action and an outcome — so nothing improves cycle to cycle.",
               },
             ].map((item) => (
               <div
                 key={item.title}
                 className="glass-card p-8"
               >
-                <h3 className="text-2xl">
+                <p className="text-xs uppercase tracking-[0.18em] text-cyan-200/80">
+                  {item.lead}
+                </p>
+
+                <h3 className="mt-4 text-2xl">
                   {item.title}
                 </h3>
 
@@ -204,6 +212,11 @@ export default function HomePage() {
               </div>
             ))}
           </div>
+
+          {/* TAKEAWAY */}
+          <p className="mx-auto mt-16 max-w-3xl text-center text-lg text-slate-200">
+            Crabionics converts biological uncertainty into predictable production.
+          </p>
         </div>
 
       </section>

@@ -26,27 +26,27 @@ export default function ClosedLoopSection() {
       {/* FLOW */}
       <div className="mt-24">
 
-        <div className="grid gap-6 lg:grid-cols-7">
+        <div className="grid gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 lg:gap-6">
 
           {flowSteps.map((step, index) => (
             <GlassCard
               key={step}
-              className="relative p-6 text-center"
+              className="relative p-5 text-center lg:p-6"
             >
 
               {/* STEP NUMBER */}
-              <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full border border-cyan-400/20 bg-cyan-400/10 text-sm font-semibold text-cyan-200">
+              <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-full border border-cyan-400/20 bg-cyan-400/10 text-sm font-semibold text-cyan-200 lg:h-12 lg:w-12">
                 {index + 1}
               </div>
 
               {/* TITLE */}
-              <p className="mt-6 text-sm font-medium text-white">
+              <p className="mt-5 text-xs font-medium text-white sm:text-sm lg:mt-6">
                 {step}
               </p>
 
               {/* CONNECTOR */}
               {index !== flowSteps.length - 1 && (
-                <div className="absolute right-[-18px] top-1/2 hidden h-[2px] w-9 -translate-y-1/2 bg-cyan-400/20 lg:block" />
+                <div className="absolute right-[-13px] top-1/2 hidden h-[2px] w-7 -translate-y-1/2 bg-cyan-400/20 lg:block" />
               )}
             </GlassCard>
           ))}
@@ -115,43 +115,38 @@ export default function ClosedLoopSection() {
               flushing systems, aeration logic, and operator alerts.
             </p>
 
-            {/* SYSTEM STATES */}
+            {/* INFRASTRUCTURE RESPONSE TARGETS */}
             <div className="mt-10 space-y-5">
+
+              <p className="text-[10px] uppercase tracking-[0.22em] text-cyan-200/70">
+                Pilot targets (in development)
+              </p>
 
               {[
                 {
                   label: "Environmental Stability",
-                  value: "94%",
+                  body: "Hold key water parameters inside the target band for the full grow-out cycle.",
                 },
                 {
-                  label: "Telemetry Confidence",
-                  value: "87%",
+                  label: "Telemetry Coverage",
+                  body: "Continuous sensor capture across every active grow-out box, with no blind windows.",
                 },
                 {
-                  label: "Operational Synchronization",
-                  value: "91%",
+                  label: "Operational Response Time",
+                  body: "Closed-loop infrastructure response triggered before the biological condition becomes visible.",
                 },
               ].map((item) => (
-                <div key={item.label}>
+                <div
+                  key={item.label}
+                  className="rounded-2xl border border-white/10 bg-white/[0.03] p-4"
+                >
+                  <p className="text-sm font-medium text-white">
+                    {item.label}
+                  </p>
 
-                  <div className="flex items-center justify-between">
-
-                    <p className="text-sm text-slate-300">
-                      {item.label}
-                    </p>
-
-                    <p className="text-sm font-medium text-white">
-                      {item.value}
-                    </p>
-                  </div>
-
-                  <div className="mt-3 h-2 overflow-hidden rounded-full bg-white/5">
-
-                    <div
-                      className="h-full rounded-full bg-gradient-to-r from-cyan-300 to-teal-300"
-                      style={{ width: item.value }}
-                    />
-                  </div>
+                  <p className="mt-2 text-xs text-slate-400">
+                    {item.body}
+                  </p>
                 </div>
               ))}
             </div>
