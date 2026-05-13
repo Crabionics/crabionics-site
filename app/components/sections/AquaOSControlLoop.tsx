@@ -65,14 +65,6 @@ const steps: Step[] = [
   },
 ] as const;
 
-const orderedIds = [...steps.map((step) => step.id), "capture"];
-
-const STEP_POSITIONS: Record<StepId, string> = {
-  capture: "md:col-start-2 md:row-start-1",
-  decide: "md:col-start-3 md:row-start-2",
-  act: "md:col-start-2 md:row-start-3",
-  learn: "md:col-start-1 md:row-start-2",
-};
 
 export default function ControlLoop() {
   const [active, setActive] = useState<Step["id"]>("decide");
