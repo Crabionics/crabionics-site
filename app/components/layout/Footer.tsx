@@ -28,15 +28,17 @@ const companyLinks = [
     label: "Contact",
     href: "/contact",
   },
-
   {
-    label: "Technology",
-    href: "/technology",
+    label: "About",
+    href: "/about",
   },
-
   {
-    label: "Platform",
-    href: "/platform",
+    label: "Careers",
+    href: "/careers",
+  },
+  {
+    label: "Press",
+    href: "/press",
   },
 ];
 
@@ -171,9 +173,34 @@ export default function Footer() {
             © {new Date().getFullYear()} Crabionics Aquaculture Pvt. Ltd.
           </p>
 
-          <p>
-            Production Architecture for Crustacean Aquaculture
-          </p>
+          <div className="flex items-center gap-4">
+
+            <p>
+              Production Architecture for Crustacean Aquaculture
+            </p>
+
+            <div className="flex items-center gap-4">
+
+              {[
+                {
+                  label: "Privacy",
+                  href: "/privacy",
+                },
+                {
+                  label: "Terms",
+                  href: "/terms",
+                },
+              ].map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="transition hover:text-slate-300"
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </footer>
