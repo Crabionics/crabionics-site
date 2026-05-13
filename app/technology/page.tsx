@@ -1,64 +1,123 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 
 import GlassCard from "@/app/components/ui/GlassCard";
 import SectionHeading from "@/app/components/ui/SectionHeading";
 import SectionWrapper from "@/app/components/ui/SectionWrapper";
 
-const architecture = [
-  {
-    title: "Physical Infrastructure",
+export const metadata: Metadata = {
+  title: "Technology Architecture",
+  description:
+    "Crabionics technology stack: modular RAS infrastructure, telemetry, biological state engine, decision logic, and the Crabionics Intelligence Network.",
+  alternates: { canonical: "/technology" },
+  openGraph: {
+    title: "Crabionics | Technology Architecture",
     description:
-      "Vertical RAS systems, modular isolation units, water circulation infrastructure, and production hardware.",
+      "Layered architecture linking infrastructure, telemetry, biology, and intelligence into closed-loop precision aquaculture.",
+    url: "https://crabionics.com/technology",
+    type: "website",
   },
+};
 
+const layers = [
   {
-    title: "Sensor Layer",
+    index: "01",
+    name: "Physical Layer",
+    sub: "Infrastructure",
     description:
-      "Environmental telemetry including dissolved oxygen, salinity, pH, ammonia, temperature, and operational conditions.",
+      "Vertical modular RAS, individual grow-out boxes, isolation units, plumbing, biofiltration, and aeration hardware.",
   },
-
   {
-    title: "Telemetry Layer",
+    index: "02",
+    name: "Sensor Layer",
+    sub: "Capture",
     description:
-      "Continuous synchronization of biological, environmental, and infrastructure signals into operational datasets.",
+      "Dissolved oxygen, salinity, pH, ammonia, temperature, and lifecycle event capture across the production stack.",
   },
-
   {
-    title: "Biological Intelligence",
+    index: "03",
+    name: "Telemetry Layer",
+    sub: "Transport",
     description:
-      "Molting inference, behavioral analysis, stress detection, and survival optimization systems.",
+      "Continuous synchronization of environmental, biological, and operational signals into structured datasets.",
   },
-
   {
-    title: "Operational Logic",
+    index: "04",
+    name: "State Layer",
+    sub: "Interpretation",
     description:
-      "Infrastructure response systems coordinating flushing, aeration, interventions, and production workflows.",
+      "Biological state inference — molt-timing estimation, stress detection, behavioral anomaly classification.",
   },
-
   {
-    title: "Distributed Learning",
+    index: "05",
+    name: "Decision Layer",
+    sub: "Operational logic",
     description:
-      "Cross-cycle and cross-farm operational learning through the Crabionics Intelligence Network.",
+      "Rule-driven intervention systems coordinating flushing, aeration, feeding, and operator workflows.",
+  },
+  {
+    index: "06",
+    name: "Intelligence Layer",
+    sub: "Cross-cycle learning",
+    description:
+      "The Crabionics Intelligence Network (CIN) — cross-farm benchmarking and predictive infrastructure built from accumulated production data.",
   },
 ];
 
-const systems = [
+const stages = [
   {
-    title: "Molting Intelligence",
-    description:
-      "Predictive estimation of high-risk biological windows for intervention timing and survival optimization.",
+    stage: "Stage 1",
+    status: "Current",
+    title: "Infrastructure + Telemetry + Repeatable Operations",
+    items: [
+      "Modular RAS systems",
+      "Isolation architecture",
+      "Environmental telemetry",
+      "Operational SOPs",
+      "Causality logging",
+    ],
   },
+  {
+    stage: "Stage 2",
+    status: "Developing",
+    title: "Biological Intelligence Layer",
+    items: [
+      "Molt-timing estimation",
+      "Mortality risk classification",
+      "Behavioral anomaly detection",
+      "Yield forecasting",
+      "Survival optimization",
+    ],
+  },
+  {
+    stage: "Stage 3",
+    status: "Long-term",
+    title: "Distributed Production Network",
+    items: [
+      "Cross-farm benchmarking",
+      "Predictive infrastructure",
+      "CIN learning systems",
+      "Regional production orchestration",
+      "Network-level optimization",
+    ],
+  },
+];
 
+const coreSystems = [
+  {
+    title: "Molt Timing Intelligence",
+    description:
+      "Identifies high-risk biological windows to reduce mortality and improve intervention timing.",
+  },
   {
     title: "Risk Stabilization",
     description:
-      "Detection of operational instability and environmental anomalies before production failure occurs.",
+      "Forecasts stress conditions before thresholds are crossed, enabling preventive operational response.",
   },
-
   {
     title: "Crab Carbon Index (CCI)",
     description:
-      "Production-linked sustainability metrics integrating biological operations with carbon accountability systems.",
+      "Production-linked sustainability metrics connecting biological operations to carbon-accountable reporting.",
   },
 ];
 
@@ -69,128 +128,174 @@ export default function TechnologyPage() {
       {/* HERO */}
       <section className="relative overflow-hidden border-b border-white/10">
 
-        {/* GLOW */}
         <div className="absolute left-[-10%] top-[-20%] h-[420px] w-[420px] rounded-full bg-cyan-400/10 blur-3xl" />
 
         <div className="container-shell relative z-10 py-28 lg:py-36">
 
           <div className="max-w-5xl">
 
-            {/* EYEBROW */}
             <div className="inline-flex rounded-full border border-cyan-400/20 bg-cyan-400/10 px-4 py-2 text-xs uppercase tracking-[0.22em] text-cyan-200">
               Technology Architecture
             </div>
 
-            {/* TITLE */}
             <h1 className="mt-8 max-w-4xl">
-              Biological Intelligence Infrastructure for Precision Aquaculture
+              The technology stack linking infrastructure, telemetry, biology, and intelligence
             </h1>
 
-            {/* TEXT */}
             <p className="mt-8 max-w-3xl text-lg">
-              Crabionics integrates telemetry systems, biological
-              intelligence, modular RAS infrastructure, and operational
-              orchestration into a closed-loop production architecture.
+              Crabionics combines physical infrastructure with sensor telemetry, biological
+              state inference, and operational decision logic into a closed-loop production
+              architecture.
             </p>
           </div>
         </div>
       </section>
 
-      {/* STACK */}
+      {/* LAYERED STACK */}
       <SectionWrapper className="section-divider">
 
         <SectionHeading
-          eyebrow="Infrastructure Stack"
-          title="Closed-loop Operational Intelligence"
-          subtitle="The Crabionics technology stack combines environmental telemetry, biological inference systems, and infrastructure orchestration into one operational ecosystem."
+          eyebrow="Layered Architecture"
+          title="Six Layers, One Closed Loop"
+          subtitle="Each layer in the Crabionics stack feeds the next — from physical infrastructure at the base, through telemetry and inference, up to the distributed intelligence network."
           align="center"
         />
 
-        <div className="mt-20 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+        <div className="mx-auto mt-20 max-w-5xl space-y-4">
 
-          {architecture.map((item) => (
-            <GlassCard
-              key={item.title}
-              className="relative overflow-hidden p-8"
+          {layers.map((layer, index) => (
+            <div
+              key={layer.index}
+              className="relative"
             >
 
-              {/* GLOW */}
-              <div className="absolute right-[-20%] top-[-20%] h-[160px] w-[160px] rounded-full bg-cyan-400/10 blur-3xl" />
+              <GlassCard className="p-6 lg:p-8">
 
-              <div className="relative z-10">
+                <div className="grid items-center gap-6 lg:grid-cols-[80px_220px_1fr]">
 
-                <div className="h-3 w-3 rounded-full bg-cyan-300" />
+                  {/* INDEX */}
+                  <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-cyan-400/20 bg-cyan-400/10 font-mono text-sm font-semibold text-cyan-200">
+                    {layer.index}
+                  </div>
 
-                <h3 className="mt-6">
-                  {item.title}
-                </h3>
+                  {/* NAME + SUB */}
+                  <div>
+                    <p className="text-lg font-semibold text-white">
+                      {layer.name}
+                    </p>
 
-                <p className="mt-5">
-                  {item.description}
+                    <p className="mt-1 text-xs uppercase tracking-[0.18em] text-cyan-200/70">
+                      {layer.sub}
+                    </p>
+                  </div>
+
+                  {/* DESCRIPTION */}
+                  <p className="text-sm text-slate-300">
+                    {layer.description}
+                  </p>
+                </div>
+              </GlassCard>
+
+              {/* CONNECTOR */}
+              {index !== layers.length - 1 && (
+                <div className="mx-auto h-4 w-px bg-cyan-400/20" />
+              )}
+            </div>
+          ))}
+        </div>
+
+        {/* DIAGRAM PLACEHOLDER */}
+        <div className="mx-auto mt-16 max-w-5xl">
+
+          <GlassCard className="overflow-hidden">
+
+            <div className="flex aspect-[16/9] items-center justify-center border-b border-white/10 bg-white/[0.02] text-center">
+
+              <div className="px-6">
+
+                <p className="text-[10px] uppercase tracking-[0.22em] text-cyan-200/70">
+                  Master architecture diagram placeholder
                 </p>
+
+                <p className="mt-3 font-mono text-xs text-slate-500">
+                  /public/diagrams/crabionics-stack.svg
+                </p>
+              </div>
+            </div>
+
+            <p className="px-6 py-5 text-sm text-slate-300">
+              Insert master topology diagram showing physical layer → sensor → telemetry → state → decision → intelligence, with the closed-loop feedback arrow.
+            </p>
+          </GlassCard>
+        </div>
+      </SectionWrapper>
+
+      {/* STAGE LOGIC — HONEST FRAMING */}
+      <SectionWrapper className="section-divider">
+
+        <SectionHeading
+          eyebrow="Capability Stages"
+          title="Current, Developing, Long-term — Stated Honestly"
+          subtitle="We separate what the technology does today from what it will do as more production data accumulates."
+          align="center"
+        />
+
+        <div className="mx-auto mt-20 grid max-w-6xl gap-6 lg:grid-cols-3">
+
+          {stages.map((stage) => (
+            <GlassCard
+              key={stage.stage}
+              className="p-8 lg:p-10"
+            >
+
+              <div className="flex items-center justify-between">
+
+                <p className="text-xs uppercase tracking-[0.18em] text-cyan-200">
+                  {stage.stage}
+                </p>
+
+                <span className="rounded-full border border-cyan-400/20 bg-cyan-400/10 px-3 py-1 text-[10px] uppercase tracking-[0.18em] text-cyan-200">
+                  {stage.status}
+                </span>
+              </div>
+
+              <h3 className="mt-6 text-xl font-semibold text-white">
+                {stage.title}
+              </h3>
+
+              <div className="mt-8 space-y-3">
+
+                {stage.items.map((feature) => (
+                  <div
+                    key={feature}
+                    className="flex items-center gap-4 rounded-2xl border border-white/10 bg-white/[0.03] p-4"
+                  >
+                    <div className="h-2 w-2 rounded-full bg-cyan-300" />
+
+                    <p className="text-sm text-slate-300">
+                      {feature}
+                    </p>
+                  </div>
+                ))}
               </div>
             </GlassCard>
           ))}
         </div>
       </SectionWrapper>
 
-      {/* FLOW */}
-      <SectionWrapper className="section-divider overflow-hidden">
-
-        <SectionHeading
-          eyebrow="Technology Flow"
-          title="Sensor → Intelligence → Infrastructure Response"
-          subtitle="Operational intelligence is generated by continuously linking telemetry signals with biological outcomes and production actions."
-          align="center"
-        />
-
-        <div className="mx-auto mt-20 max-w-6xl">
-
-          <div className="grid gap-6 lg:grid-cols-5">
-
-            {[
-              "Environmental Signals",
-              "Telemetry Aggregation",
-              "Biological Inference",
-              "Operational Decisions",
-              "Infrastructure Response",
-            ].map((item, index) => (
-              <GlassCard
-                key={item}
-                className="relative p-8 text-center"
-              >
-
-                {/* CONNECTOR */}
-                {index !== 4 && (
-                  <div className="absolute right-[-18px] top-1/2 hidden h-[2px] w-9 -translate-y-1/2 bg-cyan-400/20 lg:block" />
-                )}
-
-                <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full border border-cyan-400/20 bg-cyan-400/10 text-sm font-semibold text-cyan-200">
-                  0{index + 1}
-                </div>
-
-                <p className="mt-6 text-sm font-medium text-white">
-                  {item}
-                </p>
-              </GlassCard>
-            ))}
-          </div>
-        </div>
-      </SectionWrapper>
-
-      {/* CORE SYSTEMS */}
+      {/* CORE INTELLIGENCE SYSTEMS */}
       <SectionWrapper className="section-divider">
 
         <SectionHeading
           eyebrow="Core Intelligence Systems"
-          title="Biological and Operational Intelligence Layers"
-          subtitle="Crabionics technology systems are designed to improve predictability, operational stability, and production consistency."
+          title="What the Stack Produces"
+          subtitle="Three intelligence outputs are designed into the architecture from day one."
           align="center"
         />
 
         <div className="mx-auto mt-20 grid max-w-6xl gap-6 lg:grid-cols-3">
 
-          {systems.map((item) => (
+          {coreSystems.map((item) => (
             <GlassCard
               key={item.title}
               className="p-8"
@@ -210,14 +315,66 @@ export default function TechnologyPage() {
         </div>
       </SectionWrapper>
 
-      {/* LOWER PANEL */}
+      {/* INFRASTRUCTURE EVIDENCE */}
+      <SectionWrapper className="section-divider">
+
+        <SectionHeading
+          eyebrow="Physical Layer in Practice"
+          title="The Stack, Photographed"
+          subtitle="Photo placeholders below — swap with actual infrastructure and sensor images."
+          align="center"
+        />
+
+        <div className="mt-20 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+
+          {[
+            {
+              caption: "Modular RAS plumbing and recirculation hardware.",
+              file: "ras-plumbing.jpg",
+            },
+            {
+              caption: "Individual isolation boxes — vertical grow-out architecture.",
+              file: "isolation-box.jpg",
+            },
+            {
+              caption: "Sensor node and telemetry instrumentation.",
+              file: "sensor-node.jpg",
+            },
+          ].map((item) => (
+            <GlassCard
+              key={item.file}
+              className="overflow-hidden"
+            >
+
+              <div className="flex aspect-[4/3] items-center justify-center border-b border-white/10 bg-white/[0.02] text-center">
+
+                <div className="px-6">
+
+                  <p className="text-[10px] uppercase tracking-[0.22em] text-cyan-200/70">
+                    Photo placeholder
+                  </p>
+
+                  <p className="mt-3 font-mono text-xs text-slate-500">
+                    /public/photos/{item.file}
+                  </p>
+                </div>
+              </div>
+
+              <p className="px-6 py-5 text-sm text-slate-300">
+                {item.caption}
+              </p>
+            </GlassCard>
+          ))}
+        </div>
+      </SectionWrapper>
+
+      {/* CTA */}
       <SectionWrapper>
 
         <div className="glass-card overflow-hidden p-10 lg:p-14">
 
           <div className="grid items-center gap-10 lg:grid-cols-[1fr_auto]">
 
-            {/* LEFT */}
             <div>
 
               <p className="text-sm uppercase tracking-[0.18em] text-cyan-200">
@@ -225,15 +382,15 @@ export default function TechnologyPage() {
               </p>
 
               <h2 className="mt-5 max-w-3xl">
-                Integrating Infrastructure, Intelligence, and Biological Operations
+                AquaOS Explains the Operating Logic — the Platform Page Shows the Hardware
               </h2>
 
               <p className="mt-6 max-w-2xl text-lg">
-                Explore the operational platform and biological orchestration systems powering the Crabionics ecosystem.
+                Continue exploring the operational layer or the physical infrastructure
+                that this stack runs on.
               </p>
             </div>
 
-            {/* RIGHT */}
             <div className="flex flex-col gap-4 sm:flex-row lg:flex-col">
 
               <Link

@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 
 import AquaOSControlLoop from "../components/sections/AquaOSControlLoop";
@@ -5,6 +6,20 @@ import AquaOSControlLoop from "../components/sections/AquaOSControlLoop";
 import GlassCard from "@/app/components/ui/GlassCard";
 import SectionHeading from "@/app/components/ui/SectionHeading";
 import SectionWrapper from "@/app/components/ui/SectionWrapper";
+
+export const metadata: Metadata = {
+  title: "AquaOS — Operating System for Precision Aquaculture",
+  description:
+    "AquaOS is the production control layer for precision aquaculture: telemetry aggregation, biological state detection, decision logic, and closed-loop operations.",
+  alternates: { canonical: "/aquaos" },
+  openGraph: {
+    title: "Crabionics AquaOS | Operational Intelligence for Aquaculture",
+    description:
+      "Sensor → State → Decision → Action. AquaOS is the biological operating system for closed-loop aquaculture.",
+    url: "https://crabionics.com/aquaos",
+    type: "website",
+  },
+};
 
 const capabilities = [
   {

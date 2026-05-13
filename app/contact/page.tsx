@@ -1,8 +1,23 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 
 import GlassCard from "@/app/components/ui/GlassCard";
 import SectionHeading from "@/app/components/ui/SectionHeading";
 import SectionWrapper from "@/app/components/ui/SectionWrapper";
+
+export const metadata: Metadata = {
+  title: "Contact",
+  description:
+    "Connect directly with the Crabionics founding team for pilot deployments, technical collaboration, partnerships, and investment discussions.",
+  alternates: { canonical: "/contact" },
+  openGraph: {
+    title: "Contact Crabionics",
+    description:
+      "Direct founder-level conversations for technical, infrastructure, and strategic collaboration.",
+    url: "https://crabionics.com/contact",
+    type: "website",
+  },
+};
 
 const contactChannels = [
   {

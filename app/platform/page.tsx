@@ -1,8 +1,23 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 
 import GlassCard from "@/app/components/ui/GlassCard";
 import SectionHeading from "@/app/components/ui/SectionHeading";
 import SectionWrapper from "@/app/components/ui/SectionWrapper";
+
+export const metadata: Metadata = {
+  title: "Platform Infrastructure",
+  description:
+    "Modular RAS systems, isolation architecture, telemetry, and automation — the physical infrastructure layer of Crabionics precision aquaculture.",
+  alternates: { canonical: "/platform" },
+  openGraph: {
+    title: "Crabionics | Platform Infrastructure",
+    description:
+      "Physical infrastructure for predictable biological production: modular RAS, isolation, telemetry, automation.",
+    url: "https://crabionics.com/platform",
+    type: "website",
+  },
+};
 
 const infrastructure = [
   {

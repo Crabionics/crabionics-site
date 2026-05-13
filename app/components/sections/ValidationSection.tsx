@@ -9,33 +9,60 @@ const milestones = [
     description:
       "Development of vertical mud crab production architecture with individual isolation systems and operational SOPs.",
   },
-
   {
     year: "2024",
     title: "NIDHI PRAYAS Support",
     description:
-      "Supported under the NIDHI PRAYAS innovation ecosystem for deep-tech aquaculture infrastructure development.",
+      "Supported under the DST NIDHI PRAYAS innovation ecosystem for deep-tech aquaculture infrastructure development.",
   },
-
   {
     year: "2024",
-    title: "KIIT TBI Incubation",
+    title: "KIIT-TBI Incubation",
     description:
       "Incubated under KIIT Technology Business Incubator to accelerate infrastructure and commercialization strategy.",
   },
-
   {
     year: "2025",
     title: "AquaOS + CIN Development",
     description:
       "Development of telemetry infrastructure, biological intelligence systems, and distributed operational architecture.",
   },
-
   {
     year: "2025",
     title: "Pilot Infrastructure Scaling",
     description:
       "Expansion toward multi-system production architecture including hatchery, nursery, soft-shell, and RAS finishing systems.",
+  },
+  {
+    year: "2026",
+    title: "BIRAC BIG Grant — 24th Call",
+    description:
+      "Awarded under BIRAC's Biotechnology Ignition Grant (24th call). First tranche disbursement in progress for infrastructure execution.",
+  },
+];
+
+const institutions = [
+  { name: "KIIT-TBI", role: "Incubation" },
+  { name: "DST NIDHI PRAYAS", role: "Innovation Support" },
+  { name: "BIRAC BIG", role: "Grant — 24th Call" },
+];
+
+const photos = [
+  {
+    caption: "KIIT-TBI office setup — Crabionics operations base.",
+    file: "kiit-office.jpg",
+  },
+  {
+    caption: "Modular box / grow-out rack under development.",
+    file: "box-rack.jpg",
+  },
+  {
+    caption: "Sensor calibration and lab work for AquaOS instrumentation.",
+    file: "sensor-lab.jpg",
+  },
+  {
+    caption: "RAS plumbing and recirculation infrastructure build.",
+    file: "ras-build.jpg",
   },
 ];
 
@@ -49,6 +76,38 @@ export default function ValidationSection() {
         subtitle="Crabionics combines biological research, engineering systems, infrastructure prototyping, and operational experimentation into a scalable precision aquaculture platform."
         align="center"
       />
+
+      {/* INSTITUTIONAL LOGO STRIP */}
+      <div className="mx-auto mt-16 max-w-5xl">
+
+        <p className="text-center text-[10px] uppercase tracking-[0.24em] text-cyan-200/70">
+          Institutionally backed
+        </p>
+
+        <div className="mt-6 grid gap-4 sm:grid-cols-3">
+
+          {institutions.map((item) => (
+            <div
+              key={item.name}
+              className="rounded-2xl border border-white/10 bg-white/[0.03] p-6 text-center backdrop-blur-md"
+            >
+
+              {/* LOGO PLACEHOLDER */}
+              <div className="flex h-16 items-center justify-center rounded-xl border border-dashed border-white/15 bg-white/[0.02] text-[10px] uppercase tracking-[0.18em] text-slate-500">
+                Logo — {item.name}
+              </div>
+
+              <p className="mt-4 text-sm font-semibold text-white">
+                {item.name}
+              </p>
+
+              <p className="mt-1 text-xs uppercase tracking-[0.16em] text-cyan-200/70">
+                {item.role}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
 
       {/* TIMELINE */}
       <div className="relative mx-auto mt-24 max-w-5xl">
@@ -108,44 +167,42 @@ export default function ValidationSection() {
         </div>
       </div>
 
-      {/* LOWER GRID */}
-      <div className="mt-24 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+      {/* PHOTO STRIP */}
+      <div className="mt-24">
 
-        {[
-          {
-            value: "600+",
-            label: "Box Infrastructure Architecture",
-          },
+        <p className="text-center text-[10px] uppercase tracking-[0.24em] text-cyan-200/70">
+          Real work, photographed
+        </p>
 
-          {
-            value: "4",
-            label: "Integrated Production Systems",
-          },
+        <div className="mt-6 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
 
-          {
-            value: "RAS",
-            label: "Closed-loop Infrastructure",
-          },
+          {photos.map((item) => (
+            <GlassCard
+              key={item.file}
+              className="overflow-hidden"
+            >
 
-          {
-            value: "AI",
-            label: "Biological Intelligence Layer",
-          },
-        ].map((item) => (
-          <GlassCard
-            key={item.label}
-            className="p-8 text-center"
-          >
+              {/* PHOTO PLACEHOLDER */}
+              <div className="flex aspect-[4/3] items-center justify-center border-b border-white/10 bg-white/[0.02] text-center">
 
-            <p className="text-5xl font-semibold text-white">
-              {item.value}
-            </p>
+                <div className="px-6">
 
-            <p className="mt-4 text-sm text-slate-400">
-              {item.label}
-            </p>
-          </GlassCard>
-        ))}
+                  <p className="text-[10px] uppercase tracking-[0.22em] text-cyan-200/70">
+                    Photo placeholder
+                  </p>
+
+                  <p className="mt-3 font-mono text-xs text-slate-500">
+                    /public/photos/{item.file}
+                  </p>
+                </div>
+              </div>
+
+              <p className="px-6 py-5 text-sm text-slate-300">
+                {item.caption}
+              </p>
+            </GlassCard>
+          ))}
+        </div>
       </div>
 
     </SectionWrapper>

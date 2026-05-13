@@ -94,46 +94,47 @@ export default function HomePage() {
                 </Link>
               </div>
 
-              {/* METRICS */}
-              <div className="mt-12 grid grid-cols-2 gap-6 sm:grid-cols-4">
+              {/* INSTITUTIONAL PROOF STRIP */}
+              <div className="mt-12">
 
-                <div>
-                  <p className="text-2xl font-semibold text-white sm:text-3xl">
+                <p className="text-[10px] uppercase tracking-[0.24em] text-cyan-200/70">
+                  Institutionally backed
+                </p>
+
+                <div className="mt-5 flex flex-wrap gap-3">
+
+                  <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 backdrop-blur-md">
+                    <span className="h-1.5 w-1.5 rounded-full bg-cyan-300" />
+                    <span className="text-xs font-medium text-white sm:text-sm">
+                      KIIT-TBI Incubated
+                    </span>
+                  </div>
+
+                  <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 backdrop-blur-md">
+                    <span className="h-1.5 w-1.5 rounded-full bg-cyan-300" />
+                    <span className="text-xs font-medium text-white sm:text-sm">
+                      DST NIDHI PRAYAS Supported
+                    </span>
+                  </div>
+
+                  <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 backdrop-blur-md">
+                    <span className="h-1.5 w-1.5 rounded-full bg-cyan-300" />
+                    <span className="text-xs font-medium text-white sm:text-sm">
+                      BIRAC BIG Grant Recipient
+                    </span>
+                  </div>
+
+                </div>
+
+                {/* PILOT CALLOUT */}
+                <div className="mt-8 flex items-center gap-4">
+
+                  <p className="text-3xl font-semibold text-white sm:text-4xl">
                     600+
                   </p>
 
-                  <p className="mt-2 text-xs text-slate-300 sm:text-sm">
-                    Box Pilot Architecture
-                  </p>
-                </div>
-
-                <div>
-                  <p className="text-2xl font-semibold text-white sm:text-3xl">
-                    AI
-                  </p>
-
-                  <p className="mt-2 text-xs text-slate-300 sm:text-sm">
-                    Closed-loop Control
-                  </p>
-                </div>
-
-                <div>
-                  <p className="text-2xl font-semibold text-white sm:text-3xl">
-                    RAS
-                  </p>
-
-                  <p className="mt-2 text-xs text-slate-300 sm:text-sm">
-                    Modular Infrastructure
-                  </p>
-                </div>
-
-                <div>
-                  <p className="text-2xl font-semibold text-white sm:text-3xl">
-                    CIN
-                  </p>
-
-                  <p className="mt-2 text-xs text-slate-300 sm:text-sm">
-                    Intelligence Network
+                  <p className="max-w-xs text-xs text-slate-300 sm:text-sm">
+                    Box-scale pilot infrastructure under development at KIIT-TBI
                   </p>
                 </div>
 
