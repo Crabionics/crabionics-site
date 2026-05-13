@@ -79,63 +79,79 @@ export default function ControlLoop() {
         </p>
       </div>
 
-      <div className="relative flex items-center justify-center h-[500px]">
-        {/* CENTER CORE */}
-        <div
-          className="absolute w-40 h-40 rounded-full flex items-center justify-center
-          bg-gradient-to-br from-blue-600 to-indigo-700 text-white shadow-xl animate-pulse"
-        >
-          <div className="text-center">
-            <p className="text-xs opacity-80">CORE</p>
-            <p className="font-semibold">AquaOS</p>
+      <div className="max-w-6xl mx-auto px-6">
+        <div className="space-y-3 md:hidden">
+          {steps.map((step, index) => (
+            <div key={step.id}>
+              <button
+                onClick={() => setActive(step.id)}
+                className={`w-full text-left transition ${
+                  active === step.id ? "scale-[1.01]" : ""
+                }`}
+              >
+                <StepCard step={step} active={active === step.id} />
+              </button>
+              {index < steps.length - 1 && (
+                <div className="py-1 text-center text-gray-400" aria-hidden>
+                  ↓
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+
+        <div className="hidden md:grid md:grid-cols-[1fr_auto_1fr] md:gap-6 md:items-center">
+          <div className="space-y-6">
+            <button
+              onClick={() => setActive("capture")}
+              className={`w-full text-left transition ${
+                active === "capture" ? "scale-[1.02]" : ""
+              }`}
+            >
+              <StepCard step={steps[0]} active={active === "capture"} />
+            </button>
+            <button
+              onClick={() => setActive("learn")}
+              className={`w-full text-left transition ${
+                active === "learn" ? "scale-[1.02]" : ""
+              }`}
+            >
+              <StepCard step={steps[3]} active={active === "learn"} />
+            </button>
+          </div>
+
+          <div className="flex flex-col items-center gap-3" aria-hidden>
+            <div
+              className="w-36 h-36 rounded-full flex items-center justify-center
+              bg-gradient-to-br from-blue-600 to-indigo-700 text-white shadow-xl animate-pulse"
+            >
+              <div className="text-center">
+                <p className="text-xs opacity-80">CORE</p>
+                <p className="font-semibold">AquaOS</p>
+              </div>
+            </div>
+            <div className="text-gray-400 text-xl">↻</div>
+          </div>
+
+          <div className="space-y-6">
+            <button
+              onClick={() => setActive("decide")}
+              className={`w-full text-left transition ${
+                active === "decide" ? "scale-[1.02]" : ""
+              }`}
+            >
+              <StepCard step={steps[1]} active={active === "decide"} />
+            </button>
+            <button
+              onClick={() => setActive("act")}
+              className={`w-full text-left transition ${
+                active === "act" ? "scale-[1.02]" : ""
+              }`}
+            >
+              <StepCard step={steps[2]} active={active === "act"} />
+            </button>
           </div>
         </div>
-
-        {/* TOP */}
-        <div
-          onClick={() => setActive("capture")}
-          className={`absolute top-0 cursor-pointer transition ${
-            active === "capture" ? "scale-105" : ""
-          }`}
-        >
-          <StepCard step={steps[0]} active={active === "capture"} />
-        </div>
-
-        {/* RIGHT */}
-        <div
-          onClick={() => setActive("decide")}
-          className={`absolute right-0 cursor-pointer transition ${
-            active === "decide" ? "scale-105" : ""
-          }`}
-        >
-          <StepCard step={steps[1]} active={active === "decide"} />
-        </div>
-
-        {/* BOTTOM */}
-        <div
-          onClick={() => setActive("act")}
-          className={`absolute bottom-0 cursor-pointer transition ${
-            active === "act" ? "scale-105" : ""
-          }`}
-        >
-          <StepCard step={steps[2]} active={active === "act"} />
-        </div>
-
-        {/* LEFT */}
-        <div
-          onClick={() => setActive("learn")}
-          className={`absolute left-0 cursor-pointer transition ${
-            active === "learn" ? "scale-105" : ""
-          }`}
-        >
-          <StepCard step={steps[3]} active={active === "learn"} />
-        </div>
-
-        {/* SIMPLE FLOW INDICATORS */}
-        <div className="absolute top-20 text-gray-400 text-xl">↓</div>
-        <div className="absolute right-24 text-gray-400 text-xl">→</div>
-        <div className="absolute bottom-20 text-gray-400 text-xl">↑</div>
-        <div className="absolute left-24 text-gray-400 text-xl">←</div>
       </div>
 
       <div className="max-w-6xl mx-auto px-6 mt-8">
@@ -179,7 +195,7 @@ export default function ControlLoop() {
 function StepCard({ step, active }: { step: Step; active: boolean }) {
   return (
     <div
-      className={`w-56 p-4 rounded-xl border text-left ${
+      className={`w-full md:max-w-64 p-4 rounded-xl border text-left ${
         active ? "border-blue-600 bg-blue-50" : "border-gray-200"
       }`}
       aria-pressed={active}
