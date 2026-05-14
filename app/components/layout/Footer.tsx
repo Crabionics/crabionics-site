@@ -90,14 +90,18 @@ export default function Footer() {
             <div className="mt-10 flex flex-wrap gap-3">
 
               {[
-                "AquaOS Active",
-                "Closed-loop Control",
+                { label: "AquaOS Active",      tone: "green" as const },
+                { label: "Closed-loop Control", tone: "ocean" as const },
               ].map((item) => (
                 <div
-                  key={item}
-                  className="rounded-full border border-cyan-400/20 bg-cyan-400/10 px-5 py-3 text-sm text-cyan-200"
+                  key={item.label}
+                  className={
+                    item.tone === "green"
+                      ? "rounded-full border border-[#25B947]/30 bg-[#25B947]/10 px-5 py-3 text-sm text-[#5DD27A]"
+                      : "rounded-full border border-[#1DA8DD]/30 bg-[#1DA8DD]/10 px-5 py-3 text-sm text-[#5AC4EA]"
+                  }
                 >
-                  {item}
+                  {item.label}
                 </div>
               ))}
             </div>

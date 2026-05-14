@@ -11,10 +11,18 @@
 
   --card: rgba(17, 24, 39, 0.72);
 
-  --primary: #22d3ee;
-  --primary-soft: #67e8f9;
+  /* Brand palette (from the Crabionics brand sheet) */
+  --brand-navy:  #102C5C;
+  --brand-navy-deep: #0A1F45;
+  --brand-ocean: #1DA8DD;
+  --brand-ocean-soft: #5AC4EA;
+  --brand-green: #25B947;
+  --brand-green-soft: #4DD06C;
 
-  --secondary: #14b8a6;
+  --primary: var(--brand-ocean);
+  --primary-soft: var(--brand-ocean-soft);
+
+  --secondary: var(--brand-navy);
 
   --text: #f8fafc;
   --muted: #94a3b8;
@@ -22,10 +30,10 @@
   --border: rgba(148, 163, 184, 0.12);
 
   --danger: #ef4444;
-  --success: #10b981;
+  --success: var(--brand-green);
   --warning: #f59e0b;
 
-  --ring: rgba(34, 211, 238, 0.35);
+  --ring: rgba(29, 168, 221, 0.40);
 }
 
 /* ------------------------------------------------ */
@@ -98,20 +106,20 @@ img {
   background:
     radial-gradient(
       circle at top left,
-      rgba(34, 211, 238, 0.12),
+      rgba(29, 168, 221, 0.14),
       transparent 28%
     ),
 
     radial-gradient(
       circle at bottom right,
-      rgba(20, 184, 166, 0.10),
+      rgba(16, 44, 92, 0.18),
       transparent 30%
     ),
 
     linear-gradient(
       180deg,
       #050816 0%,
-      #08111f 45%,
+      #081427 45%,
       #050816 100%
     );
 
@@ -403,16 +411,16 @@ a:hover {
   background:
     linear-gradient(
       135deg,
-      var(--primary) 0%,
-      var(--secondary) 100%
+      var(--brand-ocean) 0%,
+      var(--brand-navy) 100%
     );
 
-  color: #041018;
+  color: #ffffff;
 
   font-weight: 700;
 
   box-shadow:
-    0 10px 30px rgba(34, 211, 238, 0.22);
+    0 10px 30px rgba(29, 168, 221, 0.28);
 }
 
 .primary-button:hover {

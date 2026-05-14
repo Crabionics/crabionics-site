@@ -67,8 +67,8 @@ export default function LoadingIntro() {
       >
         <defs>
           <linearGradient id="introStroke" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%"  stopColor="#67e8f9" />
-            <stop offset="100%" stopColor="#14b8a6" />
+            <stop offset="0%"   stopColor="#1DA8DD" />
+            <stop offset="100%" stopColor="#25B947" />
           </linearGradient>
         </defs>
 
@@ -91,7 +91,7 @@ export default function LoadingIntro() {
         />
 
         {/* Center dot */}
-        <circle cx="60" cy="60" r="4" fill="#67e8f9">
+        <circle cx="60" cy="60" r="4" fill="#1DA8DD">
           <animate attributeName="opacity" values="0;1" dur="500ms" fill="freeze" begin="350ms" />
         </circle>
       </svg>

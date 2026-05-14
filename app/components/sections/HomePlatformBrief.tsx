@@ -39,8 +39,8 @@ const layers = [
 ] as const;
 
 const colorMap = {
-  emerald: "border-emerald-500/30 bg-emerald-50 text-emerald-700",
-  cyan:    "border-cyan-500/30 bg-cyan-50 text-cyan-700",
+  emerald: "border-[#25B947]/40 bg-[#25B947]/10 text-[#1B7E32]",
+  cyan:    "border-[#1DA8DD]/40 bg-[#1DA8DD]/10 text-[#0E6F9B]",
   slate:   "border-slate-300 bg-slate-50 text-slate-600",
 } as const;
 

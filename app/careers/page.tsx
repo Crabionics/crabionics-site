@@ -8,12 +8,12 @@ import SectionWrapper from "@/app/components/ui/SectionWrapper";
 export const metadata: Metadata = {
   title: "Careers",
   description:
-    "Join Crabionics to help build precision aquaculture infrastructure across systems engineering, operations, and biology-led intelligence.",
+    "Join Crabionics to help build the production architecture for crustacean aquaculture — across systems engineering, operations, and biology-led modeling.",
   alternates: { canonical: "/careers" },
   openGraph: {
     title: "Careers at Crabionics",
     description:
-      "Work on modular RAS, telemetry systems, and biological intelligence for next-generation aquaculture.",
+      "Work on modular RAS, telemetry, and biology-aware control for the next generation of aquaculture.",
     url: "https://crabionics.com/careers",
     type: "website",
   },

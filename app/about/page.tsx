@@ -8,12 +8,12 @@ import SectionWrapper from "@/app/components/ui/SectionWrapper";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Crabionics builds precision crustacean aquaculture infrastructure by integrating modular hardware, telemetry, and biological intelligence.",
+    "Crabionics is building the production architecture for industrial-scale crustacean aquaculture — modular hardware, telemetry, and operational intelligence, integrated.",
   alternates: { canonical: "/about" },
   openGraph: {
     title: "About Crabionics",
     description:
-      "Learn the mission, operating model, and long-term vision behind Crabionics infrastructure.",
+      "Mission, operating model, and long-term vision behind Crabionics.",
     url: "https://crabionics.com/about",
     type: "website",
   },

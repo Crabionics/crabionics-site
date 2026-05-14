@@ -3,10 +3,10 @@
 import { useEffect, useMemo, useState } from "react";
 
 const METRIC_TARGETS = [
-  { label: "Telemetry streams", value: 1280, suffix: "/min" },
-  { label: "Adaptive interventions", value: 94, suffix: "%" },
-  { label: "Tank-state confidence", value: 99.2, suffix: "%" },
-  { label: "Network node uptime", value: 99.99, suffix: "%" },
+  { label: "Telemetry streams per pilot site", value: 1280, suffix: "/min" },
+  { label: "Closed-loop response coverage",    value: 94,   suffix: "%"   },
+  { label: "Per-tank state inference",         value: 92,   suffix: "%"   },
+  { label: "Edge-node availability target",    value: 99.5, suffix: "%"   },
 ];
 
 function useCountUp(target: number, duration = 1800) {
@@ -34,12 +34,18 @@ function useCountUp(target: number, duration = 1800) {
 
 function MetricCard({ label, value, suffix }: { label: string; value: number; suffix: string }) {
   const live = useCountUp(value);
-  const decimals = Number.isInteger(value) ? 0 : 2;
+  const decimals = Number.isInteger(value) ? 0 : 1;
 
   return (
-    <div className="rounded-2xl border border-cyan-900/10 bg-white/90 p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
-      <p className="text-xs uppercase tracking-[0.2em] text-cyan-700">Live metric</p>
-      <p className="mt-2 text-3xl font-semibold text-slate-900">
+    <div className="rounded-2xl border border-[#1DA8DD]/15 bg-white/90 p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
+      <div className="flex items-center justify-between">
+        <p className="text-xs uppercase tracking-[0.2em] text-[#0E6F9B]">Pilot target</p>
+        <span className="inline-flex items-center gap-1.5 rounded-full bg-[#25B947]/10 px-2 py-0.5 text-[10px] uppercase tracking-[0.16em] text-[#1B7E32]">
+          <span className="h-1.5 w-1.5 rounded-full bg-[#25B947]" />
+          designed for
+        </span>
+      </div>
+      <p className="mt-3 text-3xl font-semibold text-slate-900">
         {live.toLocaleString(undefined, { maximumFractionDigits: decimals, minimumFractionDigits: decimals })}
         <span className="ml-1 text-base text-slate-600">{suffix}</span>
       </p>
@@ -58,11 +64,12 @@ export default function SystemsInMotionSection() {
 
       <div className="container-shell relative z-10">
         <div className="mx-auto max-w-3xl text-center">
-          <p className="text-xs uppercase tracking-[0.24em] text-cyan-700">Systems in motion</p>
-          <h2 className="mt-5">A live operating stack, not static slides</h2>
+          <p className="text-xs uppercase tracking-[0.24em] text-[#0E6F9B]">Systems in motion</p>
+          <h2 className="mt-5">What the stack does when it runs</h2>
           <p className="mt-6 text-lg">
-            Telemetry pulses through every tank, state models update continuously, and network orchestration
-            adapts in real time.
+            Sensors capture telemetry, state models infer biological condition, and the system
+            acts — continuously. Below: an animated illustration of the loop and the pilot
+            targets we&apos;re building toward.
           </p>
         </div>
 
