@@ -41,8 +41,7 @@ export default function HomeValidationStrip() {
           </h2>
 
           <p className="mt-6 text-lg">
-            Crabionics has progressed through institutional checkpoints
-            that validate both the science and the execution path.
+            Each name below has put capital or infrastructure behind us.
           </p>
         </div>
 

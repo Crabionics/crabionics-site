@@ -27,42 +27,42 @@ const layers = [
     name: "Physical Layer",
     sub: "Infrastructure",
     description:
-      "Vertical modular RAS, individual grow-out boxes, isolation units, plumbing, biofiltration, and aeration hardware.",
+      "Vertical RAS racks, isolation boxes, plumbing, biofiltration, aeration.",
   },
   {
     index: "02",
     name: "Sensor Layer",
     sub: "Capture",
     description:
-      "Dissolved oxygen, salinity, pH, ammonia, temperature, and lifecycle event capture across the production stack.",
+      "Dissolved oxygen, salinity, pH, ammonia, temperature — plus lifecycle events.",
   },
   {
     index: "03",
     name: "Telemetry Layer",
     sub: "Transport",
     description:
-      "Continuous synchronization of environmental, biological, and operational signals into structured datasets.",
+      "Continuous sync of environmental, biological, and operational signals into structured datasets.",
   },
   {
     index: "04",
     name: "State Layer",
     sub: "Interpretation",
     description:
-      "Biological state inference — molt-timing estimation, stress detection, behavioral anomaly classification.",
+      "Molt-timing estimation, stress detection, and behavioral anomaly classification.",
   },
   {
     index: "05",
     name: "Decision Layer",
     sub: "Operational logic",
     description:
-      "Rule-driven intervention systems coordinating flushing, aeration, feeding, and operator workflows.",
+      "Rule-driven interventions: flushing, aeration, feeding, operator action.",
   },
   {
     index: "06",
     name: "Intelligence Layer",
     sub: "Cross-cycle learning",
     description:
-      "The Crabionics Intelligence Network (CIN) — cross-farm benchmarking and predictive infrastructure built from accumulated production data.",
+      "CIN — cross-farm benchmarking and predictive control built from production data.",
   },
 ];
 
@@ -159,7 +159,7 @@ export default function TechnologyPage() {
         <SectionHeading
           eyebrow="Layered Architecture"
           title="Six Layers, One Closed Loop"
-          subtitle="Each layer in the Crabionics stack feeds the next — from physical infrastructure at the base, through telemetry and inference, up to the distributed intelligence network."
+          subtitle="From hardware at the base, through telemetry and inference, up to the network."
           align="center"
         />
 
