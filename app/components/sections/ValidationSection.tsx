@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 import GlassCard from "../ui/GlassCard";
 import SectionHeading from "../ui/SectionHeading";
 import SectionWrapper from "../ui/SectionWrapper";
@@ -42,9 +44,24 @@ const milestones = [
 ];
 
 const institutions = [
-  { name: "KIIT-TBI", role: "Incubation" },
-  { name: "DST NIDHI PRAYAS", role: "Innovation Support" },
-  { name: "BIRAC BIG", role: "Grant — 24th Call" },
+  {
+    name: "KIIT-TBI",
+    role: "Incubation",
+    logo: "/logos/kiit-tbi.png",
+    alt:  "KIIT-TBI — KIIT Technology Business Incubator",
+  },
+  {
+    name: "DST NIDHI PRAYAS",
+    role: "Innovation Support",
+    logo: "/logos/dst-nidhi-prayas.png",
+    alt:  "DST NIDHI PRAYAS — Department of Science & Technology",
+  },
+  {
+    name: "BIRAC BIG",
+    role: "Grant — 24th Call",
+    logo: "/logos/birac-big.png",
+    alt:  "BIRAC — Biotechnology Industry Research Assistance Council",
+  },
 ];
 
 const photos = [
@@ -92,9 +109,15 @@ export default function ValidationSection() {
               className="rounded-2xl border border-white/10 bg-white/[0.03] p-6 text-center backdrop-blur-md"
             >
 
-              {/* LOGO PLACEHOLDER */}
-              <div className="flex h-16 items-center justify-center rounded-xl border border-dashed border-white/15 bg-white/[0.02] text-[10px] uppercase tracking-[0.18em] text-slate-500">
-                Logo — {item.name}
+              {/* LOGO */}
+              <div className="flex h-16 items-center justify-center rounded-xl bg-white/95 px-5">
+                <Image
+                  src={item.logo}
+                  alt={item.alt}
+                  width={200}
+                  height={56}
+                  className="max-h-10 w-auto object-contain"
+                />
               </div>
 
               <p className="mt-4 text-sm font-semibold text-white">

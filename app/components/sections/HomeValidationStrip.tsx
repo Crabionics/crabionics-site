@@ -1,9 +1,25 @@
+import Image from "next/image";
 import Link from "next/link";
 
 const institutions = [
-  { name: "KIIT-TBI",         role: "Incubation" },
-  { name: "DST NIDHI PRAYAS", role: "Innovation Support" },
-  { name: "BIRAC BIG",        role: "Grant — 24th Call" },
+  {
+    name:    "KIIT-TBI",
+    role:    "Incubation",
+    logo:    "/logos/kiit-tbi.png",
+    alt:     "KIIT-TBI — KIIT Technology Business Incubator",
+  },
+  {
+    name:    "DST NIDHI PRAYAS",
+    role:    "Innovation Support",
+    logo:    "/logos/dst-nidhi-prayas.png",
+    alt:     "DST NIDHI PRAYAS — Department of Science & Technology, India",
+  },
+  {
+    name:    "BIRAC BIG",
+    role:    "Grant — 24th Call",
+    logo:    "/logos/birac-big.png",
+    alt:     "BIRAC — Biotechnology Industry Research Assistance Council",
+  },
 ];
 
 const recentMilestones = [
@@ -54,9 +70,15 @@ export default function HomeValidationStrip() {
               className="card-light rounded-2xl p-5 text-center"
             >
 
-              {/* LOGO PLACEHOLDER */}
-              <div className="flex h-14 items-center justify-center rounded-lg border border-dashed border-slate-300 bg-slate-50/60 text-[10px] uppercase tracking-[0.18em] text-slate-400">
-                Logo — {item.name}
+              {/* LOGO */}
+              <div className="relative mx-auto flex h-14 w-full items-center justify-center">
+                <Image
+                  src={item.logo}
+                  alt={item.alt}
+                  width={200}
+                  height={56}
+                  className="max-h-12 w-auto object-contain"
+                />
               </div>
 
               <p className="mt-4 text-sm font-semibold text-slate-900">

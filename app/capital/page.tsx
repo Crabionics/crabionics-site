@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 
 import GlassCard from "@/app/components/ui/GlassCard";
@@ -93,22 +94,25 @@ const milestones = [
 
 const validation = [
   {
-    org: "KIIT-TBI",
+    org:  "KIIT-TBI",
     role: "Technology Business Incubator",
-    note:
-      "Active incubation, operational infrastructure access, and commercialization support.",
+    note: "Active incubation, operational infrastructure access, and commercialization support.",
+    logo: "/logos/kiit-tbi.png",
+    alt:  "KIIT-TBI — KIIT Technology Business Incubator",
   },
   {
-    org: "DST NIDHI PRAYAS",
+    org:  "DST NIDHI PRAYAS",
     role: "Government of India — Department of Science & Technology",
-    note:
-      "Innovation ecosystem support for deep-tech aquaculture infrastructure development.",
+    note: "Innovation ecosystem support for deep-tech aquaculture infrastructure development.",
+    logo: "/logos/dst-nidhi-prayas.png",
+    alt:  "DST NIDHI PRAYAS — Department of Science & Technology",
   },
   {
-    org: "BIRAC BIG",
+    org:  "BIRAC BIG",
     role: "Biotechnology Industry Research Assistance Council",
-    note:
-      "Biotechnology Ignition Grant — 24th call. Awarded 2026.",
+    note: "Biotechnology Ignition Grant — 24th call. Awarded 2026.",
+    logo: "/logos/birac-big.png",
+    alt:  "BIRAC — Biotechnology Industry Research Assistance Council",
   },
 ];
 
@@ -285,9 +289,15 @@ export default function CapitalPage() {
               className="p-8"
             >
 
-              {/* LOGO PLACEHOLDER */}
-              <div className="flex h-20 items-center justify-center rounded-2xl border border-dashed border-white/15 bg-white/[0.02] text-[10px] uppercase tracking-[0.18em] text-slate-500">
-                Logo placeholder — {item.org}
+              {/* LOGO */}
+              <div className="flex h-20 items-center justify-center rounded-2xl bg-white/95 px-6">
+                <Image
+                  src={item.logo}
+                  alt={item.alt}
+                  width={220}
+                  height={64}
+                  className="max-h-12 w-auto object-contain"
+                />
               </div>
 
               <p className="mt-6 text-lg font-semibold text-white">
