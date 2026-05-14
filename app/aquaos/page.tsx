@@ -55,7 +55,7 @@ const capabilities = [
   {
     title: "Distributed Intelligence",
     description:
-      "Building cross-cycle learning systems through the Crabionics Intelligence Network.",
+      "Building cross-cycle learning systems through the Crustacean Intelligence Network.",
   },
 ];
 

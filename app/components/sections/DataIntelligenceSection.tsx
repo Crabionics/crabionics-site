@@ -71,7 +71,7 @@ export default function DataIntelligenceSection() {
             <div className="border-b border-white/10 pb-6">
 
               <p className="text-sm uppercase tracking-[0.18em] text-cyan-200">
-                CIN — Crabionics Intelligence Network
+                CIN — Crustacean Intelligence Network
               </p>
 
               <h3 className="mt-5">
@@ -188,7 +188,7 @@ export default function DataIntelligenceSection() {
             </h3>
 
             <p className="mx-auto mt-6 max-w-3xl">
-              The Crabionics Intelligence Network connects pilot, hatchery,
+              The Crustacean Intelligence Network connects pilot, hatchery,
               nursery, grow-out, and partner sites into a single learning
               substrate. Live nodes feed real telemetry today; pilot and
               planned nodes show the path of network expansion.

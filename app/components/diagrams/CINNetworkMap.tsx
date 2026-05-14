@@ -48,7 +48,7 @@ function nodePos(n: Node) {
 }
 
 /**
- * Crabionics Intelligence Network — hub-and-satellite diagram.
+ * Crustacean Intelligence Network — hub-and-satellite diagram.
  * Central CIN node connected to pilot, hatchery, nursery, grow-out, and partner nodes
  * via dashed telemetry lines. Status colors: live / pilot / planned.
  */
@@ -59,7 +59,7 @@ export default function CINNetworkMap() {
       viewBox={`0 0 ${WIDTH} ${HEIGHT}`}
       className="block h-auto w-full"
       role="img"
-      aria-label="Crabionics Intelligence Network: a central CIN hub connected to pilot, hatchery, nursery, grow-out, telemetry-edge, and benchmark-partner nodes by dashed telemetry lines."
+      aria-label="Crustacean Intelligence Network: a central CIN hub connected to pilot, hatchery, nursery, grow-out, telemetry-edge, and benchmark-partner nodes by dashed telemetry lines."
     >
       <defs>
         <radialGradient id="cinHubFill" cx="50%" cy="50%" r="50%">

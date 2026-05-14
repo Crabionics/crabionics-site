@@ -25,12 +25,16 @@ const platformLinks = [
 
 const companyLinks = [
   {
-    label: "Contact",
-    href: "/contact",
+    label: "Team",
+    href: "/team",
   },
   {
     label: "About",
     href: "/about",
+  },
+  {
+    label: "Contact",
+    href: "/contact",
   },
   {
     label: "Careers",

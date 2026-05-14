@@ -96,10 +96,29 @@ export default function HomePage() {
             </h2>
 
             <p className="mt-6 text-lg">
-              Traditional methods produce unpredictable survival,
-              unstable yields, and fragmented supply chains. Four specific
-              failure modes drive most of the loss.
+              Forty years, no change in production architecture. Result:
+              50–70% mortality per cycle, 100% wild-seed dependency, and
+              India exporting just 4,500 tonnes while Europe pays a
+              scarcity premium of $51 per unit.
             </p>
+          </div>
+
+          {/* Hard numbers strip */}
+          <div className="mx-auto mt-12 grid max-w-4xl gap-4 sm:grid-cols-4">
+            {[
+              { value: "50–70%", label: "Cycle mortality" },
+              { value: "$51",    label: "Europe — per unit" },
+              { value: "4,500 t", label: "India annual export" },
+              { value: "100%",   label: "Wild-seed dependency" },
+            ].map((s) => (
+              <div
+                key={s.label}
+                className="rounded-2xl border border-slate-200 bg-white p-5 text-center"
+              >
+                <p className="text-2xl font-semibold text-slate-900">{s.value}</p>
+                <p className="mt-2 text-xs uppercase tracking-[0.14em] text-cyan-700">{s.label}</p>
+              </div>
+            ))}
           </div>
 
           <div className="mt-16 grid gap-5 sm:grid-cols-2 xl:grid-cols-4">

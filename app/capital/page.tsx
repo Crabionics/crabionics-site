@@ -137,25 +137,87 @@ const validation = [
 
 const phases = [
   {
-    phase: "Phase 01",
-    label: "Pilot Validation",
-    detail: "600-box modular infrastructure, telemetry instrumentation, survival benchmarking.",
+    phase:   "Phase A",
+    period:  "2026",
+    label:   "Pilot + Validation",
+    detail:  "600-box RAS deployment at KIIT-TBI. Prove survival and unit economics. Generate the first production dataset. Validate SOPs at controlled scale.",
+    revenue: "Validation. No commercial revenue — by design.",
   },
   {
-    phase: "Phase 02",
-    label: "Commercial Expansion",
-    detail: "Scale-out to ~2,000 boxes, integrated hatchery + grow-out, AquaOS production rollout.",
+    phase:   "Phase B",
+    period:  "2027",
+    label:   "Deployment Services",
+    detail:  "Deploy for progressive farms and processors. Cluster partnerships under an asset-light model. First recurring revenue per deployed cluster.",
+    revenue: "Setup fees + monitoring contracts.",
   },
   {
-    phase: "Phase 03",
-    label: "Regional Clusters",
-    detail: "Multi-site deployment across coastal regions with shared operational intelligence.",
+    phase:   "Phase C",
+    period:  "2027–28",
+    label:   "Productization",
+    detail:  "Standard CrabPod™ unit sales. AquaOS™ SaaS subscription per farm. Hatchery module licensing. Deployment templates — franchise model.",
+    revenue: "Hardware + recurring SaaS.",
   },
   {
-    phase: "Phase 04",
-    label: "Distributed Intelligence Network",
-    detail: "CIN benchmarking layer, cross-farm learning, predictive infrastructure across clusters.",
+    phase:   "Phase D",
+    period:  "2028+",
+    label:   "Intelligence Network",
+    detail:  "CIN predictive models across farms. Supply forecasting and mortality prediction. Carbon traceability (CCI). Financing / credit-scoring potential.",
+    revenue: "Platform licensing + data network.",
   },
+];
+
+const marketData = [
+  {
+    value: "$51/unit",
+    label: "Europe price",
+    note:  "+230% YoY — supply-starved",
+  },
+  {
+    value: "$35/unit",
+    label: "USA price",
+    note:  "+146% YoY",
+  },
+  {
+    value: "4,500 t",
+    label: "India annual export",
+    note:  "Surging demand, capped supply",
+  },
+  {
+    value: "50–70%",
+    label: "Traditional mortality",
+    note:  "Every cycle, every farm",
+  },
+];
+
+const unitEconomics = [
+  {
+    label: "600-box module",
+    value: "~1 tonne / yr",
+    note:  "Single deployable unit. Validates economics before next step.",
+  },
+  {
+    label: "Cluster (5 modules / 3,000 boxes)",
+    value: "~5 tonnes / yr",
+    note:  "Standard SOP-driven deployment. Replicable, franchisable.",
+  },
+  {
+    label: "India target — 10% share",
+    value: "~452 tonnes / yr",
+    note:  "≈ 90 clusters. Hardware bootstraps SaaS.",
+  },
+  {
+    label: "Live export-grade price",
+    value: "₹1,200–1,600 / kg",
+    note:  "For 500g+ crab. Soft-shell carries a 3× premium.",
+  },
+];
+
+const useOfFunds = [
+  { pct: "35%", label: "600-Box Pilot",      detail: "Hardware + RAS" },
+  { pct: "25%", label: "IHMS Prototype",     detail: "Hatchery layer" },
+  { pct: "20%", label: "AquaOS + Data Infra", detail: "Software stack" },
+  { pct: "15%", label: "IP Filing",          detail: "4 patent families" },
+  { pct: "5%",  label: "Ops & Contingency",  detail: "Buffer" },
 ];
 
 export default function CapitalPage() {
@@ -247,13 +309,13 @@ export default function CapitalPage() {
         </div>
       </SectionWrapper>
 
-      {/* STAGED ROLLOUT */}
+      {/* COMMERCIAL PROGRESSION */}
       <SectionWrapper className="section-divider overflow-hidden">
 
         <SectionHeading
-          eyebrow="Staged Rollout"
-          title="From Pilot Infrastructure to Distributed Production Networks"
-          subtitle="Crabionics infrastructure is designed to scale through modular deployment and telemetry-linked operational learning. Stage 1 is current; Stage 2 is in active development; Stages 3 and 4 are long-term."
+          eyebrow="Commercial Progression"
+          title="From pilot validation to platform infrastructure"
+          subtitle="Each phase is sequenced, not simultaneous. Revenue mix and risk profile change with each step."
           align="center"
         />
 
@@ -274,7 +336,7 @@ export default function CapitalPage() {
                 </div>
 
                 <p className="mt-6 text-xs uppercase tracking-[0.16em] text-cyan-200">
-                  {item.phase}
+                  {item.phase} · {item.period}
                 </p>
 
                 <p className="mt-3 text-lg font-medium text-white">
@@ -284,9 +346,193 @@ export default function CapitalPage() {
                 <p className="mt-4 text-sm text-slate-400">
                   {item.detail}
                 </p>
+
+                <p className="mt-4 inline-flex rounded-full border border-cyan-400/20 bg-cyan-400/10 px-3 py-1 text-[10px] uppercase tracking-[0.16em] text-cyan-200">
+                  {item.revenue}
+                </p>
               </div>
             </GlassCard>
           ))}
+        </div>
+      </SectionWrapper>
+
+      {/* UNIT ECONOMICS */}
+      <SectionWrapper className="section-divider overflow-hidden">
+
+        <SectionHeading
+          eyebrow="Unit Economics"
+          title="Capital-efficient modular deployment"
+          subtitle="Each unit validates economics before the next scale step. The same logic as SaaS infrastructure, applied to biomass."
+          align="center"
+        />
+
+        <div className="mx-auto mt-20 grid max-w-6xl gap-6 md:grid-cols-2 xl:grid-cols-4">
+
+          {unitEconomics.map((item) => (
+            <GlassCard
+              key={item.label}
+              className="relative overflow-hidden p-8"
+            >
+
+              <div className="absolute right-[-20%] top-[-20%] h-[180px] w-[180px] rounded-full bg-cyan-400/10 blur-3xl" />
+
+              <div className="relative z-10">
+                <p className="text-xs uppercase tracking-[0.16em] text-cyan-200/80">
+                  {item.label}
+                </p>
+
+                <p className="mt-5 text-3xl font-semibold text-white">
+                  {item.value}
+                </p>
+
+                <p className="mt-4 text-sm text-slate-400">
+                  {item.note}
+                </p>
+              </div>
+            </GlassCard>
+          ))}
+        </div>
+      </SectionWrapper>
+
+      {/* MARKET CONDITIONS */}
+      <SectionWrapper className="section-divider overflow-hidden">
+
+        <SectionHeading
+          eyebrow="Market Conditions"
+          title="A premium export category that cannot supply itself"
+          subtitle="The bottleneck is not demand. It is supply architecture. That is what makes this a platform opportunity."
+          align="center"
+        />
+
+        <div className="mx-auto mt-20 grid max-w-6xl gap-6 md:grid-cols-2 xl:grid-cols-4">
+
+          {marketData.map((item) => (
+            <GlassCard
+              key={item.label}
+              className="p-8"
+            >
+              <p className="text-3xl font-semibold text-white">
+                {item.value}
+              </p>
+
+              <p className="mt-4 text-sm font-medium text-cyan-200">
+                {item.label}
+              </p>
+
+              <p className="mt-2 text-sm text-slate-400">
+                {item.note}
+              </p>
+            </GlassCard>
+          ))}
+        </div>
+
+        <p className="mx-auto mt-12 max-w-3xl text-center text-sm text-slate-400">
+          Shrimp has Aquabyte, Benchmark, Observe Technologies. Salmon has full
+          industrial infrastructure. Mud crab production architecture is
+          unclaimed — and Crabionics has a 2+ year field head start.
+        </p>
+      </SectionWrapper>
+
+      {/* THE ASK */}
+      <SectionWrapper className="section-divider overflow-hidden">
+
+        <SectionHeading
+          eyebrow="The Ask"
+          title="Pre-seed capital to execute validation"
+          subtitle="Not a concept. A deployment plan with clear milestone gates."
+          align="center"
+        />
+
+        <div className="mx-auto mt-20 grid max-w-6xl gap-6 lg:grid-cols-[1.2fr_1fr]">
+
+          {/* Round summary */}
+          <GlassCard className="relative overflow-hidden p-10">
+
+            <div className="absolute right-[-15%] top-[-15%] h-[260px] w-[260px] rounded-full bg-cyan-400/10 blur-3xl" />
+
+            <div className="relative z-10">
+
+              <p className="text-xs uppercase tracking-[0.18em] text-cyan-200">
+                Seeking pre-seed
+              </p>
+
+              <p className="mt-6 font-display text-5xl text-white lg:text-6xl">
+                ₹50L – ₹3 Cr
+              </p>
+
+              <p className="mt-4 text-sm text-slate-300">
+                18-month runway · Pre-validation pricing · BIRAC co-funded
+              </p>
+
+              <div className="mt-10">
+
+                <p className="text-xs uppercase tracking-[0.16em] text-cyan-200/80">
+                  Structure
+                </p>
+
+                <p className="mt-3 text-lg font-medium text-white">
+                  Flexible — CCD structure available
+                </p>
+
+                <p className="mt-2 text-sm text-slate-400">
+                  Valuation discussed on request. Terms align to strategic
+                  fit and validation milestones.
+                </p>
+              </div>
+            </div>
+          </GlassCard>
+
+          {/* 18-month outcome */}
+          <GlassCard className="p-10">
+
+            <p className="text-xs uppercase tracking-[0.18em] text-cyan-200">
+              18-month outcome
+            </p>
+
+            <div className="mt-8 space-y-4">
+
+              {[
+                "TRL-6 validated IHMS",
+                "First 600-box production dataset",
+                "AquaOS live on cluster",
+                "4 patent families filed",
+              ].map((item) => (
+                <div
+                  key={item}
+                  className="flex items-center gap-4 rounded-2xl border border-white/10 bg-white/[0.03] p-4"
+                >
+                  <div className="h-2 w-2 rounded-full bg-cyan-300" />
+                  <p className="text-sm text-slate-300">{item}</p>
+                </div>
+              ))}
+            </div>
+
+            <p className="mt-6 text-sm text-slate-400">
+              Clear inflection point for a milestone-gated Seed round.
+            </p>
+          </GlassCard>
+        </div>
+
+        {/* Use of funds */}
+        <div className="mx-auto mt-12 max-w-6xl">
+
+          <p className="text-center text-xs uppercase tracking-[0.22em] text-cyan-200/70">
+            Use of funds — 18 months
+          </p>
+
+          <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+
+            {useOfFunds.map((item) => (
+              <div
+                key={item.label}
+                className="rounded-2xl border border-white/10 bg-white/[0.03] p-6 text-center"
+              >
+                <p className="font-display text-3xl text-white">{item.pct}</p>
+                <p className="mt-3 text-sm font-medium text-white">{item.label}</p>
+                <p className="mt-1 text-xs text-slate-400">{item.detail}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </SectionWrapper>
 

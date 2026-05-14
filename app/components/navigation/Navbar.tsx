@@ -10,6 +10,7 @@ const navLinks = [
   { href: "/platform", label: "Platform" },
   { href: "/aquaos", label: "AquaOS" },
   { href: "/technology", label: "Technology" },
+  { href: "/team", label: "Team" },
   { href: "/capital", label: "Capital" },
 ];
 

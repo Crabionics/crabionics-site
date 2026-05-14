@@ -37,7 +37,7 @@ const layers = [
 
   {
     title: "CIN",
-    subtitle: "Crabionics Intelligence Network",
+    subtitle: "Crustacean Intelligence Network",
     description:
       "Cross-farm benchmarking, biological learning systems, and distributed operational intelligence.",
     status: "longterm" as const,

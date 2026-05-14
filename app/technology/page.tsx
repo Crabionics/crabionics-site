@@ -11,7 +11,7 @@ import SectionWrapper from "@/app/components/ui/SectionWrapper";
 export const metadata: Metadata = {
   title: "Technology — How It Works",
   description:
-    "How Crabionics works under the hood: modular RAS, telemetry, biological state inference, decision logic, and the Crabionics Intelligence Network.",
+    "How Crabionics works under the hood: modular RAS, telemetry, biological state inference, decision logic, and the Crustacean Intelligence Network.",
   alternates: { canonical: "/technology" },
   openGraph: {
     title: "Crabionics | How It Works",
@@ -307,7 +307,7 @@ export default function TechnologyPage() {
 
         <SectionHeading
           eyebrow="Stage 3 — Distributed Production Network"
-          title="The Crabionics Intelligence Network"
+          title="The Crustacean Intelligence Network"
           subtitle="As pilot sites and partner clusters come online, each contributes telemetry into a shared learning substrate. Live nodes feed real data today; pilot and planned nodes show the network's expansion path."
           align="center"
         />
