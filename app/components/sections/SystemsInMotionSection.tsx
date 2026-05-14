@@ -83,7 +83,6 @@ export default function SystemsInMotionSection() {
               <div className="tank-state state-optimal">Optimal oxygenation</div>
               <div className="tank-state state-alert">Load balancing in progress</div>
             </div>
-            <p className="mt-4 text-sm text-slate-600">Tank-state transitions with live water pulse effects.</p>
           </div>
 
           <div className="space-y-4">
@@ -103,7 +102,6 @@ export default function SystemsInMotionSection() {
             <span>Sensor mesh</span>
             <span>Inference engine</span>
           </div>
-          <p className="mt-4 text-sm text-slate-600">Scrolling architecture transitions and subtle dashboard interactions.</p>
         </div>
       </div>
     </section>

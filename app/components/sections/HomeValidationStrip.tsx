@@ -10,7 +10,7 @@ const recentMilestones = [
   {
     year: "2026",
     title: "BIRAC BIG Grant — 24th Call",
-    body:  "Awarded under BIRAC's Biotechnology Ignition Grant. First tranche disbursing.",
+    body:  "Awarded under BIRAC's Biotechnology Ignition Grant.",
   },
   {
     year: "2025",

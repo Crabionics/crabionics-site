@@ -26,8 +26,8 @@ export default function PressPage() {
         <div className="container-shell relative z-10 py-28 lg:py-36">
           <div className="max-w-5xl">
             <div className="inline-flex rounded-full border border-cyan-400/20 bg-cyan-400/10 px-4 py-2 text-xs uppercase tracking-[0.22em] text-cyan-200">Press</div>
-            <h1 className="mt-8 max-w-4xl">Media and communications resources</h1>
-            <p className="mt-8 max-w-3xl text-lg">For editorial features, industry briefings, and infrastructure-focused stories on aquaculture innovation, contact the team directly.</p>
+            <h1 className="mt-8 max-w-4xl">Press &amp; media</h1>
+            <p className="mt-8 max-w-3xl text-lg">For interviews, features, and industry briefings, reach out directly.</p>
           </div>
         </div>
       </section>

@@ -27,8 +27,8 @@ export default function CareersPage() {
         <div className="container-shell relative z-10 py-28 lg:py-36">
           <div className="max-w-5xl">
             <div className="inline-flex rounded-full border border-cyan-400/20 bg-cyan-400/10 px-4 py-2 text-xs uppercase tracking-[0.22em] text-cyan-200">Careers</div>
-            <h1 className="mt-8 max-w-4xl">Build core infrastructure for precision aquaculture</h1>
-            <p className="mt-8 max-w-3xl text-lg">We recruit for people who are excited by difficult systems problems, field execution, and long-horizon deep-tech development.</p>
+            <h1 className="mt-8 max-w-4xl">Work on hard, durable problems</h1>
+            <p className="mt-8 max-w-3xl text-lg">We hire people who like difficult systems problems, real field execution, and long-horizon deep-tech work.</p>
           </div>
         </div>
       </section>

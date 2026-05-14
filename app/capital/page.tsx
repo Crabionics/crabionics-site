@@ -28,7 +28,7 @@ const thesis = [
   {
     title: "Operational Intelligence Layer",
     description:
-      "AquaOS converts continuous telemetry into operational decisions. Every production cycle compounds into a structured biological intelligence dataset that gets harder to replicate over time.",
+      "AquaOS turns continuous telemetry into operational decisions. Every cycle adds to a dataset that gets harder to replicate over time.",
   },
   {
     title: "High-value Species Focus",
@@ -38,7 +38,7 @@ const thesis = [
   {
     title: "Modular Scalability",
     description:
-      "The production architecture is designed for distributed deployment across coastal infrastructure clusters — pilot units replicate without redesign.",
+      "Each unit replicates without redesign. Pilots scale into regional clusters by adding boxes, not by rebuilding.",
   },
   {
     title: "Closed-loop Systems",
@@ -87,7 +87,7 @@ const milestones = [
     year: "2026",
     title: "BIRAC BIG Grant — 24th Call",
     body:
-      "Awarded under BIRAC's Biotechnology Ignition Grant (24th call). First tranche disbursement under way for infrastructure execution.",
+      "Awarded under BIRAC's Biotechnology Ignition Grant (24th call) — 2026.",
   },
 ];
 
@@ -108,7 +108,7 @@ const validation = [
     org: "BIRAC BIG",
     role: "Biotechnology Industry Research Assistance Council",
     note:
-      "Biotechnology Ignition Grant — 24th call. Awarded 2026. First tranche disbursement in progress.",
+      "Biotechnology Ignition Grant — 24th call. Awarded 2026.",
   },
 ];
 

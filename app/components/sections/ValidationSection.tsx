@@ -37,7 +37,7 @@ const milestones = [
     year: "2026",
     title: "BIRAC BIG Grant — 24th Call",
     description:
-      "Awarded under BIRAC's Biotechnology Ignition Grant (24th call). First tranche disbursement in progress for infrastructure execution.",
+      "Awarded under BIRAC's Biotechnology Ignition Grant (24th call) — 2026.",
   },
 ];
 

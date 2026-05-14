@@ -61,9 +61,9 @@ export default function HomePlatformBrief() {
           </h2>
 
           <p className="mt-6 text-lg">
-            Crabionics is built bottom-up — physical infrastructure first,
-            then telemetry, then operational intelligence, then the network.
-            Each layer is at a different maturity stage and we say which is which.
+            Crabionics is built bottom-up — hardware first, then telemetry,
+            then control, then the network. Each layer is at a different
+            stage of maturity.
           </p>
         </div>
 

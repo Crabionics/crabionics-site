@@ -49,11 +49,12 @@ export default function AboutPage() {
               About
             </div>
 
-            <h1 className="mt-8 max-w-4xl">Engineering controlled crustacean production systems</h1>
+            <h1 className="mt-8 max-w-4xl">Engineering controlled crustacean production</h1>
 
             <p className="mt-8 max-w-3xl text-lg">
-              Crabionics is building an infrastructure-first aquaculture company focused on stability, biological control,
-              and long-term production intelligence for premium crustacean species.
+              We build the hardware and the control layer that makes mud crab
+              production predictable — and treat the data it generates as the
+              long-term moat.
             </p>
           </div>
         </div>
