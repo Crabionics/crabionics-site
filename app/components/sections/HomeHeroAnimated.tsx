@@ -43,6 +43,7 @@ export default function HomeHeroAnimated() {
 
         <div className="mt-5 flex flex-wrap justify-center gap-3">
           {[
+            "DPIIT Recognised Startup",
             "KIIT-TBI Incubated",
             "DST NIDHI PRAYAS Supported",
             "BIRAC BIG Grant Recipient",

@@ -36,14 +36,32 @@ const milestones = [
       "Expansion toward multi-system production architecture including hatchery, nursery, soft-shell, and RAS finishing systems.",
   },
   {
+    year: "Nov 2025",
+    title: "Crabionics Aquaculture Pvt. Ltd. Incorporated",
+    description:
+      "Incorporated as a Private Limited Company on 19 November 2025.",
+  },
+  {
     year: "2026",
     title: "BIRAC BIG Grant — 24th Call",
     description:
       "Awarded under BIRAC's Biotechnology Ignition Grant (24th call) — 2026.",
   },
+  {
+    year: "May 2026",
+    title: "DPIIT Startup Recognition",
+    description:
+      "Recognised by the Department for Promotion of Industry and Internal Trade, Government of India — Agriculture / Fisheries sector (Certificate No. DIPP261048).",
+  },
 ];
 
 const institutions = [
+  {
+    name: "DPIIT · Startup India",
+    role: "Recognised Startup",
+    logo: "/logos/dpiit-startup-india.png",
+    alt:  "DPIIT — Department for Promotion of Industry and Internal Trade",
+  },
   {
     name: "KIIT-TBI",
     role: "Incubation",
@@ -101,7 +119,7 @@ export default function ValidationSection() {
           Institutionally backed
         </p>
 
-        <div className="mt-6 grid gap-4 sm:grid-cols-3">
+        <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
 
           {institutions.map((item) => (
             <div

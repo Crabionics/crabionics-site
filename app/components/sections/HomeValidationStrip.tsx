@@ -3,6 +3,12 @@ import Link from "next/link";
 
 const institutions = [
   {
+    name:    "DPIIT · Startup India",
+    role:    "Recognised Startup",
+    logo:    "/logos/dpiit-startup-india.png",
+    alt:     "DPIIT — Department for Promotion of Industry and Internal Trade, Government of India",
+  },
+  {
     name:    "KIIT-TBI",
     role:    "Incubation",
     logo:    "/logos/kiit-tbi.png",
@@ -24,6 +30,11 @@ const institutions = [
 
 const recentMilestones = [
   {
+    year: "May 2026",
+    title: "DPIIT Recognition",
+    body:  "Government of India recognised Crabionics as a startup under Agriculture / Fisheries (DIPP261048).",
+  },
+  {
     year: "2026",
     title: "BIRAC BIG Grant — 24th Call",
     body:  "Awarded under BIRAC's Biotechnology Ignition Grant.",
@@ -32,11 +43,6 @@ const recentMilestones = [
     year: "2025",
     title: "Pilot Infrastructure Scaling",
     body:  "Expansion toward multi-system architecture: hatchery, nursery, soft-shell, RAS finishing.",
-  },
-  {
-    year: "2024",
-    title: "KIIT-TBI Incubation",
-    body:  "Incubated under KIIT Technology Business Incubator for commercialization and scaling.",
   },
 ];
 
@@ -62,7 +68,7 @@ export default function HomeValidationStrip() {
         </div>
 
         {/* LOGOS */}
-        <div className="mx-auto mt-12 grid max-w-4xl gap-4 sm:grid-cols-3">
+        <div className="mx-auto mt-12 grid max-w-5xl gap-4 sm:grid-cols-2 lg:grid-cols-4">
 
           {institutions.map((item) => (
             <div
