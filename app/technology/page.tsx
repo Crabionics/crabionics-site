@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 
 import CINNetworkMap from "@/app/components/diagrams/CINNetworkMap";
@@ -326,7 +327,7 @@ export default function TechnologyPage() {
         <SectionHeading
           eyebrow="Physical Layer in Practice"
           title="The Stack, Photographed"
-          subtitle="Photo placeholders below — swap with actual infrastructure and sensor images."
+          subtitle="Live infrastructure and sensor images from the deployment stack."
           align="center"
         />
 
@@ -351,18 +352,14 @@ export default function TechnologyPage() {
               className="overflow-hidden"
             >
 
-              <div className="flex aspect-[4/3] items-center justify-center border-b border-white/10 bg-white/[0.02] text-center">
+              <div className="relative aspect-[4/3] overflow-hidden border-b border-white/10 bg-white/[0.02]">
 
-                <div className="px-6">
-
-                  <p className="text-[10px] uppercase tracking-[0.22em] text-cyan-200/70">
-                    Photo placeholder
-                  </p>
-
-                  <p className="mt-3 font-mono text-xs text-slate-500">
-                    /public/photos/{item.file}
-                  </p>
-                </div>
+                <Image
+                  src={`/photos/${item.file}`}
+                  alt={item.caption}
+                  fill
+                  className="object-cover"
+                />
               </div>
 
               <p className="px-6 py-5 text-sm text-slate-300">
