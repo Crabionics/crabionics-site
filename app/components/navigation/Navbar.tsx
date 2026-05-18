@@ -67,8 +67,8 @@ export default function Navbar() {
             />
 
             <div className="leading-tight">
-              <p className="text-sm font-semibold tracking-tight text-white">
-                Crabionics Aquaculture
+              <p className="font-display text-2xl text-white">
+                Crabionics
               </p>
             </div>
           </Link>

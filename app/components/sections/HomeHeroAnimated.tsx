@@ -14,17 +14,7 @@ export default function HomeHeroAnimated() {
         className="font-display mx-auto max-w-5xl text-center text-slate-900"
         style={{ fontSize: "clamp(2.4rem, 6vw, 5.2rem)", lineHeight: 1.05 }}
       >
-        <span className="block text-balance" style={{ textWrap: "balance" }}>
-          Mud crab sells for{" "}
-          <span className="text-cyan-600">3&ndash;4x</span>
-          {" "}the price of shrimp.
-        </span>
-        <span
-          className="mt-3 block text-balance"
-          style={{ textWrap: "balance" }}
-        >
-          Unlike shrimp, no one has industrialized it.
-        </span>
+        Mud crab sells for <span className="text-cyan-600">3&ndash;4x</span> the price of shrimp. Unlike shrimp, no one has industrialized it.
       </h1>
 
       <div className="mx-auto mt-10 max-w-2xl">
