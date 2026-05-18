@@ -14,15 +14,15 @@ export default function HomeHeroAnimated() {
         className="font-display mx-auto max-w-5xl text-center text-slate-900"
         style={{ fontSize: "clamp(2.4rem, 6vw, 5.2rem)", lineHeight: 1.05 }}
       >
-        An industry the world eats from. Finally engineered.
+        Mud crab sells for 3&ndash;4x the price of shrimp. Unlike shrimp, no one has industrialized it.
       </h1>
 
       <div className="mx-auto mt-10 max-w-2xl">
         <p className="text-xl text-slate-600 sm:text-2xl">
-          We are not building a better farm.
+          India exports 4,500 tonnes a year &mdash; and still can&rsquo;t supply it reliably.
         </p>
         <p className="mt-3 text-xl font-semibold text-slate-900 sm:text-2xl">
-          We are building the production system this industry has never had.
+          We are not building a better farm. We are building the modular RAS and AquaOS that give processors a 365-day, export-grade supply chain instead of a seasonal gamble.
         </p>
       </div>
 
