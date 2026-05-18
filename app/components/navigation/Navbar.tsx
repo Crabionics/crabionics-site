@@ -66,8 +66,8 @@ export default function Navbar() {
               priority
             />
 
-            <div className="leading-tight">
-              <p className="font-display text-3xl text-white">
+            <div className="leading-none">
+              <p className="font-display text-4xl text-white">
                 Crabionics
               </p>
             </div>
