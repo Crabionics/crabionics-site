@@ -18,16 +18,16 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://crabionics.com"),
 
   title: {
-    default: "Crabionics | Production Architecture for Crustacean Aquaculture",
+    default: "Crabionics | Production Architecture for Mud Crab Aquaculture",
     template: "%s | Crabionics",
   },
 
   description:
-    "Crabionics builds the production architecture that makes industrial-scale crustacean aquaculture possible — modular RAS, AquaOS, telemetry, and closed-loop control.",
+    "Crabionics builds the production architecture that makes industrial-scale mud crab aquaculture possible — modular RAS, AquaOS, telemetry, and closed-loop control.",
 
   keywords: [
     "Crabionics",
-    "Crustacean Aquaculture",
+    "Mud Crab Aquaculture",
     "AquaOS",
     "Mud Crab Farming",
     "RAS Automation",
@@ -39,9 +39,9 @@ export const metadata: Metadata = {
   ],
 
   openGraph: {
-    title: "Crabionics | Production Architecture for Crustacean Aquaculture",
+    title: "Crabionics | Production Architecture for Mud Crab Aquaculture",
     description:
-      "The system that makes industrial-scale crustacean production possible.",
+      "The system that makes industrial-scale mud crab production possible.",
     url: "https://crabionics.com",
     siteName: "Crabionics",
     type: "website",

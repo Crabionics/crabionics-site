@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Crabionics Team",
     description:
-      "Meet the founders building the production architecture for crustacean aquaculture.",
+      "Meet the founders building the production architecture for mud crab aquaculture.",
     url: "https://crabionics.com/team",
     type: "website",
   },

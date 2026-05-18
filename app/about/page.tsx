@@ -8,7 +8,7 @@ import SectionWrapper from "@/app/components/ui/SectionWrapper";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Crabionics is building the production architecture for industrial-scale crustacean aquaculture — modular hardware, telemetry, and operational intelligence, integrated.",
+    "Crabionics is building the production architecture for industrial-scale mud crab aquaculture — modular hardware, telemetry, and operational intelligence, integrated.",
   alternates: { canonical: "/about" },
   openGraph: {
     title: "About Crabionics",
@@ -49,7 +49,7 @@ export default function AboutPage() {
               About
             </div>
 
-            <h1 className="mt-8 max-w-4xl">Engineering controlled crustacean production</h1>
+            <h1 className="mt-8 max-w-4xl">Engineering controlled mud crab production</h1>
 
             <p className="mt-8 max-w-3xl text-lg">
               We build the hardware and the control layer that makes mud crab

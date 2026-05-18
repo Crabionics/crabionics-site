@@ -9,13 +9,13 @@ import HomeHeroAnimated from "@/app/components/sections/HomeHeroAnimated";
 const problems = [
   {
     lead: "Cannibalism",
-    title: "Crabs kill each other",
-    text: "Pack them together and the strong ones kill the weak ones — especially during molt. Entire batches vanish before harvest.",
+    title: "Mud crabs kill each other",
+    text: "Pack mud crabs into a shared pond and the strong ones tear the soft post-molt crabs apart within hours. Entire batches vanish before harvest. The industry has tried isolation boxes for years — never with the per-animal control to make them work at production scale.",
   },
   {
     lead: "Vulnerability window",
     title: "Molt is a blind spot",
-    text: "For roughly a day after molting, a crab is defenseless. Without per-animal visibility you only learn it happened when the animal is already gone.",
+    text: "A mud crab molts every few weeks to grow — and for the day or so the new shell takes to harden, it is defenseless. Without per-animal visibility, you only learn the molt happened when the crab is already gone.",
   },
   {
     lead: "Environmental drift",
@@ -25,7 +25,7 @@ const problems = [
   {
     lead: "No causality",
     title: "Nothing is tracked individually",
-    text: "Traditional ponds give one number at harvest. No growth history, no molt log, no link between an action and an outcome — so nothing improves cycle to cycle.",
+    text: "A traditional mud crab pond gives you one number at harvest. No growth history, no molt log, no link between an action and an outcome — so nothing improves cycle to cycle.",
   },
 ];
 

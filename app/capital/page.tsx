@@ -9,7 +9,7 @@ import SectionWrapper from "@/app/components/ui/SectionWrapper";
 export const metadata: Metadata = {
   title: "Capital — Investment Thesis",
   description:
-    "Crabionics is building the production architecture for industrial-scale crustacean aquaculture. Institutionally backed by KIIT-TBI, DST NIDHI PRAYAS, and BIRAC BIG.",
+    "Crabionics is building the production architecture for industrial-scale mud crab aquaculture. Institutionally backed by KIIT-TBI, DST NIDHI PRAYAS, and BIRAC BIG.",
   alternates: { canonical: "/capital" },
   openGraph: {
     title: "Crabionics | Investment Thesis",

@@ -35,7 +35,7 @@ const roadmap = [
     phase: "Phase 05",
     title: "Global Infrastructure Layer",
     description:
-      "Scalable precision crustacean production infrastructure for export and food systems.",
+      "Scalable precision mud crab production infrastructure for export and food systems.",
   },
 ];
 

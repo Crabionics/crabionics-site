@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Crabionics | How It Works",
     description:
-      "Six layers, one closed loop — the technology stack behind controlled crustacean production.",
+      "Six layers, one closed loop — the technology stack behind controlled mud crab production.",
     url: "https://crabionics.com/technology",
     type: "website",
   },

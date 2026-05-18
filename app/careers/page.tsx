@@ -8,7 +8,7 @@ import SectionWrapper from "@/app/components/ui/SectionWrapper";
 export const metadata: Metadata = {
   title: "Careers",
   description:
-    "Join Crabionics to help build the production architecture for crustacean aquaculture — across systems engineering, operations, and biology-led modeling.",
+    "Join Crabionics to help build the production architecture for mud crab aquaculture — across systems engineering, operations, and biology-led modeling.",
   alternates: { canonical: "/careers" },
   openGraph: {
     title: "Careers at Crabionics",

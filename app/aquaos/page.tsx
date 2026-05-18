@@ -10,12 +10,12 @@ import SectionWrapper from "@/app/components/ui/SectionWrapper";
 export const metadata: Metadata = {
   title: "AquaOS — The Control Layer",
   description:
-    "AquaOS coordinates telemetry, biological state inference, decision logic, and closed-loop response — the operating layer for controlled crustacean production.",
+    "AquaOS coordinates telemetry, biological state inference, decision logic, and closed-loop response — the operating layer for controlled mud crab production.",
   alternates: { canonical: "/aquaos" },
   openGraph: {
     title: "Crabionics AquaOS | The Control Layer",
     description:
-      "Sensor → State → Decision → Action. The operating layer for closed-loop crustacean production.",
+      "Sensor → State → Decision → Action. The operating layer for closed-loop mud crab production.",
     url: "https://crabionics.com/aquaos",
     type: "website",
   },

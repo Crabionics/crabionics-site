@@ -86,7 +86,7 @@ export default function Footer() {
             {/* TEXT */}
             <p className="mt-10 max-w-xl text-lg leading-relaxed text-slate-400">
               Building the system that makes industrial-scale
-              crustacean production possible — modular RAS,
+              mud crab production possible — modular RAS,
               AquaOS, telemetry, and closed-loop control.
             </p>
 
@@ -198,7 +198,7 @@ export default function Footer() {
           <div className="flex flex-wrap items-center gap-4">
 
             <p>
-              Production Architecture for Crustacean Aquaculture
+              Production Architecture for Mud Crab Aquaculture
             </p>
 
             <div className="flex items-center gap-4">

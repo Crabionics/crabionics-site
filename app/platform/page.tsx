@@ -8,7 +8,7 @@ import SectionWrapper from "@/app/components/ui/SectionWrapper";
 export const metadata: Metadata = {
   title: "Platform — The Hardware",
   description:
-    "Modular RAS, individual isolation, telemetry nodes, and automation — the physical layer of Crabionics crustacean production.",
+    "Modular RAS, individual isolation, telemetry nodes, and automation — the physical layer of Crabionics mud crab production.",
   alternates: { canonical: "/platform" },
   openGraph: {
     title: "Crabionics | The Hardware",
@@ -104,7 +104,7 @@ export default function PlatformPage() {
 
             {/* TITLE */}
             <h1 className="mt-8 max-w-4xl">
-              The physical layer of controlled crustacean production
+              The physical layer of controlled mud crab production
             </h1>
 
             {/* TEXT */}
