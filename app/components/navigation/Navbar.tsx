@@ -67,7 +67,7 @@ export default function Navbar() {
             />
 
             <div className="leading-tight">
-              <p className="font-display text-2xl text-white">
+              <p className="font-display text-3xl text-white">
                 Crabionics
               </p>
             </div>

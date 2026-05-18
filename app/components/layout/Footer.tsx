@@ -73,8 +73,8 @@ export default function Footer() {
 
               <div>
 
-                <p className="text-2xl font-semibold text-white">
-                  Crabionics Aquaculture
+                <p className="font-display text-4xl text-white">
+                  Crabionics
                 </p>
 
                 <p className="mt-2 text-sm uppercase tracking-[0.28em] text-slate-400">
