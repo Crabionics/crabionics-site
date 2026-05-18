@@ -140,28 +140,28 @@ const phases = [
     phase:   "Phase A",
     period:  "2026",
     label:   "Pilot + Validation",
-    detail:  "600-box RAS deployment at KIIT-TBI. Prove survival and unit economics. Generate the first production dataset. Validate SOPs at controlled scale.",
-    revenue: "Validation. No commercial revenue — by design.",
+    detail:  "600-box RAS at KIIT-TBI. Prove survival and unit economics. Validate SOPs at controlled scale.",
+    revenue: "No commercial revenue — by design.",
   },
   {
     phase:   "Phase B",
     period:  "2027",
     label:   "Deployment Services",
-    detail:  "Deploy for progressive farms and processors. Cluster partnerships under an asset-light model. First recurring revenue per deployed cluster.",
+    detail:  "Deploy for progressive farms. Cluster partnerships under an asset-light model. First recurring revenue.",
     revenue: "Setup fees + monitoring contracts.",
   },
   {
     phase:   "Phase C",
     period:  "2027–28",
     label:   "Productization",
-    detail:  "Standard CrabPod™ unit sales. AquaOS™ SaaS subscription per farm. Hatchery module licensing. Deployment templates — franchise model.",
+    detail:  "CrabPod™ unit sales. AquaOS™ SaaS per farm. Hatchery module licensing. Franchise deployment templates.",
     revenue: "Hardware + recurring SaaS.",
   },
   {
     phase:   "Phase D",
     period:  "2028+",
     label:   "Intelligence Network",
-    detail:  "CIN predictive models across farms. Supply forecasting and mortality prediction. Carbon traceability (CCI). Financing / credit-scoring potential.",
+    detail:  "CIN predictive models across farms. Supply forecasting, mortality prediction, and carbon traceability.",
     revenue: "Platform licensing + data network.",
   },
 ];
@@ -347,9 +347,11 @@ export default function CapitalPage() {
                   {item.detail}
                 </p>
 
-                <p className="mt-4 inline-flex rounded-full border border-cyan-400/20 bg-cyan-400/10 px-3 py-1 text-[10px] uppercase tracking-[0.16em] text-cyan-200">
-                  {item.revenue}
-                </p>
+                <div className="mt-5 rounded-lg border border-cyan-400/20 bg-cyan-400/[0.08] px-3 py-2">
+                  <p className="text-[10px] uppercase tracking-[0.16em] text-cyan-200">
+                    {item.revenue}
+                  </p>
+                </div>
               </div>
             </GlassCard>
           ))}
@@ -623,64 +625,6 @@ export default function CapitalPage() {
               </div>
             ))}
           </div>
-        </div>
-      </SectionWrapper>
-
-      {/* INFRASTRUCTURE EVIDENCE — PHOTO STRIP */}
-      <SectionWrapper className="section-divider">
-
-        <SectionHeading
-          eyebrow="Infrastructure Evidence"
-          title="Real Work, Photographed"
-          subtitle="Replace the placeholders below with current infrastructure, lab, and pilot photographs."
-          align="center"
-        />
-
-        <div className="mt-20 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-
-          {[
-            {
-              caption: "KIIT-TBI office setup — Crabionics infrastructure base of operations.",
-              file: "kiit-office.jpg",
-            },
-            {
-              caption: "Modular box rack / RAS plumbing under development at the pilot site.",
-              file: "ras-plumbing.jpg",
-            },
-            {
-              caption: "Sensor calibration and telemetry node setup for AquaOS instrumentation.",
-              file: "sensor-setup.jpg",
-            },
-            {
-              caption: "Current pilot infrastructure progress — grow-out and isolation systems.",
-              file: "pilot-setup.jpg",
-            },
-          ].map((item) => (
-            <GlassCard
-              key={item.file}
-              className="overflow-hidden"
-            >
-
-              {/* PHOTO PLACEHOLDER */}
-              <div className="flex aspect-[4/3] items-center justify-center border-b border-white/10 bg-white/[0.02] text-center">
-
-                <div className="px-6">
-
-                  <p className="text-[10px] uppercase tracking-[0.22em] text-cyan-200/70">
-                    Photo placeholder
-                  </p>
-
-                  <p className="mt-3 font-mono text-xs text-slate-500">
-                    /public/photos/{item.file}
-                  </p>
-                </div>
-              </div>
-
-              <p className="px-6 py-5 text-sm text-slate-300">
-                {item.caption}
-              </p>
-            </GlassCard>
-          ))}
         </div>
       </SectionWrapper>
 
