@@ -20,7 +20,7 @@ const layers = [
     description: "Telemetry aggregation, biological state, decision logic.",
     status: "Stage 2 · Developing",
     color: "cyan",
-    href: "/aquaos",
+    href: "/platform",
   },
   {
     title: "HatchSync",
@@ -34,7 +34,7 @@ const layers = [
     description: "Cross-farm benchmarking and distributed learning.",
     status: "Stage 3 · Long-term",
     color: "slate",
-    href: "/technology",
+    href: "/platform",
   },
 ] as const;
 
@@ -96,19 +96,11 @@ export default function HomePlatformBrief() {
           ))}
         </div>
 
-        {/* CTAs */}
-        <div className="mt-12 flex flex-wrap items-center justify-center gap-4">
+        {/* CTA */}
+        <div className="mt-12 flex justify-center">
 
           <Link href="/platform" className="primary-button">
-            Platform Infrastructure
-          </Link>
-
-          <Link href="/aquaos" className="secondary-button">
-            Explore AquaOS
-          </Link>
-
-          <Link href="/technology" className="secondary-button">
-            Technology Stack
+            Explore Platform &amp; Technology
           </Link>
         </div>
       </div>

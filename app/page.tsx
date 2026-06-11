@@ -368,7 +368,7 @@ export default function HomePage() {
           <div className="mt-12">
 
             <Link href="/contact" className="primary-button">
-              Contact founder
+              Talk to the founders
             </Link>
           </div>
         </div>

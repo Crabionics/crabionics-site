@@ -3,18 +3,8 @@ import Link from "next/link";
 
 const platformLinks = [
   {
-    label: "Platform",
+    label: "Platform & Technology",
     href: "/platform",
-  },
-
-  {
-    label: "AquaOS",
-    href: "/aquaos",
-  },
-
-  {
-    label: "Technology",
-    href: "/technology",
   },
 
   {
@@ -94,8 +84,8 @@ export default function Footer() {
             <div className="mt-10 flex flex-wrap gap-3">
 
               {[
-                { label: "AquaOS Active",      tone: "green" as const },
-                { label: "Closed-loop Control", tone: "ocean" as const },
+                { label: "AquaOS · In development", tone: "ocean" as const },
+                { label: "Closed-loop architecture", tone: "ocean" as const },
               ].map((item) => (
                 <div
                   key={item.label}

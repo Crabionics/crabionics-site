@@ -46,7 +46,7 @@ export default function ContactPage() {
         {/* GLOW */}
         <div className="absolute left-[-10%] top-[-20%] h-[420px] w-[420px] rounded-full bg-cyan-400/10 blur-3xl" />
 
-        <div className="container-shell relative z-10 py-28 lg:py-36">
+        <div className="container-shell relative z-10 py-20 lg:py-28">
 
           <div className="max-w-5xl">
 
@@ -202,21 +202,14 @@ export default function ContactPage() {
             href="/platform"
             className="primary-button"
           >
-            Platform Infrastructure
+            Platform &amp; Technology
           </Link>
 
           <Link
-            href="/aquaos"
+            href="/capital"
             className="secondary-button"
           >
-            Explore AquaOS
-          </Link>
-
-          <Link
-            href="/technology"
-            className="secondary-button"
-          >
-            Technology Architecture
+            Investor brief
           </Link>
         </div>
       </SectionWrapper>

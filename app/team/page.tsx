@@ -65,7 +65,7 @@ export default function TeamPage() {
 
         <div className="absolute left-[-10%] top-[-20%] h-[420px] w-[420px] rounded-full bg-cyan-400/10 blur-3xl" />
 
-        <div className="container-shell relative z-10 py-28 lg:py-36">
+        <div className="container-shell relative z-10 py-20 lg:py-28">
 
           <div className="max-w-5xl">
 
@@ -215,8 +215,8 @@ export default function TeamPage() {
               </p>
 
               <p className="mt-6 max-w-2xl text-lg">
-                The 600-box prototype at KIIT-TBI exists because we already know where
-                the system breaks.
+                The 600-box controlled-validation pilot at KIIT-TBI exists because we
+                already know where the system breaks.
               </p>
             </div>
 
@@ -229,14 +229,14 @@ export default function TeamPage() {
                   note:  "Odisha and Andhra Pradesh",
                 },
                 {
-                  label: "Pilot scale validated",
+                  label: "Field R&D scale",
                   value: "1,000 boxes",
-                  note:  "Odisha field operations, 2023–25",
+                  note:  "Odisha operations, 2023–25",
                 },
                 {
-                  label: "Current pilot",
+                  label: "Controlled-validation pilot",
                   value: "600 boxes",
-                  note:  "KIIT-TBI lab, prototype active",
+                  note:  "KIIT-TBI — in progress",
                 },
                 {
                   label: "Stack ownership",
@@ -289,7 +289,7 @@ export default function TeamPage() {
             <div className="flex flex-col gap-4 sm:flex-row lg:flex-col">
 
               <Link href="/contact" className="primary-button">
-                Contact founders
+                Talk to the founders
               </Link>
 
               <Link href="/capital" className="secondary-button">

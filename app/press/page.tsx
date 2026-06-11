@@ -23,7 +23,7 @@ export default function PressPage() {
     <main className="relative overflow-hidden">
       <section className="relative overflow-hidden border-b border-white/10">
         <div className="absolute left-[-10%] top-[-20%] h-[420px] w-[420px] rounded-full bg-cyan-400/10 blur-3xl" />
-        <div className="container-shell relative z-10 py-28 lg:py-36">
+        <div className="container-shell relative z-10 py-20 lg:py-28">
           <div className="max-w-5xl">
             <div className="inline-flex rounded-full border border-cyan-400/20 bg-cyan-400/10 px-4 py-2 text-xs uppercase tracking-[0.22em] text-cyan-200">Press</div>
             <h1 className="mt-8 max-w-4xl">Press &amp; media</h1>

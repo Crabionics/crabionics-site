@@ -229,7 +229,7 @@ export default function CapitalPage() {
 
         <div className="absolute right-[-10%] top-[-20%] h-[420px] w-[420px] rounded-full bg-cyan-400/10 blur-3xl" />
 
-        <div className="container-shell relative z-10 py-28 lg:py-36">
+        <div className="container-shell relative z-10 py-20 lg:py-28">
 
           <div className="max-w-5xl">
 
@@ -662,14 +662,14 @@ export default function CapitalPage() {
                 href="/contact"
                 className="primary-button"
               >
-                Contact Founder
+                Talk to the founders
               </Link>
 
               <Link
-                href="/technology"
+                href="/platform"
                 className="secondary-button"
               >
-                Explore Technology
+                Platform &amp; Technology
               </Link>
             </div>
           </div>
