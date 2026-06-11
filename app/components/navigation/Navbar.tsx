@@ -61,19 +61,20 @@ export default function Navbar() {
           {/* LEFT */}
           <Link
             href="/"
-            className="relative z-50 flex items-center gap-3"
+            className="relative z-50 flex items-center gap-2.5"
           >
             <Image
               src="/logo.png"
               alt="Crabionics"
-              width={36}
-              height={36}
+              width={44}
+              height={44}
               priority
+              className="h-11 w-11"
             />
 
             <div className="leading-none">
               <p
-                className={`font-display text-4xl font-semibold tracking-tight transition-colors ${
+                className={`text-[1.7rem] font-extrabold tracking-[-0.02em] transition-colors ${
                   onLight ? "text-slate-900" : "text-white"
                 }`}
               >

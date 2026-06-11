@@ -5,6 +5,23 @@ import HomeArchitectureMap from "@/app/components/diagrams/HomeArchitectureMap";
 import HomePlatformBrief from "@/app/components/sections/HomePlatformBrief";
 import HomeValidationStrip from "@/app/components/sections/HomeValidationStrip";
 import HomeHeroAnimated from "@/app/components/sections/HomeHeroAnimated";
+import {
+  IconChip,
+  IconDrop,
+  IconGlobe,
+  IconLeaf,
+  IconNetwork,
+  IconWifi,
+} from "@/app/components/ui/Icons";
+
+const features = [
+  { icon: IconDrop,    title: "Integrated RAS",                note: "Modular & Scalable" },
+  { icon: IconWifi,    title: "Telemetry-ready Infrastructure", note: "Sensors across the system" },
+  { icon: IconChip,    title: "AquaOS Control Architecture",    note: "Automate & Optimize" },
+  { icon: IconNetwork, title: "CIN Intelligence Layer",         note: "In development" },
+  { icon: IconLeaf,    title: "Designed for Sustainability",    note: "Water · Carbon · Mangroves" },
+  { icon: IconGlobe,   title: "Built for Scale",                note: "Processors · Global Markets" },
+];
 
 const problems = [
   {
@@ -34,43 +51,92 @@ export default function HomePage() {
     <main className="relative overflow-hidden">
 
       {/* ===========================================================
-           HERO — light, centered, serif H1
+           HERO — full-bleed infrastructure image composition
          =========================================================== */}
-      <section className="section-light relative overflow-hidden">
+      <section className="relative overflow-hidden">
 
-        {/* decorative glows */}
-        <div className="pointer-events-none absolute right-[-20%] top-[-15%] h-[520px] w-[520px] rounded-full bg-cyan-300/15 blur-3xl" />
-        <div className="pointer-events-none absolute left-[-15%] bottom-[-30%] h-[460px] w-[460px] rounded-full bg-teal-300/12 blur-3xl" />
+        {/* background image + legibility scrims */}
+        <div className="absolute inset-0">
+          <Image
+            src="/infrastructure.png"
+            alt="Crabionics modular RAS grow-out and AquaOS-instrumented infrastructure on the coast"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/85 to-white/20 sm:to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-white/50 via-transparent to-white/15" />
+        </div>
 
-        <div className="container-shell relative z-10 py-24 text-center lg:py-36">
+        <div className="container-shell relative z-10 pt-28 pb-16 lg:pt-36 lg:pb-24">
 
           <HomeHeroAnimated />
         </div>
       </section>
 
       {/* ===========================================================
-           HERO IMAGE STRIP — wide, no caption
+           FEATURE BAR — full-width dark
          =========================================================== */}
-      <section className="section-light relative">
+      <section className="relative bg-[#04091a]">
 
-        <div className="container-shell pb-16">
+        <div className="container-shell py-6 lg:py-7">
 
-          <div className="relative overflow-hidden rounded-3xl border border-slate-200 shadow-[0_30px_60px_-30px_rgba(15,23,42,0.25)]">
+          <div className="grid grid-cols-2 gap-x-6 gap-y-6 sm:grid-cols-3 lg:grid-cols-6">
 
-            <div className="relative aspect-[16/9] w-full">
+            {features.map((f) => {
+              const Icon = f.icon;
+              return (
+                <div key={f.title} className="flex items-start gap-3">
+                  <span className="mt-0.5 shrink-0 text-cyan-300">
+                    <Icon className="h-5 w-5" />
+                  </span>
+                  <div className="min-w-0">
+                    <p className="text-sm font-semibold leading-tight text-white">
+                      {f.title}
+                    </p>
+                    <p className="mt-1 text-xs text-slate-400">{f.note}</p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
 
-              <Image
-                src="/infrastructure.png"
-                alt="Crabionics modular grow-out and RAS hardware"
-                fill
-                priority
-                sizes="(min-width: 1280px) 1200px, 100vw"
-                className="object-cover"
-              />
+      {/* ===========================================================
+           ARCHITECTURE MAP — dark, the signature visual moment
+         =========================================================== */}
+      <section className="relative overflow-hidden section-padding">
 
-              {/* Subtle vignette at the edges */}
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-white/40 via-transparent to-white/20" />
-            </div>
+        {/* dark backdrop on top of the global background — reinforces darkness */}
+        <div className="pointer-events-none absolute inset-0 bg-[#04091a]" />
+
+        <div className="pointer-events-none absolute left-1/2 top-1/2 h-[700px] w-[700px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-400/[0.08] blur-3xl" />
+
+        <div className="container-shell relative z-10">
+
+          <div className="mx-auto max-w-3xl text-center">
+
+            <p className="text-xs uppercase tracking-[0.24em] text-cyan-300">
+              The architecture
+            </p>
+
+            <h2 className="mt-5 text-white">
+              From biological systems to <span className="font-display italic text-cyan-200">market outcomes.</span>
+            </h2>
+
+            <p className="mt-6 text-lg text-slate-300">
+              One system, four layers: modular RAS on the floor, AquaOS turning signal
+              into decisions, a CIN learning layer in development, and the market
+              outcomes it all drives. Data flows up; control and feedback flow back
+              down. The proven layer operates in R&amp;D today; the control and
+              intelligence layers are being built.
+            </p>
+          </div>
+
+          <div className="mt-16">
+            <HomeArchitectureMap />
           </div>
         </div>
       </section>
@@ -204,42 +270,6 @@ export default function HomePage() {
           <p className="mx-auto mt-12 max-w-3xl text-center text-lg font-medium text-slate-700">
             Crabionics converts biological uncertainty into repeatable production.
           </p>
-        </div>
-      </section>
-
-      {/* ===========================================================
-           ARCHITECTURE MAP — dark, the signature visual moment
-         =========================================================== */}
-      <section className="relative overflow-hidden section-padding">
-
-        {/* dark backdrop on top of the global background — reinforces darkness */}
-        <div className="pointer-events-none absolute inset-0 bg-[#04091a]" />
-
-        <div className="pointer-events-none absolute left-1/2 top-1/2 h-[700px] w-[700px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-400/[0.08] blur-3xl" />
-
-        <div className="container-shell relative z-10">
-
-          <div className="mx-auto max-w-3xl text-center">
-
-            <p className="text-xs uppercase tracking-[0.24em] text-cyan-300">
-              The architecture
-            </p>
-
-            <h2 className="mt-5 text-white">
-              Four layers. <span className="font-display italic text-cyan-200">One closed loop.</span>
-            </h2>
-
-            <p className="mt-6 text-lg text-slate-300">
-              Hardware on the floor, telemetry above it, AquaOS turning signal into
-              decisions, and a learning network on top — data flows up, intelligence
-              feeds back. The proven layers operate in R&amp;D today; the control and
-              network layers are being built.
-            </p>
-          </div>
-
-          <div className="mt-16">
-            <HomeArchitectureMap />
-          </div>
         </div>
       </section>
 
