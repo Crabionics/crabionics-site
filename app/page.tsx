@@ -53,9 +53,9 @@ export default function HomePage() {
       {/* ===========================================================
            HERO — full-bleed infrastructure image composition
          =========================================================== */}
-      <section className="relative overflow-hidden">
+      <section className="section-light relative -mt-20 overflow-hidden">
 
-        {/* background image + legibility scrims */}
+        {/* background image + legibility scrims (stronger veil on mobile) */}
         <div className="absolute inset-0">
           <Image
             src="/infrastructure.png"
@@ -65,11 +65,11 @@ export default function HomePage() {
             sizes="100vw"
             className="object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/85 to-white/20 sm:to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-white/50 via-transparent to-white/15" />
+          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/85 to-white/55 lg:to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-white/75 via-white/15 to-transparent lg:from-white/55" />
         </div>
 
-        <div className="container-shell relative z-10 pt-28 pb-16 lg:pt-36 lg:pb-24">
+        <div className="container-shell relative z-10 pt-28 pb-14 lg:pt-40 lg:pb-24">
 
           <HomeHeroAnimated />
         </div>
