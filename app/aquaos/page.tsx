@@ -109,10 +109,10 @@ export default function AquaOSPage() {
 
             {/* TEXT */}
             <p className="mt-8 max-w-3xl text-lg">
-              AquaOS coordinates telemetry, biological signals,
-              hardware response, and operator workflows into one
-              control surface — so every action is logged, every
-              outcome is traceable, and every cycle gets sharper.
+              AquaOS is the control layer Crabionics is building to coordinate
+              telemetry, biological signals, hardware response, and operator
+              workflows into one control surface — so every action is logged,
+              every outcome is traceable, and every cycle gets sharper.
             </p>
           </div>
         </div>
@@ -171,7 +171,7 @@ export default function AquaOSPage() {
         <SectionHeading
           eyebrow="Telemetry Infrastructure"
           title="Unified Operational Visibility"
-          subtitle="Environmental conditions, infrastructure systems, and biological signals are synchronized into one operational interface."
+          subtitle="Interface preview. Environmental conditions, infrastructure systems, and biological signals are designed to synchronize into one operational interface."
           align="center"
         />
 
@@ -188,20 +188,20 @@ export default function AquaOSPage() {
               <div>
 
                 <p className="text-lg font-semibold text-white">
-                  AquaOS Live Infrastructure
+                  AquaOS Interface — Concept Preview
                 </p>
 
                 <p className="mt-2 text-sm text-slate-400">
-                  Closed-loop biological telemetry systems
+                  Closed-loop biological telemetry — design mockup
                 </p>
               </div>
 
-              <div className="inline-flex items-center gap-3 rounded-full border border-emerald-400/20 bg-emerald-400/10 px-4 py-2">
+              <div className="inline-flex items-center gap-3 rounded-full border border-cyan-400/20 bg-cyan-400/10 px-4 py-2">
 
-                <span aria-hidden="true" className="h-2 w-2 rounded-full bg-emerald-400" />
+                <span aria-hidden="true" className="h-2 w-2 rounded-full bg-cyan-400" />
 
-                <span className="text-xs text-emerald-300">
-                  Operational
+                <span className="text-xs text-cyan-300">
+                  In development
                 </span>
               </div>
             </div>
@@ -220,7 +220,7 @@ export default function AquaOSPage() {
                 <li
                   key={item}
                   className="rounded-2xl border border-white/10 bg-white/[0.03] p-5"
-                  aria-label={`${item}: Active synchronization`}
+                  aria-label={`${item}: planned signal flow`}
                 >
 
                   <div className="flex items-center justify-between">
@@ -229,7 +229,7 @@ export default function AquaOSPage() {
                       {item}
                     </p>
 
-                    <span aria-hidden="true" className="h-2 w-2 rounded-full bg-emerald-400" />
+                    <span aria-hidden="true" className="h-2 w-2 rounded-full bg-cyan-400" />
                   </div>
 
                   <div className="mt-5 h-2 overflow-hidden rounded-full bg-white/5">
@@ -238,7 +238,7 @@ export default function AquaOSPage() {
                   </div>
 
                   <p className="mt-4 text-xs text-slate-400">
-                    Active synchronization
+                    Designed signal flow
                   </p>
                 </li>
               ))}

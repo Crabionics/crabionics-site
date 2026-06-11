@@ -10,13 +10,13 @@ type Node = {
 
 /** Satellite nodes around the central CIN hub. */
 const nodes: Node[] = [
-  { id: "n1", label: "Pilot Site — KIIT-TBI",  angle:  20, reach: 0.95, status: "live"    },
+  { id: "n1", label: "R&D Site — KIIT-TBI",    angle:  20, reach: 0.95, status: "live"    },
   { id: "n2", label: "Hatchery Node",          angle:  70, reach: 0.85, status: "pilot"   },
   { id: "n3", label: "Nursery Cluster",        angle: 120, reach: 1.0,  status: "pilot"   },
   { id: "n4", label: "Soft-shell Unit",        angle: 165, reach: 0.78, status: "planned" },
   { id: "n5", label: "Grow-out Cluster A",     angle: 210, reach: 0.92, status: "planned" },
   { id: "n6", label: "Coastal Cluster B",      angle: 250, reach: 1.0,  status: "planned" },
-  { id: "n7", label: "Telemetry Edge Node",    angle: 295, reach: 0.82, status: "live"    },
+  { id: "n7", label: "Telemetry Edge Node",    angle: 295, reach: 0.82, status: "pilot"   },
   { id: "n8", label: "Benchmark Partner",      angle: 335, reach: 0.96, status: "planned" },
 ];
 
@@ -191,9 +191,9 @@ export default function CINNetworkMap() {
       {/* Legend */}
       <g transform={`translate(${WIDTH - 30} ${HEIGHT - 80})`}>
         {[
-          { label: "Live",    color: statusColor.live    },
-          { label: "Pilot",   color: statusColor.pilot   },
-          { label: "Planned", color: statusColor.planned },
+          { label: "Active today",  color: statusColor.live    },
+          { label: "Pilot (build)", color: statusColor.pilot   },
+          { label: "Planned",       color: statusColor.planned },
         ].map((item, i) => (
           <g key={item.label} transform={`translate(0 ${i * 22})`}>
             <circle cx={-8} cy={0} r="5" fill={item.color} />

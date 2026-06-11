@@ -185,7 +185,8 @@ export default function ControlLoop() {
         </div>
 
         <p className="mt-6 text-center text-sm text-slate-400">
-          This is not monitoring. This is closed-loop biological control.
+          This is the closed-loop biological control AquaOS is being built to run —
+          not just monitoring.
         </p>
       </div>
     </section>

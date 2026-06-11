@@ -106,6 +106,15 @@ const stages = [
   },
 ];
 
+const controlStack = [
+  { step: "01", label: "Manual logging",   note: "Pen-and-paper records on the R&D floor." },
+  { step: "02", label: "Spreadsheets",     note: "First structured per-animal data." },
+  { step: "03", label: "AppSheet",         note: "Mobile capture for field operators." },
+  { step: "04", label: "Salesforce",       note: "Operational records and process discipline." },
+  { step: "05", label: "Telemetry",        note: "Continuous environmental + biological signal capture." },
+  { step: "06", label: "AquaOS (concept)", note: "The control layer being built on top of it all." },
+];
+
 const coreSystems = [
   {
     title: "Molt Timing Intelligence",
@@ -270,6 +279,42 @@ export default function TechnologyPage() {
         </div>
       </SectionWrapper>
 
+      {/* CONTROL-STACK EVOLUTION — origin story */}
+      <SectionWrapper className="section-divider">
+
+        <SectionHeading
+          eyebrow="How the Control Stack Evolved"
+          title="The Platform Came From Operational Pain, Not Software Ambition"
+          subtitle="Each tool was adopted to solve a real problem on the R&D floor. AquaOS is the next step in that line — not a clean-sheet idea."
+          align="center"
+        />
+
+        <div className="mx-auto mt-20 max-w-5xl">
+
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+
+            {controlStack.map((item) => (
+              <GlassCard
+                key={item.step}
+                className="p-6 lg:p-7"
+              >
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-cyan-400/20 bg-cyan-400/10 font-mono text-xs font-semibold text-cyan-200">
+                  {item.step}
+                </div>
+
+                <p className="mt-5 text-lg font-semibold text-white">
+                  {item.label}
+                </p>
+
+                <p className="mt-3 text-sm text-slate-300">
+                  {item.note}
+                </p>
+              </GlassCard>
+            ))}
+          </div>
+        </div>
+      </SectionWrapper>
+
       {/* CORE INTELLIGENCE SYSTEMS */}
       <SectionWrapper className="section-divider">
 
@@ -308,7 +353,7 @@ export default function TechnologyPage() {
         <SectionHeading
           eyebrow="Stage 3 — Distributed Production Network"
           title="The Crustacean Intelligence Network"
-          subtitle="As pilot sites and partner clusters come online, each contributes telemetry into a shared learning substrate. Live nodes feed real data today; pilot and planned nodes show the network's expansion path."
+          subtitle="The Crustacean Intelligence Network is the long-term (Stage 3) layer. As pilot sites and partner clusters come online, each is designed to contribute telemetry into a shared learning substrate. Today only the R&D site is active; pilot and planned nodes show the network's expansion path."
           align="center"
         />
 
@@ -327,7 +372,7 @@ export default function TechnologyPage() {
         <SectionHeading
           eyebrow="Physical Layer in Practice"
           title="The Stack, Photographed"
-          subtitle="Live infrastructure and sensor images from the deployment stack."
+          subtitle="R&D infrastructure and sensor images from the development stack — the foundation the pilot is built on."
           align="center"
         />
 

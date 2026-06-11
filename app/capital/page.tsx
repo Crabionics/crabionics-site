@@ -29,7 +29,7 @@ const thesis = [
   {
     title: "Operational Intelligence Layer",
     description:
-      "AquaOS turns continuous telemetry into operational decisions. Every cycle adds to a dataset that gets harder to replicate over time.",
+      "AquaOS is being built to turn continuous telemetry into operational decisions. Each cycle is designed to add to a dataset that gets harder to replicate over time.",
   },
   {
     title: "High-value Species Focus",
@@ -216,7 +216,7 @@ const useOfFunds = [
   { pct: "35%", label: "600-Box Pilot",      detail: "Hardware + RAS" },
   { pct: "25%", label: "IHMS Prototype",     detail: "Hatchery layer" },
   { pct: "20%", label: "AquaOS + Data Infra", detail: "Software stack" },
-  { pct: "15%", label: "IP Filing",          detail: "4 patent families" },
+  { pct: "15%", label: "IP Filing",          detail: "4 families · under filing" },
   { pct: "5%",  label: "Ops & Contingency",  detail: "Buffer" },
 ];
 
@@ -238,14 +238,16 @@ export default function CapitalPage() {
             </div>
 
             <h1 className="mt-8 max-w-4xl">
-              Built on hardware, measured on milestones
+              Back the validation inflection of an operationally-experienced team
             </h1>
 
             <p className="mt-8 max-w-3xl text-lg">
-              Crabionics is converting one of aquaculture&apos;s most volatile
-              categories into a controllable, data-governed production model —
-              backed by KIIT-TBI, DST NIDHI PRAYAS, and BIRAC&apos;s Biotechnology
-              Ignition Grant (BIG, 24th call).
+              Crabionics is operationally experienced, architecturally coherent, and
+              commercially aware — and entering its first controlled-validation phase.
+              This is not capital to fund a scaled platform; it is capital to convert
+              real operating experience into provable industrial causality. Backed by
+              KIIT-TBI, DST NIDHI PRAYAS, and BIRAC&apos;s Biotechnology Ignition Grant
+              (BIG, 24th call).
             </p>
 
             {/* PROOF STRIP */}
@@ -307,6 +309,14 @@ export default function CapitalPage() {
             </GlassCard>
           ))}
         </div>
+
+        <p className="mx-auto mt-12 max-w-3xl text-center text-lg text-slate-300">
+          <span className="font-medium text-white">The model, stated cleanly:</span>{" "}
+          a distributed production network — centralized biological intelligence
+          (nursery + finishing) plus decentralized farmer biomass growth, with the
+          processor as the customer taking guaranteed export-spec live and soft-shell
+          supply.
+        </p>
       </SectionWrapper>
 
       {/* COMMERCIAL PROGRESSION */}
@@ -364,7 +374,7 @@ export default function CapitalPage() {
         <SectionHeading
           eyebrow="Unit Economics"
           title="Capital-efficient modular deployment"
-          subtitle="Each unit validates economics before the next scale step. The same logic as SaaS infrastructure, applied to biomass."
+          subtitle="These are design targets the 600-box pilot is built to validate — not yet-achieved results. Each unit is meant to prove economics before the next scale step. The same logic as SaaS infrastructure, applied to biomass."
           align="center"
         />
 
@@ -441,7 +451,7 @@ export default function CapitalPage() {
         <SectionHeading
           eyebrow="The Ask"
           title="Pre-seed capital to execute validation"
-          subtitle="Not a concept. A deployment plan with clear milestone gates."
+          subtitle="Already de-risked: R&D operating experience, an established buyer network, documented grade-uplift economics, and incubation + grant backing. What the capital unlocks: the pilot dataset plus 1-hectare farmer linkage — the proof points for cluster economics."
           align="center"
         />
 
@@ -458,12 +468,12 @@ export default function CapitalPage() {
                 Seeking pre-seed
               </p>
 
-              <p className="mt-6 font-display text-5xl text-white lg:text-6xl">
-                ₹50L – ₹3 Cr
+              <p className="mt-6 font-display text-4xl text-white lg:text-5xl">
+                Milestone-gated pre-seed
               </p>
 
               <p className="mt-4 text-sm text-slate-300">
-                18-month runway · Pre-validation pricing · BIRAC co-funded
+                18-month runway · Pre-validation stage · BIRAC co-funded
               </p>
 
               <div className="mt-10">
@@ -477,8 +487,8 @@ export default function CapitalPage() {
                 </p>
 
                 <p className="mt-2 text-sm text-slate-400">
-                  Valuation discussed on request. Terms align to strategic
-                  fit and validation milestones.
+                  Round size and valuation are shared in the data room. Terms
+                  align to strategic fit and validation milestones.
                 </p>
               </div>
             </div>
@@ -494,9 +504,9 @@ export default function CapitalPage() {
             <div className="mt-8 space-y-4">
 
               {[
-                "TRL-6 validated IHMS",
+                "TRL-6 IHMS, validated through the 600-box RAS pilot",
                 "First 600-box production dataset",
-                "AquaOS live on cluster",
+                "AquaOS running on the pilot cluster",
                 "4 patent families filed",
               ].map((item) => (
                 <div

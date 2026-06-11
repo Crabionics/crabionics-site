@@ -147,6 +147,69 @@ export default function HomePage() {
       </section>
 
       {/* ===========================================================
+           WHAT'S REAL TODAY — proof of operation, before the architecture
+         =========================================================== */}
+      <section className="section-light section-padding section-divider">
+
+        <div className="container-shell">
+
+          <div className="mx-auto max-w-3xl text-center">
+
+            <p className="text-xs uppercase tracking-[0.24em] text-cyan-700">
+              What&rsquo;s real today
+            </p>
+
+            <h2 className="mt-5">
+              We have already operated the hard part
+            </h2>
+
+            <p className="mt-6 text-lg">
+              Crabionics is a biological production infrastructure company. Before
+              any platform claim, three things are proven by real R&amp;D operations.
+            </p>
+          </div>
+
+          <div className="mx-auto mt-12 grid max-w-5xl gap-5 sm:grid-cols-3">
+
+            {[
+              {
+                lead: "Operational R&D history",
+                title: "700+ crabs, individually tracked",
+                text: "Across soft-shell, hard-shell and RAS trials — each animal logged per-unit, not as a pond average. The operating experience is real, not theoretical.",
+              },
+              {
+                lead: "Proven value mechanics",
+                title: "Molt-driven grade uplift",
+                text: "A single molt can roughly double an animal's weight and lift it a full export grade — translating to roughly 3–4.6× per-unit value. Documented, repeatable economics.",
+              },
+              {
+                lead: "Real market linkage",
+                title: "Live export & retail channels",
+                text: "Already operating through live export and retail channels with grade-based pricing — the demand side is commercial, not hypothetical.",
+              },
+            ].map((item) => (
+              <div
+                key={item.title}
+                className="card-light rounded-2xl p-7"
+              >
+                <p className="text-xs uppercase tracking-[0.18em] text-cyan-700">
+                  {item.lead}
+                </p>
+
+                <h3 className="mt-4 text-xl font-semibold">
+                  {item.title}
+                </h3>
+
+                <p className="mt-4 text-sm">
+                  {item.text}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ===========================================================
            CLOSED-LOOP RING — dark, the signature visual moment
          =========================================================== */}
       <section className="relative overflow-hidden section-padding">
@@ -169,9 +232,10 @@ export default function HomePage() {
             </h2>
 
             <p className="mt-6 text-lg text-slate-300">
-              Sensors capture biological and environmental signals. The system
-              infers state, computes the right response, and acts — then logs
-              what happened so the next cycle starts smarter.
+              Sensors capture biological and environmental signals. The architecture
+              is designed to infer state, compute the right response, and act — then
+              log what happened so the next cycle starts smarter. This is the loop
+              the platform is being built to run.
             </p>
           </div>
 
@@ -202,8 +266,13 @@ export default function HomePage() {
 
         <div className="container-shell relative z-10 py-32 text-center lg:py-44">
 
+          <p className="mx-auto max-w-2xl text-base text-slate-300">
+            The 600-box pilot is the bridge — from operational intelligence to
+            provable industrial causality.
+          </p>
+
           <h2
-            className="font-display mx-auto max-w-4xl text-center text-white"
+            className="font-display mx-auto mt-6 max-w-4xl text-center text-white"
             style={{ fontSize: "clamp(2.6rem, 6vw, 5rem)", lineHeight: 1.05 }}
           >
             Want to see it <em className="text-cyan-200">run?</em>
