@@ -24,38 +24,32 @@ export const metadata: Metadata = {
 const capabilities = [
   {
     title: "Telemetry Aggregation",
-    description:
-      "Continuous environmental and operational signal collection across infrastructure layers.",
+    description: "Continuous environmental and operational signal collection.",
   },
 
   {
     title: "Biological State Detection",
-    description:
-      "Tracking stress, molting probability, behavioral anomalies, and production conditions.",
+    description: "Tracks stress, molting probability, and behavioral anomalies.",
   },
 
   {
     title: "Operational Decision Logic",
-    description:
-      "Rule-driven intervention systems coordinating production actions and infrastructure response.",
+    description: "Rule-driven interventions that coordinate production actions.",
   },
 
   {
     title: "Infrastructure Synchronization",
-    description:
-      "Linking water systems, flushing infrastructure, oxygen regulation, and telemetry nodes.",
+    description: "Links water systems, flushing, oxygen regulation, and sensors.",
   },
 
   {
     title: "Causality Mapping",
-    description:
-      "Connecting environmental conditions and operational actions to biological outcomes.",
+    description: "Connects conditions and actions to biological outcomes.",
   },
 
   {
     title: "Distributed Intelligence",
-    description:
-      "Building cross-cycle learning systems through the Crustacean Intelligence Network.",
+    description: "Cross-cycle learning via the Crustacean Intelligence Network.",
   },
 ];
 
@@ -124,7 +118,7 @@ export default function AquaOSPage() {
         <SectionHeading
           eyebrow="Operational Intelligence"
           title="Beyond Monitoring Systems"
-          subtitle="AquaOS is not a generic farm dashboard. It is a biological operating system designed to coordinate production infrastructure, telemetry, and intervention logic."
+          subtitle="AquaOS coordinates infrastructure, telemetry, and intervention logic — not a generic farm dashboard."
           align="center"
         />
 
@@ -156,7 +150,7 @@ export default function AquaOSPage() {
         <SectionHeading
           eyebrow="Closed-loop Operations"
           title="Sensor → State → Decision → Action"
-          subtitle="AquaOS continuously converts telemetry into operational awareness and infrastructure response."
+          subtitle="Telemetry to awareness to infrastructure response."
           align="center"
         />
 
@@ -171,7 +165,7 @@ export default function AquaOSPage() {
         <SectionHeading
           eyebrow="Telemetry Infrastructure"
           title="Unified Operational Visibility"
-          subtitle="Interface preview. Environmental conditions, infrastructure systems, and biological signals are designed to synchronize into one operational interface."
+          subtitle="Interface preview — environmental, infrastructure, and biological signals in one view."
           align="center"
         />
 
@@ -253,7 +247,6 @@ export default function AquaOSPage() {
         <SectionHeading
           eyebrow="Evolution Path"
           title="From Rule-based Operations to Predictive Infrastructure"
-          subtitle="AquaOS evolves through continuous telemetry accumulation, biological modeling, and infrastructure learning."
           align="center"
         />
 
@@ -312,8 +305,7 @@ export default function AquaOSPage() {
               </h2>
 
               <p className="mt-6 max-w-2xl text-lg">
-                Explore the infrastructure systems, telemetry layers,
-                and biological intelligence architecture powering AquaOS.
+                Explore the infrastructure and intelligence layers behind AquaOS.
               </p>
             </div>
 

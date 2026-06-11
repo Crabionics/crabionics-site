@@ -64,7 +64,6 @@ export default function AboutPage() {
         <SectionHeading
           eyebrow="Who We Are"
           title="A Hardware + Intelligence Company for Aquaculture"
-          subtitle="Our work connects modular RAS infrastructure, operating systems, and data-governed interventions into a practical production model."
           align="center"
         />
 
@@ -86,8 +85,8 @@ export default function AboutPage() {
               <p className="text-sm uppercase tracking-[0.18em] text-cyan-200">Operating Focus</p>
               <h2 className="mt-5">From Biological Volatility to Operational Control</h2>
               <p className="mt-6 max-w-2xl text-lg">
-                We are currently focused on translating high-value species complexity into repeatable protocols across
-                hatchery, nursery, soft-shell, and grow-out workflows.
+                Turning high-value species complexity into repeatable protocols across
+                hatchery, nursery, soft-shell, and grow-out.
               </p>
             </div>
 

@@ -22,20 +22,17 @@ export const metadata: Metadata = {
 const contactChannels = [
   {
     title: "Technical Collaboration",
-    description:
-      "Infrastructure systems, telemetry architecture, biological intelligence, and automation discussions.",
+    description: "Infrastructure, telemetry, and automation discussions.",
   },
 
   {
     title: "Pilot Deployment",
-    description:
-      "Production infrastructure pilots, field implementation, and operational partnerships.",
+    description: "Production pilots, field implementation, and operating partnerships.",
   },
 
   {
     title: "Investment & Grants",
-    description:
-      "Strategic capital, grant collaboration, infrastructure scaling, and ecosystem partnerships.",
+    description: "Strategic capital, grants, and ecosystem partnerships.",
   },
 ];
 
@@ -65,9 +62,8 @@ export default function ContactPage() {
 
             {/* TEXT */}
             <p className="mt-8 max-w-3xl text-lg">
-              For pilot collaboration, technical conversations,
-              capital discussions, and partnership inquiries —
-              one channel, founder-level, no funnel.
+              Pilot, technical, capital, and partnership inquiries — one channel,
+              founder-level, no funnel.
             </p>
           </div>
         </div>
@@ -78,8 +74,7 @@ export default function ContactPage() {
 
         <SectionHeading
           eyebrow="Collaboration Areas"
-          title="Designed for Strategic Infrastructure Partnerships"
-          subtitle="Crabionics collaborates across aquaculture infrastructure, operational intelligence, biological systems, and scalable production deployment."
+          title="How We Collaborate"
           align="center"
         />
 
@@ -129,9 +124,7 @@ export default function ContactPage() {
                 </h2>
 
                 <p className="mt-6 max-w-xl text-lg">
-                  We prefer direct founder-level conversations
-                  for technical, infrastructure, and strategic
-                  collaboration discussions.
+                  Direct founder-level conversations, preferred.
                 </p>
 
                 {/* EMAIL */}
@@ -200,7 +193,6 @@ export default function ContactPage() {
         <SectionHeading
           eyebrow="Before Connecting"
           title="Explore the Core Infrastructure Stack"
-          subtitle="Review the platform architecture, operational intelligence systems, and biological infrastructure before initiating strategic discussions."
           align="center"
         />
 

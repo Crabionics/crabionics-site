@@ -24,32 +24,32 @@ const thesis = [
   {
     title: "Infrastructure-first Approach",
     description:
-      "Crabionics solves biological instability through precision infrastructure — modular RAS, isolation systems, and controlled water management — instead of conventional pond expansion.",
+      "Modular RAS, isolation, and controlled water — solving biological instability instead of expanding ponds.",
   },
   {
     title: "Operational Intelligence Layer",
     description:
-      "AquaOS is being built to turn continuous telemetry into operational decisions. Each cycle is designed to add to a dataset that gets harder to replicate over time.",
+      "AquaOS is being built to turn telemetry into decisions, building a dataset that's hard to replicate.",
   },
   {
     title: "High-value Species Focus",
     description:
-      "Mud crab is a premium export species with structurally undersupplied global demand. Controlled production unlocks predictable yield in a category currently dominated by volatile wild catch.",
+      "Mud crab is a premium export species in structural undersupply, today met by volatile wild catch.",
   },
   {
     title: "Modular Scalability",
     description:
-      "Each unit replicates without redesign. Pilots scale into regional clusters by adding boxes, not by rebuilding.",
+      "Units replicate without redesign — clusters scale by adding boxes, not rebuilding.",
   },
   {
     title: "Closed-loop Systems",
     description:
-      "RAS infrastructure improves water reuse, operational consistency, and environmental control — reducing per-cycle variability that breaks traditional aquaculture economics.",
+      "RAS improves water reuse and environmental control, cutting the per-cycle variability that breaks pond economics.",
   },
   {
     title: "Long-term Defensibility",
     description:
-      "The long-term moat is the biological intelligence and operational learning generated from production telemetry — a dataset no incumbent currently holds.",
+      "The moat is the production dataset — biological intelligence no incumbent holds.",
   },
 ];
 
@@ -242,12 +242,9 @@ export default function CapitalPage() {
             </h1>
 
             <p className="mt-8 max-w-3xl text-lg">
-              Crabionics is operationally experienced, architecturally coherent, and
-              commercially aware — and entering its first controlled-validation phase.
-              This is not capital to fund a scaled platform; it is capital to convert
-              real operating experience into provable industrial causality. Backed by
-              KIIT-TBI, DST NIDHI PRAYAS, and BIRAC&apos;s Biotechnology Ignition Grant
-              (BIG, 24th call).
+              An operationally-experienced team entering its first controlled-validation
+              phase — capital to turn real operating experience into provable industrial
+              causality. Backed by KIIT-TBI, DST NIDHI PRAYAS, and BIRAC BIG (24th call).
             </p>
 
             {/* PROOF STRIP */}
@@ -285,7 +282,7 @@ export default function CapitalPage() {
         <SectionHeading
           eyebrow="Investment Thesis"
           title="Why Crabionics, Why Now"
-          subtitle="Mud crab is one of the highest-value crustaceans in Asia-Pacific export markets, but production has remained structurally unstable. Crabionics is building the infrastructure layer that makes precision production possible."
+          subtitle="A top-value export crustacean, held back by structurally unstable production. We're building the infrastructure layer that makes precision production possible."
           align="center"
         />
 
@@ -325,7 +322,7 @@ export default function CapitalPage() {
         <SectionHeading
           eyebrow="Commercial Progression"
           title="From pilot validation to platform infrastructure"
-          subtitle="Each phase is sequenced, not simultaneous. Revenue mix and risk profile change with each step."
+          subtitle="Sequenced, not simultaneous — revenue mix and risk shift with each step."
           align="center"
         />
 
@@ -374,7 +371,7 @@ export default function CapitalPage() {
         <SectionHeading
           eyebrow="Unit Economics"
           title="Capital-efficient modular deployment"
-          subtitle="These are design targets the 600-box pilot is built to validate — not yet-achieved results. Each unit is meant to prove economics before the next scale step. The same logic as SaaS infrastructure, applied to biomass."
+          subtitle="Design targets the 600-box pilot is built to validate — not yet-achieved results. Each unit proves economics before the next scale step."
           align="center"
         />
 
@@ -412,7 +409,7 @@ export default function CapitalPage() {
         <SectionHeading
           eyebrow="Market Conditions"
           title="A premium export category that cannot supply itself"
-          subtitle="The bottleneck is not demand. It is supply architecture. That is what makes this a platform opportunity."
+          subtitle="The bottleneck isn't demand — it's supply architecture."
           align="center"
         />
 
@@ -439,9 +436,8 @@ export default function CapitalPage() {
         </div>
 
         <p className="mx-auto mt-12 max-w-3xl text-center text-sm text-slate-400">
-          Shrimp has Aquabyte, Benchmark, Observe Technologies. Salmon has full
-          industrial infrastructure. Mud crab production architecture is
-          unclaimed — and Crabionics has a 2+ year field head start.
+          Shrimp has Aquabyte and Benchmark; salmon has full industrial infrastructure.
+          Mud crab production architecture is unclaimed — and we have a 2+ year field head start.
         </p>
       </SectionWrapper>
 
@@ -554,7 +550,6 @@ export default function CapitalPage() {
         <SectionHeading
           eyebrow="Institutional Validation"
           title="Continuity, Credibility, Execution Readiness"
-          subtitle="Crabionics has progressed through institutional checkpoints that validate both the science and the execution path."
           align="center"
         />
 
@@ -599,7 +594,7 @@ export default function CapitalPage() {
         <SectionHeading
           eyebrow="Execution Milestones"
           title="Built Through Field Execution, Not Slideware"
-          subtitle="Each milestone below corresponds to a real infrastructure or institutional outcome — not a forecast."
+          subtitle="Each milestone is a real infrastructure or institutional outcome — not a forecast."
           align="center"
         />
 
@@ -656,9 +651,8 @@ export default function CapitalPage() {
               </h2>
 
               <p className="mt-6 max-w-2xl text-lg">
-                Crabionics works with strategic capital, grant-aligned partners,
-                and infrastructure collaborators. Direct founder-level conversations
-                preferred for technical and capital discussions.
+                We work with strategic capital and grant-aligned partners — founder-level
+                conversations preferred.
               </p>
             </div>
 

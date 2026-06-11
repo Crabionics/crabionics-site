@@ -32,7 +32,7 @@ export default function PressPage() {
         </div>
       </section>
       <SectionWrapper className="section-divider">
-        <SectionHeading eyebrow="Press Kit" title="What We Can Provide" subtitle="To support accurate coverage, we provide verified background information and operational context." align="center" />
+        <SectionHeading eyebrow="Press Kit" title="What We Can Provide" align="center" />
         <div className="mt-20 grid gap-6 md:grid-cols-3">
           {[
             ["Company Background", "Mission, founding context, and infrastructure strategy narrative."],
@@ -46,7 +46,7 @@ export default function PressPage() {
       <SectionWrapper>
         <div className="glass-card overflow-hidden p-10 lg:p-14">
           <div className="grid items-center gap-8 lg:grid-cols-[1fr_auto]">
-            <div><h2>Media inquiries and interviews</h2><p className="mt-5 max-w-2xl text-lg">For interviews, speaking requests, or publication timelines, reach out through the contact channel and include publication details and deadlines.</p></div>
+            <div><h2>Media inquiries and interviews</h2><p className="mt-5 max-w-2xl text-lg">Reach out via the contact channel with your publication details and deadline.</p></div>
             <Link href="/contact" className="primary-button">Press Contact</Link>
           </div>
         </div>

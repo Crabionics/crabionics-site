@@ -34,7 +34,7 @@ export default function CareersPage() {
       </section>
 
       <SectionWrapper className="section-divider">
-        <SectionHeading eyebrow="What We Value" title="High Ownership, Measurable Execution" subtitle="Our team culture combines startup speed with engineering discipline and scientific curiosity." align="center" />
+        <SectionHeading eyebrow="What We Value" title="High Ownership, Measurable Execution" align="center" />
         <div className="mt-20 grid gap-6 md:grid-cols-3">
           {[
             ["Systems Thinking", "You can move across hardware, operations, and software without losing rigor."],

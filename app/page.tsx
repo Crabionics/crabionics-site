@@ -127,11 +127,9 @@ export default function HomePage() {
             </h2>
 
             <p className="mt-6 text-lg text-slate-300">
-              One system, four layers: modular RAS on the floor, AquaOS turning signal
-              into decisions, a CIN learning layer in development, and the market
-              outcomes it all drives. Data flows up; control and feedback flow back
-              down. The proven layer operates in R&amp;D today; the control and
-              intelligence layers are being built.
+              Four layers: modular RAS on the floor, AquaOS turning signal into
+              decisions, a CIN learning layer in development, and the market outcomes
+              it drives. The proven layer operates in R&amp;D today; the rest is being built.
             </p>
           </div>
 
@@ -159,8 +157,7 @@ export default function HomePage() {
             </h2>
 
             <p className="mt-6 text-lg">
-              Crabionics is a biological production infrastructure company. Before
-              any platform claim, three things are proven by real R&amp;D operations.
+              Before any platform claim, three things are proven by real R&amp;D operations.
             </p>
           </div>
 
@@ -170,17 +167,17 @@ export default function HomePage() {
               {
                 lead: "Operational R&D history",
                 title: "Hundreds of individually-tracked crabs",
-                text: "Across soft-shell, hard-shell and RAS trials — each animal logged per-unit, not as a pond average. The operating experience is real, not theoretical.",
+                text: "Across soft-shell, hard-shell and RAS trials — each animal logged per-unit, not as a pond average.",
               },
               {
                 lead: "Proven value mechanics",
                 title: "Molt-driven grade uplift",
-                text: "A single molt can roughly double an animal's weight and lift it a full export grade — demonstrated meaningful grade uplift in early field work. Documented, repeatable economics.",
+                text: "A single molt can lift a crab a full export grade — meaningful, documented uplift from early field work.",
               },
               {
                 lead: "Real market linkage",
                 title: "Live export & retail channels",
-                text: "Already operating through live export and retail channels with grade-based pricing — the demand side is commercial, not hypothetical.",
+                text: "Already selling through live export and retail channels at grade-based pricing — demand is commercial, not hypothetical.",
               },
             ].map((item) => (
               <div
@@ -222,8 +219,7 @@ export default function HomePage() {
             </h2>
 
             <p className="mt-6 text-lg">
-              Forty years, no change in production architecture — and the
-              numbers still look like this:
+              Forty years, no change in production architecture:
             </p>
           </div>
 

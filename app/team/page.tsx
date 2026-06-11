@@ -78,9 +78,8 @@ export default function TeamPage() {
             </h1>
 
             <p className="mt-8 max-w-3xl text-lg">
-              Crabionics was built ground-up by founders who spent two years
-              in Odisha and Andhra Pradesh learning where the production
-              system breaks — before raising a rupee.
+              Built by founders who spent two years in Odisha and Andhra Pradesh
+              learning where the production system breaks — before raising a rupee.
             </p>
           </div>
         </div>
@@ -175,7 +174,6 @@ export default function TeamPage() {
         <SectionHeading
           eyebrow="Supported by"
           title="Mentors, reviewers, and field collaborators"
-          subtitle="The founding team is backed by a wider network of domain experts and institutional reviewers."
           align="center"
         />
 
@@ -210,17 +208,15 @@ export default function TeamPage() {
               </h2>
 
               <p className="mt-6 max-w-2xl text-lg">
-                Before raising any capital, the founding team operated
-                a 1,000-box mud crab RAS pilot in Odisha — observing
-                cannibalism dynamics, molt vulnerability windows, and
-                water-quality drift under real production conditions.
-                The biology, the SOPs, and the operating discipline
+                Before raising capital, the team ran a 1,000-box mud crab RAS pilot in
+                Odisha — observing cannibalism, molt vulnerability, and water-quality
+                drift under real conditions. The biology, SOPs, and operating discipline
                 came from that field time.
               </p>
 
               <p className="mt-6 max-w-2xl text-lg">
-                The 600-box prototype now running at KIIT-TBI exists
-                because we already know where the system breaks.
+                The 600-box prototype at KIIT-TBI exists because we already know where
+                the system breaks.
               </p>
             </div>
 

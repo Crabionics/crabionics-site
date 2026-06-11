@@ -155,9 +155,8 @@ export default function TechnologyPage() {
             </h1>
 
             <p className="mt-8 max-w-3xl text-lg">
-              The Crabionics stack runs bottom-up: physical hardware on the floor,
-              sensors and telemetry above it, biological state inference, decision
-              logic, and a learning network on top — all feeding back into each other.
+              Bottom-up: hardware on the floor, telemetry above it, state inference,
+              decision logic, and a learning network on top — all feeding back.
             </p>
           </div>
         </div>
@@ -321,7 +320,6 @@ export default function TechnologyPage() {
         <SectionHeading
           eyebrow="Core Intelligence Systems"
           title="What the Stack Produces"
-          subtitle="Three intelligence outputs are designed into the architecture from day one."
           align="center"
         />
 
@@ -353,7 +351,7 @@ export default function TechnologyPage() {
         <SectionHeading
           eyebrow="Stage 3 — Distributed Production Network"
           title="The Crustacean Intelligence Network"
-          subtitle="The Crustacean Intelligence Network is the long-term (Stage 3) layer. As pilot sites and partner clusters come online, each is designed to contribute telemetry into a shared learning substrate. Today only the R&D site is active; pilot and planned nodes show the network's expansion path."
+          subtitle="The long-term (Stage 3) layer. As sites come online, each contributes telemetry to a shared learning substrate. Today only the R&D site is active; pilot and planned nodes show the expansion path."
           align="center"
         />
 
@@ -429,13 +427,8 @@ export default function TechnologyPage() {
               </p>
 
               <h2 className="mt-5 max-w-3xl">
-                AquaOS Explains the Operating Logic — the Platform Page Shows the Hardware
+                See the operating logic and the hardware it runs on
               </h2>
-
-              <p className="mt-6 max-w-2xl text-lg">
-                Continue exploring the operational layer or the physical infrastructure
-                that this stack runs on.
-              </p>
             </div>
 
             <div className="flex flex-col gap-4 sm:flex-row lg:flex-col">

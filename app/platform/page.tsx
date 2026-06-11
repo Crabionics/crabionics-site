@@ -22,38 +22,32 @@ export const metadata: Metadata = {
 const infrastructure = [
   {
     title: "Isolation Architecture",
-    description:
-      "Each crab is cultivated within dedicated modular infrastructure to minimize biological conflict and improve survival predictability.",
+    description: "Each crab grows in its own module — less conflict, more predictable survival.",
   },
 
   {
     title: "Closed-loop Water Systems",
-    description:
-      "Integrated RAS infrastructure stabilizes environmental parameters through filtration, recirculation, and synchronized water management.",
+    description: "RAS filtration and recirculation hold environmental parameters steady.",
   },
 
   {
     title: "Operational Telemetry",
-    description:
-      "Continuous environmental and infrastructure monitoring creates structured operational intelligence.",
+    description: "Continuous environmental and infrastructure monitoring.",
   },
 
   {
     title: "Automation Layer",
-    description:
-      "Dynamic flushing systems, oxygen control, and telemetry synchronization reduce operational instability.",
+    description: "Flushing, oxygen control, and telemetry sync reduce instability.",
   },
 
   {
     title: "Modular Deployment",
-    description:
-      "Infrastructure can scale from pilot systems to distributed coastal production clusters.",
+    description: "Scales from pilot systems to distributed coastal clusters.",
   },
 
   {
     title: "Production Standardization",
-    description:
-      "Controlled operating conditions improve consistency, traceability, and export-aligned production quality.",
+    description: "Controlled conditions improve consistency and export-grade quality.",
   },
 ];
 
@@ -109,9 +103,8 @@ export default function PlatformPage() {
 
             {/* TEXT */}
             <p className="mt-8 max-w-3xl text-lg">
-              Modular grow-out, closed-loop water systems, telemetry
-              nodes, and on-site automation — built to be replicated
-              across pilot, regional, and export-scale deployments.
+              Modular grow-out, closed-loop water, telemetry, and automation —
+              built to replicate from pilot to export scale.
             </p>
           </div>
         </div>
@@ -122,8 +115,7 @@ export default function PlatformPage() {
 
         <SectionHeading
           eyebrow="Core Infrastructure"
-          title="Designed for Stability, Isolation, and Operational Control"
-          subtitle="The Crabionics platform integrates physical infrastructure, automation systems, and operational intelligence into one scalable production architecture."
+          title="Built for Stability, Isolation, and Control"
           align="center"
         />
 
@@ -155,7 +147,6 @@ export default function PlatformPage() {
         <SectionHeading
           eyebrow="Deployment Model"
           title="Scalable Production Infrastructure"
-          subtitle="Crabionics infrastructure is designed to scale from pilot systems into distributed regional production networks."
           align="center"
         />
 
@@ -208,8 +199,7 @@ export default function PlatformPage() {
               </h2>
 
               <p className="mt-6 max-w-2xl text-lg">
-                Explore the telemetry systems, operational architecture,
-                and biological intelligence layers powering the Crabionics platform.
+                Explore the telemetry, control, and intelligence layers behind it.
               </p>
             </div>
 
