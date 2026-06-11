@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import ClosedLoopRing from "@/app/components/diagrams/ClosedLoopRing";
+import HomeArchitectureMap from "@/app/components/diagrams/HomeArchitectureMap";
 import HomePlatformBrief from "@/app/components/sections/HomePlatformBrief";
 import HomeValidationStrip from "@/app/components/sections/HomeValidationStrip";
 import HomeHeroAnimated from "@/app/components/sections/HomeHeroAnimated";
@@ -9,23 +9,23 @@ import HomeHeroAnimated from "@/app/components/sections/HomeHeroAnimated";
 const problems = [
   {
     lead: "Cannibalism",
-    title: "Mud crabs kill each other",
-    text: "Pack mud crabs into a shared pond and the strong ones tear the soft post-molt crabs apart within hours. Entire batches vanish before harvest. The industry has tried isolation boxes for years — never with the per-animal control to make them work at production scale.",
+    title: "Crabs kill each other",
+    text: "In a shared pond, the strong tear apart the soft post-molt crabs — entire batches vanish before harvest.",
   },
   {
     lead: "Vulnerability window",
     title: "Molt is a blind spot",
-    text: "A mud crab molts every few weeks to grow — and for the day or so the new shell takes to harden, it is defenseless. Without per-animal visibility, you only learn the molt happened when the crab is already gone.",
+    text: "For the day a new shell takes to harden, the crab is defenseless — and without per-animal visibility, you find out too late.",
   },
   {
     lead: "Environmental drift",
-    title: "Water shifts faster than you see it",
-    text: "Oxygen, salinity, ammonia, temperature — all swing with weather and feed load. By the time symptoms show up in the crab, the cycle is already compromised.",
+    title: "Water shifts unseen",
+    text: "Oxygen, salinity, ammonia and temperature swing with weather and feed — by the time the crab shows symptoms, the cycle is compromised.",
   },
   {
     lead: "No causality",
-    title: "Nothing is tracked individually",
-    text: "A traditional mud crab pond gives you one number at harvest. No growth history, no molt log, no link between an action and an outcome — so nothing improves cycle to cycle.",
+    title: "Nothing tracked individually",
+    text: "A traditional pond gives one number at harvest — no growth history, no molt log, nothing that improves cycle to cycle.",
   },
 ];
 
@@ -76,78 +76,7 @@ export default function HomePage() {
       </section>
 
       {/* ===========================================================
-           PROBLEM — light
-         =========================================================== */}
-      <section className="section-light section-padding section-divider">
-
-        <div className="container-shell">
-
-          <div className="mx-auto max-w-3xl text-center">
-
-            <p className="text-xs uppercase tracking-[0.24em] text-cyan-700">
-              The problem
-            </p>
-
-            <h2 className="mt-5">
-              Mud crab farming was never designed as a controlled system
-            </h2>
-
-            <p className="mt-6 text-lg">
-              Forty years, no change in production architecture. Result:
-              50–70% mortality per cycle, 100% wild-seed dependency, and
-              India exporting just 4,500 tonnes while Europe pays a
-              scarcity premium of $51 per unit.
-            </p>
-          </div>
-
-          {/* Hard numbers strip */}
-          <div className="mx-auto mt-12 grid max-w-4xl gap-4 sm:grid-cols-4">
-            {[
-              { value: "50–70%", label: "Cycle mortality" },
-              { value: "$51",    label: "Europe — per unit" },
-              { value: "4,500 t", label: "India annual export" },
-              { value: "100%",   label: "Wild-seed dependency" },
-            ].map((s) => (
-              <div
-                key={s.label}
-                className="rounded-2xl border border-slate-200 bg-white p-5 text-center"
-              >
-                <p className="text-2xl font-semibold text-slate-900">{s.value}</p>
-                <p className="mt-2 text-xs uppercase tracking-[0.14em] text-cyan-700">{s.label}</p>
-              </div>
-            ))}
-          </div>
-
-          <div className="mt-16 grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
-
-            {problems.map((item) => (
-              <div
-                key={item.title}
-                className="card-light rounded-2xl p-7"
-              >
-                <p className="text-xs uppercase tracking-[0.18em] text-cyan-700">
-                  {item.lead}
-                </p>
-
-                <h3 className="mt-4 text-xl font-semibold">
-                  {item.title}
-                </h3>
-
-                <p className="mt-4 text-sm">
-                  {item.text}
-                </p>
-              </div>
-            ))}
-          </div>
-
-          <p className="mx-auto mt-12 max-w-3xl text-center text-lg font-medium text-slate-700">
-            Crabionics converts biological uncertainty into repeatable production.
-          </p>
-        </div>
-      </section>
-
-      {/* ===========================================================
-           WHAT'S REAL TODAY — proof of operation, before the architecture
+           WHAT'S REAL TODAY — proof of operation, leads before the problem
          =========================================================== */}
       <section className="section-light section-padding section-divider">
 
@@ -210,7 +139,76 @@ export default function HomePage() {
       </section>
 
       {/* ===========================================================
-           CLOSED-LOOP RING — dark, the signature visual moment
+           PROBLEM — light
+         =========================================================== */}
+      <section className="section-light section-padding section-divider">
+
+        <div className="container-shell">
+
+          <div className="mx-auto max-w-3xl text-center">
+
+            <p className="text-xs uppercase tracking-[0.24em] text-cyan-700">
+              The problem
+            </p>
+
+            <h2 className="mt-5">
+              Mud crab farming was never designed as a controlled system
+            </h2>
+
+            <p className="mt-6 text-lg">
+              Forty years, no change in production architecture — and the
+              numbers still look like this:
+            </p>
+          </div>
+
+          {/* Hard numbers strip */}
+          <div className="mx-auto mt-12 grid max-w-4xl gap-4 sm:grid-cols-4">
+            {[
+              { value: "50–70%", label: "Cycle mortality" },
+              { value: "$51",    label: "Europe — per unit" },
+              { value: "4,500 t", label: "India annual export" },
+              { value: "100%",   label: "Wild-seed dependency" },
+            ].map((s) => (
+              <div
+                key={s.label}
+                className="rounded-2xl border border-slate-200 bg-white p-5 text-center"
+              >
+                <p className="text-2xl font-semibold text-slate-900">{s.value}</p>
+                <p className="mt-2 text-xs uppercase tracking-[0.14em] text-cyan-700">{s.label}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-16 grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
+
+            {problems.map((item) => (
+              <div
+                key={item.title}
+                className="card-light rounded-2xl p-7"
+              >
+                <p className="text-xs uppercase tracking-[0.18em] text-cyan-700">
+                  {item.lead}
+                </p>
+
+                <h3 className="mt-4 text-xl font-semibold">
+                  {item.title}
+                </h3>
+
+                <p className="mt-4 text-sm">
+                  {item.text}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <p className="mx-auto mt-12 max-w-3xl text-center text-lg font-medium text-slate-700">
+            Crabionics converts biological uncertainty into repeatable production.
+          </p>
+        </div>
+      </section>
+
+      {/* ===========================================================
+           ARCHITECTURE MAP — dark, the signature visual moment
          =========================================================== */}
       <section className="relative overflow-hidden section-padding">
 
@@ -224,23 +222,23 @@ export default function HomePage() {
           <div className="mx-auto max-w-3xl text-center">
 
             <p className="text-xs uppercase tracking-[0.24em] text-cyan-300">
-              The operating principle
+              The architecture
             </p>
 
             <h2 className="mt-5 text-white">
-              <span className="font-display italic text-cyan-200">Every cycle</span> teaches the next.
+              Four layers. <span className="font-display italic text-cyan-200">One closed loop.</span>
             </h2>
 
             <p className="mt-6 text-lg text-slate-300">
-              Sensors capture biological and environmental signals. The architecture
-              is designed to infer state, compute the right response, and act — then
-              log what happened so the next cycle starts smarter. This is the loop
-              the platform is being built to run.
+              Hardware on the floor, telemetry above it, AquaOS turning signal into
+              decisions, and a learning network on top — data flows up, intelligence
+              feeds back. The proven layers operate in R&amp;D today; the control and
+              network layers are being built.
             </p>
           </div>
 
           <div className="mt-16">
-            <ClosedLoopRing />
+            <HomeArchitectureMap />
           </div>
         </div>
       </section>
@@ -254,6 +252,69 @@ export default function HomePage() {
            VALIDATION STRIP — light
          =========================================================== */}
       <HomeValidationStrip />
+
+      {/* ===========================================================
+           AUDIENCE SPLIT — two paths, light
+         =========================================================== */}
+      <section className="section-light section-padding section-divider">
+
+        <div className="container-shell">
+
+          <div className="mx-auto max-w-3xl text-center">
+
+            <p className="text-xs uppercase tracking-[0.24em] text-cyan-700">
+              Where to next
+            </p>
+
+            <h2 className="mt-5">
+              Two ways to engage Crabionics
+            </h2>
+          </div>
+
+          <div className="mx-auto mt-12 grid max-w-4xl gap-5 md:grid-cols-2">
+
+            {[
+              {
+                tag: "For investors",
+                title: "Back the validation inflection",
+                text: "An operationally-experienced team entering its first controlled-validation phase. See the thesis, milestones, and what the capital unlocks.",
+                cta: "Investor Brief",
+                href: "/capital",
+              },
+              {
+                tag: "For processors & buyers",
+                title: "Secure export-grade supply",
+                text: "A 365-day pipeline of export-spec live and soft-shell crab — built on modular RAS and AquaOS, not a seasonal gamble.",
+                cta: "Explore the Platform",
+                href: "/platform",
+              },
+            ].map((item) => (
+              <div
+                key={item.tag}
+                className="card-light flex flex-col rounded-2xl p-8"
+              >
+                <p className="text-xs uppercase tracking-[0.18em] text-cyan-700">
+                  {item.tag}
+                </p>
+
+                <h3 className="mt-4 text-2xl font-semibold">
+                  {item.title}
+                </h3>
+
+                <p className="mt-4 text-sm">
+                  {item.text}
+                </p>
+
+                <div className="mt-7">
+                  <Link href={item.href} className="primary-button">
+                    {item.cta}
+                  </Link>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* ===========================================================
            FINAL CTA — dark, single statement

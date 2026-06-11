@@ -42,6 +42,11 @@ export default function Navbar() {
     };
   }, [isOpen]);
 
+  // The homepage hero is a light section; only there (and only while at the
+  // top with the menu closed) does the transparent navbar sit over a light
+  // background and need dark text. Every other page has a dark hero.
+  const onLight = pathname === "/" && !scrolled && !isOpen;
+
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
@@ -67,7 +72,11 @@ export default function Navbar() {
             />
 
             <div className="leading-none">
-              <p className="font-display text-4xl font-semibold tracking-tight text-white">
+              <p
+                className={`font-display text-4xl font-semibold tracking-tight transition-colors ${
+                  onLight ? "text-slate-900" : "text-white"
+                }`}
+              >
                 Crabionics
               </p>
             </div>
@@ -84,14 +93,22 @@ export default function Navbar() {
                   href={item.href}
                   className={`relative text-sm transition ${
                     isActive
-                      ? "text-white"
-                      : "text-slate-300 hover:text-white"
+                      ? onLight
+                        ? "text-slate-900"
+                        : "text-white"
+                      : onLight
+                        ? "text-slate-600 hover:text-slate-900"
+                        : "text-slate-300 hover:text-white"
                   }`}
                 >
                   {item.label}
 
                   {isActive && (
-                    <span className="absolute -bottom-2 left-0 h-[2px] w-full bg-cyan-300" />
+                    <span
+                      className={`absolute -bottom-2 left-0 h-[2px] w-full ${
+                        onLight ? "bg-cyan-600" : "bg-cyan-300"
+                      }`}
+                    />
                   )}
                 </Link>
               );
@@ -115,25 +132,29 @@ export default function Navbar() {
             type="button"
             aria-label="Toggle menu"
             onClick={() => setIsOpen((prev) => !prev)}
-            className="relative z-50 flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-white backdrop-blur-xl lg:hidden"
+            className={`relative z-50 flex h-11 w-11 items-center justify-center rounded-xl border backdrop-blur-xl transition-colors lg:hidden ${
+              onLight
+                ? "border-slate-200 bg-white/70 text-slate-900"
+                : "border-white/10 bg-white/5 text-white"
+            }`}
           >
             <div className="flex flex-col gap-1">
               <span
-                className={`block h-[2px] w-5 bg-white transition ${
-                  isOpen ? "translate-y-[6px] rotate-45" : ""
-                }`}
+                className={`block h-[2px] w-5 transition ${
+                  onLight ? "bg-slate-900" : "bg-white"
+                } ${isOpen ? "translate-y-[6px] rotate-45" : ""}`}
               />
 
               <span
-                className={`block h-[2px] w-5 bg-white transition ${
-                  isOpen ? "opacity-0" : ""
-                }`}
+                className={`block h-[2px] w-5 transition ${
+                  onLight ? "bg-slate-900" : "bg-white"
+                } ${isOpen ? "opacity-0" : ""}`}
               />
 
               <span
-                className={`block h-[2px] w-5 bg-white transition ${
-                  isOpen ? "-translate-y-[6px] -rotate-45" : ""
-                }`}
+                className={`block h-[2px] w-5 transition ${
+                  onLight ? "bg-slate-900" : "bg-white"
+                } ${isOpen ? "-translate-y-[6px] -rotate-45" : ""}`}
               />
             </div>
           </button>

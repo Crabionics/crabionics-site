@@ -10,6 +10,17 @@ export default function HomeHeroAnimated() {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.7 }}
     >
+      <div className="mb-7 inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/70 px-4 py-1.5 backdrop-blur">
+        <span className="h-1.5 w-1.5 rounded-full bg-cyan-500" />
+        <span className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-700">
+          Crabionics
+        </span>
+        <span className="text-slate-300">·</span>
+        <span className="text-xs uppercase tracking-[0.2em] text-cyan-700">
+          Biological production infrastructure
+        </span>
+      </div>
+
       <h1
         className="font-display mx-auto max-w-5xl text-center text-slate-900"
         style={{ fontSize: "clamp(2.4rem, 6vw, 5.2rem)", lineHeight: 1.05 }}
