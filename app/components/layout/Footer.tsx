@@ -83,19 +83,12 @@ export default function Footer() {
             {/* TAGS */}
             <div className="mt-10 flex flex-wrap gap-3">
 
-              {[
-                { label: "AquaOS · In development", tone: "ocean" as const },
-                { label: "Closed-loop architecture", tone: "ocean" as const },
-              ].map((item) => (
+              {["AquaOS · In development", "Closed-loop architecture"].map((label) => (
                 <div
-                  key={item.label}
-                  className={
-                    item.tone === "green"
-                      ? "rounded-full border border-[#25B947]/30 bg-[#25B947]/10 px-5 py-3 text-sm text-[#5DD27A]"
-                      : "rounded-full border border-[#1DA8DD]/30 bg-[#1DA8DD]/10 px-5 py-3 text-sm text-[#5AC4EA]"
-                  }
+                  key={label}
+                  className="rounded-full border border-[#1DA8DD]/30 bg-[#1DA8DD]/10 px-5 py-3 text-sm text-[#5AC4EA]"
                 >
-                  {item.label}
+                  {label}
                 </div>
               ))}
             </div>
