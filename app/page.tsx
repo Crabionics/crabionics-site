@@ -174,13 +174,13 @@ export default function HomePage() {
             {[
               {
                 lead: "Operational R&D history",
-                title: "700+ crabs, individually tracked",
+                title: "Hundreds of individually-tracked crabs",
                 text: "Across soft-shell, hard-shell and RAS trials — each animal logged per-unit, not as a pond average. The operating experience is real, not theoretical.",
               },
               {
                 lead: "Proven value mechanics",
                 title: "Molt-driven grade uplift",
-                text: "A single molt can roughly double an animal's weight and lift it a full export grade — translating to roughly 3–4.6× per-unit value. Documented, repeatable economics.",
+                text: "A single molt can roughly double an animal's weight and lift it a full export grade — demonstrated meaningful grade uplift in early field work. Documented, repeatable economics.",
               },
               {
                 lead: "Real market linkage",
