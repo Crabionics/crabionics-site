@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ClerkProvider } from "@clerk/nextjs";
 import { Instrument_Serif } from "next/font/google";
 import "./globals.css";
 
@@ -89,20 +90,22 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className={instrumentSerif.variable}>
       <body>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
-        />
+        <ClerkProvider>
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+          />
 
-        <div className="site-background" />
+          <div className="site-background" />
 
-        <Navbar />
+          <Navbar />
 
-        <main className="relative z-10 pt-20 min-h-screen overflow-hidden">
-          {children}
-        </main>
+          <main className="relative z-10 pt-20 min-h-screen overflow-hidden">
+            {children}
+          </main>
 
-        <Footer />
+          <Footer />
+        </ClerkProvider>
       </body>
     </html>
   );
