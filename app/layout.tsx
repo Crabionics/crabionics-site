@@ -50,8 +50,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }} />
           <style>{`
             .public-site { background: #ffffff; color: #0f172a; }
-            .public-site h1, .public-site h2, .public-site h3, .public-site h4, .public-site h5, .public-site h6 { color: inherit; }
-            .public-site p { color: inherit; }
+            .public-site h1, .public-site h2, .public-site h3, .public-site h4, .public-site h5, .public-site h6 { color: #102C5C; }
+            .public-site p { color: #475569; }
             .public-site .text-white { color: #ffffff; }
             .public-site .text-slate-200 { color: #e2e8f0; }
             .public-site .text-slate-300 { color: #cbd5e1; }
