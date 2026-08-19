@@ -1,379 +1,80 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import HomeArchitectureMap from "@/app/components/diagrams/HomeArchitectureMap";
-import HomePlatformBrief from "@/app/components/sections/HomePlatformBrief";
-import HomeValidationStrip from "@/app/components/sections/HomeValidationStrip";
-import HomeHeroAnimated from "@/app/components/sections/HomeHeroAnimated";
-import {
-  IconChip,
-  IconDrop,
-  IconGlobe,
-  IconLeaf,
-  IconNetwork,
-  IconWifi,
-} from "@/app/components/ui/Icons";
-
-const features = [
-  { icon: IconDrop,    title: "Integrated RAS",                note: "Modular & Scalable" },
-  { icon: IconWifi,    title: "Telemetry-ready Infrastructure", note: "Sensors across the system" },
-  { icon: IconChip,    title: "AquaOS Control Architecture",    note: "Automate & Optimize" },
-  { icon: IconNetwork, title: "CIN Intelligence Layer",         note: "In development" },
-  { icon: IconLeaf,    title: "Designed for Sustainability",    note: "Water · Carbon · Mangroves" },
-  { icon: IconGlobe,   title: "Built for Scale",                note: "Processors · Global Markets" },
-];
-
-const problems = [
-  {
-    lead: "Cannibalism",
-    title: "Crabs kill each other",
-    text: "In a shared pond, the strong tear apart the soft post-molt crabs — entire batches vanish before harvest.",
-  },
-  {
-    lead: "Vulnerability window",
-    title: "Molt is a blind spot",
-    text: "For the day a new shell takes to harden, the crab is defenseless — and without per-animal visibility, you find out too late.",
-  },
-  {
-    lead: "Environmental drift",
-    title: "Water shifts unseen",
-    text: "Oxygen, salinity, ammonia and temperature swing with weather and feed — by the time the crab shows symptoms, the cycle is compromised.",
-  },
-  {
-    lead: "No causality",
-    title: "Nothing tracked individually",
-    text: "A traditional pond gives one number at harvest — no growth history, no molt log, nothing that improves cycle to cycle.",
-  },
+const layers = [
+  ["Habitat", "Controlled production environment", "/photos/isolation-box.jpg"],
+  ["CrabSense", "Environmental sensing and telemetry", "/photos/sensor-node.jpg"],
+  ["CrabPod", "Edge hardware and actuation", "/photos/ras-plumbing.jpg"],
+  ["AquaOS", "Production software and decisions", "/aquaos-diagram.png"],
 ];
 
 export default function HomePage() {
   return (
-    <main className="relative overflow-hidden">
-
-      {/* ===========================================================
-           HERO — full-bleed infrastructure image composition
-         =========================================================== */}
-      <section className="section-light relative -mt-20 overflow-hidden">
-
-        {/* background image + legibility scrims (stronger veil on mobile) */}
-        <div className="absolute inset-0">
-          <Image
-            src="/infrastructure.png"
-            alt="Crabionics modular RAS grow-out and AquaOS-instrumented infrastructure on the coast"
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/85 to-white/55 lg:to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-white/75 via-white/15 to-transparent lg:from-white/55" />
-        </div>
-
-        <div className="container-shell relative z-10 pt-28 pb-14 lg:pt-40 lg:pb-24">
-
-          <HomeHeroAnimated />
-        </div>
-      </section>
-
-      {/* ===========================================================
-           FEATURE BAR — full-width dark
-         =========================================================== */}
-      <section className="relative bg-[#04091a]">
-
-        <div className="container-shell py-6 lg:py-7">
-
-          <div className="grid grid-cols-2 gap-x-6 gap-y-6 sm:grid-cols-3 lg:grid-cols-6">
-
-            {features.map((f) => {
-              const Icon = f.icon;
-              return (
-                <div key={f.title} className="flex items-start gap-3">
-                  <span className="mt-0.5 shrink-0 text-cyan-300">
-                    <Icon className="h-5 w-5" />
-                  </span>
-                  <div className="min-w-0">
-                    <p className="text-sm font-semibold leading-tight text-white">
-                      {f.title}
-                    </p>
-                    <p className="mt-1 text-xs text-slate-400">{f.note}</p>
-                  </div>
-                </div>
-              );
-            })}
+    <div className="bg-white text-slate-900">
+      <section className="relative overflow-hidden bg-[#f5f8fb]">
+        <div className="container-shell grid min-h-[680px] items-center gap-12 py-16 lg:grid-cols-[0.9fr_1.1fr] lg:py-24">
+          <div className="relative z-10 max-w-2xl">
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#168bb8]">Crabionics Aquaculture</p>
+            <h1 className="mt-5 text-5xl font-semibold leading-[1.02] tracking-[-0.045em] text-[#102C5C] sm:text-6xl lg:text-[4.7rem]">Precision infrastructure for mud crab farming.</h1>
+            <p className="mt-7 max-w-xl text-lg leading-8 text-slate-600">We are building modular production systems that make mud crab farming more controlled, measurable and scalable.</p>
+            <div className="mt-9 flex flex-wrap gap-3">
+              <Link href="/technology" className="rounded-full bg-[#102C5C] px-6 py-3 text-sm font-semibold text-white">See the technology</Link>
+              <Link href="/contact" className="rounded-full border border-slate-300 bg-white px-6 py-3 text-sm font-semibold text-[#102C5C]">Partner with us</Link>
+            </div>
+          </div>
+          <div className="relative min-h-[420px] overflow-hidden rounded-[28px] bg-white shadow-[0_30px_80px_rgba(16,44,92,0.16)]">
+            <Image src="/hero-crabionics.png" alt="Crabionics mud crab production system" fill priority sizes="(max-width: 1024px) 100vw, 55vw" className="object-cover" />
           </div>
         </div>
       </section>
 
-      {/* ===========================================================
-           ARCHITECTURE MAP — dark, the signature visual moment
-         =========================================================== */}
-      <section className="relative overflow-hidden section-padding">
-
-        {/* dark backdrop on top of the global background — reinforces darkness */}
-        <div className="pointer-events-none absolute inset-0 bg-[#04091a]" />
-
-        <div className="pointer-events-none absolute left-1/2 top-1/2 h-[700px] w-[700px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-400/[0.08] blur-3xl" />
-
-        <div className="container-shell relative z-10">
-
-          <div className="mx-auto max-w-3xl text-center">
-
-            <p className="text-xs uppercase tracking-[0.24em] text-cyan-300">
-              The architecture
-            </p>
-
-            <h2 className="mt-5 text-white">
-              From biological systems to <span className="font-display italic text-cyan-200">market outcomes.</span>
-            </h2>
-
-            <p className="mt-6 text-lg text-slate-300">
-              Four layers: modular RAS on the floor, AquaOS turning signal into
-              decisions, a CIN learning layer in development, and the market outcomes
-              it drives. The proven layer operates in R&amp;D today; the rest is being built.
-            </p>
-          </div>
-
-          <div className="mt-16">
-            <HomeArchitectureMap />
-          </div>
+      <section className="border-y border-slate-200 bg-white">
+        <div className="container-shell grid gap-8 py-12 md:grid-cols-3">
+          <div><p className="text-sm font-semibold text-[#168bb8]">The opportunity</p><h2 className="mt-2 text-2xl font-semibold text-[#102C5C]">Premium crab needs predictable production.</h2></div>
+          <p className="text-sm leading-7 text-slate-600">Mud crab is a high-value seafood product, but production is still exposed to biological variability, water-quality changes and inconsistent operating practices.</p>
+          <p className="text-sm leading-7 text-slate-600">Crabionics is developing the physical and digital infrastructure around the crab—not simply another farm dashboard.</p>
         </div>
       </section>
 
-      {/* ===========================================================
-           WHAT'S REAL TODAY — proof of operation, leads before the problem
-         =========================================================== */}
-      <section className="section-light section-padding section-divider">
-
+      <section className="bg-[#f8fafc] py-20 lg:py-28">
         <div className="container-shell">
-
-          <div className="mx-auto max-w-3xl text-center">
-
-            <p className="text-xs uppercase tracking-[0.24em] text-cyan-700">
-              What&rsquo;s real today
-            </p>
-
-            <h2 className="mt-5">
-              We have already operated the hard part
-            </h2>
-
-            <p className="mt-6 text-lg">
-              Before any platform claim, three things are proven by real R&amp;D operations.
-            </p>
-          </div>
-
-          <div className="mx-auto mt-12 grid max-w-5xl gap-5 sm:grid-cols-3">
-
-            {[
-              {
-                lead: "Operational R&D history",
-                title: "Hundreds of individually-tracked crabs",
-                text: "Across soft-shell, hard-shell and RAS trials — each animal logged per-unit, not as a pond average.",
-              },
-              {
-                lead: "Proven value mechanics",
-                title: "Molt-driven grade uplift",
-                text: "A single molt can lift a crab a full export grade — meaningful, documented uplift from early field work.",
-              },
-              {
-                lead: "Real market linkage",
-                title: "Live export & retail channels",
-                text: "Already selling through live export and retail channels at grade-based pricing — demand is commercial, not hypothetical.",
-              },
-            ].map((item) => (
-              <div
-                key={item.title}
-                className="card-light rounded-2xl p-7"
-              >
-                <p className="text-xs uppercase tracking-[0.18em] text-cyan-700">
-                  {item.lead}
-                </p>
-
-                <h3 className="mt-4 text-xl font-semibold">
-                  {item.title}
-                </h3>
-
-                <p className="mt-4 text-sm">
-                  {item.text}
-                </p>
-              </div>
+          <div className="max-w-3xl"><p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#168bb8]">The system</p><h2 className="mt-3 text-4xl font-semibold tracking-[-0.035em] text-[#102C5C] sm:text-5xl">One production system, four layers.</h2><p className="mt-5 text-lg leading-8 text-slate-600">The technology spine connects the physical habitat to sensing, local control and production software.</p></div>
+          <div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+            {layers.map(([title, description, image]) => (
+              <article key={title} className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+                <div className="relative h-48 bg-slate-100"><Image src={image} alt={title} fill sizes="(max-width: 768px) 100vw, 25vw" className="object-cover" /></div>
+                <div className="p-6"><h3 className="text-xl font-semibold text-[#102C5C]">{title}</h3><p className="mt-3 text-sm leading-6 text-slate-600">{description}</p></div>
+              </article>
             ))}
+          </div>
+          <div className="mt-8 text-center"><Link href="/technology" className="text-sm font-semibold text-[#168bb8]">Explore the full technology stack →</Link></div>
+        </div>
+      </section>
+
+      <section className="bg-[#102C5C] py-20 text-white lg:py-24">
+        <div className="container-shell grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
+          <div><p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#65c7e8]">Built around the biology</p><h2 className="mt-3 text-4xl font-semibold tracking-[-0.035em] text-white sm:text-5xl">The crab is the unit of production.</h2></div>
+          <div className="grid gap-5 sm:grid-cols-2">
+            {["Individual habitat", "Water-quality control", "Molt and growth events", "Traceable production records"].map((item) => <div key={item} className="border-l-2 border-[#42b6dc] pl-5"><p className="font-semibold text-white">{item}</p></div>)}
           </div>
         </div>
       </section>
 
-      {/* ===========================================================
-           PROBLEM — light
-         =========================================================== */}
-      <section className="section-light section-padding section-divider">
-
+      <section className="bg-white py-20 lg:py-28">
         <div className="container-shell">
-
-          <div className="mx-auto max-w-3xl text-center">
-
-            <p className="text-xs uppercase tracking-[0.24em] text-cyan-700">
-              The problem
-            </p>
-
-            <h2 className="mt-5">
-              Mud crab farming was never designed as a controlled system
-            </h2>
-
-            <p className="mt-6 text-lg">
-              Forty years, no change in production architecture:
-            </p>
-          </div>
-
-          {/* Hard numbers strip */}
-          <div className="mx-auto mt-12 grid max-w-4xl gap-4 sm:grid-cols-4">
-            {[
-              { value: "50–70%", label: "Cycle mortality" },
-              { value: "$51",    label: "Europe — per unit" },
-              { value: "4,500 t", label: "India annual export" },
-              { value: "100%",   label: "Wild-seed dependency" },
-            ].map((s) => (
-              <div
-                key={s.label}
-                className="rounded-2xl border border-slate-200 bg-white p-5 text-center"
-              >
-                <p className="text-2xl font-semibold text-slate-900">{s.value}</p>
-                <p className="mt-2 text-xs uppercase tracking-[0.14em] text-cyan-700">{s.label}</p>
-              </div>
-            ))}
-          </div>
-
-          <div className="mt-16 grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
-
-            {problems.map((item) => (
-              <div
-                key={item.title}
-                className="card-light rounded-2xl p-7"
-              >
-                <p className="text-xs uppercase tracking-[0.18em] text-cyan-700">
-                  {item.lead}
-                </p>
-
-                <h3 className="mt-4 text-xl font-semibold">
-                  {item.title}
-                </h3>
-
-                <p className="mt-4 text-sm">
-                  {item.text}
-                </p>
-              </div>
-            ))}
-          </div>
-
-          <p className="mx-auto mt-12 max-w-3xl text-center text-lg font-medium text-slate-700">
-            Crabionics converts biological uncertainty into repeatable production.
-          </p>
-        </div>
-      </section>
-
-      {/* ===========================================================
-           PLATFORM BRIEF — light
-         =========================================================== */}
-      <HomePlatformBrief />
-
-      {/* ===========================================================
-           VALIDATION STRIP — light
-         =========================================================== */}
-      <HomeValidationStrip />
-
-      {/* ===========================================================
-           AUDIENCE SPLIT — two paths, light
-         =========================================================== */}
-      <section className="section-light section-padding section-divider">
-
-        <div className="container-shell">
-
-          <div className="mx-auto max-w-3xl text-center">
-
-            <p className="text-xs uppercase tracking-[0.24em] text-cyan-700">
-              Where to next
-            </p>
-
-            <h2 className="mt-5">
-              Two ways to engage Crabionics
-            </h2>
-          </div>
-
-          <div className="mx-auto mt-12 grid max-w-4xl gap-5 md:grid-cols-2">
-
-            {[
-              {
-                tag: "For investors",
-                title: "Back the validation inflection",
-                text: "An operationally-experienced team entering its first controlled-validation phase. See the thesis, milestones, and what the capital unlocks.",
-                cta: "Investor Brief",
-                href: "/capital",
-              },
-              {
-                tag: "For processors & buyers",
-                title: "Secure export-grade supply",
-                text: "A 365-day pipeline of export-spec live and soft-shell crab — built on modular RAS and AquaOS, not a seasonal gamble.",
-                cta: "Explore the Platform",
-                href: "/platform",
-              },
-            ].map((item) => (
-              <div
-                key={item.tag}
-                className="card-light flex flex-col rounded-2xl p-8"
-              >
-                <p className="text-xs uppercase tracking-[0.18em] text-cyan-700">
-                  {item.tag}
-                </p>
-
-                <h3 className="mt-4 text-2xl font-semibold">
-                  {item.title}
-                </h3>
-
-                <p className="mt-4 text-sm">
-                  {item.text}
-                </p>
-
-                <div className="mt-7">
-                  <Link href={item.href} className="primary-button">
-                    {item.cta}
-                  </Link>
-                </div>
-              </div>
-            ))}
+          <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end"><div className="max-w-3xl"><p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#168bb8]">Current validation</p><h2 className="mt-3 text-4xl font-semibold tracking-[-0.035em] text-[#102C5C] sm:text-5xl">From prototype to controlled production.</h2><p className="mt-5 text-lg leading-8 text-slate-600">Crabionics is running funded R&amp;D alongside a nearby pond and 600-box production programme. Each track answers a different question.</p></div><Link href="/validation" className="text-sm font-semibold text-[#168bb8]">See the validation programme →</Link></div>
+          <div className="mt-12 grid gap-5 md:grid-cols-3">
+            {["BIRAC / IHMS", "Pond production", "600-box finishing"].map((title, index) => <div key={title} className="rounded-2xl border border-slate-200 bg-[#f8fafc] p-7"><span className="text-xs font-semibold uppercase tracking-[0.16em] text-[#168bb8]">0{index + 1}</span><h3 className="mt-4 text-xl font-semibold text-[#102C5C]">{title}</h3><p className="mt-3 text-sm leading-6 text-slate-600">{index === 0 ? "Funded R&D for the intelligent hatchery and production intelligence stack." : index === 1 ? "Biomass and biological production evidence under field conditions." : "Controlled finishing to test repeatability, operating cost and production economics."}</p></div>)}
           </div>
         </div>
       </section>
 
-      {/* ===========================================================
-           FINAL CTA — dark, single statement
-         =========================================================== */}
-      <section className="relative overflow-hidden">
-
-        <div className="pointer-events-none absolute inset-0 bg-[#04091a]" />
-
-        <div className="pointer-events-none absolute left-1/2 top-1/2 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-400/[0.08] blur-3xl" />
-
-        <div className="container-shell relative z-10 py-32 text-center lg:py-44">
-
-          <p className="mx-auto max-w-2xl text-base text-slate-300">
-            The 600-box pilot is the bridge — from operational intelligence to
-            provable industrial causality.
-          </p>
-
-          <h2
-            className="font-display mx-auto mt-6 max-w-4xl text-center text-white"
-            style={{ fontSize: "clamp(2.6rem, 6vw, 5rem)", lineHeight: 1.05 }}
-          >
-            Want to see it <em className="text-cyan-200">run?</em>
-          </h2>
-
-          <div className="mt-12">
-
-            <Link href="/contact" className="primary-button">
-              Talk to the founders
-            </Link>
-          </div>
+      <section className="bg-[#f5f8fb] py-20 lg:py-24">
+        <div className="container-shell grid gap-10 lg:grid-cols-2">
+          <div><p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#168bb8]">For investors</p><h2 className="mt-3 text-3xl font-semibold text-[#102C5C]">The next capital is for validation.</h2><p className="mt-5 text-slate-600">We are building evidence across technology, biology, economics and commercial demand before scaling deployment.</p><Link href="/investors" className="mt-7 inline-flex text-sm font-semibold text-[#168bb8]">Investor overview →</Link></div>
+          <div><p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#168bb8]">For producers and processors</p><h2 className="mt-3 text-3xl font-semibold text-[#102C5C]">Talk to us about the production system.</h2><p className="mt-5 text-slate-600">We are looking for pilot, production, processing and technology partners as the system moves through field validation.</p><Link href="/contact" className="mt-7 inline-flex text-sm font-semibold text-[#168bb8]">Start a conversation →</Link></div>
         </div>
       </section>
-
-    </main>
+    </div>
   );
 }
