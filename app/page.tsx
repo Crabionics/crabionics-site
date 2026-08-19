@@ -33,7 +33,7 @@ export default function HomePage() {
   return (
     <div className="bg-white text-slate-900">
       <section className="relative overflow-hidden bg-[#f5f8fb]">
-        <div className="container-shell grid min-h-[680px] items-center gap-12 py-16 lg:grid-cols-[0.9fr_1.1fr] lg:py-24">
+        <div className="container-shell grid min-h-[680px] items-center gap-12 py-16 md:grid-cols-[0.9fr_1.1fr] md:py-24">
           <div className="relative z-10 max-w-2xl">
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#168bb8]">Crabionics Aquaculture</p>
             <h1 className="mt-5 text-5xl font-semibold leading-[1.02] tracking-[-0.045em] text-[#102C5C] sm:text-6xl lg:text-[4.7rem]">Precision infrastructure for mud crab farming.</h1>
@@ -44,7 +44,7 @@ export default function HomePage() {
             </div>
           </div>
           <div className="relative min-h-[420px] overflow-hidden rounded-[28px] bg-white shadow-[0_30px_80px_rgba(16,44,92,0.16)]">
-            <Image src="/hero-crabionics.png" alt="Crabionics mud crab production system" fill priority sizes="(max-width: 1024px) 100vw, 55vw" className="object-cover lg:object-[center_68%]" />
+            <Image src="/hero-crabionics.png" alt="Crabionics mud crab production system" fill priority sizes="(max-width: 1024px) 100vw, 55vw" className="object-cover md:object-[center_68%]" />
           </div>
         </div>
       </section>
