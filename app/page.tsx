@@ -2,98 +2,108 @@ import Image from "next/image";
 import Link from "next/link";
 
 const layers = [
-  ["Habitat", "Controlled production environment", "/photos/isolation-box.jpg"],
-  ["CrabSense", "Environmental sensing and telemetry", "/photos/sensor-node.jpg"],
-  ["CrabPod", "Edge hardware and actuation", "/photos/ras-plumbing.jpg"],
-  ["AquaOS", "Production software and decisions", "/aquaos-diagram.png"],
+  ["Habitat", "Controlled environment for individual production.", "/photos/isolation-box.jpg"],
+  ["CrabSense", "Telemetry for water, environment and production state.", "/photos/sensor-node.jpg"],
+  ["CrabPod", "Edge control for the physical production system.", "/photos/ras-plumbing.jpg"],
+  ["AquaOS", "The operating layer connecting events, SOPs and decisions.", "/aquaos-diagram.png"],
 ];
 
 const institutions = [
-  ["DPIIT / Startup India", "Government startup recognition", "/logos/dpiit-startup-india.png"],
-  ["BIRAC BIG", "Biotechnology Ignition Grant — 24th call", "/logos/birac-big.png"],
+  ["BIRAC BIG", "Funded R&D", "/logos/birac-big.png"],
   ["DST NIDHI PRAYAS", "Deep-tech innovation support", "/logos/dst-nidhi-prayas.png"],
-  ["KIIT-TBI", "Technology incubation and ecosystem", "/logos/kiit-tbi.png"],
+  ["KIIT-TBI", "Technology incubation", "/logos/kiit-tbi.png"],
+  ["DPIIT / Startup India", "Startup recognition", "/logos/dpiit-startup-india.png"],
 ];
 
 export default function HomePage() {
   return (
     <div className="bg-white text-slate-900">
-      <section className="relative overflow-hidden bg-[#f5f8fb]">
-        <div className="container-shell grid min-h-[680px] items-center gap-12 py-16 lg:grid-cols-[0.9fr_1.1fr] lg:py-24">
-          <div className="relative z-10 max-w-2xl">
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#168bb8]">Crabionics Aquaculture</p>
-            <h1 className="mt-5 text-5xl font-semibold leading-[1.02] tracking-[-0.045em] text-[#102C5C] sm:text-6xl lg:text-[4.7rem]">Precision infrastructure for mud crab farming.</h1>
-            <p className="mt-7 max-w-xl text-lg leading-8 text-slate-600">We are building modular production systems that make mud crab farming more controlled, measurable and scalable.</p>
+      <section className="relative overflow-hidden bg-[#071a36] text-white">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_20%,rgba(29,168,221,0.22),transparent_35%),linear-gradient(120deg,#071a36_0%,#0b2b55_55%,#071a36_100%)]" />
+        <div className="container-shell relative grid min-h-[720px] items-center gap-14 py-20 lg:grid-cols-[0.95fr_1.05fr] lg:py-24">
+          <div className="max-w-2xl">
+            <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3.5 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-cyan-100">
+              <span className="h-1.5 w-1.5 rounded-full bg-[#25B947]" />
+              Crabionics Aquaculture
+            </div>
+            <h1 className="mt-7 max-w-2xl text-5xl font-semibold leading-[0.98] tracking-[-0.055em] text-white sm:text-6xl lg:text-[5.25rem]">Mud crab, engineered for repeatability.</h1>
+            <p className="mt-7 max-w-xl text-lg leading-8 text-slate-200">We are building the production infrastructure that makes high-value mud crab farming more controlled, measurable and scalable.</p>
             <div className="mt-9 flex flex-wrap gap-3">
-              <Link href="/technology" className="rounded-full bg-[#102C5C] px-6 py-3 text-sm font-semibold text-white">See the technology</Link>
-              <Link href="/contact" className="rounded-full border border-slate-300 bg-white px-6 py-3 text-sm font-semibold text-[#102C5C]">Partner with us</Link>
+              <Link href="/technology" className="rounded-full bg-white px-6 py-3 text-sm font-semibold text-[#102C5C] transition hover:-translate-y-0.5">Explore the platform</Link>
+              <Link href="/validation" className="rounded-full border border-white/20 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10">See the validation</Link>
+            </div>
+            <div className="mt-12 grid max-w-xl grid-cols-2 gap-x-8 gap-y-5 border-t border-white/10 pt-7 sm:grid-cols-4">
+              <div><p className="text-xs uppercase tracking-[0.14em] text-cyan-200">R&amp;D</p><p className="mt-1 text-sm font-semibold text-white">BIRAC BIG</p></div>
+              <div><p className="text-xs uppercase tracking-[0.14em] text-cyan-200">Pilot</p><p className="mt-1 text-sm font-semibold text-white">600 boxes</p></div>
+              <div><p className="text-xs uppercase tracking-[0.14em] text-cyan-200">Field</p><p className="mt-1 text-sm font-semibold text-white">Pond + RAS</p></div>
+              <div><p className="text-xs uppercase tracking-[0.14em] text-cyan-200">Focus</p><p className="mt-1 text-sm font-semibold text-white">Mud crab</p></div>
             </div>
           </div>
-          <div className="relative min-h-[420px] overflow-hidden rounded-[28px] bg-white shadow-[0_30px_80px_rgba(16,44,92,0.16)]">
-            <Image src="/hero-crabionics.png" alt="Crabionics mud crab production system" fill priority sizes="(max-width: 1024px) 100vw, 55vw" className="object-cover" />
+          <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 shadow-2xl shadow-black/30">
+            <div className="absolute inset-0 bg-gradient-to-t from-[#071a36]/30 via-transparent to-white/5" />
+            <Image src="/hero-crabionics.png" alt="Crabionics production system" width={1200} height={900} priority className="h-[430px] w-full object-cover sm:h-[520px] lg:h-[590px]" />
+            <div className="absolute bottom-5 left-5 right-5 rounded-2xl border border-white/15 bg-[#071a36]/75 p-4 backdrop-blur-md">
+              <p className="text-xs uppercase tracking-[0.14em] text-cyan-200">Technology spine</p>
+              <p className="mt-1 text-sm font-medium text-white">Habitat → CrabSense → CrabPod → AquaOS</p>
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="border-y border-slate-200 bg-white">
-        <div className="container-shell grid gap-8 py-12 md:grid-cols-3">
-          <div><p className="text-sm font-semibold text-[#168bb8]">The opportunity</p><h2 className="mt-2 text-2xl font-semibold text-[#102C5C]">Premium crab needs predictable production.</h2></div>
-          <p className="text-sm leading-7 text-slate-600">Mud crab is a high-value seafood product, but production is still exposed to biological variability, water-quality changes and inconsistent operating practices.</p>
-          <p className="text-sm leading-7 text-slate-600">Crabionics is developing the physical and digital infrastructure around the crab—not simply another farm dashboard.</p>
-        </div>
-      </section>
-
-      <section className="bg-[#f8fafc] py-20 lg:py-28">
-        <div className="container-shell">
-          <div className="max-w-3xl"><p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#168bb8]">The system</p><h2 className="mt-3 text-4xl font-semibold tracking-[-0.035em] text-[#102C5C] sm:text-5xl">One production system, four layers.</h2><p className="mt-5 text-lg leading-8 text-slate-600">The technology spine connects the physical habitat to sensing, local control and production software.</p></div>
-          <div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-            {layers.map(([title, description, image]) => (
-              <article key={title} className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
-                <div className="relative h-48 bg-slate-100"><Image src={image} alt={title} fill sizes="(max-width: 768px) 100vw, 25vw" className="object-cover" /></div>
-                <div className="p-6"><h3 className="text-xl font-semibold text-[#102C5C]">{title}</h3><p className="mt-3 text-sm leading-6 text-slate-600">{description}</p></div>
-              </article>
-            ))}
-          </div>
-          <div className="mt-8 text-center"><Link href="/technology" className="text-sm font-semibold text-[#168bb8]">Explore the full technology stack →</Link></div>
-        </div>
-      </section>
-
-      <section className="bg-[#102C5C] py-20 text-white lg:py-24">
-        <div className="container-shell grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
-          <div><p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#65c7e8]">Built around the biology</p><h2 className="mt-3 text-4xl font-semibold tracking-[-0.035em] text-white sm:text-5xl">The crab is the unit of production.</h2></div>
-          <div className="grid gap-5 sm:grid-cols-2">
-            {["Individual habitat", "Water-quality control", "Molt and growth events", "Traceable production records"].map((item) => <div key={item} className="border-l-2 border-[#42b6dc] pl-5"><p className="font-semibold text-white">{item}</p></div>)}
-          </div>
+      <section className="border-b border-slate-200 bg-[#f7fafc]">
+        <div className="container-shell grid gap-8 py-14 lg:grid-cols-[1fr_1fr_1fr] lg:items-start">
+          <div><p className="text-xs font-bold uppercase tracking-[0.18em] text-[#168bb8]">The problem</p><h2 className="mt-3 text-3xl font-semibold tracking-[-0.04em] text-[#102C5C]">A valuable crab is still a difficult animal to produce consistently.</h2></div>
+          <p className="text-base leading-7 text-slate-600">Growth, moulting, water quality and survival interact. Small operational errors can become biological losses.</p>
+          <p className="text-base leading-7 text-slate-600">Our answer is not another dashboard. It is a production system designed around the biology of the crab.</p>
         </div>
       </section>
 
       <section className="bg-white py-20 lg:py-28">
         <div className="container-shell">
-          <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end"><div className="max-w-3xl"><p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#168bb8]">Current validation</p><h2 className="mt-3 text-4xl font-semibold tracking-[-0.035em] text-[#102C5C] sm:text-5xl">From prototype to controlled production.</h2><p className="mt-5 text-lg leading-8 text-slate-600">Crabionics is running funded R&amp;D alongside a nearby pond and 600-box production programme. Each track answers a different question.</p></div><Link href="/validation" className="text-sm font-semibold text-[#168bb8]">See the validation programme →</Link></div>
-          <div className="mt-12 grid gap-5 md:grid-cols-3">
-            {["BIRAC / IHMS", "Pond production", "600-box finishing"].map((title, index) => <div key={title} className="rounded-2xl border border-slate-200 bg-[#f8fafc] p-7"><span className="text-xs font-semibold uppercase tracking-[0.16em] text-[#168bb8]">0{index + 1}</span><h3 className="mt-4 text-xl font-semibold text-[#102C5C]">{title}</h3><p className="mt-3 text-sm leading-6 text-slate-600">{index === 0 ? "Funded R&D for the intelligent hatchery and production intelligence stack." : index === 1 ? "Biomass and biological production evidence under field conditions." : "Controlled finishing to test repeatability, operating cost and production economics."}</p></div>)}
-          </div>
-        </div>
-      </section>
-
-      <section className="border-y border-slate-200 bg-[#f8fafc] py-16 lg:py-20">
-        <div className="container-shell">
-          <div className="max-w-3xl"><p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#168bb8]">Institutional backing</p><h2 className="mt-3 text-3xl font-semibold text-[#102C5C] sm:text-4xl">Built with support from India's innovation ecosystem.</h2></div>
-          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {institutions.map(([name, caption, logo]) => (
-              <div key={name} className="flex min-h-[170px] flex-col justify-between rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-                <div className="relative h-14 w-full"><Image src={logo} alt={name} fill sizes="220px" className="object-contain object-left" /></div>
-                <div className="mt-6"><p className="font-semibold text-[#102C5C]">{name}</p><p className="mt-1 text-xs leading-5 text-slate-500">{caption}</p></div>
-              </div>
+          <div className="max-w-3xl"><p className="text-xs font-bold uppercase tracking-[0.18em] text-[#168bb8]">The platform</p><h2 className="mt-3 text-4xl font-semibold tracking-[-0.045em] text-[#102C5C] sm:text-5xl">Physical infrastructure first. Intelligence on top.</h2><p className="mt-5 max-w-2xl text-lg leading-8 text-slate-600">Four layers work together to turn a fragmented farm process into a measurable production system.</p></div>
+          <div className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+            {layers.map(([title, description, image], index) => (
+              <article key={title} className="group overflow-hidden rounded-3xl border border-slate-200 bg-white transition duration-300 hover:-translate-y-1 hover:border-cyan-200 hover:shadow-xl hover:shadow-slate-200/60">
+                <div className="relative h-52 overflow-hidden bg-slate-100"><Image src={image} alt={title} fill sizes="(max-width: 768px) 100vw, 25vw" className="object-cover transition duration-500 group-hover:scale-[1.03]" /></div>
+                <div className="p-6"><div className="text-xs font-bold tracking-[0.16em] text-[#168bb8]">0{index + 1}</div><h3 className="mt-3 text-xl font-semibold text-[#102C5C]">{title}</h3><p className="mt-3 text-sm leading-6 text-slate-600">{description}</p></div>
+              </article>
             ))}
           </div>
+          <div className="mt-9"><Link href="/technology" className="text-sm font-semibold text-[#168bb8]">See how the stack works →</Link></div>
         </div>
       </section>
 
-      <section className="bg-[#f5f8fb] py-20 lg:py-24">
-        <div className="container-shell grid gap-10 lg:grid-cols-2">
-          <div><p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#168bb8]">For investors</p><h2 className="mt-3 text-3xl font-semibold text-[#102C5C]">The next capital is for validation.</h2><p className="mt-5 text-slate-600">We are building evidence across technology, biology, economics and commercial demand before scaling deployment.</p><Link href="/investors" className="mt-7 inline-flex text-sm font-semibold text-[#168bb8]">Investor overview →</Link></div>
-          <div><p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#168bb8]">For producers and processors</p><h2 className="mt-3 text-3xl font-semibold text-[#102C5C]">Talk to us about the production system.</h2><p className="mt-5 text-slate-600">We are looking for pilot, production, processing and technology partners as the system moves through field validation.</p><Link href="/contact" className="mt-7 inline-flex text-sm font-semibold text-[#168bb8]">Start a conversation →</Link></div>
+      <section className="overflow-hidden bg-[#102C5C] py-20 text-white lg:py-24">
+        <div className="container-shell grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
+          <div><p className="text-xs font-bold uppercase tracking-[0.18em] text-cyan-200">Built around the animal</p><h2 className="mt-3 text-4xl font-semibold tracking-[-0.045em] text-white sm:text-5xl">The crab is the unit of production.</h2><p className="mt-5 max-w-xl text-base leading-7 text-slate-200">Every system decision should ultimately improve a biological outcome that can be measured and traced.</p></div>
+          <div className="grid gap-px overflow-hidden rounded-3xl border border-white/10 bg-white/10 sm:grid-cols-2">
+            {["Individual habitat", "Water-quality control", "Molt and growth events", "Traceable production records"].map((item, index) => <div key={item} className="bg-[#102C5C] p-7"><span className="text-xs font-bold tracking-[0.16em] text-cyan-200">0{index + 1}</span><p className="mt-4 text-base font-semibold text-white">{item}</p></div>)}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-[#f7fafc] py-20 lg:py-28">
+        <div className="container-shell">
+          <div className="flex flex-col justify-between gap-7 md:flex-row md:items-end"><div className="max-w-3xl"><p className="text-xs font-bold uppercase tracking-[0.18em] text-[#168bb8]">Validation</p><h2 className="mt-3 text-4xl font-semibold tracking-[-0.045em] text-[#102C5C] sm:text-5xl">We are building evidence in parallel.</h2><p className="mt-5 text-lg leading-8 text-slate-600">BIRAC R&amp;D, a pond programme and a 600-box finishing pilot each test a different part of the business.</p></div><Link href="/validation" className="text-sm font-semibold text-[#168bb8]">View the programme →</Link></div>
+          <div className="mt-12 grid gap-5 md:grid-cols-3">
+            {["BIRAC / IHMS", "Pond production", "600-box finishing"].map((title, index) => <div key={title} className="rounded-3xl border border-slate-200 bg-white p-7 shadow-sm"><span className="text-xs font-bold uppercase tracking-[0.16em] text-[#168bb8]">0{index + 1}</span><h3 className="mt-4 text-xl font-semibold text-[#102C5C]">{title}</h3><p className="mt-3 text-sm leading-6 text-slate-600">{index === 0 ? "Funded R&D for the intelligent hatchery and production intelligence stack." : index === 1 ? "Field evidence on biomass production and biological performance." : "Controlled finishing to test repeatability, operating cost and unit economics."}</p></div>)}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-y border-slate-200 bg-white py-16 lg:py-20">
+        <div className="container-shell">
+          <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end"><div className="max-w-2xl"><p className="text-xs font-bold uppercase tracking-[0.18em] text-[#168bb8]">Institutional backing</p><h2 className="mt-3 text-3xl font-semibold tracking-[-0.04em] text-[#102C5C] sm:text-4xl">Supported by the Indian innovation ecosystem.</h2></div><p className="max-w-md text-sm leading-6 text-slate-500">Support across incubation, deep-tech innovation and funded R&amp;D.</p></div>
+          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {institutions.map(([name, caption, logo]) => <div key={name} className="flex min-h-[145px] flex-col justify-between rounded-2xl border border-slate-200 bg-white p-6 transition hover:border-slate-300 hover:shadow-lg hover:shadow-slate-200/50"><div className="relative h-12 w-full"><Image src={logo} alt={name} fill sizes="220px" className="object-contain object-left" /></div><div className="mt-6"><p className="text-sm font-semibold text-[#102C5C]">{name}</p><p className="mt-1 text-xs leading-5 text-slate-500">{caption}</p></div></div>)}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-[#f7fafc] py-20 lg:py-24">
+        <div className="container-shell grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+          <div><p className="text-xs font-bold uppercase tracking-[0.18em] text-[#168bb8]">The next stage</p><h2 className="mt-3 max-w-3xl text-4xl font-semibold tracking-[-0.045em] text-[#102C5C] sm:text-5xl">Validate the system. Then scale what works.</h2><p className="mt-5 max-w-2xl text-lg leading-8 text-slate-600">We are looking for capital, pilot partners and technical collaborators who want to help turn controlled production into a repeatable commercial system.</p></div>
+          <div className="flex flex-col gap-3 sm:flex-row lg:justify-end"><Link href="/investors" className="rounded-full bg-[#102C5C] px-6 py-3 text-center text-sm font-semibold text-white transition hover:-translate-y-0.5">Investor overview</Link><Link href="/contact" className="rounded-full border border-slate-300 bg-white px-6 py-3 text-center text-sm font-semibold text-[#102C5C]">Partner with us</Link></div>
         </div>
       </section>
     </div>
