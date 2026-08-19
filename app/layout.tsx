@@ -16,56 +16,19 @@ const instrumentSerif = Instrument_Serif({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://crabionics.com"),
-
-  title: {
-    default: "Crabionics | Production Architecture for Mud Crab Aquaculture",
-    template: "%s | Crabionics",
-  },
-
-  description:
-    "Crabionics builds the production architecture that makes industrial-scale mud crab aquaculture possible — modular RAS, AquaOS, telemetry, and closed-loop control.",
-
-  keywords: [
-    "Crabionics",
-    "Mud Crab Aquaculture",
-    "AquaOS",
-    "Mud Crab Farming",
-    "RAS Automation",
-    "Closed-loop Aquaculture",
-    "Aquaculture Production Architecture",
-    "Industrial Aquaculture",
-    "IoT Aquaculture",
-    "Hatchery Intelligence",
-  ],
-
+  title: { default: "Crabionics | Precision Infrastructure for Mud Crab Farming", template: "%s | Crabionics" },
+  description: "Crabionics builds modular production systems that make mud crab farming more controlled, measurable and scalable.",
+  keywords: ["Crabionics", "mud crab aquaculture", "Scylla serrata", "RAS", "aquaculture automation", "AquaOS"],
   openGraph: {
-    title: "Crabionics | Production Architecture for Mud Crab Aquaculture",
-    description:
-      "The system that makes industrial-scale mud crab production possible.",
+    title: "Crabionics | Precision Infrastructure for Mud Crab Farming",
+    description: "Modular production systems for more controlled, measurable and scalable mud crab farming.",
     url: "https://crabionics.com",
     siteName: "Crabionics",
     type: "website",
-    images: [
-      {
-        url: "/infrastructure.png",
-        width: 1200,
-        height: 630,
-        alt: "Crabionics — modular RAS and AquaOS production infrastructure",
-      },
-    ],
+    images: [{ url: "/hero-crabionics.png", width: 1200, height: 630, alt: "Crabionics mud crab production system" }],
   },
-
-  twitter: {
-    card: "summary_large_image",
-    title: "Crabionics | Production Architecture for Mud Crab Aquaculture",
-    description:
-      "Modular RAS, AquaOS, and closed-loop control for industrial mud crab production.",
-    images: ["/infrastructure.png"],
-  },
-
-  alternates: {
-    canonical: "/",
-  },
+  twitter: { card: "summary_large_image", title: "Crabionics | Precision Infrastructure for Mud Crab Farming", description: "Modular production systems for mud crab farming.", images: ["/hero-crabionics.png"] },
+  alternates: { canonical: "/" },
 };
 
 const organizationJsonLd = {
@@ -75,35 +38,19 @@ const organizationJsonLd = {
   url: "https://crabionics.com",
   logo: "https://crabionics.com/logo.png",
   email: "sameer@crabionics.com",
-  description:
-    "Crabionics builds the production architecture for industrial-scale mud crab aquaculture — modular RAS, AquaOS, telemetry, and closed-loop control.",
-  sameAs: [
-    "https://www.linkedin.com/company/crabionics-aquaculture-private-limited/",
-  ],
+  description: "Crabionics builds modular production systems for mud crab farming.",
+  sameAs: ["https://www.linkedin.com/company/crabionics-aquaculture-private-limited/"],
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning className={instrumentSerif.variable}>
       <body>
         <ClerkProvider>
-          <script
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
-          />
-
+          <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }} />
           <div className="site-background" />
-
           <Navbar />
-
-          <main className="relative z-10 pt-20 min-h-screen overflow-hidden">
-            {children}
-          </main>
-
+          <main className="relative z-10 min-h-screen overflow-hidden pt-[72px]">{children}</main>
           <Footer />
         </ClerkProvider>
       </body>
