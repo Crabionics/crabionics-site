@@ -1,0 +1,16 @@
+import type { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
+
+export const metadata: Metadata = { title: "Why Mud Crab", description: "Why Crabionics is starting with mud crab production." };
+
+export default function WhyCrabPage() {
+  return (
+    <div className="bg-white text-slate-900">
+      <section className="bg-[#f5f8fb] py-20 lg:py-28"><div className="container-shell grid gap-12 lg:grid-cols-2 lg:items-center"><div><p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#168bb8]">Why mud crab</p><h1 className="mt-4 text-5xl font-semibold leading-tight tracking-[-0.04em] text-[#102C5C]">A premium animal with a difficult production problem.</h1><p className="mt-7 max-w-xl text-lg leading-8 text-slate-600">Mud crab is valuable, but its biology makes controlled production unusually difficult. That makes it a strong wedge for building a new production architecture.</p></div><div className="relative min-h-[380px] overflow-hidden rounded-3xl"><Image src="/hero-crabionics.png" alt="Crabionics production system" fill sizes="50vw" className="object-cover" /></div></div></section>
+      <section className="py-20 lg:py-28"><div className="container-shell"><div className="max-w-3xl"><p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#168bb8]">The production challenge</p><h2 className="mt-3 text-4xl font-semibold text-[#102C5C]">The biology drives the system design.</h2></div><div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4">{[["Aggression","Individual crabs cannot simply be treated as one uniform biomass."],["Moulting","The soft-shell window changes vulnerability and handling requirements."],["Water quality","Dissolved oxygen, salinity, temperature and nitrogen compounds matter directly to production."],["Traceability","Individual and cohort records can make production decisions more useful than a single harvest number."]].map(([title,text])=><div key={title} className="rounded-2xl border border-slate-200 p-7"><h3 className="text-xl font-semibold text-[#102C5C]">{title}</h3><p className="mt-4 text-sm leading-7 text-slate-600">{text}</p></div>)}</div></div></section>
+      <section className="bg-[#102C5C] py-20 text-white lg:py-24"><div className="container-shell grid gap-10 lg:grid-cols-2 lg:items-center"><div><p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#65c7e8]">Our wedge</p><h2 className="mt-3 text-4xl font-semibold text-white">Start with the crab. Build the system around it.</h2></div><div className="space-y-5 text-slate-200"><p>Crabionics is not trying to solve all aquaculture at once.</p><p>We are using mud crab to develop controlled habitat, sensing, actuation and production software around a difficult biological production problem.</p><p>If the architecture can make this production more repeatable, the underlying capabilities can become a platform.</p></div></div></section>
+      <section className="py-20"><div className="container-shell text-center"><h2 className="text-3xl font-semibold text-[#102C5C]">See how the system is built.</h2><Link href="/technology" className="mt-7 inline-flex rounded-full bg-[#102C5C] px-6 py-3 text-sm font-semibold text-white">Explore technology</Link></div></section>
+    </div>
+  );
+}
