@@ -45,6 +45,11 @@ export default function HomePage() {
           </div>
           <div className="relative min-h-[420px] overflow-hidden rounded-[28px] bg-white shadow-[0_30px_80px_rgba(16,44,92,0.16)]">
             <Image src="/hero-crabionics.png" alt="Crabionics mud crab production system" fill priority unoptimized sizes="(max-width: 1024px) 100vw, 55vw" className="object-cover" />
+            <div className="absolute inset-x-5 bottom-5 rounded-2xl border border-white/20 bg-[#061a33]/85 p-5 text-white backdrop-blur-sm sm:inset-x-7 sm:bottom-7">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#65c7e8]">From biological uncertainty</p>
+              <p className="mt-1 text-lg font-semibold tracking-tight sm:text-xl">to predictable production.</p>
+              <p className="mt-2 text-xs leading-5 text-slate-300">Habitat → sensing → control → production intelligence</p>
+            </div>
           </div>
         </div>
       </section>
@@ -54,6 +59,24 @@ export default function HomePage() {
           <div><p className="text-sm font-semibold text-[#168bb8]">The opportunity</p><h2 className="mt-2 text-2xl font-semibold text-[#102C5C]">Premium crab needs predictable production.</h2></div>
           <p className="text-sm leading-7 text-slate-600">Mud crab is a high-value seafood product, but production is still exposed to biological variability, water-quality changes and inconsistent operating practices.</p>
           <p className="text-sm leading-7 text-slate-600">Crabionics is developing the physical and digital infrastructure around the crab—not simply another farm dashboard.</p>
+        </div>
+      </section>
+
+      <section className="bg-[#f8fafc] py-12 lg:py-16">
+        <div className="container-shell">
+          <div className="relative overflow-hidden rounded-[28px] bg-[#071b35] shadow-[0_24px_70px_rgba(16,44,92,0.12)]">
+            <div className="relative h-[260px] sm:h-[320px] lg:h-[390px]">
+              <Image src="/infrastructure.png" alt="Crabionics production infrastructure" fill sizes="100vw" className="object-cover" />
+              <div className="absolute inset-0 bg-gradient-to-r from-[#061a33]/90 via-[#061a33]/55 to-transparent" />
+              <div className="absolute inset-0 flex items-end p-7 sm:p-10 lg:max-w-2xl lg:p-12">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#65c7e8]">The Crabionics thesis</p>
+                  <h2 className="mt-3 text-3xl font-semibold leading-tight tracking-[-0.03em] text-white sm:text-4xl">Build the production system first. Turn the evidence into intelligence.</h2>
+                  <p className="mt-4 max-w-xl text-sm leading-6 text-slate-200">The physical system creates the evidence base that makes a credible operating layer possible.</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
