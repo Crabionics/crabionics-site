@@ -1,10 +1,15 @@
 import { clerkMiddleware } from "@clerk/nextjs/server";
 
-// Keep Clerk request processing scoped to the protected Control Tower.
-// Public marketing pages do not need auth middleware and should remain
-// independent from Clerk runtime configuration.
-export default clerkMiddleware();
+export default clerkMiddleware(async (auth, req) => {
+  if (req.nextUrl.pathname.startsWith("/control-tower") || req.nextUrl.pathname.startsWith("/api/pmo")) {
+    await auth.protect();
+  }
+});
 
 export const config = {
-  matcher: ["/control-tower/:path*"],
+  matcher: [
+    "/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)",
+    "/(api|trpc)(.*)",
+    "/__clerk/(.*)",
+  ],
 };

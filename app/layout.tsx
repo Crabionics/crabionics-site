@@ -16,18 +16,38 @@ const instrumentSerif = Instrument_Serif({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://crabionics.com"),
-  title: { default: "Crabionics | Precision Infrastructure for Mud Crab Farming", template: "%s | Crabionics" },
-  description: "Crabionics builds modular production systems that make mud crab farming more controlled, measurable and scalable.",
-  keywords: ["Crabionics", "mud crab aquaculture", "Scylla serrata", "RAS", "aquaculture automation", "AquaOS"],
+  title: {
+    default: "Crabionics | Production Architecture for Mud Crab Aquaculture",
+    template: "%s | Crabionics",
+  },
+  description:
+    "Crabionics builds the production architecture that makes industrial-scale mud crab aquaculture possible — modular RAS, AquaOS, telemetry, and closed-loop control.",
+  keywords: [
+    "Crabionics",
+    "Mud Crab Aquaculture",
+    "AquaOS",
+    "Mud Crab Farming",
+    "RAS Automation",
+    "Closed-loop Aquaculture",
+    "Aquaculture Production Architecture",
+    "Industrial Aquaculture",
+    "IoT Aquaculture",
+    "Hatchery Intelligence",
+  ],
   openGraph: {
-    title: "Crabionics | Precision Infrastructure for Mud Crab Farming",
-    description: "Modular production systems for more controlled, measurable and scalable mud crab farming.",
+    title: "Crabionics | Production Architecture for Mud Crab Aquaculture",
+    description: "The system that makes industrial-scale mud crab production possible.",
     url: "https://crabionics.com",
     siteName: "Crabionics",
     type: "website",
-    images: [{ url: "/hero-crabionics.png", width: 1200, height: 630, alt: "Crabionics mud crab production system" }],
+    images: [{ url: "/infrastructure.png", width: 1200, height: 630, alt: "Crabionics production infrastructure" }],
   },
-  twitter: { card: "summary_large_image", title: "Crabionics | Precision Infrastructure for Mud Crab Farming", description: "Modular production systems for mud crab farming.", images: ["/hero-crabionics.png"] },
+  twitter: {
+    card: "summary_large_image",
+    title: "Crabionics | Production Architecture for Mud Crab Aquaculture",
+    description: "Modular RAS, AquaOS, and closed-loop control for industrial mud crab production.",
+    images: ["/infrastructure.png"],
+  },
   alternates: { canonical: "/" },
 };
 
@@ -38,34 +58,26 @@ const organizationJsonLd = {
   url: "https://crabionics.com",
   logo: "https://crabionics.com/logo.png",
   email: "sameer@crabionics.com",
-  description: "Crabionics builds modular production systems for mud crab farming.",
+  description:
+    "Crabionics builds the production architecture for industrial-scale mud crab aquaculture — modular RAS, AquaOS, telemetry, and closed-loop control.",
   sameAs: ["https://www.linkedin.com/company/crabionics-aquaculture-private-limited/"],
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning className={instrumentSerif.variable}>
-      <body className="public-site">
-        <ClerkProvider>
-          <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }} />
-          <style>{`
-            .public-site { background: #ffffff; color: #0f172a; }
-            .public-site h1, .public-site h2, .public-site h3, .public-site h4, .public-site h5, .public-site h6 { color: #102C5C; }
-            .public-site p { color: #475569; }
-            .public-site .text-white { color: #ffffff; }
-            .public-site .text-slate-200 { color: #e2e8f0; }
-            .public-site .text-slate-300 { color: #cbd5e1; }
-            .public-site .text-slate-400 { color: #94a3b8; }
-            .public-site .text-slate-500 { color: #64748b; }
-            .public-site .text-slate-600 { color: #475569; }
-            .public-site .text-slate-700 { color: #334155; }
-            .public-site .text-slate-900 { color: #0f172a; }
-          `}</style>
+    <ClerkProvider>
+      <html lang="en" suppressHydrationWarning className={instrumentSerif.variable}>
+        <body>
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+          />
+          <div className="site-background" />
           <Navbar />
-          <main className="relative z-10 min-h-screen overflow-hidden bg-white pt-[72px]">{children}</main>
+          <main className="relative z-10 pt-20 min-h-screen overflow-hidden">{children}</main>
           <Footer />
-        </ClerkProvider>
-      </body>
-    </html>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }

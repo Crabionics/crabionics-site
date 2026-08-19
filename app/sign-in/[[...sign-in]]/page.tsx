@@ -2,14 +2,10 @@ import { SignIn } from "@clerk/nextjs";
 
 export default function SignInPage() {
   return (
-    <div className="flex min-h-[calc(100vh-5rem)] items-center justify-center px-5 py-12">
-      <SignIn
-        path="/sign-in"
-        routing="path"
-        fallbackRedirectUrl="/control-tower"
-        signUpUrl="/sign-up"
-        signUpFallbackRedirectUrl="/control-tower"
-      />
-    </div>
+    <main className="relative min-h-screen px-5 pb-20 pt-24 sm:px-8 lg:px-12">
+      <div className="mx-auto flex max-w-md justify-center">
+        <SignIn forceRedirectUrl="/control-tower" />
+      </div>
+    </main>
   );
 }
