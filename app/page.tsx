@@ -19,33 +19,43 @@ export default function HomePage() {
   return (
     <div className="bg-white text-slate-900">
       <section className="relative overflow-hidden bg-[#071a36] text-white">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_20%,rgba(29,168,221,0.22),transparent_35%),linear-gradient(120deg,#071a36_0%,#0b2b55_55%,#071a36_100%)]" />
-        <div className="container-shell relative grid min-h-[720px] items-center gap-14 py-20 lg:grid-cols-[0.95fr_1.05fr] lg:py-24">
-          <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3.5 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-cyan-100">
-              <span className="h-1.5 w-1.5 rounded-full bg-[#25B947]" />
-              Crabionics Aquaculture
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_78%_12%,rgba(29,168,221,0.18),transparent_30%),linear-gradient(115deg,#06172f_0%,#0b2b55_58%,#071a36_100%)]" />
+        <div className="container-shell relative py-16 sm:py-20 lg:py-24">
+          <div className="grid items-center gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
+            <div className="max-w-2xl">
+              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-cyan-200">Precision aquaculture · Scylla serrata</p>
+              <h1 className="mt-6 max-w-2xl text-[3.6rem] font-semibold leading-[0.92] tracking-[-0.065em] text-white sm:text-[5rem] lg:text-[5.7rem]">The production system for mud crab.</h1>
+              <p className="mt-7 max-w-xl text-lg leading-8 text-slate-200 sm:text-xl">Crabionics is engineering the physical and digital infrastructure to make high-value mud crab production controlled, measurable and repeatable.</p>
+              <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+                <Link href="/technology" className="inline-flex items-center justify-center rounded-full bg-white px-7 py-3.5 text-sm font-semibold text-[#102C5C] transition hover:-translate-y-0.5">Explore the platform <span className="ml-2">→</span></Link>
+                <Link href="/validation" className="inline-flex items-center justify-center rounded-full border border-white/20 px-7 py-3.5 text-sm font-semibold text-white transition hover:border-white/35 hover:bg-white/5">See what we are proving</Link>
+              </div>
             </div>
-            <h1 className="mt-7 max-w-2xl text-5xl font-semibold leading-[0.98] tracking-[-0.055em] text-white sm:text-6xl lg:text-[5.25rem]">Mud crab, engineered for repeatability.</h1>
-            <p className="mt-7 max-w-xl text-lg leading-8 text-slate-200">We are building the production infrastructure that makes high-value mud crab farming more controlled, measurable and scalable.</p>
-            <div className="mt-9 flex flex-wrap gap-3">
-              <Link href="/technology" className="rounded-full bg-white px-6 py-3 text-sm font-semibold text-[#102C5C] transition hover:-translate-y-0.5">Explore the platform</Link>
-              <Link href="/validation" className="rounded-full border border-white/20 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10">See the validation</Link>
-            </div>
-            <div className="mt-12 grid max-w-xl grid-cols-2 gap-x-8 gap-y-5 border-t border-white/10 pt-7 sm:grid-cols-4">
-              <div><p className="text-xs uppercase tracking-[0.14em] text-cyan-200">R&amp;D</p><p className="mt-1 text-sm font-semibold text-white">BIRAC BIG</p></div>
-              <div><p className="text-xs uppercase tracking-[0.14em] text-cyan-200">Pilot</p><p className="mt-1 text-sm font-semibold text-white">600 boxes</p></div>
-              <div><p className="text-xs uppercase tracking-[0.14em] text-cyan-200">Field</p><p className="mt-1 text-sm font-semibold text-white">Pond + RAS</p></div>
-              <div><p className="text-xs uppercase tracking-[0.14em] text-cyan-200">Focus</p><p className="mt-1 text-sm font-semibold text-white">Mud crab</p></div>
+
+            <div className="relative">
+              <div className="overflow-hidden rounded-[1.75rem] border border-white/12 bg-[#0a2447] shadow-[0_30px_100px_rgba(0,0,0,0.32)]">
+                <Image src="/infrastructure.png" alt="Crabionics production infrastructure" width={1200} height={900} priority className="h-[360px] w-full object-cover sm:h-[500px] lg:h-[590px]" />
+              </div>
+              <div className="absolute -bottom-5 left-5 right-5 rounded-2xl border border-white/15 bg-[#071a36]/92 px-5 py-4 shadow-xl backdrop-blur-md sm:left-8 sm:right-8">
+                <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-xs uppercase tracking-[0.14em] text-slate-300">
+                  <span>Habitat</span><span className="text-cyan-300">→</span><span>CrabSense</span><span className="text-cyan-300">→</span><span>CrabPod</span><span className="text-cyan-300">→</span><span>AquaOS</span>
+                </div>
+              </div>
             </div>
           </div>
-          <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 shadow-2xl shadow-black/30">
-            <div className="absolute inset-0 bg-gradient-to-t from-[#071a36]/30 via-transparent to-white/5" />
-            <Image src="/hero-crabionics.png" alt="Crabionics production system" width={1200} height={900} priority className="h-[430px] w-full object-cover sm:h-[520px] lg:h-[590px]" />
-            <div className="absolute bottom-5 left-5 right-5 rounded-2xl border border-white/15 bg-[#071a36]/75 p-4 backdrop-blur-md">
-              <p className="text-xs uppercase tracking-[0.14em] text-cyan-200">Technology spine</p>
-              <p className="mt-1 text-sm font-medium text-white">Habitat → CrabSense → CrabPod → AquaOS</p>
-            </div>
+
+          <div className="mt-16 grid border-t border-white/10 pt-7 sm:grid-cols-4">
+            {[
+              ["R&amp;D", "BIRAC BIG"],
+              ["Pilot", "600 boxes"],
+              ["Field", "Pond + RAS"],
+              ["Focus", "Mud crab"],
+            ].map(([label, value]) => (
+              <div key={label} className="border-white/10 py-3 sm:border-l sm:px-6 first:sm:border-l-0 first:sm:pl-0">
+                <p className="text-[11px] uppercase tracking-[0.2em] text-slate-400">{label}</p>
+                <p className="mt-2 text-sm font-semibold text-white">{value}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
