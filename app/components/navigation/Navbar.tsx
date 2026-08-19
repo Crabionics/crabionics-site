@@ -10,6 +10,7 @@ const navLinks = [
   { href: "/why-crab", label: "Why Crab" },
   { href: "/validation", label: "Validation" },
   { href: "/investors", label: "Investors" },
+  { href: "/company", label: "Company & Team" },
 ];
 
 export default function Navbar() {
@@ -61,13 +62,21 @@ export default function Navbar() {
         </div>
       </div>
 
-      <div className={`fixed inset-0 top-[72px] bg-white transition-all lg:hidden ${isOpen ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"}`}>
-        <div className="container-shell py-10">
-          <div className="flex flex-col gap-6">
+      {/* Mobile menu: an opaque panel below the fixed header. */}
+      <div
+        aria-hidden={!isOpen}
+        className={`absolute left-0 right-0 top-[72px] z-[60] min-h-[calc(100dvh-72px)] overflow-y-auto overscroll-contain border-t border-slate-200 bg-white shadow-xl transition-opacity duration-200 lg:hidden ${isOpen ? "pointer-events-auto visible opacity-100" : "pointer-events-none invisible opacity-0"}`}
+      >
+        <div className="container-shell py-8">
+          <nav className="flex flex-col gap-6">
             <Link href="/" className="text-2xl font-semibold text-[#102C5C]">Home</Link>
-            {navLinks.map((item) => <Link key={item.href} href={item.href} className="text-2xl font-semibold text-slate-700">{item.label}</Link>)}
-            <Link href="/contact" className="mt-4 inline-flex w-fit rounded-full bg-[#102C5C] px-5 py-3 text-sm font-semibold text-white">Partner with us</Link>
-          </div>
+            {navLinks.map((item) => (
+              <Link key={item.href} href={item.href} className="text-2xl font-semibold text-slate-700">
+                {item.label}
+              </Link>
+            ))}
+            <Link href="/contact" className="mt-2 inline-flex w-fit rounded-full bg-[#102C5C] px-5 py-3 text-sm font-semibold text-white">Partner with us</Link>
+          </nav>
         </div>
       </div>
     </header>
