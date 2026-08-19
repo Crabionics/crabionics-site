@@ -136,7 +136,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="bg-[#102C5C] py-18 text-white lg:py-20">
+      <section className="bg-[#102C5C] py-20 text-white lg:py-24">
         <div className="container-shell grid gap-10 lg:grid-cols-2">
           <div><p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#65c7e8]">For investors</p><h2 className="mt-3 text-3xl font-semibold text-white">The next capital is for validation.</h2><p className="mt-4 max-w-xl text-slate-300">The objective is to establish repeatable production evidence across technology, biology, economics and commercial demand before scaling deployment.</p><Link href="/investors" className="mt-6 inline-flex text-sm font-semibold text-[#65c7e8]">Investor overview →</Link></div>
           <div><p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#65c7e8]">For producers and processors</p><h2 className="mt-3 text-3xl font-semibold text-white">Talk to us about the production system.</h2><p className="mt-4 max-w-xl text-slate-300">We are looking for pilot, production, processing and technology partners as the system moves through field validation.</p><Link href="/contact" className="mt-6 inline-flex text-sm font-semibold text-[#65c7e8]">Start a conversation →</Link></div>
