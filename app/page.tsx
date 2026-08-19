@@ -1,379 +1,223 @@
-import Image from "next/image";
+import type { Metadata } from "next";
 import Link from "next/link";
 
-import HomeArchitectureMap from "@/app/components/diagrams/HomeArchitectureMap";
-import HomePlatformBrief from "@/app/components/sections/HomePlatformBrief";
-import HomeValidationStrip from "@/app/components/sections/HomeValidationStrip";
 import HomeHeroAnimated from "@/app/components/sections/HomeHeroAnimated";
-import {
-  IconChip,
-  IconDrop,
-  IconGlobe,
-  IconLeaf,
-  IconNetwork,
-  IconWifi,
-} from "@/app/components/ui/Icons";
+import SystemsInMotionSection from "@/app/components/sections/SystemsInMotionSection";
+import GlassCard from "@/app/components/ui/GlassCard";
+import SectionHeading from "@/app/components/ui/SectionHeading";
+import SectionWrapper from "@/app/components/ui/SectionWrapper";
 
-const features = [
-  { icon: IconDrop,    title: "Integrated RAS",                note: "Modular & Scalable" },
-  { icon: IconWifi,    title: "Telemetry-ready Infrastructure", note: "Sensors across the system" },
-  { icon: IconChip,    title: "AquaOS Control Architecture",    note: "Automate & Optimize" },
-  { icon: IconNetwork, title: "CIN Intelligence Layer",         note: "In development" },
-  { icon: IconLeaf,    title: "Designed for Sustainability",    note: "Water · Carbon · Mangroves" },
-  { icon: IconGlobe,   title: "Built for Scale",                note: "Processors · Global Markets" },
+export const metadata: Metadata = {
+  title: "Crabionics | Precision Mud Crab Production Infrastructure",
+  description:
+    "Crabionics builds production infrastructure and an operating system for precision mud crab aquaculture — modular habitat, sensing, actuation, and biological control.",
+  alternates: { canonical: "/" },
+  openGraph: {
+    title: "Crabionics | Precision Mud Crab Production Infrastructure",
+    description:
+      "Production infrastructure + operating system for precision mud crab aquaculture.",
+    url: "https://crabionics.com/",
+    type: "website",
+  },
+};
+
+const architecture = [
+  {
+    step: "01",
+    title: "Habitat",
+    label: "Production environment",
+    body: "Modular RAS and isolation architecture designed to make the production environment more controllable.",
+  },
+  {
+    step: "02",
+    title: "CrabSense",
+    label: "Observe",
+    body: "Environmental and operational telemetry creates a structured record of what is happening in production.",
+  },
+  {
+    step: "03",
+    title: "CrabPod",
+    label: "Act",
+    body: "The actuator layer connects production decisions to flushing, oxygenation, water movement, and other interventions.",
+  },
+  {
+    step: "04",
+    title: "AquaOS",
+    label: "Decide",
+    body: "The control layer turns signals, biological events, SOPs, and validated rules into coordinated operational decisions.",
+  },
 ];
 
-const problems = [
+const validation = [
   {
-    lead: "Cannibalism",
-    title: "Crabs kill each other",
-    text: "In a shared pond, the strong tear apart the soft post-molt crabs — entire batches vanish before harvest.",
+    title: "Technology validation",
+    status: "Active",
+    body: "Engineering the modular RAS, sensing, automation, and operating protocols needed for controlled production.",
   },
   {
-    lead: "Vulnerability window",
-    title: "Molt is a blind spot",
-    text: "For the day a new shell takes to harden, the crab is defenseless — and without per-animal visibility, you find out too late.",
+    title: "Biological validation",
+    status: "Active",
+    body: "Controlled production trials are used to test survival, growth, molting, water quality, and intervention logic.",
   },
   {
-    lead: "Environmental drift",
-    title: "Water shifts unseen",
-    text: "Oxygen, salinity, ammonia and temperature swing with weather and feed — by the time the crab shows symptoms, the cycle is compromised.",
+    title: "Economic validation",
+    status: "Next gate",
+    body: "The 600-box finishing programme is designed to test repeatable production economics before commercial replication.",
   },
   {
-    lead: "No causality",
-    title: "Nothing tracked individually",
-    text: "A traditional pond gives one number at harvest — no growth history, no molt log, nothing that improves cycle to cycle.",
+    title: "Commercial validation",
+    status: "Building",
+    body: "Processor demand, supply consistency, traceability, and deployment partnerships form the next commercial proof layer.",
   },
+];
+
+const evidence = [
+  "KIIT-TBI incubation",
+  "DST NIDHI PRAYAS support",
+  "BIRAC BIG — 24th call",
+  "DPIIT Startup recognition",
 ];
 
 export default function HomePage() {
   return (
     <main className="relative overflow-hidden">
+      <HomeHeroAnimated />
 
-      {/* ===========================================================
-           HERO — full-bleed infrastructure image composition
-         =========================================================== */}
-      <section className="section-light relative -mt-20 overflow-hidden">
+      <SectionWrapper className="section-divider">
+        <SectionHeading
+          eyebrow="The Problem"
+          title="Mud crab is valuable. Production is still unpredictable."
+          subtitle="Crabionics is built around a simple hypothesis: if the production environment, biological signals, and operational responses become measurable and controllable, mud crab production can become more repeatable."
+          align="center"
+        />
 
-        {/* background image + legibility scrims (stronger veil on mobile) */}
-        <div className="absolute inset-0">
-          <Image
-            src="/infrastructure.png"
-            alt="Crabionics modular RAS grow-out and AquaOS-instrumented infrastructure on the coast"
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/85 to-white/55 lg:to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-white/75 via-white/15 to-transparent lg:from-white/55" />
-        </div>
-
-        <div className="container-shell relative z-10 pt-28 pb-14 lg:pt-40 lg:pb-24">
-
-          <HomeHeroAnimated />
-        </div>
-      </section>
-
-      {/* ===========================================================
-           FEATURE BAR — full-width dark
-         =========================================================== */}
-      <section className="relative bg-[#04091a]">
-
-        <div className="container-shell py-6 lg:py-7">
-
-          <div className="grid grid-cols-2 gap-x-6 gap-y-6 sm:grid-cols-3 lg:grid-cols-6">
-
-            {features.map((f) => {
-              const Icon = f.icon;
-              return (
-                <div key={f.title} className="flex items-start gap-3">
-                  <span className="mt-0.5 shrink-0 text-cyan-300">
-                    <Icon className="h-5 w-5" />
-                  </span>
-                  <div className="min-w-0">
-                    <p className="text-sm font-semibold leading-tight text-white">
-                      {f.title}
-                    </p>
-                    <p className="mt-1 text-xs text-slate-400">{f.note}</p>
-                  </div>
+        <div className="mx-auto mt-16 max-w-5xl">
+          <GlassCard className="p-8 lg:p-12">
+            <div className="grid gap-6 md:grid-cols-4">
+              {[
+                ["01", "Variable environment"],
+                ["02", "Limited observability"],
+                ["03", "Delayed intervention"],
+                ["04", "Unpredictable output"],
+              ].map(([number, label]) => (
+                <div key={number} className="rounded-2xl border border-white/10 bg-white/[0.03] p-6">
+                  <p className="font-mono text-xs text-cyan-200">{number}</p>
+                  <p className="mt-4 text-sm font-medium text-white">{label}</p>
                 </div>
-              );
-            })}
-          </div>
+              ))}
+            </div>
+            <div className="mt-8 border-t border-white/10 pt-8 text-center">
+              <p className="text-lg font-medium text-white">Our response: build the control architecture around the biology.</p>
+            </div>
+          </GlassCard>
         </div>
-      </section>
+      </SectionWrapper>
 
-      {/* ===========================================================
-           ARCHITECTURE MAP — dark, the signature visual moment
-         =========================================================== */}
-      <section className="relative overflow-hidden section-padding">
+      <SectionWrapper className="section-divider">
+        <SectionHeading
+          eyebrow="The Crabionics Stack"
+          title="Habitat → CrabSense → CrabPod → AquaOS"
+          subtitle="One production architecture, with each layer solving a different part of the control problem."
+          align="center"
+        />
 
-        {/* dark backdrop on top of the global background — reinforces darkness */}
-        <div className="pointer-events-none absolute inset-0 bg-[#04091a]" />
-
-        <div className="pointer-events-none absolute left-1/2 top-1/2 h-[700px] w-[700px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-400/[0.08] blur-3xl" />
-
-        <div className="container-shell relative z-10">
-
-          <div className="mx-auto max-w-3xl text-center">
-
-            <p className="text-xs uppercase tracking-[0.24em] text-cyan-300">
-              The architecture
-            </p>
-
-            <h2 className="mt-5 text-white">
-              From biological systems to <span className="font-display italic text-cyan-200">market outcomes.</span>
-            </h2>
-
-            <p className="mt-6 text-lg text-slate-300">
-              Four layers: modular RAS on the floor, AquaOS turning signal into
-              decisions, a CIN learning layer in development, and the market outcomes
-              it drives. The proven layer operates in R&amp;D today; the rest is being built.
-            </p>
-          </div>
-
-          <div className="mt-16">
-            <HomeArchitectureMap />
-          </div>
-        </div>
-      </section>
-
-      {/* ===========================================================
-           WHAT'S REAL TODAY — proof of operation, leads before the problem
-         =========================================================== */}
-      <section className="section-light section-padding section-divider">
-
-        <div className="container-shell">
-
-          <div className="mx-auto max-w-3xl text-center">
-
-            <p className="text-xs uppercase tracking-[0.24em] text-cyan-700">
-              What&rsquo;s real today
-            </p>
-
-            <h2 className="mt-5">
-              We have already operated the hard part
-            </h2>
-
-            <p className="mt-6 text-lg">
-              Before any platform claim, three things are proven by real R&amp;D operations.
-            </p>
-          </div>
-
-          <div className="mx-auto mt-12 grid max-w-5xl gap-5 sm:grid-cols-3">
-
-            {[
-              {
-                lead: "Operational R&D history",
-                title: "Hundreds of individually-tracked crabs",
-                text: "Across soft-shell, hard-shell and RAS trials — each animal logged per-unit, not as a pond average.",
-              },
-              {
-                lead: "Proven value mechanics",
-                title: "Molt-driven grade uplift",
-                text: "A single molt can lift a crab a full export grade — meaningful, documented uplift from early field work.",
-              },
-              {
-                lead: "Real market linkage",
-                title: "Live export & retail channels",
-                text: "Already selling through live export and retail channels at grade-based pricing — demand is commercial, not hypothetical.",
-              },
-            ].map((item) => (
-              <div
-                key={item.title}
-                className="card-light rounded-2xl p-7"
-              >
-                <p className="text-xs uppercase tracking-[0.18em] text-cyan-700">
-                  {item.lead}
-                </p>
-
-                <h3 className="mt-4 text-xl font-semibold">
-                  {item.title}
-                </h3>
-
-                <p className="mt-4 text-sm">
-                  {item.text}
-                </p>
+        <div className="mx-auto mt-16 grid max-w-6xl gap-6 lg:grid-cols-4">
+          {architecture.map((item) => (
+            <GlassCard key={item.step} className="relative overflow-hidden p-8">
+              <div className="absolute right-[-15%] top-[-15%] h-32 w-32 rounded-full bg-cyan-400/10 blur-3xl" />
+              <div className="relative z-10">
+                <p className="font-mono text-xs text-cyan-200">{item.step}</p>
+                <p className="mt-5 text-2xl font-semibold text-white">{item.title}</p>
+                <p className="mt-2 text-xs uppercase tracking-[0.16em] text-cyan-200/80">{item.label}</p>
+                <p className="mt-5 text-sm text-slate-300">{item.body}</p>
               </div>
-            ))}
-          </div>
+            </GlassCard>
+          ))}
         </div>
-      </section>
+      </SectionWrapper>
 
-      {/* ===========================================================
-           PROBLEM — light
-         =========================================================== */}
-      <section className="section-light section-padding section-divider">
+      <SystemsInMotionSection />
 
-        <div className="container-shell">
+      <SectionWrapper className="section-divider">
+        <SectionHeading
+          eyebrow="Validation Architecture"
+          title="We are not claiming the finished system. We are building the evidence."
+          subtitle="The website now separates what is operating, what is being validated, and what remains a future capability."
+          align="center"
+        />
 
-          <div className="mx-auto max-w-3xl text-center">
-
-            <p className="text-xs uppercase tracking-[0.24em] text-cyan-700">
-              The problem
-            </p>
-
-            <h2 className="mt-5">
-              Mud crab farming was never designed as a controlled system
-            </h2>
-
-            <p className="mt-6 text-lg">
-              Forty years, no change in production architecture:
-            </p>
-          </div>
-
-          {/* Hard numbers strip */}
-          <div className="mx-auto mt-12 grid max-w-4xl gap-4 sm:grid-cols-4">
-            {[
-              { value: "50–70%", label: "Cycle mortality" },
-              { value: "$51",    label: "Europe — per unit" },
-              { value: "4,500 t", label: "India annual export" },
-              { value: "100%",   label: "Wild-seed dependency" },
-            ].map((s) => (
-              <div
-                key={s.label}
-                className="rounded-2xl border border-slate-200 bg-white p-5 text-center"
-              >
-                <p className="text-2xl font-semibold text-slate-900">{s.value}</p>
-                <p className="mt-2 text-xs uppercase tracking-[0.14em] text-cyan-700">{s.label}</p>
+        <div className="mx-auto mt-16 grid max-w-6xl gap-6 md:grid-cols-2">
+          {validation.map((item) => (
+            <GlassCard key={item.title} className="p-8">
+              <div className="flex items-start justify-between gap-4">
+                <div className="h-3 w-3 shrink-0 rounded-full bg-cyan-300" />
+                <span className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-[10px] uppercase tracking-[0.16em] text-slate-300">
+                  {item.status}
+                </span>
               </div>
-            ))}
-          </div>
-
-          <div className="mt-16 grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
-
-            {problems.map((item) => (
-              <div
-                key={item.title}
-                className="card-light rounded-2xl p-7"
-              >
-                <p className="text-xs uppercase tracking-[0.18em] text-cyan-700">
-                  {item.lead}
-                </p>
-
-                <h3 className="mt-4 text-xl font-semibold">
-                  {item.title}
-                </h3>
-
-                <p className="mt-4 text-sm">
-                  {item.text}
-                </p>
-              </div>
-            ))}
-          </div>
-
-          <p className="mx-auto mt-12 max-w-3xl text-center text-lg font-medium text-slate-700">
-            Crabionics converts biological uncertainty into repeatable production.
-          </p>
+              <h3 className="mt-6 text-xl font-semibold text-white">{item.title}</h3>
+              <p className="mt-4 text-sm text-slate-300">{item.body}</p>
+            </GlassCard>
+          ))}
         </div>
-      </section>
+      </SectionWrapper>
 
-      {/* ===========================================================
-           PLATFORM BRIEF — light
-         =========================================================== */}
-      <HomePlatformBrief />
-
-      {/* ===========================================================
-           VALIDATION STRIP — light
-         =========================================================== */}
-      <HomeValidationStrip />
-
-      {/* ===========================================================
-           AUDIENCE SPLIT — two paths, light
-         =========================================================== */}
-      <section className="section-light section-padding section-divider">
-
-        <div className="container-shell">
-
-          <div className="mx-auto max-w-3xl text-center">
-
-            <p className="text-xs uppercase tracking-[0.24em] text-cyan-700">
-              Where to next
-            </p>
-
-            <h2 className="mt-5">
-              Two ways to engage Crabionics
-            </h2>
-          </div>
-
-          <div className="mx-auto mt-12 grid max-w-4xl gap-5 md:grid-cols-2">
-
-            {[
-              {
-                tag: "For investors",
-                title: "Back the validation inflection",
-                text: "An operationally-experienced team entering its first controlled-validation phase. See the thesis, milestones, and what the capital unlocks.",
-                cta: "Investor Brief",
-                href: "/capital",
-              },
-              {
-                tag: "For processors & buyers",
-                title: "Secure export-grade supply",
-                text: "A 365-day pipeline of export-spec live and soft-shell crab — built on modular RAS and AquaOS, not a seasonal gamble.",
-                cta: "Explore the Platform",
-                href: "/platform",
-              },
-            ].map((item) => (
-              <div
-                key={item.tag}
-                className="card-light flex flex-col rounded-2xl p-8"
-              >
-                <p className="text-xs uppercase tracking-[0.18em] text-cyan-700">
-                  {item.tag}
-                </p>
-
-                <h3 className="mt-4 text-2xl font-semibold">
-                  {item.title}
-                </h3>
-
-                <p className="mt-4 text-sm">
-                  {item.text}
-                </p>
-
-                <div className="mt-7">
-                  <Link href={item.href} className="primary-button">
-                    {item.cta}
-                  </Link>
+      <SectionWrapper className="section-divider">
+        <SectionHeading
+          eyebrow="AquaOS"
+          title="Observe → Understand → Decide → Act → Learn"
+          subtitle="AquaOS is being built as the operating layer for biological production — not as a generic dashboard."
+          align="center"
+        />
+        <div className="mx-auto mt-16 max-w-5xl">
+          <GlassCard className="p-8 lg:p-12">
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+              {["Observe", "Understand", "Decide", "Act", "Learn"].map((item, index) => (
+                <div key={item} className="rounded-2xl border border-cyan-400/10 bg-cyan-400/[0.04] p-5 text-center">
+                  <p className="font-mono text-xs text-cyan-200">0{index + 1}</p>
+                  <p className="mt-3 font-medium text-white">{item}</p>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
+            <p className="mx-auto mt-8 max-w-3xl text-center text-sm text-slate-400">
+              The important output is not a prettier dashboard. It is a verified operational decision connected to a biological outcome.
+            </p>
+          </GlassCard>
+        </div>
+      </SectionWrapper>
+
+      <SectionWrapper className="section-divider">
+        <SectionHeading
+          eyebrow="Evidence Base"
+          title="The company has institutional validation — now we have to earn production validation."
+          align="center"
+        />
+        <div className="mx-auto mt-12 flex max-w-5xl flex-wrap justify-center gap-3">
+          {evidence.map((item) => (
+            <div key={item} className="rounded-full border border-white/10 bg-white/[0.04] px-5 py-3 text-sm text-slate-200">
+              {item}
+            </div>
+          ))}
+        </div>
+      </SectionWrapper>
+
+      <SectionWrapper>
+        <div className="glass-card overflow-hidden p-10 lg:p-14">
+          <div className="grid items-center gap-10 lg:grid-cols-[1fr_auto]">
+            <div>
+              <p className="text-sm uppercase tracking-[0.18em] text-cyan-200">The next proof point</p>
+              <h2 className="mt-5 max-w-3xl">Build controlled production. Measure it. Learn from it. Then replicate it.</h2>
+              <p className="mt-5 max-w-2xl text-slate-300">
+                The current stage is validation — turning engineering and operating experience into biological and economic evidence strong enough to support commercial scale.
+              </p>
+            </div>
+            <div className="flex flex-col gap-4 sm:flex-row lg:flex-col">
+              <Link href="/platform" className="primary-button">Explore the platform</Link>
+              <Link href="/capital" className="secondary-button">Read the investment thesis</Link>
+            </div>
           </div>
         </div>
-      </section>
-
-      {/* ===========================================================
-           FINAL CTA — dark, single statement
-         =========================================================== */}
-      <section className="relative overflow-hidden">
-
-        <div className="pointer-events-none absolute inset-0 bg-[#04091a]" />
-
-        <div className="pointer-events-none absolute left-1/2 top-1/2 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-400/[0.08] blur-3xl" />
-
-        <div className="container-shell relative z-10 py-32 text-center lg:py-44">
-
-          <p className="mx-auto max-w-2xl text-base text-slate-300">
-            The 600-box pilot is the bridge — from operational intelligence to
-            provable industrial causality.
-          </p>
-
-          <h2
-            className="font-display mx-auto mt-6 max-w-4xl text-center text-white"
-            style={{ fontSize: "clamp(2.6rem, 6vw, 5rem)", lineHeight: 1.05 }}
-          >
-            Want to see it <em className="text-cyan-200">run?</em>
-          </h2>
-
-          <div className="mt-12">
-
-            <Link href="/contact" className="primary-button">
-              Talk to the founders
-            </Link>
-          </div>
-        </div>
-      </section>
-
+      </SectionWrapper>
     </main>
   );
 }
