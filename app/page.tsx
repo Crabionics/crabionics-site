@@ -8,6 +8,13 @@ const layers = [
   ["AquaOS", "Production software and decisions", "/aquaos-diagram.png"],
 ];
 
+const institutions = [
+  ["DPIIT / Startup India", "Government startup recognition", "/logos/dpiit-startup-india.png"],
+  ["BIRAC BIG", "Biotechnology Ignition Grant — 24th call", "/logos/birac-big.png"],
+  ["DST NIDHI PRAYAS", "Deep-tech innovation support", "/logos/dst-nidhi-prayas.png"],
+  ["KIIT-TBI", "Technology incubation and ecosystem", "/logos/kiit-tbi.png"],
+];
+
 export default function HomePage() {
   return (
     <div className="bg-white text-slate-900">
@@ -65,6 +72,20 @@ export default function HomePage() {
           <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end"><div className="max-w-3xl"><p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#168bb8]">Current validation</p><h2 className="mt-3 text-4xl font-semibold tracking-[-0.035em] text-[#102C5C] sm:text-5xl">From prototype to controlled production.</h2><p className="mt-5 text-lg leading-8 text-slate-600">Crabionics is running funded R&amp;D alongside a nearby pond and 600-box production programme. Each track answers a different question.</p></div><Link href="/validation" className="text-sm font-semibold text-[#168bb8]">See the validation programme →</Link></div>
           <div className="mt-12 grid gap-5 md:grid-cols-3">
             {["BIRAC / IHMS", "Pond production", "600-box finishing"].map((title, index) => <div key={title} className="rounded-2xl border border-slate-200 bg-[#f8fafc] p-7"><span className="text-xs font-semibold uppercase tracking-[0.16em] text-[#168bb8]">0{index + 1}</span><h3 className="mt-4 text-xl font-semibold text-[#102C5C]">{title}</h3><p className="mt-3 text-sm leading-6 text-slate-600">{index === 0 ? "Funded R&D for the intelligent hatchery and production intelligence stack." : index === 1 ? "Biomass and biological production evidence under field conditions." : "Controlled finishing to test repeatability, operating cost and production economics."}</p></div>)}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-y border-slate-200 bg-[#f8fafc] py-16 lg:py-20">
+        <div className="container-shell">
+          <div className="max-w-3xl"><p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#168bb8]">Institutional backing</p><h2 className="mt-3 text-3xl font-semibold text-[#102C5C] sm:text-4xl">Built with support from India's innovation ecosystem.</h2></div>
+          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {institutions.map(([name, caption, logo]) => (
+              <div key={name} className="flex min-h-[170px] flex-col justify-between rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+                <div className="relative h-14 w-full"><Image src={logo} alt={name} fill sizes="220px" className="object-contain object-left" /></div>
+                <div className="mt-6"><p className="font-semibold text-[#102C5C]">{name}</p><p className="mt-1 text-xs leading-5 text-slate-500">{caption}</p></div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
