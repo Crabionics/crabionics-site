@@ -44,7 +44,7 @@ export default function HomePage() {
             </div>
           </div>
           <div className="relative min-h-[420px] overflow-hidden rounded-[28px] bg-white shadow-[0_30px_80px_rgba(16,44,92,0.16)]">
-            <Image src="/hero-crabionics.png" alt="Crabionics mud crab production system" fill priority sizes="(max-width: 1024px) 100vw, 55vw" className="object-cover" />
+            <Image src="/hero-crabionics.png" alt="Crabionics mud crab production system" fill priority sizes="(max-width: 1024px) 100vw, 55vw" className="object-cover lg:object-[center_68%]" />
           </div>
         </div>
       </section>
