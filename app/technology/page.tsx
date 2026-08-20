@@ -1,85 +1,17 @@
+import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 
+export const metadata: Metadata = { title: "Technology", description: "Habitat, CrabSense, CrabPod and AquaOS — the Crabionics technology stack." };
+
+const layers = [["Habitat","The controlled production environment.","/photos/isolation-box.jpg"],["CrabSense","Environmental sensing and production telemetry.","/photos/sensor-node.jpg"],["CrabPod","Edge hardware connecting sensing and actuation.","/photos/ras-plumbing.jpg"],["AquaOS","Software for production records, events and decisions.","/aquaos-diagram.png"]];
+
 export default function TechnologyPage() {
-  return (
-    <main className="bg-neutral-50 text-neutral-900">
-      <section className="border-b border-neutral-200 bg-white">
-        <div className="max-w-6xl mx-auto px-6 py-20 md:py-24">
-          <p className="text-sm uppercase tracking-[0.2em] text-neutral-600">
-            Technology
-          </p>
-          <h1 className="mt-5 text-4xl md:text-5xl font-semibold tracking-tight max-w-4xl">
-            AquaOS Biological Intelligence Architecture
-          </h1>
-          <p className="mt-7 text-lg text-neutral-700 max-w-3xl leading-relaxed">
-            Infrastructure-integrated modeling for survival optimization,
-            molt-timing estimation, mortality risk classification, and
-            production accountability.
-          </p>
-        </div>
-      </section>
-
-      <section className="py-16 md:py-20 px-6 border-b border-neutral-200">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-2xl md:text-3xl font-semibold tracking-tight">
-            Closed-loop infrastructure intelligence
-          </h2>
-          <div className="mt-8 grid gap-4">
-            {[
-              ["Physical Layer", "Vertical RAS infrastructure, individual grow-out boxes, and controlled water systems."],
-              ["Sensor Layer", "Dissolved oxygen, nitrate, temperature, salinity, and lifecycle event capture."],
-              ["Data Layer", "Structured identity, environmental, operational, and yield metrics."],
-              ["Model Layer", "Molt-timing estimation, mortality risk classification, and survival optimization."],
-              ["Decision Layer", "Harvest window optimization, feeding control, and cost-per-kg stabilization."],
-            ].map(([title, text]) => (
-              <article key={title} className="border border-neutral-200 bg-white p-6">
-                <h3 className="font-semibold">{title}</h3>
-                <p className="mt-2 text-base text-neutral-700">{text}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="py-16 md:py-20 px-6">
-        <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-6">
-          <article className="border border-neutral-200 bg-white p-6">
-            <h3 className="font-semibold">Molt timing intelligence</h3>
-            <p className="mt-2 text-base text-neutral-700">
-              Identifies high-risk windows to reduce mortality and improve intervention timing.
-            </p>
-          </article>
-          <article className="border border-neutral-200 bg-white p-6">
-            <h3 className="font-semibold">Risk stabilization</h3>
-            <p className="mt-2 text-base text-neutral-700">
-              Forecasts stress conditions before thresholds are crossed.
-            </p>
-          </article>
-          <article className="border border-neutral-200 bg-white p-6">
-            <h3 className="font-semibold">Crab Carbon Index (CCI)</h3>
-            <p className="mt-2 text-base text-neutral-700">
-              Connects production events to carbon-accountable reporting.
-            </p>
-          </article>
-        </div>
-      </section>
-
-      <section className="py-16 px-6 border-t border-neutral-200 bg-white">
-        <div className="max-w-6xl mx-auto">
-          <p className="text-base text-neutral-700 max-w-3xl">
-            AquaOS explains the operating logic. This page details the broader
-            technical stack that supports production reliability.
-          </p>
-          <div className="mt-6 flex flex-col md:flex-row gap-4">
-            <Link href="/aquaos" className="px-6 py-3 border border-neutral-300 text-base font-medium hover:bg-neutral-100">
-              Go to AquaOS Overview
-            </Link>
-            <Link href="/platform" className="px-6 py-3 border border-neutral-300 text-base font-medium hover:bg-neutral-100">
-              Go to Platform Infrastructure
-            </Link>
-          </div>
-        </div>
-      </section>
-    </main>
-  );
+  return <div className="bg-white text-slate-900">
+    <section className="bg-[#f5f8fb] py-20 lg:py-28"><div className="container-shell grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:items-center"><div><p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#168bb8]">Technology</p><h1 className="mt-4 text-5xl font-semibold leading-tight tracking-[-0.04em] text-[#102C5C] sm:text-6xl">A production system built around the crab.</h1><p className="mt-7 text-lg leading-8 text-slate-600">Habitat, sensing, edge control and software are designed as one stack. The system is being built layer by layer and validated in production.</p></div><div className="relative min-h-[420px] overflow-hidden rounded-3xl"><Image src="/infrastructure.png" alt="Crabionics production infrastructure" fill priority sizes="55vw" className="object-cover" /></div></div></section>
+    <section className="py-20 lg:py-28"><div className="container-shell"><div className="max-w-3xl"><p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#168bb8]">The stack</p><h2 className="mt-3 text-4xl font-semibold text-[#102C5C] sm:text-5xl">Four layers. One production system.</h2></div><div className="mt-12 grid gap-6 md:grid-cols-2">{layers.map(([title,text,image])=><article key={title} className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm"><div className="relative h-64 bg-slate-100"><Image src={image} alt={title} fill sizes="50vw" className="object-cover" /></div><div className="p-7"><h3 className="text-2xl font-semibold text-[#102C5C]">{title}</h3><p className="mt-3 text-sm leading-7 text-slate-600">{text}</p></div></article>)}</div></div></section>
+    <section className="bg-[#102C5C] py-20 text-white lg:py-24"><div className="container-shell grid gap-10 lg:grid-cols-2 lg:items-center"><div><p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#65c7e8]">AquaOS</p><h2 className="mt-3 text-4xl font-semibold text-white">Software for the production floor.</h2></div><div className="text-slate-200"><p>Observe what is happening. Record what changed. Connect operating decisions to outcomes.</p><p className="mt-5">AquaOS is being developed as the operating layer for the physical production system—not as a generic farm dashboard.</p><Image src="/aquaos-diagram.png" alt="AquaOS architecture diagram" width={1200} height={600} className="mt-8 rounded-2xl border border-white/10 bg-white p-3" /></div></div></section>
+    <section className="py-20 lg:py-28"><div className="container-shell grid gap-6 md:grid-cols-3">{[["Built","Hardware, sensing and software are being integrated."],["Measured","Production events and environmental conditions are recorded."],["Validated","Field trials determine what earns the next stage."]].map(([title,text])=><div key={title} className="rounded-2xl border border-slate-200 bg-[#f8fafc] p-7"><h3 className="text-xl font-semibold text-[#102C5C]">{title}</h3><p className="mt-3 text-sm leading-7 text-slate-600">{text}</p></div>)}</div></section>
+    <section className="bg-[#f5f8fb] py-16"><div className="container-shell flex flex-col justify-between gap-6 md:flex-row md:items-center"><div><h2 className="text-3xl font-semibold text-[#102C5C]">Want to see the validation programme?</h2><p className="mt-2 text-slate-600">See what is being tested now and what the next production gate is.</p></div><Link href="/validation" className="rounded-full bg-[#102C5C] px-6 py-3 text-sm font-semibold text-white">See validation</Link></div></section>
+  </div>;
 }
