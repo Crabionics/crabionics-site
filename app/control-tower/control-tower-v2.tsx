@@ -9,12 +9,17 @@ const PMO_STATE_URL = `https://github.com/${OWNER}/crabionics-pmo/blob/main/${PM
 
 async function fetchPmoState(): Promise<string | null> {
   const token = process.env.CRABIONICS_GITHUB_READ_TOKEN;
-  if (!token) return null;
-  const response = await fetch(`https://api.github.com/repos/${OWNER}/crabionics-pmo/contents/${PMO_STATE_PATH}?ref=main`, {
-    headers: { Accept: "application/vnd.github+json", Authorization: `Bearer ${token}`, "X-GitHub-Api-Version": "2022-11-28" },
-    next: { revalidate: 60 },
-  });
+  const headers: HeadersInit = { Accept: "application/vnd.github+json" };
+  if (token) {
+    headers.Authorization = `Bearer ${token}`;
+    headers["X-GitHub-Api-Version"] = "2022-11-28";
+  }
+  const url = token
+    ? `https://api.github.com/repos/${OWNER}/crabionics-pmo/contents/${PMO_STATE_PATH}?ref=main`
+    : `https://raw.githubusercontent.com/${OWNER}/crabionics-pmo/main/${PMO_STATE_PATH}`;
+  const response = await fetch(url, { headers, next: { revalidate: 60 } });
   if (!response.ok) return null;
+  if (!token) return response.text();
   const data = await response.json() as { content?: string; encoding?: string };
   if (!data.content) return null;
   return Buffer.from(data.content.replace(/\n/g, ""), data.encoding === "base64" ? "base64" : "utf8").toString("utf8");
@@ -22,11 +27,12 @@ async function fetchPmoState(): Promise<string | null> {
 
 async function fetchIssues(repo: Repo): Promise<Issue[]> {
   const token = process.env.CRABIONICS_GITHUB_READ_TOKEN;
-  if (!token) return [];
-  const response = await fetch(`https://api.github.com/repos/${OWNER}/${repo}/issues?state=open&per_page=50&sort=updated&direction=desc`, {
-    headers: { Accept: "application/vnd.github+json", Authorization: `Bearer ${token}`, "X-GitHub-Api-Version": "2022-11-28" },
-    next: { revalidate: 60 },
-  });
+  const headers: HeadersInit = { Accept: "application/vnd.github+json" };
+  if (token) {
+    headers.Authorization = `Bearer ${token}`;
+    headers["X-GitHub-Api-Version"] = "2022-11-28";
+  }
+  const response = await fetch(`https://api.github.com/repos/${OWNER}/${repo}/issues?state=open&per_page=50&sort=updated&direction=desc`, { headers, next: { revalidate: 60 } });
   if (!response.ok) return [];
   const data = await response.json() as Array<{ number: number; title: string; state: string; html_url: string; updated_at: string; labels: Array<{ name?: string }>; pull_request?: unknown }>;
   return data.filter((item) => !item.pull_request).map((item) => ({ number: item.number, title: item.title, state: item.state, url: item.html_url, updated_at: item.updated_at, labels: item.labels.map((label) => label.name ?? "").filter(Boolean) }));
@@ -34,9 +40,12 @@ async function fetchIssues(repo: Repo): Promise<Issue[]> {
 
 function section(markdown: string | null, heading: string): string {
   if (!markdown) return "State unavailable";
-  const escaped = heading.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-  const match = markdown.match(new RegExp(`^## ${escaped}\\n([\\s\\S]*?)(?=^## |$)`, "m"));
-  return match?.[1]?.trim() ?? "State not recorded";
+  const marker = `## ${heading}`;
+  const start = markdown.indexOf(marker);
+  if (start < 0) return "State not recorded";
+  const body = markdown.slice(start + marker.length).replace(/^\r?\n/, "");
+  const next = body.search(/\r?\n## /);
+  return (next >= 0 ? body.slice(0, next) : body).trim();
 }
 
 function ageDays(updatedAt?: string) {
@@ -56,6 +65,7 @@ export default async function ControlTowerV2() {
   const issueMap = Object.fromEntries(issueResults) as Record<Repo, Issue[]>;
   const pmoIssues = issueMap["crabionics-pmo"] ?? [];
   const live = Boolean(pmoState);
+  const issueFeedLive = pmoIssues.length > 0;
   const blockers = pmoIssues.filter((issue) => issue.labels.some((label) => /blocked|blocker|p0/i.test(label)));
   const recentlyUpdated = pmoIssues.filter((issue) => issue.updated_at).slice(0, 6);
   const stale = pmoIssues.filter((issue) => (ageDays(issue.updated_at) ?? 0) >= 7).slice(0, 6);
@@ -78,7 +88,7 @@ export default async function ControlTowerV2() {
 
     <section><SectionTitle eyebrow="Evidence discipline" title="Known / Observed / Inferred / Unknown / Needs experiment" /><div className="grid gap-3 md:grid-cols-5"><Card><Badge tone="good">KNOWN</Badge><p className="mt-3 text-sm leading-6 text-slate-300">Recorded in authoritative PMO/repository state.</p></Card><Card><Badge>OBSERVED</Badge><p className="mt-3 text-sm leading-6 text-slate-300">Directly visible in current issues, commits or evidence.</p></Card><Card><Badge tone="warn">INFERRED</Badge><p className="mt-3 text-sm leading-6 text-slate-300">Interpretation derived from observed facts.</p></Card><Card><Badge tone="risk">UNKNOWN</Badge><p className="mt-3 text-sm leading-6 text-slate-300">Not established by the available source.</p></Card><Card><Badge tone="warn">NEEDS EXPERIMENT</Badge><p className="mt-3 text-sm leading-6 text-slate-300">Requires a defined experiment and evidence artifact.</p></Card></div></section>
 
-    <section><SectionTitle eyebrow="Live execution" title="Current governed PMO work" right={<Badge>{pmoIssues.length} open PMO issues</Badge>} /><div className="grid gap-3 md:grid-cols-2">{pmoIssues.slice(0, 10).map((issue) => <a key={issue.number} href={issue.url} target="_blank" rel="noreferrer" className="block rounded-2xl border border-white/10 bg-white/[0.045] p-4 hover:bg-white/[0.07]"><div className="font-medium text-white">#{issue.number} · {issue.title}</div><div className="mt-2 flex flex-wrap gap-2">{issue.labels.slice(0, 4).map((label) => <Badge key={label} tone={/p0|block/i.test(label) ? "risk" : "neutral"}>{label}</Badge>)}</div><div className="mt-2 text-xs text-slate-500">Updated {ageDays(issue.updated_at) ?? "?"}d ago</div></a>)}{!pmoIssues.length && <Card><p className="text-sm text-slate-300">No live PMO issue feed is available. Do not interpret this as zero open work.</p></Card>}</div></section>
+    <section><SectionTitle eyebrow="Live execution" title="Current governed PMO work" right={<Badge>{issueFeedLive ? `${pmoIssues.length} open PMO issues` : "Issue feed unavailable"}</Badge>} /><div className="grid gap-3 md:grid-cols-2">{pmoIssues.slice(0, 10).map((issue) => <a key={issue.number} href={issue.url} target="_blank" rel="noreferrer" className="block rounded-2xl border border-white/10 bg-white/[0.045] p-4 hover:bg-white/[0.07]"><div className="font-medium text-white">#{issue.number} · {issue.title}</div><div className="mt-2 flex flex-wrap gap-2">{issue.labels.slice(0, 4).map((label) => <Badge key={label} tone={/p0|block/i.test(label) ? "risk" : "neutral"}>{label}</Badge>)}</div><div className="mt-2 text-xs text-slate-500">Updated {ageDays(issue.updated_at) ?? "?"}d ago</div></a>)}{!pmoIssues.length && <Card><p className="text-sm text-slate-300">PMO boot state is available, but the live issue feed is unavailable. Do not interpret this as zero open work.</p></Card>}</div></section>
 
     <section><SectionTitle eyebrow="Risk / attention" title="Explicit signals only" right={<Badge tone={blockers.length ? "risk" : "good"}>{blockers.length ? `${blockers.length} flagged` : "No explicit P0/blocker labels"}</Badge>} /><div className="grid gap-3 md:grid-cols-2">{blockers.slice(0, 8).map((issue) => <a key={issue.number} href={issue.url} target="_blank" rel="noreferrer" className="block rounded-2xl border border-red-400/15 bg-red-400/[0.04] p-4"><div className="font-medium text-white">#{issue.number} · {issue.title}</div><div className="mt-2 flex flex-wrap gap-2">{issue.labels.map((label) => <Badge key={label} tone="risk">{label}</Badge>)}</div></a>)}{stale.length > 0 && <Card><Badge tone="warn">STALE SIGNAL</Badge><p className="mt-2 text-sm leading-6 text-slate-300">{stale.length} open issues have not reported an update for at least 7 days. Staleness is an observation, not proof of blockage.</p></Card>}</div></section>
 
