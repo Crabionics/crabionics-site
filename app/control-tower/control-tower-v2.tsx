@@ -10,8 +10,9 @@ const PMO_STATE_URL = `https://github.com/${OWNER}/crabionics-pmo/blob/main/${PM
 async function fetchPmoState(): Promise<string | null> {
   const token = process.env.CRABIONICS_GITHUB_READ_TOKEN;
   const headers: HeadersInit = {
-    Accept: "application/vnd.github.raw+json",
-    ...(token ? { Authorization: `Bearer ${token}`, "X-GitHub-Api-Version": "2022-11-28" } : {}),
+    Accept: "application/vnd.github+json",
+    "X-GitHub-Api-Version": "2022-11-28",
+    ...(token ? { Authorization: `Bearer ${token}` } : {}),
   };
   const response = await fetch(
     `https://api.github.com/repos/${OWNER}/crabionics-pmo/contents/${PMO_STATE_PATH}?ref=main`,
@@ -19,17 +20,17 @@ async function fetchPmoState(): Promise<string | null> {
   );
   if (!response.ok) return null;
   const data = await response.json() as { content?: string; encoding?: string };
-  if (!data.content) return null;
+  if (!data.content || data.encoding !== "base64") return null;
   return Buffer.from(data.content.replace(/\n/g, ""), "base64").toString("utf-8");
 }
 
 async function fetchIssues(repo: Repo): Promise<Issue[]> {
   const token = process.env.CRABIONICS_GITHUB_READ_TOKEN;
-  const headers: HeadersInit = { Accept: "application/vnd.github+json" };
-  if (token) {
-    headers.Authorization = `Bearer ${token}`;
-    headers["X-GitHub-Api-Version"] = "2022-11-28";
-  }
+  const headers: HeadersInit = {
+    Accept: "application/vnd.github+json",
+    "X-GitHub-Api-Version": "2022-11-28",
+    ...(token ? { Authorization: `Bearer ${token}` } : {}),
+  };
   const response = await fetch(`https://api.github.com/repos/${OWNER}/${repo}/issues?state=open&per_page=50&sort=updated&direction=desc`, { headers, next: { revalidate: 60 } });
   if (!response.ok) return [];
   const data = await response.json() as Array<{ number: number; title: string; state: string; html_url: string; updated_at: string; labels: Array<{ name?: string }>; pull_request?: unknown }>;
@@ -75,23 +76,16 @@ export default async function ControlTowerV2() {
 
   return <main className="relative min-h-screen px-4 pb-20 pt-7 sm:px-6 lg:px-10"><div className="mx-auto max-w-7xl space-y-6 sm:space-y-8">
     <header className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between"><div><Badge tone={live ? "good" : "warn"}>{live ? "LIVE · PMO BOOT STATE + GITHUB" : "DEGRADED · PMO STATE UNAVAILABLE"}</Badge><h1 className="mt-4 text-3xl font-semibold tracking-tight text-white sm:text-5xl">Crabionics Control Tower</h1><p className="mt-3 max-w-3xl text-sm leading-6 text-slate-300 sm:text-base sm:leading-7">A projection of the current PMO state, live governed work and evidence posture. The Control Tower does not create company state.</p></div><div className="rounded-xl border border-white/10 bg-black/10 px-4 py-3 text-sm text-slate-300"><div>Source authority</div><a className="mt-1 block font-medium text-cyan-200 underline" href={PMO_STATE_URL} target="_blank" rel="noreferrer">PMO → CURRENT_STATE.md</a></div></header>
-
     <section className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4"><Card><div className="text-xs uppercase tracking-[0.18em] text-slate-400">🟢 Company state</div><div className="mt-3 text-xl font-semibold text-white">Technology integration → controlled validation</div><div className="mt-2 text-sm text-slate-300">PMO boot state is authoritative.</div></Card><Card><div className="text-xs uppercase tracking-[0.18em] text-slate-400">Immediate execution</div><div className="mt-3 text-xl font-semibold text-white">BIRAC M0 → M1</div><div className="mt-2 text-sm text-slate-300">M0 release readiness first; company tracks remain active.</div></Card><Card><div className="text-xs uppercase tracking-[0.18em] text-slate-400">600-box</div><div className="mt-3 text-xl font-semibold text-white">Downstream / gated</div><div className="mt-2 text-sm text-slate-300">Not the immediate execution lane.</div></Card><Card><div className="text-xs uppercase tracking-[0.18em] text-slate-400">Needs attention</div><div className="mt-3 text-2xl font-semibold text-white">{blockers.length || "—"}</div><div className="mt-2 text-sm text-slate-300">Explicit P0/blocker-labelled PMO issues.</div></Card></section>
-
     <section><SectionTitle eyebrow="Current state" title="What is true now" right={<Badge tone={live ? "good" : "warn"}>{live ? "PMO live" : "Verify PMO"}</Badge>} /><Card><p className="whitespace-pre-line text-sm leading-7 text-slate-300">{strategic}</p></Card></section>
     <section><SectionTitle eyebrow="Funding boundary" title="BIRAC is a funded lane, not the whole company" right={<Badge tone="warn">Scope traceable</Badge>} /><Card><p className="whitespace-pre-line text-sm leading-7 text-slate-300">{funding}</p></Card></section>
     <section><SectionTitle eyebrow="Execution" title="What happens next" right={<Badge>Current plan wins</Badge>} /><Card><p className="whitespace-pre-line text-sm leading-7 text-slate-300">{execution}</p></Card></section>
     <section><SectionTitle eyebrow="Validation ladder" title="Gate status" right={<Badge tone="warn">Evidence ≠ implementation</Badge>} /><Card><p className="whitespace-pre-line text-sm leading-7 text-slate-300">{validation}</p></Card></section>
     <section><SectionTitle eyebrow="Technology spine" title="Core technology truth" right={<Badge>Owning repositories remain authoritative</Badge>} /><Card><p className="whitespace-pre-line text-sm leading-7 text-slate-300">{technology}</p></Card></section>
-
     <section><SectionTitle eyebrow="Evidence discipline" title="Known / Observed / Inferred / Unknown / Needs experiment" /><div className="grid gap-3 md:grid-cols-5"><Card><Badge tone="good">KNOWN</Badge><p className="mt-3 text-sm leading-6 text-slate-300">Recorded in authoritative PMO/repository state.</p></Card><Card><Badge>OBSERVED</Badge><p className="mt-3 text-sm leading-6 text-slate-300">Directly visible in current issues, commits or evidence.</p></Card><Card><Badge tone="warn">INFERRED</Badge><p className="mt-3 text-sm leading-6 text-slate-300">Interpretation derived from observed facts.</p></Card><Card><Badge tone="risk">UNKNOWN</Badge><p className="mt-3 text-sm leading-6 text-slate-300">Not established by the available source.</p></Card><Card><Badge tone="warn">NEEDS EXPERIMENT</Badge><p className="mt-3 text-sm leading-6 text-slate-300">Requires a defined experiment and evidence artifact.</p></Card></div></section>
-
     <section><SectionTitle eyebrow="Live execution" title="Current governed PMO work" right={<Badge>{issueFeedLive ? `${pmoIssues.length} open PMO issues` : "Issue feed unavailable"}</Badge>} /><div className="grid gap-3 md:grid-cols-2">{pmoIssues.slice(0, 10).map((issue) => <a key={issue.number} href={issue.url} target="_blank" rel="noreferrer" className="block rounded-2xl border border-white/10 bg-white/[0.045] p-4 hover:bg-white/[0.07]"><div className="font-medium text-white">#{issue.number} · {issue.title}</div><div className="mt-2 flex flex-wrap gap-2">{issue.labels.slice(0, 4).map((label) => <Badge key={label} tone={/p0|block/i.test(label) ? "risk" : "neutral"}>{label}</Badge>)}</div><div className="mt-2 text-xs text-slate-500">Updated {ageDays(issue.updated_at) ?? "?"}d ago</div></a>)}{!pmoIssues.length && <Card><p className="text-sm text-slate-300">PMO boot state is available, but the live issue feed is unavailable. Do not interpret this as zero open work.</p></Card>}</div></section>
-
     <section><SectionTitle eyebrow="Risk / attention" title="Explicit signals only" right={<Badge tone={blockers.length ? "risk" : "good"}>{blockers.length ? `${blockers.length} flagged` : "No explicit P0/blocker labels"}</Badge>} /><div className="grid gap-3 md:grid-cols-2">{blockers.slice(0, 8).map((issue) => <a key={issue.number} href={issue.url} target="_blank" rel="noreferrer" className="block rounded-2xl border border-red-400/15 bg-red-400/[0.04] p-4"><div className="font-medium text-white">#{issue.number} · {issue.title}</div><div className="mt-2 flex flex-wrap gap-2">{issue.labels.map((label) => <Badge key={label} tone="risk">{label}</Badge>)}</div></a>)}{stale.length > 0 && <Card><Badge tone="warn">STALE SIGNAL</Badge><p className="mt-2 text-sm leading-6 text-slate-300">{stale.length} open issues have not reported an update for at least 7 days. Staleness is an observation, not proof of blockage.</p></Card>}</div></section>
-
     <section><SectionTitle eyebrow="Recent movement" title="Observed source changes" right={<Badge>Observed only</Badge>} /><div className="grid gap-3 md:grid-cols-2">{recentlyUpdated.map((issue) => <a key={issue.number} href={issue.url} target="_blank" rel="noreferrer" className="block rounded-2xl border border-white/10 bg-white/[0.045] p-4 hover:bg-white/[0.07]"><div className="font-medium text-white">#{issue.number} · {issue.title}</div><div className="mt-2 text-xs text-slate-500">Updated {ageDays(issue.updated_at) ?? "?"}d ago</div></a>)}{!recentlyUpdated.length && <Card><p className="text-sm text-slate-300">No timestamped PMO movement available.</p></Card>}</div></section>
-
     <footer className="rounded-2xl border border-white/10 bg-white/[0.03] p-5 text-sm leading-6 text-slate-400"><strong className="text-white">Control rule:</strong> PMO defines company state; owning repositories define implementation truth; runtime/raw evidence defines operational proof. The Control Tower is only a projection. <a className="text-cyan-200 underline" href={PMO_STATE_URL} target="_blank" rel="noreferrer">Open PMO boot file</a>.</footer>
   </div></main>;
 }
