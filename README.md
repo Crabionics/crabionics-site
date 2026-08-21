@@ -10,3 +10,5 @@ Modules:
 
 Website:
 https://www.crabionics.com
+
+<!-- deployment trigger: restore known-good Control Tower PMO API path -->
