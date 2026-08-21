@@ -9,14 +9,18 @@ const PMO_STATE_URL = `https://github.com/${OWNER}/crabionics-pmo/blob/main/${PM
 
 async function fetchPmoState(): Promise<string | null> {
   const token = process.env.CRABIONICS_GITHUB_READ_TOKEN;
-  const headers: HeadersInit = { Accept: "text/plain, application/vnd.github.raw" };
-  if (token) {
-    headers.Authorization = `Bearer ${token}`;
-    headers["X-GitHub-Api-Version"] = "2022-11-28";
-  }
-  const response = await fetch(`https://raw.githubusercontent.com/${OWNER}/crabionics-pmo/main/${PMO_STATE_PATH}`, { headers, next: { revalidate: 60 } });
+  const headers: HeadersInit = {
+    Accept: "application/vnd.github.raw+json",
+    ...(token ? { Authorization: `Bearer ${token}`, "X-GitHub-Api-Version": "2022-11-28" } : {}),
+  };
+  const response = await fetch(
+    `https://api.github.com/repos/${OWNER}/crabionics-pmo/contents/${PMO_STATE_PATH}?ref=main`,
+    { headers, next: { revalidate: 60 } },
+  );
   if (!response.ok) return null;
-  return response.text();
+  const data = await response.json() as { content?: string; encoding?: string };
+  if (!data.content) return null;
+  return Buffer.from(data.content.replace(/\n/g, ""), "base64").toString("utf-8");
 }
 
 async function fetchIssues(repo: Repo): Promise<Issue[]> {
