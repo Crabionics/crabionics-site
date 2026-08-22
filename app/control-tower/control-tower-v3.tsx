@@ -1,4 +1,4 @@
-import ControlTowerTabs, { type TowerData, type TowerIssue } from "./control-tower-tabs";
+import ControlTowerTabsV32, { type TowerData, type TowerIssue } from "./control-tower-tabs-v3-2";
 
 type Repo = "crabionics-pmo" | "aquaos" | "crabpod" | "habitat" | "crabionics-site";
 type IssueFeed = { issues: TowerIssue[]; available: boolean };
@@ -28,7 +28,8 @@ async function fetchIssues(repo: Repo): Promise<IssueFeed> {
     if (!response.ok) return { issues: [], available: false };
     const data = await response.json() as Array<{ number: number; title: string; state: string; html_url: string; updated_at: string; labels: Array<{ name?: string }>; pull_request?: unknown }>;
     return { available: true, issues: data.filter((item) => !item.pull_request).map((item) => ({ number: item.number, title: item.title, state: item.state, url: item.html_url, updated_at: item.updated_at, labels: item.labels.map((label) => label.name ?? "").filter(Boolean) })) };
-  } catch { return { issues: [], available: false }; }
+  } catch { return { issues: [], available: false };
+  }
 }
 function section(markdown: string | null, heading: string): string {
   if (!markdown) return "State unavailable";
@@ -52,5 +53,5 @@ export default async function ControlTowerV3() {
     issues: pmoIssues, blockers, stale, recentlyUpdated,
     repoIssues: Object.fromEntries(REPOS.map((repo) => [repo, issueMap[repo]?.issues ?? []])) as Record<Repo, TowerIssue[]>,
   };
-  return <ControlTowerTabs data={data} />;
+  return <ControlTowerTabsV32 data={data} />;
 }
