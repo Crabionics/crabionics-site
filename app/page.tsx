@@ -32,7 +32,7 @@ const evidence = [
 export default function HomePage() {
   return (
     <div className="bg-white text-slate-900">
-      <section className="relative overflow-hidden bg-[#f5f8fb]">
+      <section className="relative overflow-hidden bg-[#f5f8fb] pt-[72px] md:pt-0">
         <div className="container-shell grid min-h-[680px] items-center gap-12 py-16 md:grid-cols-[0.9fr_1.1fr] md:py-24">
           <div className="relative z-10 max-w-2xl">
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#168bb8]">Crabionics Aquaculture</p>
