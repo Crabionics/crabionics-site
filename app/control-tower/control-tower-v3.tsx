@@ -1,4 +1,4 @@
-import ControlTowerTabsV32 from "./control-tower-tabs-v3-2";
+import ControlTowerVisualPolish from "./control-tower-visual-polish";
 import type { TowerData, TowerIssue } from "./control-tower-tabs";
 
 type Repo = "crabionics-pmo" | "aquaos" | "crabpod" | "habitat" | "crabionics-site";
@@ -53,5 +53,5 @@ export default async function ControlTowerV3() {
     issues: pmoIssues, blockers, stale, recentlyUpdated,
     repoIssues: Object.fromEntries(REPOS.map((repo) => [repo, issueMap[repo]?.issues ?? []])) as Record<Repo, TowerIssue[]>,
   };
-  return <ControlTowerTabsV32 data={data} />;
+  return <ControlTowerVisualPolish data={data} />;
 }
