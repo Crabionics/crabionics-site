@@ -10,16 +10,62 @@ export type TowerData = { live:boolean; githubLive:boolean; pmoState:string|null
 function Badge({children,tone="neutral"}:{children:React.ReactNode;tone?:Tone}){return <span className={`${styles.badge} ${tone==="good"?styles.good:tone==="warn"?styles.warn:tone==="risk"?styles.risk:""}`}>{children}</span>}
 function Card({children,soft=false}:{children:React.ReactNode;soft?:boolean}){return <div className={`${styles.card} ${soft?styles.cardSoft:""}`}>{children}</div>}
 function Section({eyebrow,title,right,children}:{eyebrow:string;title:string;right?:React.ReactNode;children:React.ReactNode}){return <section className={styles.section}><div className={styles.sectionHead}><div><div className={styles.eyebrow}>{eyebrow}</div><h2 className={styles.sectionTitle}>{title}</h2></div>{right}</div>{children}</section>}
-function Markdown({text}:{text:string}){return <div className={styles.markdown}>{text.split(/\r?\n/).map((line,i)=>line.trim()?<p key={i}>{line}</p>:null)}</div>}
+
+function inlineMarkdown(text:string){
+ const parts=text.split(/(\*\*[^*]+\*\*|`[^`]+`)/g);
+ return parts.map((part,i)=>{
+  if(part.startsWith("**")&&part.endsWith("**")) return <strong key={i}>{part.slice(2,-2)}</strong>;
+  if(part.startsWith("`")&&part.endsWith("`")) return <code key={i}>{part.slice(1,-1)}</code>;
+  return <React.Fragment key={i}>{part}</React.Fragment>;
+ });
+}
+
+function Markdown({text}:{text:string}){
+ const lines=text.split(/\r?\n/);
+ const rows:string[][]=[];
+ let inTable=false;
+ const blocks:React.ReactNode[]=[];
+ lines.forEach((raw,i)=>{
+  const line=raw.trim();
+  if(!line){inTable=false;return;}
+  const cells=line.split("|").map(x=>x.trim()).filter((x,j,a)=>!(j===0&&x==="")&&!(j===a.length-1&&x===""));
+  const isTable=cells.length>=2;
+  const isSeparator=isTable&&cells.every(x=>/^:?-{3,}:?$/.test(x));
+  if(isSeparator){inTable=true;return;}
+  if(isTable && (inTable || /\|/.test(line))){
+   if(!inTable) rows.length=0;
+   rows.push(cells);
+   inTable=true;
+   const next=lines[i+1]?.trim()??"";
+   const nextCells=next.split("|").map(x=>x.trim()).filter(Boolean);
+   const nextIsSeparator=nextCells.length===cells.length&&nextCells.every(x=>/^:?-{3,}:?$/.test(x));
+   if(!nextIsSeparator && i+1<lines.length && !/\|/.test(next)){
+    blocks.push(<MarkdownTable key={`table-${i}`} rows={[...rows]}/>);
+    rows.length=0;inTable=false;
+   }
+   return;
+  }
+  if(inTable){blocks.push(<MarkdownTable key={`table-${i}`} rows={[...rows]}/>);rows.length=0;inTable=false;}
+  if(line.startsWith("### ")) blocks.push(<h4 key={i}>{inlineMarkdown(line.slice(4))}</h4>);
+  else if(line.startsWith("## ")) blocks.push(<h3 key={i}>{inlineMarkdown(line.slice(3))}</h3>);
+  else if(line.startsWith("# ")) blocks.push(<h3 key={i}>{inlineMarkdown(line.slice(2))}</h3>);
+  else if(/^[-*] /.test(line)) blocks.push(<li key={i}>{inlineMarkdown(line.slice(2))}</li>);
+  else blocks.push(<p key={i}>{inlineMarkdown(line)}</p>);
+ });
+ if(rows.length) blocks.push(<MarkdownTable key="table-final" rows={rows}/>);
+ return <div className={styles.markdown}>{blocks}</div>;
+}
+
+function MarkdownTable({rows}:{rows:string[][]}){if(!rows.length)return null;const [head,...body]=rows;return <div className={styles.tableScroll}><table><thead><tr>{head.map((x,i)=><th key={i}>{inlineMarkdown(x)}</th>)}</tr></thead><tbody>{body.map((r,i)=><tr key={i}>{r.map((x,j)=><td key={j}>{inlineMarkdown(x)}</td>)}</tr>)}</tbody></table></div>}
 function ageDays(v?:string){return v?Math.floor((Date.now()-new Date(v).getTime())/86400000):null}
 function Issues({issues,limit=10}:{issues:TowerIssue[];limit?:number}){return issues.length?<div className={styles.grid2}>{issues.slice(0,limit).map(x=><a key={x.number} href={x.url} target="_blank" rel="noreferrer" className={styles.issue}><div className={styles.issueTitle}>#{x.number} · {x.title}</div><div className={styles.issueMeta}>{x.labels.length?x.labels.join(" · "):"No labels"} · Updated {ageDays(x.updated_at)??"?"}d ago</div></a>)}</div>:<Card soft><div className={styles.cardSub}>No governed open work returned by GitHub.</div></Card>}
 
 const tabs=["programme","readiness","evidence","execution","technology","pmo"] as const;
-const maturity:Array<[string,string,Tone]>= [["Software","Core lifecycle implemented","good"],["Technology","Controlled integration","warn"],["Hardware","Integration pending","warn"],["Biology","Not yet validated","risk"],["Production","Not yet validated","risk"],["Commercial","Early validation","risk"],["IP","Evidence / reconciliation","warn"],["Corporate","Diligence / reconciliation","warn"],["Funding","Validation capital","warn"]];
+const maturity:Array<[string,string,Tone]>= [["Software","Lifecycle implemented; runtime validation pending","warn"],["Technology","Controlled integration","warn"],["Hardware","Integration pending","warn"],["Biology","Not yet validated","risk"],["Production","Not yet validated","risk"],["Commercial","Early validation","risk"],["IP","Evidence / reconciliation","warn"],["Corporate","Diligence / reconciliation","warn"],["Funding","Validation capital","warn"]];
 const roadmap=["Technology integration","Controlled lab validation","Biological validation","600-box production validation","Processor / customer validation","Repeatable commercial production","Scale"];
 const claimChain=["Claim / requirement","Implementation","Experiment","Raw evidence","Verdict","Economic implication"];
 const outcomeChain=["Biological state","AquaOS decision","Intervention / action","Timestamp","Response","Biological outcome","Confidence","Human override"];
-const company:Array<[string,string,string,Tone]>= [["Habitat","Production environment","Physical foundation","warn"],["CrabSense","Sense","Telemetry / observations","warn"],["AquaOS","State → Decide","Decision + event layer","good"],["CrabPod","Intervene","Actuator / command execution","warn"],["BioPod","Outcome","Biological response + evidence","risk"]];
+const company:Array<[string,string,string,Tone]>= [["Habitat","Production environment","Physical foundation","warn"],["CrabSense","Sense","Telemetry / observations","warn"],["AquaOS","State → Decide","Decision + event layer","warn"],["CrabPod","Intervene","Actuator / command execution","warn"],["BioPod","Outcome","Biological response + evidence","risk"]];
 const timeline:Array<[string,string,string,Tone]>=[["NOW","Technology integration","AOS-008 / AOS-011 → CrabPod runtime → integrated laboratory proof","warn"],["M0 → M1","BIRAC / IHMS","Release readiness and monitoring/control prototype","warn"],["M1 → M2","Evidence generation","Dashboard, alerting and controlled validation","neutral"],["M2 → M3","Pilot validation","Biological validation, pilot evidence and final deliverables","neutral"],["POST-M3","Company scale path","600-box → processor/customer → repeatable commercial production","risk"]];
 const capital=["Controlled laboratory proof","Engineering evidence","Biological evidence","Production economics","Processor / customer evidence","Repeatable production"];
 
@@ -48,7 +94,7 @@ export default function ControlTowerTabs({data}:{data:TowerData}){
 
   {active==="evidence"&&<div className={styles.tabPanel}><Section eyebrow="Evidence model" title="Known / Observed / Inferred / Unknown / Needs experiment"><div className={styles.grid5}>{[["KNOWN","Authoritative PMO or repository state","good"],["OBSERVED","Directly visible evidence","neutral"],["INFERRED","Interpretation from observations","warn"],["UNKNOWN","Not established","risk"],["NEEDS EXPERIMENT","Requires a defined experiment","warn"]].map(([a,b,t])=><Card key={a}><Badge tone={t as Tone}>{a}</Badge><div className={styles.cardSub}>{b}</div></Card>)}</div></Section><Section eyebrow="AquaOS Dataset-001" title="Mandatory intervention → outcome chain" right={<Badge tone="warn">Evidence gate</Badge>}><Card><div className={styles.chain}>{outcomeChain.map((x,i)=><div className={styles.chainStep} key={x}><span>{i+1}</span>{x}</div>)}</div><p className={styles.cardSub}>The chain must be reconstructable with identity, correlation, provenance, comparator, implementation version, conditions, measured outcome and verdict.</p></Card></Section><Section eyebrow="Evidence chain" title="Claim → proof"><div className={styles.roadmap}>{claimChain.map((x,i)=><div className={styles.roadmapStep} key={x}><span>{i+1}</span><div>{x}</div></div>)}</div></Section></div>}
 
-  {active==="execution"&&<div className={styles.tabPanel}><div className={styles.grid4}><Card><div className={styles.cardLabel}>NOW</div><div className={styles.cardValue}>BIRAC M0 → M1</div></Card><Card><div className={styles.cardLabel}>Technical dependency</div><div className={styles.cardValue}>AOS-008 → AOS-011 → CrabPod runtime</div></Card><Card><div className={styles.cardLabel}>Scientific owner</div><div className={styles.cardValue}>Biological Lead — TBD</div></Card><Card><div className={styles.cardLabel}>Operating model</div><div className={styles.cardValue}>Programme execution + technical workstream</div></Card></div><Section eyebrow="Current execution posture" title="What happens next"><Card><Markdown text={data.execution}/></Card></Section><Section eyebrow="Validation dependencies" title="What can block the next proof"><Card><Markdown text={data.validation}/></Card></Section><Section eyebrow="Live work" title="Current governed PMO issues" right={<Badge tone={data.githubLive?"good":"warn"}>{data.githubLive?`${data.issues.length} open PMO issues`:"Issue feed unavailable"}</Badge>}>{data.githubLive?<Issues issues={data.issues}/>:<Card soft>GitHub issue status could not be verified.</Card>}</Section><Section eyebrow="Risk / attention" title="Explicit signals only"><div className={styles.grid2}>{data.blockers.length?<Issues issues={data.blockers} limit={8}/>:<Card><Badge tone="good">NO EXPLICIT BLOCKER LABELS</Badge><div className={styles.cardSub}>This does not mean there are no unresolved dependencies.</div></Card>}{data.stale.length?<Card><Badge tone="warn">STALE SIGNAL</Badge><div className={styles.cardSub}>{data.stale.length} open issues have not reported an update for at least 7 days.</div></Card>:null}</div></Section></div>}
+  {active==="execution"&&<div className={styles.tabPanel}><div className={styles.grid4}><Card><div className={styles.cardLabel}>NOW</div><div className={styles.cardValue}>BIRAC M0 → M1</div></Card><Card><div className={styles.cardLabel}>Technical dependency</div><div className={styles.cardValue}>AOS-008 → AOS-011 → CrabPod runtime</div></Card><Card><div className={styles.cardLabel}>Scientific owner</div><div className={styles.cardValue}>Pending appointment</div></Card><Card><div className={styles.cardLabel}>Operating model</div><div className={styles.cardValue}>Programme execution + technical workstream</div></Card></div><Section eyebrow="Current execution posture" title="What happens next"><Card><Markdown text={data.execution}/></Card></Section><Section eyebrow="Validation dependencies" title="What can block the next proof"><Card><Markdown text={data.validation}/></Card></Section><Section eyebrow="Live work" title="Current governed PMO issues" right={<Badge tone={data.githubLive?"good":"warn"}>{data.githubLive?`${data.issues.length} open PMO issues`:"Issue feed unavailable"}</Badge>}>{data.githubLive?<Issues issues={data.issues}/>:<Card soft>GitHub issue status could not be verified.</Card>}</Section><Section eyebrow="Risk / attention" title="Explicit signals only"><div className={styles.grid2}>{data.blockers.length?<Issues issues={data.blockers} limit={8}/>:<Card><Badge tone="good">NO EXPLICIT BLOCKER LABELS</Badge><div className={styles.cardSub}>This does not mean there are no unresolved dependencies.</div></Card>}{data.stale.length?<Card><Badge tone="warn">STALE SIGNAL</Badge><div className={styles.cardSub}>{data.stale.length} open issues have not reported an update for at least 7 days.</div></Card>:null}</div></Section></div>}
 
   {active==="technology"&&<div className={styles.tabPanel}><Section eyebrow="Technology spine" title="Subsystem roles"><div className={styles.stack}>{[["Habitat","Physical production environment","Engineering / RAS physical truth."],["CrabSense","Observation / telemetry","Sensing, identity and data capture."],["AquaOS","Event / state / decision layer","Operational lifecycle, correlation and decisions."],["CrabPod","Command / actuator execution","Physical intervention and acknowledgement."],["BioPod","Biological outcome","Biological response and evidence boundary."]].map(([name,role,status])=><div className={styles.stackRow} key={name}><div className={styles.stackName}>{name}</div><div className={styles.stackRole}>{role}</div><div className={styles.stackStatus}>{status}</div></div>)}</div></Section><Section eyebrow="Core technology truth" title="What the PMO currently says"><Card><Markdown text={data.technology}/></Card></Section><Section eyebrow="Integration contract" title="Critical dependency"><Card><div className={styles.principle}>AOS-008 → AOS-011 → CrabPod runtime → integrated proof</div><div className={styles.cardSub}>The visual map exposes the dependency; owning repositories remain implementation authority.</div></Card></Section></div>}
 
