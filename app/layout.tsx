@@ -60,9 +60,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             .public-site .text-slate-600 { color: #475569; }
             .public-site .text-slate-700 { color: #334155; }
             .public-site .text-slate-900 { color: #0f172a; }
+            .public-site .dark-section p { color: #e2e8f0 !important; }
+            .public-site .dark-section .dark-eyebrow { color: #65c7e8 !important; }
           `}</style>
           <Navbar />
-          <main className="relative z-10 min-h-screen overflow-hidden bg-white pt-[72px]">{children}</main>
+          <main className="relative z-10 min-h-screen overflow-hidden bg-white">{children}</main>
           <Footer />
         </ClerkProvider>
       </body>
