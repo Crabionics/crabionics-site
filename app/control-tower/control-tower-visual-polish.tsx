@@ -8,6 +8,11 @@ import type { TowerData } from "./control-tower-tabs";
 export default function ControlTowerVisualPolish({data}:{data:TowerData}) {
   return <>
     <style jsx global>{`
+      /* The global navbar is fixed; keep Control Tower sticky tabs below it. */
+      .${styles.tabs} {
+        top: calc(var(--site-header-height) + .5rem) !important;
+      }
+
       /* Semantic correction: G1 is implemented early, not programme-validated. */
       .${styles.gateBoard} > button:nth-child(2) .${styles.badge} {
         border-color:#f4d48a !important;
