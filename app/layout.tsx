@@ -49,7 +49,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <ClerkProvider>
           <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }} />
           <style>{`
-            .public-site { background: #ffffff; color: #0f172a; }
+            .public-site {
+              --site-header-height: 72px;
+              background: #ffffff;
+              color: #0f172a;
+            }
+            .public-site > main {
+              padding-top: var(--site-header-height);
+            }
             .public-site h1, .public-site h2, .public-site h3, .public-site h4, .public-site h5, .public-site h6 { color: #102C5C; }
             .public-site p { color: #475569; }
             .public-site .text-white { color: #ffffff; }
