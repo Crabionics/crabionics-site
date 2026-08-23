@@ -34,7 +34,7 @@ export default function Navbar() {
   return (
     <header className={`fixed inset-x-0 top-0 z-50 border-b transition-all duration-200 ${scrolled ? "border-slate-200/80 bg-white/95 backdrop-blur" : "border-transparent bg-white/85 backdrop-blur"}`}>
       <div className="container-shell">
-        <div className="flex h-[72px] items-center justify-between">
+        <div className="flex h-[var(--site-header-height)] items-center justify-between">
           <Link href="/" className="flex items-center gap-2.5">
             <Image src="/logo.png" alt="Crabionics" width={40} height={40} priority className="h-10 w-10" />
             <span className="text-[1.45rem] font-extrabold tracking-[-0.03em] text-[#102C5C]">Crabionics</span>
@@ -65,7 +65,7 @@ export default function Navbar() {
       {/* Mobile menu: an opaque panel below the fixed header. */}
       <div
         aria-hidden={!isOpen}
-        className={`absolute left-0 right-0 top-[72px] z-[60] min-h-[calc(100dvh-72px)] overflow-y-auto overscroll-contain border-t border-slate-200 bg-white shadow-xl transition-opacity duration-200 lg:hidden ${isOpen ? "pointer-events-auto visible opacity-100" : "pointer-events-none invisible opacity-0"}`}
+        className={`absolute left-0 right-0 top-[var(--site-header-height)] z-[60] min-h-[calc(100dvh-var(--site-header-height))] overflow-y-auto overscroll-contain border-t border-slate-200 bg-white shadow-xl transition-opacity duration-200 lg:hidden ${isOpen ? "pointer-events-auto visible opacity-100" : "pointer-events-none invisible opacity-0"}`}
       >
         <div className="container-shell py-8">
           <nav className="flex flex-col gap-6">
