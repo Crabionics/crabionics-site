@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import styles from "./control-tower-v3.module.css";
 
 type Tone = "neutral" | "good" | "warn" | "risk";
@@ -36,15 +37,15 @@ const gates: Array<[string, string, Tone]> = [
   ["G6", "Scale / repeatability capital", "neutral"],
 ];
 
-function Badge({ children, tone = "neutral" }: { children: React.ReactNode; tone?: Tone }) {
+function Badge({ children, tone = "neutral" }: { children: ReactNode; tone?: Tone }) {
   return <span className={`${styles.badge} ${tone === "good" ? styles.good : tone === "warn" ? styles.warn : tone === "risk" ? styles.risk : ""}`}>{children}</span>;
 }
 
-function Card({ children, accent }: { children: React.ReactNode; accent?: Tone }) {
+function Card({ children, accent }: { children: ReactNode; accent?: Tone }) {
   return <div className={`${styles.card} ${accent === "warn" ? styles.accentWarn : accent === "risk" ? styles.accentRisk : accent === "good" ? styles.accentGood : ""}`}>{children}</div>;
 }
 
-function Section({ eyebrow, title, children }: { eyebrow: string; title: string; children: React.ReactNode }) {
+function Section({ eyebrow, title, children }: { eyebrow: string; title: string; children: ReactNode }) {
   return <section className={styles.section}><div className={styles.sectionHead}><div><div className={styles.eyebrow}>{eyebrow}</div><h2 className={styles.sectionTitle}>{title}</h2></div></div>{children}</section>;
 }
 
