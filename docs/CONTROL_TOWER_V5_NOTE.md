@@ -1,0 +1,1 @@
+Control Tower V5 authorized improvement to PMO #79: operational founder-critical state must be PMO-derived, with explicit freshness/unavailable/error states and no silent hard-coded fallback. Preserve existing UX and avoid new status database.
