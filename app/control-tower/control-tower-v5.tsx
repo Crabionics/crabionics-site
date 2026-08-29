@@ -1,0 +1,80 @@
+import type { ReactNode } from "react";
+import styles from "./control-tower-v3.module.css";
+
+type Tone = "neutral" | "good" | "warn" | "risk";
+type TowerData = { live: boolean; githubLive: boolean; pmoState: string | null; pmoStateUrl: string; validation: string; technology: string };
+
+function Badge({ children, tone = "neutral" }: { children: ReactNode; tone?: Tone }) {
+  return <span className={`${styles.badge} ${tone === "good" ? styles.good : tone === "warn" ? styles.warn : tone === "risk" ? styles.risk : ""}`}>{children}</span>;
+}
+function Card({ children, accent }: { children: ReactNode; accent?: Tone }) {
+  return <div className={`${styles.card} ${accent === "warn" ? styles.accentWarn : accent === "risk" ? styles.accentRisk : accent === "good" ? styles.accentGood : ""}`}>{children}</div>;
+}
+function Section({ eyebrow, title, children }: { eyebrow: string; title: string; children: ReactNode }) {
+  return <section className={styles.section}><div className={styles.sectionHead}><div><div className={styles.eyebrow}>{eyebrow}</div><h2 className={styles.sectionTitle}>{title}</h2></div></div>{children}</section>;
+}
+function readSection(markdown: string | null, heading: string) {
+  if (!markdown) return "State unavailable";
+  const start = markdown.indexOf(`## ${heading}`);
+  if (start < 0) return "State not recorded";
+  const body = markdown.slice(start).replace(/^## [^\n]+\n?/, "");
+  const next = body.search(/\n## /);
+  return (next >= 0 ? body.slice(0, next) : body).trim();
+}
+function clean(text: string) { return text.replace(/\*\*/g, "").replace(/`/g, "").replace(/^[-*]\s+/gm, "").trim(); }
+function findGate(markdown: string | null) {
+  const section = readSection(markdown, "Phase 2 gate boundary — explicit");
+  if (section !== "State unavailable" && section !== "State not recorded") return clean(section.split(/\n\n/)[0]);
+  const ladder = readSection(markdown, "Current validation ladder");
+  const row = ladder.split("\n").find((line) => /\|\s*G\d\s*\|/.test(line) && !/Gate \|/.test(line));
+  return row ? clean(row.replace(/^\|\s*|\s*\|$/g, "").replace(/\|/g, " — ")) : "Current gate not explicitly recorded";
+}
+function findExecutionSpine(markdown: string | null) {
+  const section = readSection(markdown, "Current strategic position");
+  const match = section.match(/Near-term execution spine:[^\n]*/i);
+  return match ? clean(match[0].replace(/^[^:]+:\s*/i, "")) : "Execution spine not explicitly recorded";
+}
+
+export default function ControlTowerV5({ data }: { data: TowerData }) {
+  const strategic = clean(readSection(data.pmoState, "Current strategic position"));
+  const gate = findGate(data.pmoState);
+  const spine = findExecutionSpine(data.pmoState);
+  const technology = clean(readSection(data.pmoState, "Core technology spine"));
+  const validation = clean(readSection(data.pmoState, "Current validation ladder"));
+  const currentState = strategic.split("\n\n")[0] || "Current state unavailable";
+  const liveLabel = !data.live ? "PMO state unavailable" : data.githubLive ? "LIVE · PMO state" : "LIVE · PMO state / GitHub feed unavailable";
+
+  return <main className={styles.tower}><div className={styles.inner}>
+    <header className={styles.hero}>
+      <div className={styles.heroTop}><Badge tone={data.live ? "good" : "risk"}>{liveLabel}</Badge><div className={styles.source}><div className={styles.sourceLabel}>SOURCE AUTHORITY</div><a className={styles.sourceLink} href={data.pmoStateUrl} target="_blank" rel="noreferrer">PMO → CURRENT_STATE.md</a></div></div>
+      <div><div className={styles.eyebrow}>Crabionics · founder / CTO operating view</div><h1 className={styles.heroTitle}>Control Tower</h1><p className={styles.heroCopy}>One company. One authoritative current state. Start with what is true now, what must be proven next, and what needs your attention.</p></div>
+    </header>
+
+    <Section eyebrow="Founder control surface" title="What matters now">
+      <div className={styles.grid2}>
+        <Card accent="warn"><div className={styles.cardLabel}>CURRENT OPERATING STATE · PMO</div><div className={styles.cardValue}>{currentState}</div><div className={styles.cardSub}>This value is read from the authoritative PMO current-state snapshot. No hard-coded operational fallback is used.</div></Card>
+        <Card accent="risk"><div className={styles.cardLabel}>CURRENT PROGRAMME GATE · PMO</div><div className={styles.cardValue}>{gate}</div><div className={styles.cardSub}>The page reports the PMO gate boundary rather than assuming a fixed G0–G6 card is current.</div></Card>
+        <Card accent="good"><div className={styles.cardLabel}>NEAR-TERM EXECUTION SPINE · PMO</div><div className={styles.cardValue}>{spine}</div><div className={styles.cardSub}>Use this as the execution sequence; individual repository issues remain governed by PMO.</div></Card>
+        <Card><div className={styles.cardLabel}>SOURCE / FRESHNESS</div><div className={styles.cardValue}>{data.live ? "Authoritative PMO snapshot loaded" : "Authoritative PMO snapshot unavailable"}</div><div className={styles.cardSub}>Source: PMO CURRENT_STATE.md · refresh policy: 60 seconds. If unavailable, the tower says so instead of presenting stale operational state.</div></Card>
+      </div>
+    </Section>
+
+    <Section eyebrow="Decision discipline" title="What I need to decide">
+      <Card accent="warn"><div className={styles.principle}>Which horizon? Which operational job? What uncertainty? What experiment? What evidence? What gate does it unlock?</div><p className={styles.cardSub}>If a founder action is not represented in authoritative PMO state, the Control Tower does not invent one. Use the PMO as the decision record.</p></Card>
+    </Section>
+
+    <Section eyebrow="Company plan" title="The four horizons">
+      <div className={styles.grid4}>
+        {[["H1","Lab / IP / technical validation"],["H2","Commercial biological production"],["H3","Multi-site / network operations"],["H4","End-state intelligence / ecosystem"]].map(([id,name]) => <Card key={id}><div className={styles.cardLabel}>{id}</div><div className={styles.cardValue}>{name}</div></Card>)}
+      </div>
+    </Section>
+
+    <Section eyebrow="System architecture" title="The physical + digital system">
+      <Card><div className={styles.commandFlow}>{technology || "Technology spine not recorded"}</div><div className={styles.feedbackLoop}><span>Sense</span><b>→</b><span>State</span><b>→</b><span>Decide</span><b>→</b><span>Act</span><b>→</b><span>Outcome</span><b>→</b><span>Evidence</span></div></Card>
+    </Section>
+
+    <Section eyebrow="Evidence boundary" title="What is actually recorded">
+      <Card><div className={styles.grid2}><div><div className={styles.cardLabel}>STRATEGIC POSITION</div><div className={styles.cardSub}>{strategic}</div></div><div><div className={styles.cardLabel}>VALIDATION LADDER</div><div className={styles.cardSub}>{validation}</div></div></div><p className={styles.cardSub}>Implementation, CI and website state are not physical or biological validation. The PMO remains the authority; this page is only a projection.</p></Card>
+    </Section>
+  </div></main>;
+}
