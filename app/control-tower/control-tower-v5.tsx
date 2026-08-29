@@ -41,12 +41,8 @@ function findExecutionSpine(markdown: string | null) {
   const match = section.match(/Near-term execution spine:[^\n]*/i);
   return match ? clean(match[0].replace(/^[^:]+:\s*/i, "")) : "Execution spine not explicitly recorded";
 }
-
 function inlineText(text: string) {
-  return text
-    .replace(/\*\*([^*]+)\*\*/g, "$1")
-    .replace(/`([^`]+)`/g, "$1")
-    .trim();
+  return text.replace(/\*\*([^*]+)\*\*/g, "$1").replace(/`([^`]+)`/g, "$1").trim();
 }
 
 function MarkdownBlock({ markdown }: { markdown: string }) {
@@ -67,7 +63,7 @@ function MarkdownBlock({ markdown }: { markdown: string }) {
   };
   const flushBullets = () => {
     if (!bullets.length) return;
-    blocks.push(<ul key={`ul-${blocks.length}`} className={styles.cardList}>{bullets.map((item, i) => <li key={i}>{inlineText(item)}</li>)}</ul>);
+    blocks.push(<ul key={`ul-${blocks.length}`} style={{ margin: ".5rem 0 .8rem", paddingLeft: "1.15rem" }}>{bullets.map((item, i) => <li key={i} style={{ marginBottom: ".3rem", fontSize: ".8rem", lineHeight: 1.5 }}>{inlineText(item)}</li>)}</ul>);
     bullets = [];
   };
   const flushTable = () => {
@@ -76,10 +72,10 @@ function MarkdownBlock({ markdown }: { markdown: string }) {
     if (!rows.length) { table = []; return; }
     const [head, ...body] = rows;
     blocks.push(
-      <div key={`table-${blocks.length}`} className={styles.tableWrap}>
-        <table className={styles.table}>
-          <thead><tr>{head.map((cell, i) => <th key={i}>{inlineText(cell)}</th>)}</tr></thead>
-          <tbody>{body.map((row, r) => <tr key={r}>{head.map((_, c) => <td key={c}>{inlineText(row[c] ?? "")}</td>)}</tr>)}</tbody>
+      <div key={`table-${blocks.length}`} className={styles.tableScroll}>
+        <table style={{ width: "100%", borderCollapse: "collapse", fontSize: ".76rem", lineHeight: 1.45 }}>
+          <thead><tr>{head.map((cell, i) => <th key={i} style={{ textAlign: "left", padding: ".55rem .45rem", borderBottom: "1px solid #dbe5ef", color: "#102c5c", fontWeight: 800 }}>{inlineText(cell)}</th>)}</tr></thead>
+          <tbody>{body.map((row, r) => <tr key={r}>{head.map((_, c) => <td key={c} style={{ verticalAlign: "top", padding: ".55rem .45rem", borderBottom: "1px solid #e2e8f0" }}>{inlineText(row[c] ?? "")}</td>)}</tr>)}</tbody>
         </table>
       </div>
     );
@@ -91,13 +87,12 @@ function MarkdownBlock({ markdown }: { markdown: string }) {
     if (!line) { flushParagraph(); flushBullets(); flushTable(); return; }
     if (/^\|.*\|$/.test(line)) {
       flushParagraph(); flushBullets();
-      const cells = line.slice(1, -1).split("|").map((cell) => cell.trim());
-      table.push(cells);
+      table.push(line.slice(1, -1).split("|").map((cell) => cell.trim()));
       return;
     }
     if (/^#{1,6}\s+/.test(line)) {
       flushParagraph(); flushBullets(); flushTable();
-      blocks.push(<h3 key={`h-${index}`} className={styles.cardSub}>{inlineText(line.replace(/^#{1,6}\s+/, ""))}</h3>);
+      blocks.push(<h3 key={`h-${index}`} className={styles.sectionTitle} style={{ fontSize: ".95rem", margin: ".65rem 0 .3rem" }}>{inlineText(line.replace(/^#{1,6}\s+/, ""))}</h3>);
       return;
     }
     if (/^[-*]\s+/.test(line)) {
@@ -107,14 +102,13 @@ function MarkdownBlock({ markdown }: { markdown: string }) {
     }
     if (/^>\s?/.test(line)) {
       flushParagraph(); flushBullets(); flushTable();
-      blocks.push(<blockquote key={`q-${index}`} className={styles.cardSub}>{inlineText(line.replace(/^>\s?/, ""))}</blockquote>);
+      blocks.push(<blockquote key={`q-${index}`} className={styles.cardSub} style={{ borderLeft: "3px solid #dbe5ef", paddingLeft: ".7rem" }}>{inlineText(line.replace(/^>\s?/, ""))}</blockquote>);
       return;
     }
     flushBullets(); flushTable();
     paragraph.push(line);
   });
   flushParagraph(); flushBullets(); flushTable();
-
   return <div>{blocks}</div>;
 }
 
