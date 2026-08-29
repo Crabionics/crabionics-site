@@ -21,7 +21,14 @@ function readSection(markdown: string | null, heading: string) {
   const next = body.search(/\n## /);
   return (next >= 0 ? body.slice(0, next) : body).trim();
 }
-function clean(text: string) { return text.replace(/\*\*/g, "").replace(/`/g, "").replace(/^[-*]\s+/gm, "").trim(); }
+function clean(text: string) {
+  return text
+    .replace(/\*\*/g, "")
+    .replace(/`/g, "")
+    .replace(/^[-*]\s+/gm, "")
+    .replace(/^#{1,6}\s+/gm, "")
+    .trim();
+}
 function findGate(markdown: string | null) {
   const section = readSection(markdown, "Phase 2 gate boundary — explicit");
   if (section !== "State unavailable" && section !== "State not recorded") return clean(section.split(/\n\n/)[0]);
@@ -35,13 +42,89 @@ function findExecutionSpine(markdown: string | null) {
   return match ? clean(match[0].replace(/^[^:]+:\s*/i, "")) : "Execution spine not explicitly recorded";
 }
 
+function inlineText(text: string) {
+  return text
+    .replace(/\*\*([^*]+)\*\*/g, "$1")
+    .replace(/`([^`]+)`/g, "$1")
+    .trim();
+}
+
+function MarkdownBlock({ markdown }: { markdown: string }) {
+  if (!markdown || markdown === "State unavailable" || markdown === "State not recorded") {
+    return <p className={styles.cardSub}>{markdown || "State unavailable"}</p>;
+  }
+
+  const lines = markdown.split(/\r?\n/);
+  const blocks: ReactNode[] = [];
+  let paragraph: string[] = [];
+  let bullets: string[] = [];
+  let table: string[][] = [];
+
+  const flushParagraph = () => {
+    if (!paragraph.length) return;
+    blocks.push(<p key={`p-${blocks.length}`} className={styles.cardSub}>{inlineText(paragraph.join(" "))}</p>);
+    paragraph = [];
+  };
+  const flushBullets = () => {
+    if (!bullets.length) return;
+    blocks.push(<ul key={`ul-${blocks.length}`} className={styles.cardList}>{bullets.map((item, i) => <li key={i}>{inlineText(item)}</li>)}</ul>);
+    bullets = [];
+  };
+  const flushTable = () => {
+    if (!table.length) return;
+    const rows = table.filter((row) => !row.every((cell) => /^[-: ]+$/.test(cell)));
+    if (!rows.length) { table = []; return; }
+    const [head, ...body] = rows;
+    blocks.push(
+      <div key={`table-${blocks.length}`} className={styles.tableWrap}>
+        <table className={styles.table}>
+          <thead><tr>{head.map((cell, i) => <th key={i}>{inlineText(cell)}</th>)}</tr></thead>
+          <tbody>{body.map((row, r) => <tr key={r}>{head.map((_, c) => <td key={c}>{inlineText(row[c] ?? "")}</td>)}</tr>)}</tbody>
+        </table>
+      </div>
+    );
+    table = [];
+  };
+
+  lines.forEach((raw, index) => {
+    const line = raw.trim();
+    if (!line) { flushParagraph(); flushBullets(); flushTable(); return; }
+    if (/^\|.*\|$/.test(line)) {
+      flushParagraph(); flushBullets();
+      const cells = line.slice(1, -1).split("|").map((cell) => cell.trim());
+      table.push(cells);
+      return;
+    }
+    if (/^#{1,6}\s+/.test(line)) {
+      flushParagraph(); flushBullets(); flushTable();
+      blocks.push(<h3 key={`h-${index}`} className={styles.cardSub}>{inlineText(line.replace(/^#{1,6}\s+/, ""))}</h3>);
+      return;
+    }
+    if (/^[-*]\s+/.test(line)) {
+      flushParagraph(); flushTable();
+      bullets.push(line.replace(/^[-*]\s+/, ""));
+      return;
+    }
+    if (/^>\s?/.test(line)) {
+      flushParagraph(); flushBullets(); flushTable();
+      blocks.push(<blockquote key={`q-${index}`} className={styles.cardSub}>{inlineText(line.replace(/^>\s?/, ""))}</blockquote>);
+      return;
+    }
+    flushBullets(); flushTable();
+    paragraph.push(line);
+  });
+  flushParagraph(); flushBullets(); flushTable();
+
+  return <div>{blocks}</div>;
+}
+
 export default function ControlTowerV5({ data }: { data: TowerData }) {
-  const strategic = clean(readSection(data.pmoState, "Current strategic position"));
+  const strategic = readSection(data.pmoState, "Current strategic position");
   const gate = findGate(data.pmoState);
   const spine = findExecutionSpine(data.pmoState);
-  const technology = clean(readSection(data.pmoState, "Core technology spine"));
-  const validation = clean(readSection(data.pmoState, "Current validation ladder"));
-  const currentState = strategic.split("\n\n")[0] || "Current state unavailable";
+  const technology = readSection(data.pmoState, "Core technology spine");
+  const validation = readSection(data.pmoState, "Current validation ladder");
+  const currentState = clean(strategic.split("\n\n")[0] || "Current state unavailable");
   const liveLabel = !data.live ? "PMO state unavailable" : data.githubLive ? "LIVE · PMO state" : "LIVE · PMO state / GitHub feed unavailable";
 
   return <main className={styles.tower}><div className={styles.inner}>
@@ -70,11 +153,11 @@ export default function ControlTowerV5({ data }: { data: TowerData }) {
     </Section>
 
     <Section eyebrow="System architecture" title="The physical + digital system">
-      <Card><div className={styles.commandFlow}>{technology || "Technology spine not recorded"}</div><div className={styles.feedbackLoop}><span>Sense</span><b>→</b><span>State</span><b>→</b><span>Decide</span><b>→</b><span>Act</span><b>→</b><span>Outcome</span><b>→</b><span>Evidence</span></div></Card>
+      <Card><div className={styles.commandFlow}><MarkdownBlock markdown={technology || "Technology spine not recorded"} /></div><div className={styles.feedbackLoop}><span>Sense</span><b>→</b><span>State</span><b>→</b><span>Decide</span><b>→</b><span>Act</span><b>→</b><span>Outcome</span><b>→</b><span>Evidence</span></div></Card>
     </Section>
 
     <Section eyebrow="Evidence boundary" title="What is actually recorded">
-      <Card><div className={styles.grid2}><div><div className={styles.cardLabel}>STRATEGIC POSITION</div><div className={styles.cardSub}>{strategic}</div></div><div><div className={styles.cardLabel}>VALIDATION LADDER</div><div className={styles.cardSub}>{validation}</div></div></div><p className={styles.cardSub}>Implementation, CI and website state are not physical or biological validation. The PMO remains the authority; this page is only a projection.</p></Card>
+      <Card><div className={styles.grid2}><div><div className={styles.cardLabel}>STRATEGIC POSITION</div><MarkdownBlock markdown={strategic} /></div><div><div className={styles.cardLabel}>VALIDATION LADDER</div><MarkdownBlock markdown={validation} /></div></div><p className={styles.cardSub}>Implementation, CI and website state are not physical or biological validation. The PMO remains the authority; this page is only a projection.</p></Card>
     </Section>
   </div></main>;
 }
