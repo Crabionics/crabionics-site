@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import styles from "./control-tower-v3.module.css";
+import FounderOSPanel from "./founder-os-panel";
 
 type Tone = "neutral" | "good" | "warn" | "risk";
 
@@ -77,24 +78,30 @@ export default function ControlTowerV4({ data }: { data: TowerData }) {
           <div className={styles.source}><div className={styles.sourceLabel}>SOURCE AUTHORITY</div><a className={styles.sourceLink} href={data.pmoStateUrl} target="_blank" rel="noreferrer">PMO → CURRENT_STATE.md</a></div>
         </div>
         <div>
-          <div className={styles.eyebrow}>Crabionics · founder / CTO operating view</div>
+          <div className={styles.eyebrow}>Crabionics · Founder OS operating terminal</div>
           <h1 className={styles.heroTitle}>Control Tower</h1>
-          <p className={styles.heroCopy}>One company. Four horizons. One current gate. Start with where we are, what must be proven next, and what the larger plan is.</p>
+          <p className={styles.heroCopy}>Start with the constraint, the decisions, the evidence and the actions—not a dashboard of activity.</p>
         </div>
       </header>
 
       <Card accent="warn">
         <div className={styles.cardLabel}>CURRENT HORIZON</div>
         <div className={styles.externalTitle}>H1 — Lab / IP / technical validation</div>
-        <p className={styles.externalCopy}>The immediate job is to prove the integrated technology loop and generate evidence for the next gate — not to prove the whole company.</p>
+        <p className={styles.externalCopy}>The immediate job is to prove the integrated technology loop and generate evidence for the next gate—not to claim biological or commercial validation.</p>
         <div className={styles.commandFlow}>Habitat → CrabSense → AquaOS → CrabPod → BioPod → reconstructable evidence</div>
       </Card>
 
       <Card accent="risk">
         <div className={styles.cardLabel}>CURRENT GATE</div>
-        <div className={styles.cardValue}>G2 — Biological lab integration evidence</div>
-        <p className={styles.cardSub}>Not cleared. The next programme action is to execute the current lab integration scope and produce biological evidence. Do not treat implementation or synthetic tests as biological validation.</p>
+        <div className={styles.cardValue}>Technical closed-loop validation precedes biological validation</div>
+        <p className={styles.cardSub}>The PMO explicitly separates technical validation from biological validation. The physical/procurement dependency is track-specific and does not erase parallel commercial, IP, BIRAC or diligence work.</p>
       </Card>
+
+      <Section eyebrow="Founder OS" title="What matters right now">
+        <Card accent="warn">
+          <FounderOSPanel currentConstraint="Physical validation readiness → AquaOS truth → lab start → first technical data" />
+        </Card>
+      </Section>
 
       <Section eyebrow="Company plan" title="Where H1 sits in the whole company">
         <div className={styles.grid4}>
@@ -132,7 +139,7 @@ export default function ControlTowerV4({ data }: { data: TowerData }) {
       <Section eyebrow="Current evidence boundary" title="What is true today">
         <Card>
           <div className={styles.grid2}>
-            <div><div className={styles.cardLabel}>STRATEGIC POSITION</div><div className={styles.cardSub}>Crabionics is in technology integration and controlled validation. The current programme is deliberately lab-first; commercial repeatability is a later gate.</div></div>
+            <div><div className={styles.cardLabel}>STRATEGIC POSITION</div><div className={styles.cardSub}>{strategic}</div></div>
             <div><div className={styles.cardLabel}>IMPLEMENTATION BOUNDARY</div><div className={styles.cardSub}>Code and architecture can establish implementation evidence. They do not by themselves establish physical integration, biological validation or commercial proof.</div></div>
           </div>
         </Card>
@@ -141,8 +148,8 @@ export default function ControlTowerV4({ data }: { data: TowerData }) {
           <div className={styles.grid2} style={{ marginTop: "0.8rem" }}>
             <Card><div className={styles.cardLabel}>CORE TECHNOLOGY SPINE</div><div className={styles.cardSub}>{technology}</div></Card>
             <Card><div className={styles.cardLabel}>VALIDATION LADDER</div><div className={styles.cardSub}>{validation}</div></Card>
-            <Card accent="risk"><div className={styles.cardLabel}>DO NOT CONFUSE</div><div className={styles.cardValue}>Implementation ≠ integration ≠ biological validation ≠ commercial proof.</div><div className={styles.cardSub}>The PMO remains the authority; this page is a founder/CTO projection.</div></Card>
-            <Card><div className={styles.cardLabel}>SOURCE</div><div className={styles.cardSub}>Use the PMO current-state document for the detailed evidence boundary and update the Control Tower when the authoritative state changes.</div></Card>
+            <Card accent="risk"><div className={styles.cardLabel}>DO NOT CONFUSE</div><div className={styles.cardValue}>Implementation ≠ integration ≠ biological validation ≠ commercial proof.</div><div className={styles.cardSub}>The PMO remains the authority; this page is the founder-facing synthesis.</div></Card>
+            <Card><div className={styles.cardLabel}>SOURCE</div><div className={styles.cardSub}>Current state is read from the PMO at request time and refreshed by the page's server-side fetch policy.</div></Card>
           </div>
         </details>
       </Section>
@@ -150,7 +157,7 @@ export default function ControlTowerV4({ data }: { data: TowerData }) {
       <Section eyebrow="Decision discipline" title="Before we add more work">
         <Card accent="warn">
           <div className={styles.principle}>Which horizon? Which operational job? What uncertainty? What experiment? What evidence? What gate does it unlock?</div>
-          <p className={styles.cardSub}>If a feature cannot answer those questions, it should not automatically enter the active AquaOS backlog.</p>
+          <p className={styles.cardSub}>If a feature cannot answer those questions, it should not automatically enter the active backlog.</p>
           <div className={styles.sourceMini}>
             <a href="https://github.com/Crabionics/crabionics-pmo/blob/main/00_Governance/Strategy/Crabionics_Horizon_Architecture_v1.md" target="_blank" rel="noreferrer">Horizon architecture ↗</a>
             <a href="https://github.com/Crabionics/crabionics-pmo/blob/main/05_AquaOS/Product/AquaOS_Use_Case_and_Horizon_Map_v0.2.md" target="_blank" rel="noreferrer">AquaOS use-case map ↗</a>
