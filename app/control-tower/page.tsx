@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import FounderCommandCenter from "./founder-command-center";
+import FounderDecisionWorkspace from "./founder-decision-workspace";
 
 export const dynamic = "force-dynamic";
 
@@ -42,11 +42,5 @@ async function readIssueState(issueNumber: number): Promise<boolean | null> {
 
 export default async function ControlTowerPage() {
   const [pmoState, processorIssueOpen] = await Promise.all([readPmo(STATE_PATH), readIssueState(39)]);
-  return (
-    <FounderCommandCenter
-      pmoState={pmoState}
-      processorIssueOpen={processorIssueOpen}
-      pmoStateUrl={STATE_URL}
-    />
-  );
+  return <FounderDecisionWorkspace pmoState={pmoState} processorIssueOpen={processorIssueOpen} pmoStateUrl={STATE_URL} />;
 }
