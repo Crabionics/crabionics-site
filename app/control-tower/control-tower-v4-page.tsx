@@ -28,5 +28,5 @@ export default async function ControlTowerV4Page() {
     validation: "",
     technology: "",
   };
-  return <main><FounderCommandCenter pmoState={pmoState} processorIssueOpen={null} /><ControlTowerV4 data={data} /></main>;
+  return <div><FounderCommandCenter pmoState={pmoState} processorIssueOpen={null} /><ControlTowerV4 data={data} /></div>;
 }
