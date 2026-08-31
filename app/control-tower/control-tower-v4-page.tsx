@@ -1,24 +1,36 @@
 import ControlTowerV4 from "./control-tower-v4";
+import FounderCommandCenter from "./founder-command-center";
 
 type TowerData = Parameters<typeof ControlTowerV4>[0]["data"];
 const OWNER = "Crabionics";
 const STATE_PATH = "00_Governance/PMO/CURRENT_STATE.md";
 const STATE_URL = `https://github.com/${OWNER}/crabionics-pmo/blob/main/${STATE_PATH}`;
 
-async function readPmo(path: string): Promise<string | null> {
+async function githubFetch(path: string): Promise<Response> {
   const token = process.env.CRABIONICS_GITHUB_READ_TOKEN;
-  const response = await fetch(`https://api.github.com/repos/${OWNER}/crabionics-pmo/contents/${path}?ref=main`, {
+  return fetch(path, {
     headers: { Accept: "application/vnd.github+json", "X-GitHub-Api-Version": "2022-11-28", ...(token ? { Authorization: `Bearer ${token}` } : {}) },
     next: { revalidate: 60 },
   });
+}
+
+async function readPmo(path: string): Promise<string | null> {
+  const response = await githubFetch(`https://api.github.com/repos/${OWNER}/crabionics-pmo/contents/${path}?ref=main`);
   if (!response.ok) return null;
   const payload = await response.json() as { content?: string; encoding?: string };
   if (!payload.content || payload.encoding !== "base64") return null;
   return Buffer.from(payload.content.replace(/\n/g, ""), "base64").toString("utf-8");
 }
 
+async function readProcessorIssueOpen(): Promise<boolean | null> {
+  const response = await githubFetch(`https://api.github.com/repos/${OWNER}/crabionics-pmo/issues/39`);
+  if (!response.ok) return null;
+  const payload = await response.json() as { state?: string };
+  return payload.state === "open" ? true : payload.state === "closed" ? false : null;
+}
+
 export default async function ControlTowerV4Page() {
-  const pmoState = await readPmo(STATE_PATH);
+  const [pmoState, processorIssueOpen] = await Promise.all([readPmo(STATE_PATH), readProcessorIssueOpen()]);
   const data: TowerData = {
     live: Boolean(pmoState),
     githubLive: Boolean(pmoState),
@@ -27,5 +39,5 @@ export default async function ControlTowerV4Page() {
     validation: "",
     technology: "",
   };
-  return <ControlTowerV4 data={data} />;
+  return <div><FounderCommandCenter pmoState={pmoState} processorIssueOpen={processorIssueOpen} /><ControlTowerV4 data={data} /></div>;
 }
