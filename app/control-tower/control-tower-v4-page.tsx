@@ -1,4 +1,4 @@
-import FounderCommandCenter from "./founder-command-center";
+import FounderCommandCenter from "./founder-command-center-v6";
 
 const OWNER = "Crabionics";
 const STATE_PATH = "00_Governance/PMO/CURRENT_STATE.md";
@@ -28,5 +28,5 @@ async function readProcessorIssueOpen(): Promise<boolean | null> {
 
 export default async function ControlTowerV4Page() {
   const [pmoState, processorIssueOpen] = await Promise.all([readPmo(STATE_PATH), readProcessorIssueOpen()]);
-  return <FounderCommandCenter pmoState={pmoState} processorIssueOpen={processorIssueOpen} />;
+  return <FounderCommandCenter pmoState={pmoState} processorIssueOpen={processorIssueOpen} />
 }
