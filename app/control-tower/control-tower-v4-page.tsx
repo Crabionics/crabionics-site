@@ -1,10 +1,7 @@
-import ControlTowerV4 from "./control-tower-v4";
 import FounderCommandCenter from "./founder-command-center";
 
-type TowerData = Parameters<typeof ControlTowerV4>[0]["data"];
 const OWNER = "Crabionics";
 const STATE_PATH = "00_Governance/PMO/CURRENT_STATE.md";
-const STATE_URL = `https://github.com/${OWNER}/crabionics-pmo/blob/main/${STATE_PATH}`;
 
 async function githubFetch(path: string): Promise<Response> {
   const token = process.env.CRABIONICS_GITHUB_READ_TOKEN;
@@ -31,13 +28,5 @@ async function readProcessorIssueOpen(): Promise<boolean | null> {
 
 export default async function ControlTowerV4Page() {
   const [pmoState, processorIssueOpen] = await Promise.all([readPmo(STATE_PATH), readProcessorIssueOpen()]);
-  const data: TowerData = {
-    live: Boolean(pmoState),
-    githubLive: Boolean(pmoState),
-    pmoState,
-    pmoStateUrl: STATE_URL,
-    validation: "",
-    technology: "",
-  };
-  return <div><FounderCommandCenter pmoState={pmoState} processorIssueOpen={processorIssueOpen} /><ControlTowerV4 data={data} /></div>;
+  return <FounderCommandCenter pmoState={pmoState} processorIssueOpen={processorIssueOpen} />;
 }
