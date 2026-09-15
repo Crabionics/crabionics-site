@@ -4,9 +4,9 @@ import Link from "next/link";
 export const metadata: Metadata = { title: "For Producers", description: "What the Crabionics production architecture is designed to change for mud-crab producers." };
 
 const jobs = [
-  ["Habitat", "Production and handling context", "Crabionics is designing the physical environment around the crab rather than treating production as one uniform biomass.", "Current status: architecture and infrastructure integration. Site requirements: [NEEDS INPUT]."],
-  ["CrabSense", "Visibility into conditions", "The sensing layer is intended to connect environmental and operating observations to a defined production context.", "Current status: sensing and telemetry integration. Sensor scope and operating requirements: [NEEDS INPUT]."],
-  ["CrabPod", "Local operational intervention", "The edge-control layer is designed to support flow, flush and other interventions close to the production environment.", "Current status: hardware/control integration. Deployment responsibilities: [NEEDS INPUT]."],
+  ["Habitat", "Production and handling context", "Crabionics is designing the physical environment around the crab rather than treating production as one uniform biomass.", "Current status: architecture and infrastructure integration. Pilot-specific requirements are defined with each production site."],
+  ["CrabSense", "Visibility into conditions", "The sensing layer is intended to connect environmental and operating observations to a defined production context.", "Current status: sensing and telemetry integration. Track-specific sensing requirements are defined as each validation activity is activated."],
+  ["CrabPod", "Local operational intervention", "The edge-control layer is designed to support flow, flush and other interventions close to the production environment.", "Current status: hardware/control integration. Deployment responsibilities are defined with each pilot partner."],
   ["AquaOS", "Records and workflows", "AquaOS is being developed to connect records, operating workflows, conditions, actions and outcomes for the operator.", "Current status: operating software in development. It is not presented as autonomous farming or a live production dashboard."],
 ];
 

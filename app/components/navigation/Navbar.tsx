@@ -10,7 +10,6 @@ const navLinks = [
   { href: "/producers", label: "For Producers" },
   { href: "/validation", label: "Validation" },
   { href: "/company", label: "Company" },
-  { href: "/insights", label: "Insights" },
 ];
 
 export default function Navbar() {

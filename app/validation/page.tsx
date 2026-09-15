@@ -4,10 +4,10 @@ import Link from "next/link";
 export const metadata: Metadata = { title: "Validation", description: "How Crabionics is separating engineering integration, biological validation and commercial validation." };
 
 const tracks = [
-  ["01", "Funded R&D / IHMS", "Engineering integration", "Complete the supported R&D work and integrate the relevant physical, sensing and operating elements.", "Current phase: [NEEDS INPUT]. Main measurement: [NEEDS INPUT]. Next step: [NEEDS INPUT]."],
-  ["02", "Pond biology", "Field biological learning", "Generate field learning about cohort performance, survival, growth and operating conditions in a pond context.", "Current phase: [NEEDS INPUT]. Main measurement: [NEEDS INPUT]. Next step: [NEEDS INPUT]."],
-  ["03", "Controlled finishing — 600-box pilot", "Controlled biological validation", "Test the controlled-finishing production architecture in its defined pilot setting.", "Current phase: [NEEDS INPUT]. Main measurement: [NEEDS INPUT]. Next step: [NEEDS INPUT]."],
-  ["04", "Commercial demand", "Commercial validation", "Understand whether producers, processors and other partners can adopt the system and its outputs.", "Current phase: [NEEDS INPUT]. Main measurement: [NEEDS INPUT]. Next step: [NEEDS INPUT]."],
+  ["01", "Funded R&D / IHMS", "Engineering integration", "Complete the supported R&D work and integrate the relevant physical, sensing and operating elements.", "Track-specific measurements and next-step criteria are defined as each validation activity is activated."],
+  ["02", "Pond biology", "Field biological learning", "Generate field learning about cohort performance, survival, growth and operating conditions in a pond context.", "Field-learning measurements and next-step criteria are defined with the relevant production activity."],
+  ["03", "Controlled finishing — 600-box pilot", "Controlled biological validation", "Test the controlled-finishing production architecture in its defined pilot setting.", "Pilot-specific measurements and next-step criteria are defined with the controlled-finishing activity."],
+  ["04", "Commercial demand", "Commercial validation", "Understand whether producers, processors and other partners can adopt the system and its outputs.", "Commercial-validation questions and next-step criteria are defined with each partner conversation."],
 ];
 
 export default function ValidationPage() {
