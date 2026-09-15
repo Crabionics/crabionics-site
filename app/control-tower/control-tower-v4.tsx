@@ -149,7 +149,7 @@ export default function ControlTowerV4({ data }: { data: TowerData }) {
             <Card><div className={styles.cardLabel}>CORE TECHNOLOGY SPINE</div><div className={styles.cardSub}>{technology}</div></Card>
             <Card><div className={styles.cardLabel}>VALIDATION LADDER</div><div className={styles.cardSub}>{validation}</div></Card>
             <Card accent="risk"><div className={styles.cardLabel}>DO NOT CONFUSE</div><div className={styles.cardValue}>Implementation ≠ integration ≠ biological validation ≠ commercial proof.</div><div className={styles.cardSub}>The PMO remains the authority; this page is the founder-facing synthesis.</div></Card>
-            <Card><div className={styles.cardLabel}>SOURCE</div><div className={styles.cardSub}>Current state is read from the PMO at request time and refreshed by the page's server-side fetch policy.</div></Card>
+            <Card><div className={styles.cardLabel}>SOURCE</div><div className={styles.cardSub}>Current state is read from the PMO at request time and refreshed by the page&apos;s server-side fetch policy.</div></Card>
           </div>
         </details>
       </Section>
