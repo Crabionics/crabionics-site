@@ -15,19 +15,16 @@ const INTRO_MS = 900;
 const FADE_MS = 350;
 
 export default function LoadingIntro() {
-  const [mounted, setMounted] = useState(false);
   const [fadingOut, setFadingOut] = useState(false);
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
-
     if (typeof window === "undefined") return;
 
     const already = sessionStorage.getItem("crab.intro.shown") === "1";
     if (already) return;
 
-    setVisible(true);
+    const show = window.setTimeout(() => setVisible(true), 0);
 
     const t1 = window.setTimeout(() => setFadingOut(true), INTRO_MS);
     const t2 = window.setTimeout(() => {
@@ -36,12 +33,13 @@ export default function LoadingIntro() {
     }, INTRO_MS + FADE_MS);
 
     return () => {
+      window.clearTimeout(show);
       window.clearTimeout(t1);
       window.clearTimeout(t2);
     };
   }, []);
 
-  if (!mounted || !visible) return null;
+  if (!visible) return null;
 
   return (
     <div

@@ -36,11 +36,11 @@ export default function HomePage() {
         <div className="container-shell grid min-h-[680px] items-center gap-12 py-16 md:grid-cols-[0.9fr_1.1fr] md:py-24">
           <div className="relative z-10 max-w-2xl">
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#168bb8]">Crabionics Aquaculture</p>
-            <h1 className="mt-5 text-5xl font-semibold leading-[1.02] tracking-[-0.045em] text-[#102C5C] sm:text-6xl lg:text-[4.7rem]">Precision infrastructure for mud crab farming.</h1>
-            <p className="mt-7 max-w-xl text-lg leading-8 text-slate-600">We are building the production infrastructure and operating layer that makes mud crab farming more controlled, measurable and repeatable.</p>
+            <h1 className="mt-5 text-5xl font-semibold leading-[1.02] tracking-[-0.045em] text-[#102C5C] sm:text-6xl lg:text-[4.7rem]">Infrastructure for more controlled mud-crab production.</h1>
+            <p className="mt-7 max-w-xl text-lg leading-8 text-slate-600">Crabionics is building an integrated production architecture combining habitat, sensing, edge control and operating software to make critical production conditions and decisions more observable, manageable and repeatable.</p>
             <div className="mt-9 flex flex-wrap gap-3">
-              <Link href="/platform" className="rounded-full bg-[#102C5C] px-6 py-3 text-sm font-semibold text-white">See the technology</Link>
-              <Link href="/validation" className="rounded-full border border-slate-300 bg-white px-6 py-3 text-sm font-semibold text-[#102C5C]">See the validation</Link>
+              <Link href="/producers" className="rounded-full bg-[#102C5C] px-6 py-3 text-sm font-semibold text-white">For producers</Link>
+              <Link href="/system" className="rounded-full border border-slate-300 bg-white px-6 py-3 text-sm font-semibold text-[#102C5C]">How the system works</Link>
             </div>
           </div>
           <div className="relative min-h-[420px] overflow-hidden rounded-[28px] bg-white shadow-[0_30px_80px_rgba(16,44,92,0.16)]">
@@ -124,7 +124,7 @@ export default function HomePage() {
 
       <section className="border-y border-slate-200 bg-white py-14 lg:py-16">
         <div className="container-shell">
-          <div className="max-w-3xl"><p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#168bb8]">Institutional backing</p><h2 className="mt-3 text-3xl font-semibold text-[#102C5C] sm:text-4xl">Built with support from India's innovation ecosystem.</h2></div>
+          <div className="max-w-3xl"><p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#168bb8]">Institutional backing</p><h2 className="mt-3 text-3xl font-semibold text-[#102C5C] sm:text-4xl">Built with support from India&apos;s innovation ecosystem.</h2></div>
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {institutions.map(([name, caption, logo]) => (
               <div key={name} className="flex min-h-[150px] flex-col justify-between rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">

@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export const metadata: Metadata = { title: "Validation", description: "How Crabionics is validating technology, biology, economics and commercial demand." };
 
-const tracks = [["BIRAC / IHMS","Funded R&D","Execute the approved intelligent hatchery and production-intelligence programme."],["Pond","Biology","Generate field evidence on cohort performance, survival, growth and operating conditions."],["600-box","Controlled finishing","Test repeatable finishing operations, actual costs, yield and production economics."],["Commercial","Demand","Build evidence with processors, buyers and deployment partners."]];
+const tracks = [["BIRAC / IHMS","Engineering integration","Execute the funded intelligent hatchery and production-intelligence programme."],["Pond biology","Field biological learning","Generate field evidence on cohort performance, survival, growth and operating conditions."],["600-box pilot","Controlled finishing","Planned biological validation of repeatable finishing operations, actual costs, yield and production economics."],["Commercial demand","Commercial validation","Build evidence with processors, buyers and deployment partners."]];
 const institutions = [["DPIIT / Startup India","Startup recognition","/logos/dpiit-startup-india.png"],["BIRAC BIG","Funded R&D","/logos/birac-big.png"],["DST NIDHI PRAYAS","Innovation support","/logos/dst-nidhi-prayas.png"],["KIIT-TBI","Technology incubation","/logos/kiit-tbi.png"]];
 
 export default function ValidationPage() {

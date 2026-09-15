@@ -8,8 +8,8 @@ export const metadata: Metadata = {
 };
 
 const people = [
-  ["Sameer Kumar Dalai", "Co-Founder & CEO", "/team/sameer-kumar-dalai.jpg", "Systems architecture, RAS operations and field execution."],
-  ["M Abhishek", "Co-Founder & CTO", "/team/m-abhishek.jpg", "AI/ML, software systems and AquaOS development."],
+  ["Sameer Kumar Dalai", "Founder / Company Lead", "/team/sameer-kumar-dalai.jpg", "Field aquaculture, systems architecture and company execution."],
+  ["M Abhishek", "Technology / AquaOS", "/team/m-abhishek.jpg", "Technology systems, software / firmware and the AquaOS operating layer."],
 ];
 
 const institutions = [
