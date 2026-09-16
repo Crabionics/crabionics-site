@@ -10,8 +10,8 @@ const instrumentSerif = Instrument_Serif({ subsets: ["latin"], weight: "400", st
 export const metadata: Metadata = {
   metadataBase: new URL("https://crabionics.com"),
   title: { default: "Crabionics | Infrastructure for More Controlled Mud-Crab Production", template: "%s | Crabionics" },
-  description: "Crabionics is building an integrated mud-crab production architecture combining habitat, sensing, edge control and operating software.",
-  keywords: ["Crabionics", "mud crab aquaculture", "aquaculture infrastructure", "RAS", "AquaOS"],
+  description: "Crabionics is building a connected production system for mud-crab habitat, observations, local intervention and operating workflows.",
+  keywords: ["Crabionics", "mud crab aquaculture", "aquaculture production", "aquaculture infrastructure", "AquaOS"],
   openGraph: { title: "Crabionics | Infrastructure for More Controlled Mud-Crab Production", description: "An integrated production architecture for mud-crab farming.", url: "https://crabionics.com", siteName: "Crabionics", type: "website", images: [{ url: "/hero-crabionics.png", width: 1200, height: 630, alt: "Crabionics mud-crab production infrastructure" }] },
   twitter: { card: "summary_large_image", title: "Crabionics | Infrastructure for More Controlled Mud-Crab Production", description: "An integrated production architecture for mud-crab farming.", images: ["/hero-crabionics.png"] },
   alternates: { canonical: "/" },
