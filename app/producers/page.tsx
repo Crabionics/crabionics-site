@@ -4,10 +4,10 @@ import Link from "next/link";
 export const metadata: Metadata = { title: "For Producers", description: "Production jobs, operating context and pilot questions for mud-crab producers considering Crabionics." };
 
 const jobs = [
-  ["01", "Set up the production environment", "Habitat", "Create a defined setting around the crab so handling, observation and operating conversations start from the same physical context.", "In development: architecture and infrastructure integration."],
+  ["01", "Set up the production environment", "Habitat", "Create a defined setting around the crab so handling, observation and operating conversations start from the same physical context.", "In development: the production setting and supporting infrastructure are being connected."],
   ["02", "Know what is happening around the unit", "CrabSense", "Connect environmental and operating observations to a specific production unit instead of treating readings as isolated numbers.", "In development: sensing scope is defined with each validation activity."],
   ["03", "Act close to the production work", "CrabPod", "Support flow, flushing and other local interventions where the operating decision is made.", "In development: hardware and deployment responsibilities are defined with each pilot partner."],
-  ["04", "Keep a useful operating record", "AquaOS", "Connect conditions, actions and outcomes so the team can review what changed and what to examine next.", "In development: software is not presented as autonomous farming or a live production dashboard."],
+  ["04", "Keep a useful operating record", "AquaOS", "Connect conditions, actions and outcomes so the team can review what changed and what to examine next.", "In development: the software is being developed alongside the production work."],
 ];
 
 export default function ProducersPage() {
