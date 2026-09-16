@@ -12,7 +12,7 @@ const people: Array<[string, string, string, string]> = [
 const institutions = [
   ["KIIT-TBI", "Technology incubation", "/logos/kiit-tbi.png"],
   ["BIRAC / IHMS", "Funded research relationship", "/logos/birac-big.png"],
-  ["DPIIT Deep Tech", "Startup / deep-technology recognition", "/logos/dpiit-startup-india.png"],
+  ["DPIIT Recognition", "Startup recognition", "/logos/dpiit-startup-india.png"],
 ];
 
 export default function CompanyPage() {
