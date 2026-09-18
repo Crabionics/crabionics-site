@@ -9,6 +9,13 @@
   --surface: #0b1120;
   --surface-2: #111827;
 
+  /* Public-site art direction tokens: aquaculture industrial editorial. */
+  --public-deep-navy: #102F63;
+  --public-ocean-cyan: #20B8D5;
+  --public-ice: #EEF7FA;
+  --public-charcoal: #263445;
+  --public-teal: #287A59;
+
   --card: rgba(17, 24, 39, 0.72);
 
   /* Brand palette (from the Crabionics brand sheet) */
