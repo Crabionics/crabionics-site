@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-export const metadata: Metadata = { title: "Talk to us", description: "Discuss a mud-crab pilot, technical brief or research partnership with Crabionics." };
+export const metadata: Metadata = { title: "Talk to us", description: "Discuss a mud-crab pilot, technical brief or research partnership with Crabionics." , alternates: { canonical: "/contact" } };
 
 const paths = [
   ["Discuss a mud-crab pilot", "For producers and operating partners exploring a defined production question.", "Producer"],

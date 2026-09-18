@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
-export const metadata: Metadata = { title: "How the System Works", description: "How Crabionics connects habitat, observations, operating decisions, local intervention and learning for mud-crab production." };
+export const metadata: Metadata = { title: "How the System Works", description: "How Crabionics connects habitat, observations, operating decisions, local intervention and learning for mud-crab production." , alternates: { canonical: "/system" } };
 
 const layers = [
   ["01", "Habitat", "Make the production setting more defined", "Problem addressed: uncontrolled variation in the physical environment and handling context.", "Operator receives: a production unit that can be described, observed and discussed consistently.", "Status: the production setting and supporting infrastructure are being connected; site requirements are defined with each production context.", "/photos/isolation-box.jpg"],

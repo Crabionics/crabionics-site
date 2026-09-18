@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-export const metadata: Metadata = { title: "AquaOS", description: "The operating software layer being developed within the Crabionics production system." };
+export const metadata: Metadata = { title: "AquaOS", description: "The operating software layer being developed within the Crabionics production system." , alternates: { canonical: "/aquaos" } };
 
 const cards = [
   ["Record", "What happened?", "Connect production events and observations to the relevant unit, condition and operating context."],

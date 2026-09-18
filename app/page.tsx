@@ -1,4 +1,7 @@
+import type { Metadata } from "next";
 import Image from "next/image";
+
+export const metadata: Metadata = { title: "Crabionics", description: "Crabionics is building a connected production system for mud-crab habitat, observations, local intervention and operating workflows.", alternates: { canonical: "/" } };
 import Link from "next/link";
 
 const audienceDoors = [

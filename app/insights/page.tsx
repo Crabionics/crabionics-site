@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-export const metadata: Metadata = { title: "Insights", description: "Crabionics project notes, field learning and technical updates, published when the material is ready." };
+export const metadata: Metadata = { title: "Insights", description: "Crabionics project notes, field learning and technical updates, published when the material is ready." , alternates: { canonical: "/insights" } };
 
   const formats = [
   ["Research note", "A defined system or biological question, the setting, what was observed and what remains open."],

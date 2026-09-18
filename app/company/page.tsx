@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
-export const metadata: Metadata = { title: "Company", description: "The field experience, production work and institutional relationships behind Crabionics." };
+export const metadata: Metadata = { title: "Company", description: "The field experience, production work and institutional relationships behind Crabionics." , alternates: { canonical: "/company" } };
 
 const people: Array<[string, string, string, string]> = [
   ["Sameer Kumar Dalai", "Founder / Company Lead", "/team/sameer-kumar-dalai.jpg", "Field aquaculture, system design and company execution."],

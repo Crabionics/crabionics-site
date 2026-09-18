@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-export const metadata: Metadata = { title: "Investors", description: "A factual overview of Crabionics, its production problem, development work and validation pathway." };
+export const metadata: Metadata = { title: "Investors", description: "A factual overview of Crabionics, its production problem, development work and validation pathway." , alternates: { canonical: "/investors" } };
 
 const points = [
   ["The problem", "Mud-crab production brings together a difficult control and repeatability problem across habitat, water conditions, handling and operator decisions."],

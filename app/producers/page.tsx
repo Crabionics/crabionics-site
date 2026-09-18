@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-export const metadata: Metadata = { title: "For Producers", description: "Production jobs, operating context and pilot questions for mud-crab producers considering Crabionics." };
+export const metadata: Metadata = { title: "For Producers", description: "Production jobs, operating context and pilot questions for mud-crab producers considering Crabionics." , alternates: { canonical: "/producers" } };
 
 const jobs = [
   ["01", "Set up the production environment", "Habitat", "Create a defined setting around the crab so handling, observation and operating conversations start from the same physical context.", "In development: the production setting and supporting infrastructure are being connected."],

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-export const metadata: Metadata = { title: "Validation", description: "The production settings, questions and evidence tracks Crabionics is using to learn what the system can support." };
+export const metadata: Metadata = { title: "Validation", description: "The production settings, questions and evidence tracks Crabionics is using to learn what the system can support." , alternates: { canonical: "/validation" } };
 
 const tracks = [
   ["01", "Funded research / IHMS", "System integration", "Defined research setting", "Can the physical setting, observations and operating routines work together as intended?", "Integration records and operating evidence", "The next step is defined by the supported research work and its measurements."],

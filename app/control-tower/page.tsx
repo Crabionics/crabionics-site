@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: "Control Tower",
   description: "Crabionics founder decision workspace grounded in current PMO evidence.",
   alternates: { canonical: "/control-tower" },
+  robots: { index: false, follow: false },
 };
 
 const OWNER = "Crabionics";
