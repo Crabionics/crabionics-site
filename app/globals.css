@@ -1063,3 +1063,21 @@ a:hover {
       linear-gradient(180deg, rgba(16, 47, 99, 0.78) 0%, rgba(16, 47, 99, 0.48) 48%, rgba(3, 20, 49, 0.7) 100%);
   }
 }
+
+/* Homepage loop sits on a light surface; retain the dark System variant. */
+.public-site .section-loop .loop-node {
+  border-color: var(--public-ocean-cyan);
+  background: rgba(255, 255, 255, 0.96);
+  color: var(--public-deep-navy);
+  box-shadow: 0 10px 24px rgba(16, 44, 92, 0.08);
+}
+
+.public-site .section-loop .loop-node-boundary {
+  background: var(--public-ice);
+  color: var(--public-deep-navy);
+  box-shadow: 0 0 0 1px var(--public-ocean-cyan), 0 10px 24px rgba(16, 44, 92, 0.1);
+}
+
+.public-site .section-loop .loop-node-number {
+  color: var(--public-ocean-cyan);
+}
