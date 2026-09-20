@@ -16,7 +16,7 @@ const institutions = [
 ];
 
 export default function CompanyPage() {
-  return <div className="bg-white text-slate-900">
+  return <div className="public-page bg-white text-slate-900">
     <section className="bg-[#f5f8fb] py-20 lg:py-24"><div className="container-shell max-w-5xl"><p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#168bb8]">Company</p><h1 className="mt-4 text-5xl font-semibold tracking-[-0.04em] text-[#102C5C] sm:text-6xl">Built from the production problem outward.</h1><p className="mt-7 max-w-3xl text-lg leading-8 text-slate-600">Crabionics brings field experience, production work and operating software together around the practical difficulty of making mud-crab production more controlled and repeatable.</p></div></section>
 
     <section className="bg-white py-16 lg:py-20"><div className="container-shell grid gap-10 lg:grid-cols-[0.8fr_1.2fr]"><div><p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#168bb8]">Why Crabionics exists</p><h2 className="mt-3 text-4xl font-semibold text-[#102C5C] sm:text-5xl">Physical production first. Technology underneath.</h2></div><div className="space-y-5 text-lg leading-8 text-slate-600"><p>Mud-crab production brings together animal behaviour, habitat, water conditions, handling and operator decisions. These conditions need to be understood together.</p><p>Crabionics is building one connected production system around that reality: habitat, observation, local action and an operating record that work together.</p></div></div></section>
