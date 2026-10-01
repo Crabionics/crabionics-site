@@ -1,234 +1,167 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
-type Status = "Implemented" | "Integrated" | "Pending" | "Validated" | "Proposed" | "Commercial evidence gap";
-type Tone = "good" | "warn" | "risk" | "neutral";
+type Screen = "founder" | "site" | "assets" | "sensors" | "environment" | "alerts" | "actuators" | "ledger" | "validation" | "commercial" | "experiment";
 
-type Node = {
-  id: string;
-  name: string;
-  role: string;
-  status: Status;
-  tone: Tone;
-  source: string;
-  owner: string;
-  implementation: string;
-  evidence: string;
-};
-
-const nodes: Node[] = [
-  { id: "habitat", name: "Habitat", role: "Physical production environment", status: "Pending", tone: "warn", source: "Habitat README / PMO current state", owner: "Physical engineering", implementation: "Engineering baseline exists; integrated identity/runtime remains pending.", evidence: "Engineering baseline only; physical validation evidence not established." },
-  { id: "sense", name: "CrabSense", role: "Sensor identity, calibration and canonical telemetry", status: "Integrated", tone: "warn", source: "CrabSense README / v0.1 contract", owner: "Instrumentation", implementation: "Canonical telemetry interface merged; calibration and physical integration pending.", evidence: "Software contract evidence only; no calibration/field evidence." },
-  { id: "pod", name: "CrabPod", role: "Edge acquisition and actuator execution", status: "Integrated", tone: "warn", source: "CrabPod README / PMO integration contract", owner: "Edge/control engineering", implementation: "Firmware foundation and QoS1 transport/replay merged; physical runtime pending.", evidence: "Synthetic/runtime implementation evidence; physical actuator proof pending." },
-  { id: "aquaos", name: "AquaOS", role: "State, decision, command and evidence layer", status: "Integrated", tone: "good", source: "AquaOS develop / PMO AOS-011", owner: "Software / control", implementation: "Lifecycle, telemetry, rules, alerts, command/ack and synthetic closed-loop path implemented on develop.", evidence: "CI + synthetic real-stack evidence; not physical or biological validation." },
-  { id: "biopod", name: "BioPod", role: "Biological observation and outcome layer", status: "Pending", tone: "risk", source: "AquaOS biological-engine docs / PMO", owner: "Scientific validation", implementation: "Defined as the biological validation layer; scientific ownership/protocol still required.", evidence: "Biological proof not established." },
+const screens: [Screen, string, string][] = [
+  ["founder","Founder dashboard","System overview"],
+  ["site","Site dashboard","Deployment view"],
+  ["assets","Asset explorer","Habitat → boxes → devices"],
+  ["sensors","Sensor dashboard","CrabSense telemetry"],
+  ["environment","Environment","Current water state"],
+  ["alerts","Alerts & decisions","Rule → decision → action"],
+  ["actuators","Actuator control","CrabPod commands"],
+  ["ledger","Event ledger","Causality & history"],
+  ["validation","Validation","Evidence gates"],
+  ["commercial","Commercial","Supply → finishing → market"],
+  ["experiment","Lab experiment","CP-INT-001 / VAL-007"],
 ];
 
-const production = [
-  ["Seed / hatchery", "IHMS / HatchSync", "Seed intelligence and hatchery execution", "PMO strategic synthesis"],
-  ["Community / farmer nursery", "Distributed biomass", "Biomass development before controlled finishing", "PMO #155 / #157"],
-  ["Pond grow-out", "Farmer production network", "Distributed biomass production and measured supply baseline", "PMO G4 evidence boundary"],
-  ["RAS finishing", "Crabionics controlled finishing", "Specification-driven finishing and standardized output", "PMO commercial strategy"],
-  ["Processor / export / HORECA", "Market interface", "Demand, specification and commercial validation", "PMO #156 / G7"],
-] as const;
+const telemetry0 = [
+  ["Temperature","28.4","°C","normal"],["pH","7.86","","normal"],["DO","5.9","mg/L","normal"],
+  ["Salinity","24.8","ppt","normal"],["Ammonia","0.018","mg/L","normal"],["Nitrite","0.11","mg/L","watch"],
+];
 
-const experiments = [
-  ["CP-INT-001", "Temperature instrumentation", "CrabSense → CrabPod → MQTT → AquaOS", "Current technical execution anchor", "Physical evidence pending"],
-  ["VAL-004A", "Basic MQTT transmission", "CrabPod telemetry → broker → AquaOS", "Integration prerequisite", "Synthetic/runtime evidence exists"],
-  ["VAL-004B", "24h endurance / reconnect", "CrabPod transport resilience", "Reliability prerequisite", "Pending physical execution"],
-  ["VAL-007", "Technical closed loop", "Sensor → rule → command → relay → acknowledgement/outcome", "Phase 2 target", "Not physically validated"],
-  ["G3 / biological", "Controlled biological observation", "Biological state → decision → intervention → outcome", "Downstream validation", "Protocol/scientific owner required"],
-] as const;
+const events = [
+  ["EVT-2048","Telemetry","CP-INT-001","Temperature observation accepted","22:41:18"],
+  ["EVT-2047","Decision","AOS-RULE-DO-01","No intervention required","22:41:17"],
+  ["EVT-2046","Observation","HAB-V1-001","Zone observation updated","22:41:16"],
+  ["EVT-2045","Command","CP-ACT-001","Aeration state acknowledged","22:40:52"],
+  ["EVT-2044","System","CRABPOD-001","Heartbeat received","22:40:48"],
+];
 
-const evidence = [
-  ["Governance", "PMO current state, YAML, ADRs and active blockers", "Established", "PMO"],
-  ["Software implementation", "AquaOS / CrabPod / CrabSense repositories", "Implemented in relevant slices", "Owning repositories"],
-  ["Synthetic integration", "Telemetry → event → decision → command → acknowledgement path", "Observed in synthetic/runtime environment", "AquaOS / PMO"],
-  ["Physical integration", "Actual sensor + edge + actuator loop", "Not yet proven", "Runtime/raw evidence"],
-  ["Biological validation", "Measured crab response under defined protocol", "Not yet proven", "Scientific evidence"],
-  ["Commercial validation", "Buyer demand + farmer baseline + repeatable economics", "Evidence gap", "Commercial experiments"],
-] as const;
+const assets = [
+  ["HAB-V1-001","Habitat","Integrated runtime pending","amber"],
+  ["COMP-001","Compartment","Engineering identity","blue"],
+  ["CRABPOD-001","CrabPod","Software integration","green"],
+  ["CRABSENSE-001","CrabSense","Telemetry contract","green"],
+  ["AQUAOS-001","AquaOS","Cloud demo runtime","green"],
+];
 
-const claims = [
-  ["KNOWN", "Implementation exists", "Software implementation is not equivalent to physical or biological validation.", "good"],
-  ["OBSERVED", "Synthetic closed loop", "Runtime/synthetic evidence demonstrates the software path; it does not establish field performance.", "good"],
-  ["NEEDS EXPERIMENT", "Physical loop", "The first temperature experiment must establish real instrumentation/control evidence.", "warn"],
-  ["UNKNOWN", "Biological outcome", "No biological claim should be promoted without controlled measured evidence.", "risk"],
-  ["PROPOSED", "Commercial architecture", "Distributed biomass → controlled finishing → standardized output is the current strategic model, not achieved scale.", "warn"],
-] as const;
+const gates = [
+  ["PMO-G0","Procurement / lab readiness","Pending","Physical equipment + acceptance records"],
+  ["PMO-G1","AquaOS truth","In progress","Runtime path and evidence reconciliation"],
+  ["PMO-G2","First closed loop","Pending","Real sensor → command → acknowledgement"],
+  ["PMO-G3","Biological observation","Pending","Controlled biological protocol"],
+  ["PMO-G4","Pond supply wedge","Evidence required","Farmer baseline + measured biomass"],
+  ["PMO-G6","600-box validation","Downstream","Biological + economic repeatability"],
+  ["PMO-G7","Processor validation","Evidence required","External buyer/customer evidence"],
+];
 
-function Badge({ children, tone }: { children: React.ReactNode; tone: Tone }) {
-  const cls = tone === "good" ? "border-emerald-200 bg-emerald-50 text-emerald-700" : tone === "warn" ? "border-amber-200 bg-amber-50 text-amber-700" : tone === "risk" ? "border-rose-200 bg-rose-50 text-rose-700" : "border-slate-200 bg-slate-50 text-slate-600";
-  return <span className={`inline-flex rounded-full border px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.08em] ${cls}`}>{children}</span>;
+function Pill({ children, tone="blue" }: {children: React.ReactNode; tone?: "green"|"amber"|"red"|"blue"|"slate"}) {
+  const c = {green:"border-emerald-200 bg-emerald-50 text-emerald-700",amber:"border-amber-200 bg-amber-50 text-amber-700",red:"border-rose-200 bg-rose-50 text-rose-700",blue:"border-cyan-200 bg-cyan-50 text-cyan-700",slate:"border-slate-200 bg-slate-100 text-slate-600"}[tone];
+  return <span className={"inline-flex rounded-full border px-2.5 py-1 text-[10px] font-bold uppercase tracking-[.1em] "+c}>{children}</span>;
 }
 
-function toneFor(status: Status): Tone {
-  if (status === "Integrated" || status === "Implemented" || status === "Validated") return "good";
-  if (status === "Pending" || status === "Proposed") return "warn";
-  return "risk";
+function Card({children,className=""}:{children:React.ReactNode;className?:string}) {
+  return <section className={"rounded-2xl border border-slate-200 bg-white shadow-sm "+className}>{children}</section>;
+}
+
+function Header({screen}:{screen:string}) {
+  return <div className="border-b border-slate-200 bg-white px-5 py-4 lg:px-8">
+    <div className="flex items-center justify-between gap-4">
+      <div><p className="text-[10px] font-bold uppercase tracking-[.18em] text-cyan-700">CRABIONICS · AQUAOS</p><h1 className="mt-1 text-xl font-bold tracking-tight text-[#0b2347]">{screen}</h1></div>
+      <div className="flex items-center gap-2"><Pill tone="green">Cloud runtime</Pill><Pill tone="amber">Synthetic lab data</Pill></div>
+    </div>
+  </div>;
 }
 
 export default function DigitalModelPage() {
-  const [tab, setTab] = useState("overview");
-  const [selected, setSelected] = useState("aquaos");
-  const [loopStep, setLoopStep] = useState(0);
-  const selectedNode = useMemo(() => nodes.find((n) => n.id === selected) ?? nodes[3], [selected]);
+  const [screen,setScreen] = useState<Screen>("founder");
+  const [running,setRunning] = useState(false);
+  const [step,setStep] = useState(0);
+  const [telemetry,setTelemetry] = useState(telemetry0);
+  const [selectedAsset,setSelectedAsset] = useState("HAB-V1-001");
 
-  const tabs = [
-    ["overview", "System map"],
-    ["systems", "Subsystem truth"],
-    ["experiments", "Experiments"],
-    ["evidence", "Evidence"],
-    ["commercial", "Commercial"],
-    ["loop", "Synthetic loop"],
-  ] as const;
+  useEffect(() => {
+    if (!running) return;
+    const id = setInterval(() => setTelemetry(t => t.map(([n,v,u,s]) => {
+      const x = Number(v); const delta = (Math.random()-.5) * (n==="Temperature"?.12:n==="pH"?.04:.08);
+      return [n,(x+delta).toFixed(n==="pH"?2:2),u,s];
+    })),1500);
+    return () => clearInterval(id);
+  },[running]);
 
-  return (
-    <main className="min-h-screen bg-[#f7fafc] text-slate-900">
-      <section className="bg-[#0b2347] text-white">
-        <div className="mx-auto max-w-7xl px-6 py-12 lg:px-10 lg:py-16">
-          <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
-            <div className="max-w-4xl">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-cyan-300">Crabionics · Cloud Prototype</p>
-              <h1 className="mt-4 text-4xl font-semibold tracking-[-0.04em] sm:text-5xl">Digital System Explorer</h1>
-              <p className="mt-5 max-w-3xl text-base leading-7 text-slate-300">A repository-grounded projection of the Crabionics production, sensing, control, evidence and commercial architecture. This is not a Digital Twin and does not turn proposed or synthetic states into field claims.</p>
-            </div>
-            <div className="rounded-2xl border border-white/10 bg-white/5 p-5 text-sm">
-              <p className="text-slate-400">Prototype rule</p>
-              <p className="mt-1 font-semibold">PMO → repositories → runtime evidence</p>
-              <p className="mt-2 text-xs text-slate-400">Implementation ≠ validation ≠ commercial proof</p>
-            </div>
-          </div>
+  const stage = ["Observation","Event correlation","Decision","Command","Acknowledgement","Outcome / evidence"][step];
+  const summary = useMemo(() => ({
+    activeAssets: assets.length, telemetry: telemetry.length, openAlerts: 1, evidence: 2
+  }),[telemetry]);
+
+  return <main className="min-h-screen bg-[#f4f8fb] text-slate-900">
+    <div className="flex min-h-screen flex-col lg:flex-row">
+      <aside className="hidden w-64 shrink-0 border-r border-slate-200 bg-[#071d3b] text-white lg:flex lg:flex-col">
+        <div className="border-b border-white/10 px-6 py-6"><div className="text-lg font-extrabold tracking-tight">Crabionics</div><div className="mt-1 text-[10px] font-bold uppercase tracking-[.2em] text-cyan-300">AquaOS cloud demo</div></div>
+        <nav className="flex-1 overflow-y-auto p-3">{screens.map(([id,label,sub])=><button key={id} onClick={()=>setScreen(id)} className={"mb-1 w-full rounded-xl px-3 py-3 text-left transition "+(screen===id?"bg-white text-[#0b2347]":"text-slate-300 hover:bg-white/10")}><div className="text-sm font-semibold">{label}</div><div className={"mt-0.5 text-[10px] "+(screen===id?"text-slate-500":"text-slate-500")}>{sub}</div></button>)}</nav>
+        <div className="border-t border-white/10 p-4 text-[10px] leading-5 text-slate-400">Demo mode: synthetic values only.<br/>No physical validation is implied.</div>
+      </aside>
+
+      <div className="flex-1">
+        <div className="sticky top-0 z-30 border-b border-slate-200 bg-white/95 backdrop-blur lg:hidden">
+          <div className="flex items-center justify-between px-4 py-3"><div><b className="text-[#0b2347]">Crabionics</b><span className="ml-2 text-[10px] text-cyan-700">AquaOS</span></div><Pill tone="amber">DEMO</Pill></div>
+          <div className="flex gap-1 overflow-x-auto px-3 pb-2">{screens.map(([id,label])=><button key={id} onClick={()=>setScreen(id)} className={"whitespace-nowrap rounded-lg px-3 py-2 text-xs font-semibold "+(screen===id?"bg-[#0b2347] text-white":"bg-slate-100 text-slate-600")}>{label}</button>)}</div>
         </div>
-      </section>
 
-      <nav className="sticky top-0 z-20 border-b border-slate-200 bg-white/95 backdrop-blur">
-        <div className="mx-auto flex max-w-7xl gap-1 overflow-x-auto px-6 lg:px-10">
-          {tabs.map(([id, label]) => (
-            <button key={id} onClick={() => setTab(id)} className={`border-b-2 px-4 py-4 text-sm font-semibold whitespace-nowrap ${tab === id ? "border-cyan-600 text-[#0b2347]" : "border-transparent text-slate-500 hover:text-slate-800"}`}>
-              {label}
-            </button>
-          ))}
+        <Header screen={screens.find(x=>x[0]===screen)?.[1] || "AquaOS"} />
+
+        <div className="mx-auto max-w-[1500px] space-y-5 p-4 lg:p-8">
+          {screen==="founder" && <Founder summary={summary} gates={gates} setScreen={setScreen}/>}
+          {screen==="site" && <Site assets={assets} setScreen={setScreen}/>}
+          {screen==="assets" && <Assets selected={selectedAsset} setSelected={setSelectedAsset}/>}
+          {screen==="sensors" && <Sensors telemetry={telemetry} running={running} setRunning={setRunning}/>}
+          {screen==="environment" && <Environment telemetry={telemetry}/>}
+          {screen==="alerts" && <Alerts/>}
+          {screen==="actuators" && <Actuators/>}
+          {screen==="ledger" && <Ledger/>}
+          {screen==="validation" && <Validation gates={gates}/>}
+          {screen==="commercial" && <Commercial/>}
+          {screen==="experiment" && <Experiment running={running} setRunning={setRunning} step={step} setStep={setStep} stage={stage}/>}
         </div>
-      </nav>
-
-      <div className="mx-auto max-w-7xl px-6 py-10 lg:px-10">
-        {tab === "overview" && (
-          <div className="space-y-8">
-            <section className="grid gap-4 md:grid-cols-5">
-              {nodes.map((n) => (
-                <button key={n.id} onClick={() => { setSelected(n.id); setTab("systems"); }} className={`rounded-2xl border bg-white p-5 text-left shadow-sm transition hover:-translate-y-0.5 hover:shadow-md ${selected === n.id ? "border-cyan-400 ring-2 ring-cyan-100" : "border-slate-200"}`}>
-                  <div className="flex items-start justify-between gap-3"><span className="text-xs font-semibold uppercase tracking-[0.12em] text-slate-400">{n.role}</span><Badge tone={n.tone}>{n.status}</Badge></div>
-                  <h2 className="mt-4 text-xl font-semibold text-[#0b2347]">{n.name}</h2>
-                  <p className="mt-2 text-sm leading-6 text-slate-600">{n.implementation}</p>
-                </button>
-              ))}
-            </section>
-
-            <section className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm lg:p-8">
-              <div className="flex flex-col gap-2"><p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-700">Governing execution loop</p><h2 className="text-2xl font-semibold text-[#0b2347]">Physical system → observation → decision → intervention → outcome → evidence</h2></div>
-              <div className="mt-8 grid gap-3 md:grid-cols-7">
-                {["Habitat", "CrabSense", "CrabPod", "MQTT", "AquaOS", "Command / Ack", "Evidence"].map((x, i) => <div key={x} className="flex items-center gap-2"><div className="flex-1 rounded-xl border border-slate-200 bg-slate-50 p-4 text-center"><p className="text-sm font-semibold text-[#0b2347]">{x}</p><p className="mt-1 text-[11px] text-slate-500">{i < 3 ? "physical / edge" : i === 3 ? "transport" : i < 6 ? "software" : "proof"}</p></div>{i < 6 && <span className="hidden text-slate-300 md:block">→</span>}</div>)}
-              </div>
-            </section>
-
-            <section className="grid gap-6 lg:grid-cols-[1.3fr_0.7fr]">
-              <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm lg:p-8">
-                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-700">Current execution spine</p>
-                <div className="mt-5 space-y-3">{["Procurement / lab readiness", "AquaOS truth + integration", "CP-INT-001 physical instrumentation", "First real technical data", "VAL-007 technical closed loop", "Biological validation", "600-box / commercial evidence"].map((x, i) => <div key={x} className="flex items-center gap-4 rounded-xl border border-slate-100 bg-slate-50 p-4"><span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#0b2347] text-xs font-semibold text-white">{i + 1}</span><span className="text-sm font-medium text-slate-700">{x}</span></div>)}</div>
-              </div>
-              <div className="rounded-3xl bg-[#0b2347] p-6 text-white shadow-sm lg:p-8">
-                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-300">Prototype boundary</p>
-                <h2 className="mt-4 text-2xl font-semibold">What this page does not claim</h2>
-                <ul className="mt-5 space-y-3 text-sm leading-6 text-slate-300"><li>• No physical sensor runtime is implied.</li><li>• No biological performance is implied.</li><li>• No 600-box result is implied.</li><li>• No processor-funded deployment is implied.</li><li>• Synthetic data is visibly treated as synthetic.</li></ul>
-              </div>
-            </section>
-          </div>
-        )}
-
-        {tab === "systems" && (
-          <section className="grid gap-6 lg:grid-cols-[0.85fr_1.15fr]">
-            <div className="space-y-3">{nodes.map((n) => <button key={n.id} onClick={() => setSelected(n.id)} className={`w-full rounded-2xl border p-5 text-left ${selected === n.id ? "border-cyan-400 bg-cyan-50/50" : "border-slate-200 bg-white"}`}><div className="flex items-center justify-between gap-3"><span className="font-semibold text-[#0b2347]">{n.name}</span><Badge tone={n.tone}>{n.status}</Badge></div><p className="mt-2 text-xs text-slate-500">{n.role}</p></button>)}</div>
-            <div className="rounded-3xl border border-slate-200 bg-white p-7 shadow-sm lg:p-9">
-              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-700">Subsystem truth</p>
-              <div className="mt-3 flex items-center justify-between gap-4"><h2 className="text-3xl font-semibold text-[#0b2347]">{selectedNode.name}</h2><Badge tone={selectedNode.tone}>{selectedNode.status}</Badge></div>
-              <p className="mt-3 text-slate-600">{selectedNode.role}</p>
-              <div className="mt-8 grid gap-4 md:grid-cols-2"><Info label="Owner" value={selectedNode.owner}/><Info label="Source" value={selectedNode.source}/><Info label="Implementation" value={selectedNode.implementation}/><Info label="Evidence boundary" value={selectedNode.evidence}/></div>
-              <div className="mt-8 rounded-2xl border border-amber-200 bg-amber-50 p-5 text-sm leading-6 text-amber-900"><strong>Reconciliation rule:</strong> architecture/documentation describes intent; implementation establishes software state; runtime/raw evidence establishes operational proof.</div>
-            </div>
-          </section>
-        )}
-
-        {tab === "experiments" && (
-          <section className="space-y-6">
-            <div><p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-700">Validation execution</p><h2 className="mt-2 text-3xl font-semibold text-[#0b2347]">Experiments are the bridge from architecture to evidence</h2><p className="mt-3 max-w-3xl text-sm leading-6 text-slate-600">The prototype exposes the current experiment spine without claiming that pending physical work has already happened.</p></div>
-            <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm"><div className="hidden grid-cols-[1fr_1.2fr_1.5fr_1.2fr_1fr] gap-4 border-b bg-slate-50 p-4 text-[11px] font-semibold uppercase tracking-[0.12em] text-slate-500 md:grid"><span>Experiment</span><span>Question</span><span>System path</span><span>Purpose</span><span>Evidence</span></div>{experiments.map((e) => <div key={e[0]} className="grid gap-2 border-b border-slate-100 p-5 md:grid-cols-[1fr_1.2fr_1.5fr_1.2fr_1fr] md:gap-4"><span className="font-semibold text-[#0b2347]">{e[0]}</span><span className="text-sm text-slate-700">{e[1]}</span><span className="text-sm text-slate-600">{e[2]}</span><span className="text-sm text-slate-600">{e[3]}</span><Badge tone={e[4].includes("pending") || e[4].includes("required") || e[4].includes("Not") ? "warn" : "good"}>{e[4]}</Badge></div>)}</div>
-          </section>
-        )}
-
-        {tab === "evidence" && (
-          <section className="space-y-8">
-            <div><p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-700">Evidence control</p><h2 className="mt-2 text-3xl font-semibold text-[#0b2347]">Claim → implementation → experiment → raw evidence → verdict</h2></div>
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">{evidence.map((e) => <div key={e[0]} className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm"><div className="flex items-start justify-between gap-3"><h3 className="font-semibold text-[#0b2347]">{e[0]}</h3><Badge tone={e[2] === "Established" || e[2].includes("Implemented") ? "good" : e[2].includes("gap") || e[2].includes("Not") ? "risk" : "warn"}>{e[2]}</Badge></div><p className="mt-4 text-sm leading-6 text-slate-600">{e[1]}</p><p className="mt-4 text-xs font-semibold uppercase tracking-[0.1em] text-slate-400">{e[3]}</p></div>)}</div>
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-5">{claims.map((c) => <div key={c[0]} className="rounded-2xl border border-slate-200 bg-white p-5"><Badge tone={c[3] as Tone}>{c[0]}</Badge><h3 className="mt-4 font-semibold text-[#0b2347]">{c[1]}</h3><p className="mt-2 text-sm leading-6 text-slate-600">{c[2]}</p></div>)}</div>
-          </section>
-        )}
-
-
-        {tab === "loop" && (
-          <section className="space-y-8">
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-700">Synthetic evidence fixture</p>
-              <h2 className="mt-2 text-3xl font-semibold text-[#0b2347]">State → decision → action → acknowledgement → outcome</h2>
-              <p className="mt-3 max-w-3xl text-sm leading-6 text-slate-600">This deterministic UI fixture demonstrates the existing AquaOS evidence lifecycle without pretending that a physical sensor or actuator has run.</p>
-            </div>
-            <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm lg:p-8">
-              <div className="flex flex-wrap gap-2">
-                {["Observation", "Event", "Decision", "Action / Command", "Acknowledgement", "Outcome / Evidence"].map((x, i) => (
-                  <button key={x} onClick={() => setLoopStep(i)} className={"rounded-xl border px-4 py-3 text-left text-sm font-semibold transition " + (loopStep === i ? "border-cyan-500 bg-cyan-50 text-[#0b2347]" : "border-slate-200 bg-slate-50 text-slate-500")}>
-                    <span className="mr-2 text-xs text-slate-400">{String(i + 1).padStart(2, "0")}</span>{x}
-                  </button>
-                ))}
-              </div>
-              <div className="mt-8 grid gap-6 lg:grid-cols-[1fr_0.7fr]">
-                <div className="rounded-2xl bg-[#0b2347] p-6 text-white">
-                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-300">Synthetic step {loopStep + 1} / 6</p>
-                  <h3 className="mt-3 text-2xl font-semibold">{["Observation received", "Event recorded", "Decision recorded", "Command emitted", "Acknowledgement received", "Outcome recorded"][loopStep]}</h3>
-                  <p className="mt-4 text-sm leading-7 text-slate-300">{["A canonical observation enters the shared operating path.", "The observation is correlated with an operating event and context.", "The rule/decision lifecycle records what should happen next.", "An execution request is issued toward the edge/control layer.", "The edge layer acknowledges the execution request.", "The response/outcome is retained so the experiment can be reconstructed."][loopStep]}</p>
-                  <button onClick={() => setLoopStep((s) => Math.min(5, s + 1))} className="mt-6 rounded-full bg-cyan-400 px-5 py-2.5 text-sm font-semibold text-[#0b2347] disabled:cursor-not-allowed disabled:opacity-40" disabled={loopStep === 5}>Advance synthetic step</button>
-                </div>
-                <div className="rounded-2xl border border-amber-200 bg-amber-50 p-6">
-                  <Badge tone="warn">SYNTHETIC ONLY</Badge>
-                  <h3 className="mt-4 text-lg font-semibold text-[#0b2347]">Evidence boundary</h3>
-                  <ul className="mt-4 space-y-3 text-sm leading-6 text-amber-900"><li>• No real sensor reading is generated.</li><li>• No actuator is commanded.</li><li>• No biological response is inferred.</li><li>• The fixture only represents the event lifecycle already defined in the engineering/PMO path.</li></ul>
-                </div>
-              </div>
-            </div>
-            <div className="grid gap-3 md:grid-cols-6">{["Observation", "Event", "Decision", "Action", "Ack", "Outcome"].map((x, i) => <div key={x} className={"rounded-xl border p-4 text-center " + (i <= loopStep ? "border-cyan-300 bg-cyan-50" : "border-slate-200 bg-white")}><p className="text-xs font-semibold uppercase tracking-[0.1em] text-slate-400">{x}</p><p className="mt-2 text-xs font-medium text-slate-600">{i <= loopStep ? "recorded in fixture" : "awaiting step"}</p></div>)}</div>
-          </section>
-        )}
-
-        {tab === "commercial" && (
-          <section className="space-y-8">
-            <div><p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-700">Commercial architecture</p><h2 className="mt-2 text-3xl font-semibold text-[#0b2347]">Distributed biomass → controlled finishing → standardized output</h2><p className="mt-3 max-w-3xl text-sm leading-6 text-slate-600">This is the current strategic architecture. The prototype deliberately labels the downstream stages as hypotheses or evidence gates where the PMO has not established proof.</p></div>
-            <div className="grid gap-3 md:grid-cols-5">{production.map((p, i) => <div key={p[0]} className="relative rounded-2xl border border-slate-200 bg-white p-5 shadow-sm"><span className="text-xs font-semibold text-cyan-700">0{i + 1}</span><h3 className="mt-3 font-semibold text-[#0b2347]">{p[0]}</h3><p className="mt-2 text-xs font-semibold uppercase tracking-[0.1em] text-slate-400">{p[1]}</p><p className="mt-3 text-sm leading-6 text-slate-600">{p[2]}</p><p className="mt-4 border-t border-slate-100 pt-3 text-[11px] text-slate-400">{p[3]}</p>{i < production.length - 1 && <span className="absolute -right-3 top-1/2 z-10 hidden text-slate-300 md:block">→</span>}</div>)}</div>
-            <div className="grid gap-6 lg:grid-cols-3"><InfoCard title="G4 · Pond supply wedge" text="Requires a defined farmer baseline and measured size, survival, growth, cycle and harvest biomass evidence." tone="warn"/><InfoCard title="G7 · Processor/customer validation" text="Buyer discovery is active evidence work; lead status is not equivalent to validated demand or a committed payer." tone="warn"/><InfoCard title="G6/G8 · Scale" text="600-box and 3,000-box configurations are validation/deployment targets, not achieved production results." tone="risk"/></div>
-          </section>
-        )}
-
-        <footer className="mt-12 border-t border-slate-200 pt-6 text-xs leading-6 text-slate-500">
-          Prototype source boundary: PMO current state + machine-readable state + owning product repositories + runtime/evidence rules. Built as a cloud prototype on the existing Crabionics site; no physical or biological validation claim is created by this UI.
-        </footer>
       </div>
-    </main>
-  );
+    </div>
+  </main>;
 }
 
-function Info({ label, value }: { label: string; value: string }) {
-  return <div className="rounded-2xl border border-slate-100 bg-slate-50 p-5"><p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-slate-400">{label}</p><p className="mt-2 text-sm leading-6 text-slate-700">{value}</p></div>;
+function Founder({summary,gates,setScreen}:{summary:any;gates:any[];setScreen:(x:Screen)=>void}) {
+ return <div className="space-y-5">
+  <div className="grid gap-3 md:grid-cols-4">{[
+    ["Assets",summary.activeAssets,"registry view"],["Telemetry",summary.telemetry,"CrabSense channels"],["Open alerts",summary.openAlerts,"operator attention"],["Evidence records",summary.evidence,"demo evidence"]
+  ].map(x=><Card key={x[0]} className="p-5"><p className="text-[10px] font-bold uppercase tracking-[.15em] text-slate-400">{x[0]}</p><div className="mt-2 text-3xl font-bold text-[#0b2347]">{x[1]}</div><p className="mt-1 text-xs text-slate-500">{x[2]}</p></Card>)}</div>
+  <div className="grid gap-5 xl:grid-cols-[1.5fr_1fr]">
+   <Card className="p-6"><div className="flex items-center justify-between"><div><p className="text-[10px] font-bold uppercase tracking-[.15em] text-cyan-700">Operating chain</p><h2 className="mt-1 text-2xl font-bold text-[#0b2347]">Habitat → Sense → Pod → AquaOS</h2></div><Pill tone="blue">Integrated architecture</Pill></div><div className="mt-7 grid gap-2 md:grid-cols-4">{["Habitat","CrabSense","CrabPod","AquaOS"].map((x,i)=><div key={x} className="rounded-xl border border-slate-200 p-4"><div className="text-[10px] font-bold text-slate-400">0{i+1}</div><div className="mt-3 font-bold text-[#0b2347]">{x}</div><div className="mt-1 text-xs text-slate-500">{["Physical context","Observation","Edge action","State + evidence"][i]}</div></div>)}</div><div className="mt-5 rounded-xl bg-[#071d3b] p-5 text-white"><div className="text-[10px] font-bold uppercase tracking-[.15em] text-cyan-300">Current cloud experiment</div><div className="mt-2 text-lg font-semibold">CP-INT-001 / VAL-007 synthetic closed loop</div><div className="mt-2 text-sm text-slate-300">Observation → event → decision → command → acknowledgement → outcome.</div><button onClick={()=>setScreen("experiment")} className="mt-4 rounded-lg bg-cyan-400 px-4 py-2 text-xs font-bold text-[#071d3b]">Open experiment console</button></div></Card>
+   <Card className="p-6"><p className="text-[10px] font-bold uppercase tracking-[.15em] text-cyan-700">Validation status</p><h2 className="mt-1 text-xl font-bold text-[#0b2347]">Evidence ladder</h2><div className="mt-4 space-y-3">{gates.slice(0,5).map(g=><div key={g[0]} className="flex items-center justify-between gap-3 rounded-xl bg-slate-50 p-3"><div><div className="text-xs font-bold text-[#0b2347]">{g[0]}</div><div className="text-xs text-slate-500">{g[1]}</div></div><Pill tone={g[2]==="In progress"?"blue":g[2]==="Pending"?"amber":"slate"}>{g[2]}</Pill></div>)}</div><button onClick={()=>setScreen("validation")} className="mt-4 text-xs font-bold text-cyan-700">View all validation gates →</button></Card>
+  </div>
+  <Card className="p-6"><div className="flex items-center justify-between"><div><p className="text-[10px] font-bold uppercase tracking-[.15em] text-cyan-700">Latest causality</p><h2 className="mt-1 text-xl font-bold text-[#0b2347]">What happened and why?</h2></div><button onClick={()=>setScreen("ledger")} className="text-xs font-bold text-cyan-700">Event ledger →</button></div><div className="mt-4 grid gap-3 md:grid-cols-5">{events.map(e=><div key={e[0]} className="rounded-xl border border-slate-200 p-4"><Pill tone={e[1]==="Decision"?"blue":"slate"}>{e[1]}</Pill><div className="mt-3 text-sm font-semibold text-[#0b2347]">{e[3]}</div><div className="mt-2 text-[10px] text-slate-400">{e[0]} · {e[4]}</div></div>)}</div></Card>
+ </div>
 }
 
-function InfoCard({ title, text, tone }: { title: string; text: string; tone: Tone }) {
-  return <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm"><Badge tone={tone}>{tone === "risk" ? "NOT CLEARED" : "EVIDENCE REQUIRED"}</Badge><h3 className="mt-4 text-lg font-semibold text-[#0b2347]">{title}</h3><p className="mt-2 text-sm leading-6 text-slate-600">{text}</p></div>;
+function Site({assets,setScreen}:{assets:any[];setScreen:(x:Screen)=>void}) {
+ return <div className="space-y-5"><div className="grid gap-4 md:grid-cols-3"><Card className="p-5"><p className="text-[10px] font-bold uppercase tracking-[.15em] text-slate-400">Deployment</p><div className="mt-2 text-xl font-bold text-[#0b2347]">KIIT validation lab</div><Pill tone="amber">Readiness pending</Pill></Card><Card className="p-5"><p className="text-[10px] font-bold uppercase tracking-[.15em] text-slate-400">Connectivity</p><div className="mt-2 text-xl font-bold text-[#0b2347]">MQTT / cloud</div><Pill tone="blue">Synthetic broker path</Pill></Card><Card className="p-5"><p className="text-[10px] font-bold uppercase tracking-[.15em] text-slate-400">Validation</p><div className="mt-2 text-xl font-bold text-[#0b2347]">PMO-G1</div><Pill tone="blue">Integration focus</Pill></Card></div><Card className="p-6"><p className="text-[10px] font-bold uppercase tracking-[.15em] text-cyan-700">Site topology</p><h2 className="mt-1 text-2xl font-bold text-[#0b2347]">Physical deployment model</h2><div className="mt-6 space-y-3">{assets.map((a:any)=><div key={a[0]} className="flex flex-col gap-2 rounded-xl border border-slate-200 p-4 md:flex-row md:items-center md:justify-between"><div><b className="text-sm text-[#0b2347]">{a[0]}</b><span className="ml-3 text-xs text-slate-400">{a[1]}</span></div><div className="flex items-center gap-3"><span className="text-xs text-slate-500">{a[2]}</span><Pill tone={a[3]==="green"?"green":a[3]==="amber"?"amber":"blue"}>{a[3]}</Pill></div></div>)}</div><button onClick={()=>setScreen("assets")} className="mt-5 rounded-lg bg-[#0b2347] px-4 py-2 text-xs font-bold text-white">Open asset explorer</button></Card></div>
 }
+
+function Assets({selected,setSelected}:{selected:string;setSelected:(x:string)=>void}) {
+ const item=assets.find(a=>a[0]===selected) || assets[0];
+ return <div className="grid gap-5 lg:grid-cols-[.8fr_1.2fr]"><Card className="p-5"><p className="text-[10px] font-bold uppercase tracking-[.15em] text-cyan-700">Asset registry</p>{assets.map(a=><button key={a[0]} onClick={()=>setSelected(a[0])} className={"mt-2 w-full rounded-xl p-4 text-left "+(selected===a[0]?"bg-cyan-50 ring-1 ring-cyan-300":"bg-slate-50")}><b className="text-sm text-[#0b2347]">{a[0]}</b><div className="mt-1 text-xs text-slate-500">{a[1]} · {a[2]}</div></button>)}</Card><Card className="p-6"><Pill tone="blue">ASSET DETAIL</Pill><h2 className="mt-3 text-3xl font-bold text-[#0b2347]">{item[0]}</h2><p className="mt-1 text-sm text-slate-500">{item[1]}</p><div className="mt-6 grid gap-3 md:grid-cols-2"><Info k="Identity" v={item[0]}/><Info k="State" v={item[2]}/><Info k="Parent" v={item[0].startsWith("HAB")?"Site / lab":"Habitat / system"}/><Info k="Evidence" v="Engineering/demo state only"/></div><div className="mt-6 rounded-xl bg-amber-50 p-4 text-xs leading-5 text-amber-900">Registry identity is not proof of commissioned physical equipment. Physical identity and commissioning remain evidence gates.</div></Card></div>
+}
+
+function Sensors({telemetry,running,setRunning}:{telemetry:any[];running:boolean;setRunning:(x:boolean)=>void}) {
+ return <div className="space-y-5"><Card className="p-6"><div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between"><div><p className="text-[10px] font-bold uppercase tracking-[.15em] text-cyan-700">CrabSense telemetry</p><h2 className="mt-1 text-2xl font-bold text-[#0b2347]">Sensor dashboard</h2><p className="mt-1 text-xs text-slate-500">Synthetic values · deterministic demo surface · not calibrated field data.</p></div><button onClick={()=>setRunning(!running)} className={"rounded-lg px-4 py-2 text-xs font-bold "+(running?"bg-rose-600 text-white":"bg-[#0b2347] text-white")}>{running?"Stop simulation":"Start telemetry simulation"}</button></div><div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">{telemetry.map((x:any)=><div key={x[0]} className="rounded-xl border border-slate-200 p-5"><div className="flex justify-between"><span className="text-xs font-semibold text-slate-500">{x[0]}</span><Pill tone={x[3]==="normal"?"green":"amber"}>{x[3]}</Pill></div><div className="mt-4 text-3xl font-bold text-[#0b2347]">{x[1]} <span className="text-sm font-medium text-slate-400">{x[2]}</span></div><div className="mt-2 h-1.5 rounded bg-slate-100"><div className="h-1.5 w-3/4 rounded bg-cyan-500"/></div><div className="mt-2 text-[10px] text-slate-400">CRABSENSE-001 · synthetic</div></div>)}</div></Card></div>
+}
+
+function Environment({telemetry}:{telemetry:any[]}) {
+ return <div className="grid gap-5 lg:grid-cols-[1.3fr_.7fr]"><Card className="p-6"><p className="text-[10px] font-bold uppercase tracking-[.15em] text-cyan-700">Environmental state</p><h2 className="mt-1 text-2xl font-bold text-[#0b2347]">Zone COMP-001</h2><div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">{telemetry.map((x:any)=><div key={x[0]} className="rounded-xl bg-slate-50 p-4"><div className="text-xs text-slate-500">{x[0]}</div><div className="mt-2 text-xl font-bold text-[#0b2347]">{x[1]} {x[2]}</div></div>)}</div></Card><Card className="p-6"><Pill tone="green">STATE: OPERATING</Pill><h3 className="mt-4 text-xl font-bold text-[#0b2347]">Environmental interpretation</h3><p className="mt-3 text-sm leading-6 text-slate-600">The demo state is generated from the synthetic telemetry fixture. A production state must be derived from validated telemetry and governed thresholds.</p><div className="mt-5 rounded-xl border border-slate-200 p-4"><div className="text-xs font-bold text-slate-400">Rule engine</div><div className="mt-1 text-sm font-semibold text-[#0b2347]">AOS-RULE-DO-01</div><div className="mt-1 text-xs text-slate-500">No intervention required</div></div></Card></div>
+}
+
+function Alerts() { return <div className="space-y-5"><Card className="p-6"><div className="flex justify-between"><div><p className="text-[10px] font-bold uppercase tracking-[.15em] text-cyan-700">Operator attention</p><h2 className="mt-1 text-2xl font-bold text-[#0b2347]">Alerts & decisions</h2></div><Pill tone="amber">1 synthetic watch</Pill></div><div className="mt-5 rounded-2xl border border-amber-200 bg-amber-50 p-5"><div className="flex flex-wrap items-center gap-2"><Pill tone="amber">WATCH</Pill><b className="text-[#0b2347]">Nitrite trend requires observation</b></div><p className="mt-3 text-sm leading-6 text-amber-900">Synthetic telemetry crossed the demo watch threshold. The deterministic decision records observation rather than claiming a biological effect.</p><div className="mt-5 grid gap-3 md:grid-cols-4">{["Observation accepted","Rule evaluated","Decision recorded","Operator acknowledgement"].map((x,i)=><div key={x} className="rounded-xl bg-white/70 p-3 text-xs font-semibold text-slate-700"><span className="mr-2 text-slate-400">0{i+1}</span>{x}</div>)}</div></div></Card></div> }
+
+function Actuators() { const [on,setOn]=useState(false); return <div className="grid gap-5 lg:grid-cols-[1fr_.8fr]"><Card className="p-6"><p className="text-[10px] font-bold uppercase tracking-[.15em] text-cyan-700">CrabPod edge control</p><h2 className="mt-1 text-2xl font-bold text-[#0b2347]">Actuator command console</h2><p className="mt-2 text-xs text-slate-500">Simulation only. No physical relay is connected to this cloud UI.</p><div className="mt-6 grid gap-3 md:grid-cols-2">{["Aeration relay","Pump relay","Flush solenoid","Buzzer"].map((x,i)=><div key={x} className="flex items-center justify-between rounded-xl border border-slate-200 p-4"><div><b className="text-sm text-[#0b2347]">{x}</b><div className="text-[10px] text-slate-400">CRABPOD-001 · channel {i+1}</div></div><button onClick={()=>i===0&&setOn(!on)} className={"rounded-full px-4 py-2 text-xs font-bold "+(i===0&&on?"bg-emerald-600 text-white":"bg-slate-100 text-slate-500")}>{i===0&&on?"ON":"OFF"}</button></div>)}</div></Card><Card className="p-6"><Pill tone={on?"green":"slate"}>{on?"COMMAND SIMULATED":"IDLE"}</Pill><h3 className="mt-4 text-xl font-bold text-[#0b2347]">Execution lifecycle</h3><div className="mt-4 space-y-2">{["ExecutionRequest created","Command emitted","Ack received","Outcome recorded"].map((x,i)=><div key={x} className="rounded-lg bg-slate-50 p-3 text-xs">{on||i===0?<span className="mr-2 text-emerald-600">●</span>:<span className="mr-2 text-slate-300">○</span>}{x}</div>)}</div></Card></div> }
+
+function Ledger(){return <Card className="p-6"><div className="flex items-center justify-between"><div><p className="text-[10px] font-bold uppercase tracking-[.15em] text-cyan-700">Append-only event view</p><h2 className="mt-1 text-2xl font-bold text-[#0b2347]">Event & causality ledger</h2></div><Pill tone="blue">DEMO RECORDS</Pill></div><div className="mt-6 overflow-x-auto"><table className="w-full min-w-[700px] text-left text-xs"><thead className="border-b border-slate-200 text-[10px] uppercase tracking-[.1em] text-slate-400"><tr><th className="p-3">Event</th><th className="p-3">Type</th><th className="p-3">Source</th><th className="p-3">Description</th><th className="p-3">Time</th></tr></thead><tbody>{events.map(e=><tr key={e[0]} className="border-b border-slate-100"><td className="p-3 font-mono">{e[0]}</td><td className="p-3"><Pill tone={e[1]==="Decision"?"blue":"slate"}>{e[1]}</Pill></td><td className="p-3">{e[2]}</td><td className="p-3 font-semibold text-[#0b2347]">{e[3]}</td><td className="p-3 text-slate-500">{e[4]}</td></tr>)}</tbody></table></div></Card>}
+
+function Validation({gates}:{gates:any[]}){return <div className="space-y-5"><Card className="p-6"><p className="text-[10px] font-bold uppercase tracking-[.15em] text-cyan-700">Programme evidence</p><h2 className="mt-1 text-2xl font-bold text-[#0b2347]">Validation control board</h2><div className="mt-6 space-y-3">{gates.map(g=><div key={g[0]} className="grid gap-3 rounded-xl border border-slate-200 p-4 md:grid-cols-[100px_1fr_180px_1.4fr] md:items-center"><b className="text-sm text-[#0b2347]">{g[0]}</b><span className="text-sm font-semibold">{g[1]}</span><Pill tone={g[2].includes("Pending")?"amber":g[2].includes("Evidence")?"red":"blue"}>{g[2]}</Pill><span className="text-xs text-slate-500">{g[3]}</span></div>)}</div></Card><Card className="p-6 bg-[#071d3b] text-white"><div className="text-[10px] font-bold uppercase tracking-[.15em] text-cyan-300">Evidence rule</div><div className="mt-3 text-lg font-semibold">Implementation → integration → runtime/raw evidence → validation</div><p className="mt-2 text-sm text-slate-300">This cloud demo proves only software presentation and deterministic simulation. It does not clear a PMO gate.</p></Card></div>}
+
+function Commercial(){return <div className="space-y-5"><Card className="p-6"><p className="text-[10px] font-bold uppercase tracking-[.15em] text-cyan-700">Commercial architecture</p><h2 className="mt-1 text-2xl font-bold text-[#0b2347]">Distributed biomass → controlled finishing → standardized output</h2><div className="mt-7 grid gap-3 md:grid-cols-5">{[["01","Seed / hatchery","IHMS / HatchSync","Intelligence"],["02","Farmer nursery","Community supply","Baseline required"],["03","Pond biomass","Distributed production","G4 evidence"],["04","RAS finishing","Crabionics controlled system","G6 validation"],["05","Processor / export","Specification-driven market","G7 evidence"]].map(x=><div key={x[0]} className="rounded-xl border border-slate-200 p-5"><span className="text-xs font-bold text-cyan-700">{x[0]}</span><h3 className="mt-3 font-bold text-[#0b2347]">{x[1]}</h3><p className="mt-2 text-xs text-slate-500">{x[2]}</p><p className="mt-4 text-[10px] font-bold uppercase tracking-[.1em] text-slate-400">{x[3]}</p></div>)}</div></Card><div className="grid gap-4 md:grid-cols-3"><Card className="p-5"><Pill tone="amber">Revalidation</Pill><h3 className="mt-3 font-bold text-[#0b2347]">Buyer requirements</h3><p className="mt-2 text-sm text-slate-600">External buyer evidence must be captured before commercial claims are promoted.</p></Card><Card className="p-5"><Pill tone="amber">Baseline</Pill><h3 className="mt-3 font-bold text-[#0b2347]">Farmer network</h3><p className="mt-2 text-sm text-slate-600">Initial multi-farm baseline is a downstream evidence requirement.</p></Card><Card className="p-5"><Pill tone="slate">Scenario</Pill><h3 className="mt-3 font-bold text-[#0b2347]">600 / 3,000 boxes</h3><p className="mt-2 text-sm text-slate-600">Validation and deployment configurations, not achieved production results.</p></Card></div></div>}
+
+function Experiment({running,setRunning,step,setStep,stage}:{running:boolean;setRunning:(x:boolean)=>void;step:number;setStep:(x:number)=>void;stage:string}){return <div className="space-y-5"><Card className="p-6"><div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between"><div><Pill tone="blue">CP-INT-001</Pill><h2 className="mt-3 text-2xl font-bold text-[#0b2347]">First technical closed-loop console</h2><p className="mt-2 text-sm text-slate-600">The cloud prototype exercises the same evidence sequence intended for the physical temperature experiment and VAL-007.</p></div><button onClick={()=>{setRunning(!running);if(!running)setStep(0)}} className={"rounded-lg px-5 py-3 text-xs font-bold "+(running?"bg-rose-600 text-white":"bg-[#0b2347] text-white")}>{running?"Stop run":"Run synthetic experiment"}</button></div><div className="mt-8 grid gap-2 md:grid-cols-6">{["Observation","Event","Decision","Command","Ack","Outcome"].map((x,i)=><button key={x} onClick={()=>setStep(i)} className={"rounded-xl border p-4 text-left "+(i<=step?"border-cyan-300 bg-cyan-50":"border-slate-200 bg-slate-50")}><div className="text-[10px] font-bold text-slate-400">0{i+1}</div><div className="mt-2 text-sm font-bold text-[#0b2347]">{x}</div><div className="mt-1 text-[10px] text-slate-500">{i<=step?"recorded":"awaiting"}</div></button>)}</div><div className="mt-6 grid gap-5 lg:grid-cols-[1.2fr_.8fr]"><div className="rounded-2xl bg-[#071d3b] p-6 text-white"><Pill tone="blue">CURRENT STAGE</Pill><h3 className="mt-4 text-2xl font-bold">{stage}</h3><p className="mt-3 text-sm leading-6 text-slate-300">{["Canonical observation enters the operating path.","Observation is correlated with asset and operating context.","Deterministic rule evaluates the current state.","Execution request is emitted toward CrabPod.","Edge acknowledgement is captured.","Outcome is recorded for reconstruction and evidence."][step]}</p><button disabled={step===5} onClick={()=>setStep(Math.min(5,step+1))} className="mt-5 rounded-lg bg-cyan-400 px-4 py-2 text-xs font-bold text-[#071d3b] disabled:opacity-40">Advance step</button></div><div className="rounded-2xl border border-amber-200 bg-amber-50 p-6"><Pill tone="amber">SIMULATION BOUNDARY</Pill><ul className="mt-4 space-y-3 text-sm leading-6 text-amber-900"><li>• No real sensor is connected.</li><li>• No physical relay is switched.</li><li>• No crab response is inferred.</li><li>• This becomes physical evidence only after CP-INT-001 hardware execution.</li></ul></div></div></Card></div>}
+
+function Info({k,v}:{k:string;v:string}){return <div className="rounded-xl bg-slate-50 p-4"><div className="text-[10px] font-bold uppercase tracking-[.12em] text-slate-400">{k}</div><div className="mt-1 text-sm font-semibold text-[#0b2347]">{v}</div></div>}
