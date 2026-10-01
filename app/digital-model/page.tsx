@@ -72,6 +72,7 @@ function toneFor(status: Status): Tone {
 export default function DigitalModelPage() {
   const [tab, setTab] = useState("overview");
   const [selected, setSelected] = useState("aquaos");
+  const [loopStep, setLoopStep] = useState(0);
   const selectedNode = useMemo(() => nodes.find((n) => n.id === selected) ?? nodes[3], [selected]);
 
   const tabs = [
@@ -80,6 +81,7 @@ export default function DigitalModelPage() {
     ["experiments", "Experiments"],
     ["evidence", "Evidence"],
     ["commercial", "Commercial"],
+    ["loop", "Synthetic loop"],
   ] as const;
 
   return (
@@ -170,6 +172,40 @@ export default function DigitalModelPage() {
             <div><p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-700">Evidence control</p><h2 className="mt-2 text-3xl font-semibold text-[#0b2347]">Claim → implementation → experiment → raw evidence → verdict</h2></div>
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">{evidence.map((e) => <div key={e[0]} className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm"><div className="flex items-start justify-between gap-3"><h3 className="font-semibold text-[#0b2347]">{e[0]}</h3><Badge tone={e[2] === "Established" || e[2].includes("Implemented") ? "good" : e[2].includes("gap") || e[2].includes("Not") ? "risk" : "warn"}>{e[2]}</Badge></div><p className="mt-4 text-sm leading-6 text-slate-600">{e[1]}</p><p className="mt-4 text-xs font-semibold uppercase tracking-[0.1em] text-slate-400">{e[3]}</p></div>)}</div>
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-5">{claims.map((c) => <div key={c[0]} className="rounded-2xl border border-slate-200 bg-white p-5"><Badge tone={c[3] as Tone}>{c[0]}</Badge><h3 className="mt-4 font-semibold text-[#0b2347]">{c[1]}</h3><p className="mt-2 text-sm leading-6 text-slate-600">{c[2]}</p></div>)}</div>
+          </section>
+        )}
+
+
+        {tab === "loop" && (
+          <section className="space-y-8">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-700">Synthetic evidence fixture</p>
+              <h2 className="mt-2 text-3xl font-semibold text-[#0b2347]">State → decision → action → acknowledgement → outcome</h2>
+              <p className="mt-3 max-w-3xl text-sm leading-6 text-slate-600">This deterministic UI fixture demonstrates the existing AquaOS evidence lifecycle without pretending that a physical sensor or actuator has run.</p>
+            </div>
+            <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm lg:p-8">
+              <div className="flex flex-wrap gap-2">
+                {["Observation", "Event", "Decision", "Action / Command", "Acknowledgement", "Outcome / Evidence"].map((x, i) => (
+                  <button key={x} onClick={() => setLoopStep(i)} className={"rounded-xl border px-4 py-3 text-left text-sm font-semibold transition " + (loopStep === i ? "border-cyan-500 bg-cyan-50 text-[#0b2347]" : "border-slate-200 bg-slate-50 text-slate-500")}>
+                    <span className="mr-2 text-xs text-slate-400">{String(i + 1).padStart(2, "0")}</span>{x}
+                  </button>
+                ))}
+              </div>
+              <div className="mt-8 grid gap-6 lg:grid-cols-[1fr_0.7fr]">
+                <div className="rounded-2xl bg-[#0b2347] p-6 text-white">
+                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-300">Synthetic step {loopStep + 1} / 6</p>
+                  <h3 className="mt-3 text-2xl font-semibold">{["Observation received", "Event recorded", "Decision recorded", "Command emitted", "Acknowledgement received", "Outcome recorded"][loopStep]}</h3>
+                  <p className="mt-4 text-sm leading-7 text-slate-300">{["A canonical observation enters the shared operating path.", "The observation is correlated with an operating event and context.", "The rule/decision lifecycle records what should happen next.", "An execution request is issued toward the edge/control layer.", "The edge layer acknowledges the execution request.", "The response/outcome is retained so the experiment can be reconstructed."][loopStep]}</p>
+                  <button onClick={() => setLoopStep((s) => Math.min(5, s + 1))} className="mt-6 rounded-full bg-cyan-400 px-5 py-2.5 text-sm font-semibold text-[#0b2347] disabled:cursor-not-allowed disabled:opacity-40" disabled={loopStep === 5}>Advance synthetic step</button>
+                </div>
+                <div className="rounded-2xl border border-amber-200 bg-amber-50 p-6">
+                  <Badge tone="warn">SYNTHETIC ONLY</Badge>
+                  <h3 className="mt-4 text-lg font-semibold text-[#0b2347]">Evidence boundary</h3>
+                  <ul className="mt-4 space-y-3 text-sm leading-6 text-amber-900"><li>• No real sensor reading is generated.</li><li>• No actuator is commanded.</li><li>• No biological response is inferred.</li><li>• The fixture only represents the event lifecycle already defined in the engineering/PMO path.</li></ul>
+                </div>
+              </div>
+            </div>
+            <div className="grid gap-3 md:grid-cols-6">{["Observation", "Event", "Decision", "Action", "Ack", "Outcome"].map((x, i) => <div key={x} className={"rounded-xl border p-4 text-center " + (i <= loopStep ? "border-cyan-300 bg-cyan-50" : "border-slate-200 bg-white")}><p className="text-xs font-semibold uppercase tracking-[0.1em] text-slate-400">{x}</p><p className="mt-2 text-xs font-medium text-slate-600">{i <= loopStep ? "recorded in fixture" : "awaiting step"}</p></div>)}</div>
           </section>
         )}
 
