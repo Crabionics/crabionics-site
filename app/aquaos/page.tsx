@@ -1,14 +1,60 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
+import styles from "../components/public/Participation.module.css";
 
-export const metadata: Metadata = { title: "AquaOS", description: "The operating software layer being developed within the Crabionics production system." , alternates: { canonical: "/aquaos" } };
+export const metadata: Metadata = {
+  title: "AquaOS",
+  description: "AquaOS is being developed to connect observations, operator decisions, actions and outcomes for mud-crab production teams. Register grow-out beta interest.",
+  alternates: { canonical: "/aquaos" },
+};
 
-const cards = [
-  ["Record", "What happened?", "Connect production events and observations to the relevant unit, condition and operating context."],
-  ["Review", "What changed?", "Make interventions, operating steps and decisions easier to trace and discuss."],
-  ["Learn", "What should happen next?", "Keep the record needed to compare conditions, actions and production learning over time."],
+const workflow = [
+  ["Record", "What happened?", "Link an observation or production event to the farm, zone and operating context it describes. Keep the setting and the people involved alongside the record."],
+  ["Review", "What changed?", "Bring the conditions, operator decision and action into the same conversation. Review the next observation to understand the response."],
+  ["Learn", "What should we examine next?", "Build an operating history the production team can use to compare cycles and identify the next question to test."],
 ];
 
 export default function AquaOSPage() {
-  return <div className="public-page bg-white text-slate-900"><section className="bg-[#102C5C] py-20 text-white lg:py-24"><div className="container-shell max-w-5xl"><p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#65c7e8]">System / AquaOS</p><h1 className="mt-4 text-5xl font-semibold tracking-[-0.04em] text-white sm:text-6xl">A shared operating record for the production team.</h1><p className="mt-7 max-w-3xl text-lg leading-8 text-slate-200">AquaOS is being developed to connect conditions, operating actions, decisions and outcomes around the Crabionics production system.</p></div></section><section className="py-16 lg:py-20"><div className="container-shell"><div className="grid gap-6 md:grid-cols-3">{cards.map(([eyebrow,title,body])=><article key={eyebrow} className="rounded-none border border-slate-200 border-t-4 border-t-[#168bb8] bg-white p-7 shadow-[0_18px_50px_rgba(16,44,92,0.07)] transition hover:-translate-y-1 hover:shadow-[0_24px_60px_rgba(16,44,92,0.12)]"><p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#168bb8]">{eyebrow}</p><h2 className="mt-4 text-2xl font-semibold text-[#102C5C]">{title}</h2><p className="mt-3 text-sm leading-7 text-slate-600">{body}</p></article>)}</div><div className="mt-8 border-l-4 border-[#65c7e8] bg-[#effafd] p-7 shadow-[0_16px_40px_rgba(16,44,92,0.07)] sm:p-10"><p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#176d85]">Current status</p><h2 className="mt-3 text-3xl font-semibold text-[#102C5C]">AquaOS is in development.</h2><p className="mt-4 max-w-3xl text-sm leading-7 text-slate-700">The current product direction is records and workflows developed alongside the physical production system.</p></div></div></section><section className="bg-[#f8fafc] py-16"><div className="container-shell flex flex-col justify-between gap-6 md:flex-row md:items-center"><div><h2 className="text-3xl font-semibold text-[#102C5C]">See the complete system.</h2><p className="mt-3 text-slate-600">AquaOS is one part of the physical production conversation.</p></div><Link href="/system" className="rounded-full bg-[#102C5C] px-6 py-3 text-sm font-semibold text-white">How the system works</Link></div></section></div>;
+  return (
+    <div data-page="aquaos" className={styles.page}>
+      <section className={`${styles.section} ${styles.dark} ${styles.aquaOpening}`}>
+        <div className={`${styles.container} ${styles.aquaGrid}`}>
+          <div><p className={styles.eyebrow}>AquaOS / Operating record</p><h1 className={styles.title}>A shared operating record for the production team.</h1><p className={styles.lead}>AquaOS is being developed to connect observations, operator decisions, actions and outcomes in their production context.</p><Link className={styles.textLink} href="#grow-out-beta">Explore grow-out beta interest <span aria-hidden="true">↓</span></Link></div>
+          <figure className={styles.operatorFigure}>
+            <div className={styles.operatorImage}><Image src="/images/company-world.webp" alt="Concept illustration of an operator beside controlled mud-crab production equipment and a cutaway individual habitat." fill sizes="(max-width: 800px) 100vw, 45vw" /></div>
+            <figcaption><span>People, observations and the physical setting</span><small>Concept illustration</small></figcaption>
+            <ol className={styles.operatorSequence} aria-label="Operating relationship"><li>Observation</li><li>Operator decision</li><li>Recorded response</li></ol>
+          </figure>
+        </div>
+      </section>
+
+      <section className={styles.section}>
+        <div className={styles.container}>
+          <div className={styles.sectionIntro}><p className={styles.eyebrow}>Record / Review / Learn</p><h2 className={styles.heading}>Keep the work<br />connected to its setting.</h2><p className={styles.body}>A reading becomes more useful when the team can see where it came from, what they decided and what happened afterwards.</p></div>
+          <div className={styles.workflow}>
+            {workflow.map(([name, title, body], index) => <article key={name}><div className={styles.workflowIndex}><span>{String(index + 1).padStart(2, "0")}</span><h3>{name}</h3></div><div><h3>{title}</h3><p>{body}</p></div></article>)}
+          </div>
+        </div>
+      </section>
+
+      <section className={`${styles.section} ${styles.pale}`}>
+        <div className={`${styles.container} ${styles.editorialGrid}`}>
+          <div><p className={styles.eyebrow}>Development scope</p><h2 className={styles.heading}>Begin at the farm.<br />Learn before extending.</h2></div>
+          <div className={styles.scopeList}><article><h3>Farm and zone-level operating work</h3><p>The initial scope brings observations, operating records and operator decision support together. AquaOS is being developed alongside the physical production work.</p></article><article><h3>A wider production connection</h3><p>Supply planning, cohort movement and buyer-linked coordination are proposed extensions to examine with production partners.</p></article></div>
+        </div>
+      </section>
+
+      <section className={`${styles.section} ${styles.dark} ${styles.betaSection}`} id="grow-out-beta">
+        <div className={`${styles.container} ${styles.editorialGrid}`}>
+          <div><p className={styles.eyebrow}>Grow-out beta interest</p><h2 className={styles.heading}>Bring your pond<br />and your daily work.</h2></div>
+          <div><p className={styles.lead}>Tell us about your pond, team and current record-keeping. We’ll discuss whether your setting fits the work being developed.</p><div className={styles.actions}><Link className={styles.action} href="/contact#aquaos-beta">Register interest in the grow-out beta <span aria-hidden="true">↗</span></Link></div></div>
+        </div>
+      </section>
+
+      <section className={`${styles.section} ${styles.closing}`}>
+        <div className={`${styles.container} ${styles.closingInner}`}><div><p className={styles.eyebrow}>Part of Crabionics</p><h2 className={styles.smallHeading}>The record follows the physical work.</h2><p className={styles.body}>See where observation, operator decisions and local intervention fit within the production system.</p></div><Link className={styles.textLink} href="/system">Explore the system <span aria-hidden="true">→</span></Link></div>
+      </section>
+    </div>
+  );
 }

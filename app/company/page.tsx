@@ -1,36 +1,98 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import styles from "@/app/components/public/CompanyPages.module.css";
 
-export const metadata: Metadata = { title: "Company", description: "The field experience, production work and institutional relationships behind Crabionics." , alternates: { canonical: "/company" } };
+export const metadata: Metadata = {
+  title: "Company",
+  description: "The field experience, people, physical production work and research relationships behind Crabionics.",
+  alternates: { canonical: "/company" },
+};
 
-const people: Array<[string, string, string, string]> = [
-  ["Sameer Kumar Dalai", "Founder / Company Lead", "/team/sameer-kumar-dalai.jpg", "Field aquaculture, system design and company execution."],
-  ["M Abhishek", "Technology / AquaOS", "/team/m-abhishek.jpg", "Technology systems, software/firmware and the AquaOS system."],
+const people = [
+  { name: "Sameer Kumar Dalai", role: "Founder / Company Lead", photo: "/team/sameer-kumar-dalai.jpg", bio: "Field aquaculture, system design and company execution." },
+  { name: "M Abhishek", role: "Technology / AquaOS", photo: "/team/m-abhishek.jpg", bio: "Technology systems, software/firmware and the AquaOS system." },
 ];
 
 const institutions = [
-  ["KIIT-TBI", "Technology incubation", "/logos/kiit-tbi.png"],
-  ["BIRAC / IHMS", "Funded research relationship", "/logos/birac-big.png"],
-  ["DPIIT Recognition", "Startup recognition", "/logos/dpiit-startup-india.png"],
+  { name: "KIIT-TBI", caption: "Technology incubation", logo: "/logos/kiit-tbi.png" },
+  { name: "BIRAC / IHMS", caption: "Funded research relationship", logo: "/logos/birac-big.png" },
+  { name: "DPIIT Recognition", caption: "Startup recognition", logo: "/logos/dpiit-startup-india.png" },
 ];
 
 export default function CompanyPage() {
-  return <div className="public-page bg-white text-slate-900">
-    <section className="bg-[#f5f8fb] py-20 lg:py-24"><div className="container-shell max-w-5xl"><p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#168bb8]">Company</p><h1 className="mt-4 text-5xl font-semibold tracking-[-0.04em] text-[#102C5C] sm:text-6xl">Built from the production problem outward.</h1><p className="mt-7 max-w-3xl text-lg leading-8 text-slate-600">Crabionics brings field experience, production work and operating software together around the practical difficulty of making mud-crab production more controlled and repeatable.</p></div></section>
+  return <div data-page="company" className={styles.page}>
+    <section className={`${styles.companyIntro} ${styles.pale}`}>
+      <div className={styles.wrap}>
+        <p className={styles.eyebrow}>Company</p>
+        <div className={styles.companyOpening}>
+          <div>
+            <h1>Built from the production problem outward.</h1>
+            <p className={styles.lead}>Crabionics brings biology, physical production infrastructure, engineering and operating software together around mud-crab aquaculture.</p>
+            <Link className={styles.textLink} href="/system">Explore the production system <span aria-hidden="true">↗</span></Link>
+          </div>
+          <figure className={styles.worldDetail}>
+            <Image src="/images/company-world.webp" alt="Concept illustration showing individual blue crab habitats, production racks, water equipment and a human operator." fill sizes="(max-width: 767px) 100vw, 45vw" className={styles.detailImage} />
+            <figcaption>Concept illustration</figcaption>
+          </figure>
+        </div>
+        <div className={styles.companyCoordinates} aria-label="Company disciplines">
+          <span>Biology</span><span>Production infrastructure</span><span>Engineering</span><span>Operating software</span>
+        </div>
+      </div>
+    </section>
 
-    <section className="bg-white py-16 lg:py-20"><div className="container-shell grid gap-10 lg:grid-cols-[0.8fr_1.2fr]"><div><p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#168bb8]">Why Crabionics exists</p><h2 className="mt-3 text-4xl font-semibold text-[#102C5C] sm:text-5xl">Physical production first. Technology underneath.</h2></div><div className="space-y-5 text-lg leading-8 text-slate-600"><p>Mud-crab production brings together animal behaviour, habitat, water conditions, handling and operator decisions. These conditions need to be understood together.</p><p>Crabionics is building one connected production system around that reality: habitat, observation, local action and an operating record that work together.</p></div></div></section>
+    <section className={styles.section}>
+      <div className={`${styles.wrap} ${styles.essay}`}>
+        <div><p className={styles.eyebrow}>Why Crabionics exists</p><h2>The production environment is the starting point.</h2></div>
+        <div className={styles.prose}>
+          <p>Mud-crab production brings together animal behaviour, habitat, water conditions, handling and operator decisions. These conditions need to be understood together.</p>
+          <p>Individual habitats, sensing, local intervention and AquaOS are being developed around that physical work. The people running production remain central to observation, decisions and care.</p>
+          <p>Crabionics connects the physical production environment, the biological problem and the operating decisions around them. Relevant Odisha and Andhra Pradesh field work, including Ninjacrab 2022, forms part of the company’s research and operating history.</p>
+        </div>
+      </div>
+    </section>
 
-    <section className="border-y border-slate-200 bg-[#f8fafc] py-16 lg:py-20"><div className="container-shell"><div className="max-w-3xl"><p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#168bb8]">Origin</p><h2 className="mt-3 text-4xl font-semibold text-[#102C5C] sm:text-5xl">Field and research experience alongside software.</h2><p className="mt-5 text-lg leading-8 text-slate-600">Crabionics connects the physical production environment, the biological problem and the operating decisions around them. Relevant Odisha and Andhra Pradesh field work, including Ninjacrab 2022, forms part of the company’s research and operating history.</p></div></div></section>
+    <section className={`${styles.section} ${styles.pale}`}>
+      <div className={styles.wrap}>
+        <div className={styles.sectionHeading}><div><p className={styles.eyebrow}>The people</p><h2>Field operations, engineering and software.</h2></div><p>The team combines company execution, field aquaculture, system design and software/firmware work around the production problem.</p></div>
+        <div className={styles.people}>
+          {people.map(({ name, role, photo, bio }) => <article className={styles.person} key={name}>
+            <div className={styles.portrait}><Image src={photo} alt={`${name}, ${role}`} fill sizes="(max-width: 767px) 100vw, 40vw" className={styles.portraitImage} /></div>
+            <div className={styles.personCopy}><p className={styles.eyebrow}>{role}</p><h3>{name}</h3><p>{bio}</p></div>
+          </article>)}
+        </div>
+      </div>
+    </section>
 
-    <section className="bg-[#fbfdfe] py-16 lg:py-20"><div className="container-shell"><div className="max-w-3xl"><p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#168bb8]">Team</p><h2 className="mt-3 text-4xl font-semibold text-[#102C5C] sm:text-5xl">Building the production system across field operations, engineering and software.</h2><p className="mt-5 text-lg leading-8 text-slate-600">The team combines company execution, field aquaculture, system design and software/firmware work around the production problem.</p></div><div className="mt-12 grid gap-6 md:grid-cols-2">{people.map(([name,role,photo,bio])=><article key={name} className="overflow-hidden rounded-none border border-slate-200 border-t-4 border-t-[#168bb8] bg-white shadow-[0_18px_50px_rgba(16,44,92,0.10)] transition hover:-translate-y-1 hover:shadow-[0_26px_65px_rgba(16,44,92,0.14)]"><div className="relative h-72 bg-slate-100 sm:h-80"><Image src={photo} alt={`${name}, ${role}`} fill sizes="(max-width: 768px) 100vw, 50vw" className="team-portrait object-contain p-4 sm:p-6" /></div><div className="p-7 sm:p-8"><p className="text-sm font-semibold uppercase tracking-[0.14em] text-[#168bb8]">{role}</p><h3 className="mt-3 text-2xl font-semibold text-[#102C5C]">{name}</h3><p className="mt-4 text-base leading-7 text-slate-600">{bio}</p></div></article>)}</div></div></section>
+    <section className={`${styles.section} ${styles.dark}`}>
+      <div className={`${styles.wrap} ${styles.essay}`}>
+        <div><p className={styles.eyebrow}>Development programme</p><h2>Bring the system together. Learn in production.</h2></div>
+        <div className={styles.prose}>
+          <p>The current focus is system integration and defined production validation. Scientific validation capability is being established alongside that work.</p>
+          <p>Funded research, pond biological learning and the controlled-finishing pilot examine different parts of the production problem. Biological outcomes, operating repeatability and commercial fit are measured in their own settings.</p>
+          <div className={styles.actions}><Link href="/validation" className={styles.button}>See the validation programme <span aria-hidden="true">↗</span></Link><Link href="/investors" className={styles.textLink}>Investor context <span aria-hidden="true">↗</span></Link></div>
+        </div>
+      </div>
+    </section>
 
-    <section className="border-y border-slate-200 bg-[#f8fafc] py-20"><div className="container-shell"><div className="max-w-3xl"><p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#168bb8]">Institutional relationships</p><h2 className="mt-3 text-3xl font-semibold text-[#102C5C] sm:text-4xl">Support for the build and research context.</h2><p className="mt-4 text-slate-600">These relationships form part of Crabionics’ current incubation, recognition and funded research context.</p></div><div className="mt-9 grid gap-4 sm:grid-cols-3">{institutions.map(([name,caption,logo])=><div key={name} className="flex min-h-[150px] flex-col justify-between rounded-2xl border border-slate-200 bg-white p-5 shadow-sm"><div className="relative h-12 w-full"><Image src={logo} alt={name} fill sizes="220px" className="object-contain object-left" /></div><div><p className="font-semibold text-[#102C5C]">{name}</p><p className="mt-1 text-xs leading-5 text-slate-500">{caption}</p></div></div>)}</div></div></section>
+    <section className={styles.section}>
+      <div className={styles.wrap}>
+        <div className={styles.sectionHeading}><div><p className={styles.eyebrow}>Institutional relationships</p><h2>Support for the build and research context.</h2></div><p>These relationships form part of Crabionics’ current incubation, recognition and funded research context.</p></div>
+        <div className={styles.institutions}>{institutions.map(({ name, caption, logo }) => <div key={name} className={styles.institution}>
+          <div className={styles.logo}><Image src={logo} alt={name} fill sizes="(max-width: 767px) 200px, 260px" className={styles.logoImage} /></div>
+          <h3>{name}</h3><p>{caption}</p>
+        </div>)}</div>
+      </div>
+    </section>
 
-    <section className="py-20"><div className="container-shell grid gap-6 lg:grid-cols-2"><div className="rounded-none border border-slate-200 border-l-4 border-l-[#168bb8] bg-white p-8 shadow-[0_18px_50px_rgba(16,44,92,0.07)]"><p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#168bb8]">Current stage</p><h2 className="mt-3 text-3xl font-semibold text-[#102C5C]">Putting the system together → controlled validation → learning what can be repeated.</h2><p className="mt-4 text-sm leading-7 text-slate-600">The company is connecting the system and preparing the evidence needed for later biological and commercial learning.</p></div><div className="rounded-none border border-[#a8dfed] border-l-4 border-l-[#65c7e8] bg-[#effafd] p-8 shadow-[0_18px_50px_rgba(16,44,92,0.07)]"><p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#176d85]">Capability being established</p><h2 className="mt-3 text-3xl font-semibold text-[#102C5C]">A stronger scientific validation capability is being built alongside the system.</h2><p className="mt-4 text-sm leading-7 text-slate-700">The validation programme is designed to make capability and evidence explicit over time.</p></div></div></section>
+    <section className={`${styles.section} ${styles.pale}`}>
+      <div className={`${styles.wrap} ${styles.essay}`}>
+        <div><p className={styles.eyebrow}>Longer-term direction / CIN</p><h2>Extend what can be repeated.</h2></div>
+        <div className={styles.prose}><p>The wider direction connects seed and farmer grow-out, controlled finishing and market requirements. CIN is the longer-term direction for learning across multiple clusters.</p><p>That development depends on repeatable production units, reliable biomass supply and demonstrated partner demand.</p><Link className={styles.textLink} href="/producers">Explore the proposed production connection <span aria-hidden="true">↗</span></Link></div>
+      </div>
+    </section>
 
-    <section className="bg-[#102C5C] py-20 text-white"><div className="container-shell grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-center"><div><p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#65c7e8]">Why now</p><h2 className="mt-3 text-4xl font-semibold text-white sm:text-5xl">The next step is disciplined validation.</h2></div><div><p className="text-lg leading-8 text-slate-200">Crabionics is at the point where the system, field context and institutional relationships can be brought together into controlled validation work. The opportunity is to establish what the system can support before making broader claims.</p><Link href="/validation" className="mt-7 inline-flex rounded-full bg-white px-6 py-3 text-sm font-semibold text-[#102C5C]">See the validation programme</Link></div></div></section>
-
-    <section className="py-12"><div className="container-shell flex flex-col justify-between gap-6 rounded-3xl border border-slate-200 bg-[#f8fafc] p-8 md:flex-row md:items-center md:p-10"><div><p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#168bb8]">Talk to us</p><h2 className="mt-2 text-3xl font-semibold text-[#102C5C]">Discuss a pilot, technical question or research partnership.</h2></div><Link href="/contact" className="inline-flex shrink-0 rounded-full bg-[#102C5C] px-6 py-3 text-sm font-semibold text-white">Talk to us →</Link></div></section>
+    <section className={`${styles.section} ${styles.dark} ${styles.closing}`}><div className={`${styles.wrap} ${styles.essay}`}><div><p className={styles.eyebrow}>Work with Crabionics</p><h2>Start with the question you want to explore.</h2></div><div><p>Discuss a research partnership, institutional collaboration or a current company conversation.</p><div className={styles.actions}><Link className={styles.button} href="/contact#research">Research partnership <span aria-hidden="true">↗</span></Link><Link className={styles.textLink} href="/contact#institutions">Government or institutional collaboration <span aria-hidden="true">↗</span></Link></div></div></div></section>
   </div>;
 }

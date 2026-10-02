@@ -1,0 +1,191 @@
+.page { --ink:#092c37; --marine:#06252f; --pale:#edf2ee; --accent:#63cbc3; --rule:#c8d7d3; background:#fafbf7; color:var(--ink); }
+.page.page :is(h1,h2,h3,p) { color:inherit; }
+.page a { text-decoration:none; }
+.page a:focus-visible { outline:2px solid #149c99; outline-offset:6px; }
+.page :is(section,article)[id] { scroll-margin-top:2rem; }
+.container { width:min(1240px,calc(100% - 104px)); margin-inline:auto; }
+.section { padding-block:clamp(64px,7vw,104px); }
+.pale { background:var(--pale); }
+.dark { background:var(--marine); color:#f1f5ee; }
+.eyebrow { margin:0 0 22px; font-size:12px; font-weight:650; letter-spacing:.18em; line-height:1.5; text-transform:uppercase; }
+.dark .eyebrow { color:var(--accent); }
+.title { max-width:840px; margin:0; font-size:clamp(46px,4.5vw,72px); font-weight:550; line-height:1.06; letter-spacing:-.055em; text-wrap:balance; }
+.heading { margin:0; font-size:clamp(36px,3.6vw,54px); font-weight:550; line-height:1.09; letter-spacing:-.045em; text-wrap:balance; }
+.smallHeading { margin:0; font-size:clamp(29px,2.6vw,38px); font-weight:550; line-height:1.15; letter-spacing:-.04em; }
+.lead { max-width:670px; margin:27px 0 0; font-size:19px; line-height:1.7; }
+.body { max-width:690px; margin:25px 0 0; font-size:16px; line-height:1.8; }
+.dark .lead,.dark .body { color:#d1dfdc; }
+.actions { display:flex; flex-wrap:wrap; align-items:center; gap:22px; margin-top:32px; }
+.action { display:inline-flex; align-items:center; justify-content:space-between; gap:25px; padding:16px 21px; border:1px solid var(--ink); background:var(--ink); color:#f3f7ef; font-size:13px; font-weight:550; line-height:1.5; }
+.action:hover { background:#154552; }
+.dark .action { background:#d7ebe3; color:var(--marine); border-color:#d7ebe3; }
+.dark .action:hover { background:#fff; }
+.textLink { display:inline-flex; align-items:center; gap:17px; border-bottom:1px solid #9eb8b5; padding-block:10px; color:inherit; font-size:13px; font-weight:550; line-height:1.5; }
+.textLink:hover { border-bottom-color:#238c86; }
+.dark .textLink { color:#b8e8df; border-color:#547d7e; }
+.openingGrid { display:grid; grid-template-columns:1.2fr .8fr; align-items:end; gap:90px; }
+.producerOpening { padding-top:80px; }
+.settingIndex { border-top:1px solid #90aaa6; }
+.indexHeading { padding-block:20px; font-size:12px; letter-spacing:.16em; text-transform:uppercase; }
+.settingIndex a { display:grid; grid-template-columns:1fr 25px; padding-block:20px; border-top:1px solid #c4d3ce; color:inherit; }
+.settingIndex span { grid-column:1; font-size:30px; letter-spacing:-.04em; }
+.settingIndex small { grid-column:1; margin-top:9px; font-size:12px; line-height:1.6; }
+.settingIndex b { grid-column:2; grid-row:1 / 3; font-size:22px; font-weight:400; }
+.settingIndex a:hover span { color:#287c78; }
+.sectionIntro { max-width:760px; margin-bottom:44px; }
+.roleList { border-top:1px solid var(--rule); }
+.roleRow { display:grid; grid-template-columns:.7fr 1.3fr; gap:78px; padding-block:39px; border-bottom:1px solid var(--rule); }
+.number { display:block; margin-bottom:12px; font-size:12px; color:#48837f; }
+.roleLabel h3 { margin:0; font-size:29px; font-weight:550; letter-spacing:-.035em; }
+.roleLabel p { margin-top:12px; font-size:12px; text-transform:uppercase; letter-spacing:.1em; line-height:1.6; }
+.roleBody h3,.workList h3,.scopeList h3 { margin:0; font-size:24px; font-weight:550; line-height:1.25; letter-spacing:-.03em; }
+.roleBody p { max-width:660px; margin:17px 0; font-size:15px; line-height:1.8; }
+.editorialGrid { display:grid; grid-template-columns:.9fr 1.1fr; gap:105px; }
+.workList article { padding-block:28px; border-top:1px solid #45616a; }
+.workList article:first-child { padding-top:0; border-top:0; }
+.workList p { margin:13px 0 0; color:#cadcd6; font-size:15px; line-height:1.8; }
+.network { position:relative; display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:32px; padding:28px 0 0; margin:48px 0 0; list-style:none; border-top:1px solid #83a6a0; }
+.network li { position:relative; min-width:0; }
+.network li::before { content:''; position:absolute; width:8px; height:8px; border-radius:50%; background:#268b83; top:-32px; left:0; }
+.network h3 { margin:0; font-size:21px; font-weight:550; line-height:1.3; letter-spacing:-.025em; }
+.network p { margin:12px 0 0; font-size:13px; line-height:1.7; }
+.networkNote { display:grid; grid-template-columns:1fr 1fr; gap:70px; margin-top:48px; padding-top:24px; border-top:1px solid #c4d3ce; }
+.networkNote span { font-size:14px; font-weight:550; }
+.networkNote p { margin:0; font-size:13px; line-height:1.8; }
+.aquaGrid { display:grid; grid-template-columns:1.05fr .95fr; align-items:center; gap:60px; }
+.aquaOpening .title { font-size:clamp(43px,4.3vw,66px); }
+.aquaOpening .textLink { margin-top:20px; }
+.operatorFigure { min-width:0; margin:0; }
+.operatorImage { position:relative; width:100%; height:385px; overflow:hidden; background:#092732; }
+.operatorImage img { object-fit:cover; object-position:83% center; }
+.operatorFigure figcaption { display:flex; flex-wrap:wrap; justify-content:space-between; align-items:baseline; gap:8px; padding-top:12px; font-size:12px; line-height:1.5; color:#d8e7df; }
+.operatorFigure figcaption small { font-size:12px; color:#b8ccc5; }
+.operatorSequence { display:flex; justify-content:space-between; gap:20px; margin:27px 0 0; padding:19px 0 0; border-top:1px solid #5b797c; list-style:none; }
+.operatorSequence li { position:relative; max-width:125px; font-size:12px; line-height:1.6; }
+.operatorSequence li:not(:last-child)::after { content:'→'; position:absolute; right:-27px; top:0; color:#86cfc5; }
+.workflow { border-top:1px solid var(--rule); }
+.workflow article { display:grid; grid-template-columns:.8fr 1.2fr; gap:90px; padding-block:35px; border-bottom:1px solid var(--rule); }
+.workflowIndex { display:flex; gap:30px; align-items:baseline; }
+.workflowIndex span { font-size:12px; color:#4f837e; }
+.workflowIndex h3 { margin:0; font-size:38px; font-weight:500; letter-spacing:-.04em; }
+.workflow article>div:last-child h3 { margin:0; font-size:24px; font-weight:550; letter-spacing:-.03em; }
+.workflow article p { max-width:610px; margin:16px 0 0; font-size:15px; line-height:1.8; }
+.scopeList article { border-top:1px solid var(--rule); padding-block:26px; }
+.scopeList article:first-child { padding-top:0; border-top:0; }
+.scopeList p { margin:15px 0 0; font-size:15px; line-height:1.8; }
+.betaSection .lead { margin-top:0; }
+.closing { padding-block:55px; }
+.closingInner { display:flex; align-items:center; justify-content:space-between; gap:40px; }
+.closing .body { max-width:650px; margin-top:17px; font-size:14px; }
+.closing .textLink { flex-shrink:0; }
+.contactOpening { padding-block:75px 62px; }
+.contactIntro { display:grid; grid-template-columns:1.15fr .85fr; gap:80px; align-items:end; }
+.contactOpening .lead { max-width:640px; font-size:17px; }
+.directContact { padding-bottom:6px; }
+.directContact .eyebrow { margin-bottom:19px; }
+.directContact>a { display:flex; justify-content:space-between; gap:20px; font-size:clamp(19px,2vw,28px); font-weight:500; letter-spacing:-.03em; color:inherit; border-bottom:1px solid #95afaa; padding-bottom:17px; }
+.directContact>p:last-child { margin:17px 0 0; font-size:13px; line-height:1.6; }
+.contactBody { display:grid; grid-template-columns:.65fr 1.35fr; gap:95px; align-items:start; }
+.contactGuide { padding-top:9px; }
+.contactGuide>p:not(.eyebrow) { margin:24px 0; max-width:285px; font-size:14px; line-height:1.8; }
+.conversationList { border-top:1px solid #9cb8b0; }
+.conversation { display:grid; grid-template-columns:30px 1fr; gap:20px; padding-block:27px; border-bottom:1px solid var(--rule); }
+.conversationNumber { font-size:12px; color:#618d84; padding-top:2px; }
+.conversation .eyebrow { margin-bottom:10px; font-size:12px; color:#49817a; }
+.conversation h3 { margin:0; font-size:23px; font-weight:550; letter-spacing:-.025em; line-height:1.3; }
+.conversation h3 a { display:flex; justify-content:space-between; gap:28px; color:inherit; }
+.conversation h3 a:hover { color:#207b74; }
+.conversation h3 span { font-size:20px; font-weight:400; }
+.conversationDescription { max-width:655px; margin:13px 0 0; font-size:13px; line-height:1.8; }
+.conversation:target { background:#eaf3ee; box-shadow:-18px 0 0 #eaf3ee,18px 0 0 #eaf3ee; }
+@media (max-width:1050px) {
+ .container { width:calc(100% - 64px); }
+ .openingGrid,.aquaGrid { gap:45px; }
+ .editorialGrid,.roleRow,.workflow article,.contactIntro,.contactBody { gap:48px; }
+ .aquaOpening .title { font-size:50px; }
+ .operatorImage { height:340px; }
+ .operatorSequence { gap:13px; }
+ .operatorSequence li { font-size:12px; }
+ .operatorSequence li:not(:last-child)::after { right:-17px; }
+ .network { gap:20px; }
+ .network h3 { font-size:19px; }
+ .directContact>a { font-size:22px; }
+}
+@media (max-width:800px) {
+ .container { width:calc(100% - 44px); }
+ .section { padding-block:60px; }
+ .openingGrid,.aquaGrid,.editorialGrid,.contactIntro,.contactBody { grid-template-columns:1fr; gap:40px; }
+ .title,.aquaOpening .title { font-size:clamp(39px,7vw,58px); }
+ .heading { font-size:clamp(32px,6vw,46px); }
+ .lead { margin-top:23px; font-size:17px; line-height:1.7; }
+ .body { font-size:15px; }
+ .producerOpening { padding-top:58px; }
+ .settingIndex a { padding-block:17px; }
+ .settingIndex span { font-size:27px; }
+ .settingIndex .indexHeading { padding-block:15px; }
+ .roleRow { grid-template-columns:.8fr 1.2fr; gap:28px; padding-block:30px; }
+ .roleLabel h3 { font-size:23px; }
+ .roleBody h3 { font-size:23px; }
+ .sectionIntro { margin-bottom:32px; }
+ .network { grid-template-columns:repeat(2,minmax(0,1fr)); gap:38px; border-top:0; margin-top:28px; }
+ .network li { border-top:1px solid #83a6a0; padding-top:20px; }
+ .network li::before { top:-4px; }
+ .networkNote { gap:28px; }
+ .operatorImage { height:360px; }
+ .operatorSequence li { max-width:none; font-size:12px; }
+ .operatorSequence li:not(:last-child)::after { right:-36px; }
+ .workflow article { gap:35px; grid-template-columns:.7fr 1.3fr; }
+ .workflowIndex { gap:15px; }
+ .workflowIndex h3 { font-size:30px; }
+ .workflow article>div:last-child h3 { font-size:22px; }
+ .closingInner { flex-direction:column; align-items:flex-start; gap:20px; }
+ .contactIntro { gap:32px; }
+ .directContact { max-width:460px; }
+ .contactGuide>p:not(.eyebrow) { max-width:560px; margin:20px 0; }
+ .contactGuide .smallHeading br { display:none; }
+}
+@media (max-width:520px) {
+ .container { width:calc(100% - 40px); }
+ .section { padding-block:48px; }
+ .title,.aquaOpening .title { font-size:41px; }
+ .heading { font-size:35px; }
+ .eyebrow { margin-bottom:18px; font-size:12px; }
+ .actions { gap:15px; margin-top:27px; align-items:flex-start; flex-direction:column; }
+ .action { padding:14px 17px; font-size:12px; }
+ .textLink { font-size:12px; }
+ .roleRow { grid-template-columns:1fr; gap:22px; }
+ .roleLabel { display:grid; grid-template-columns:25px 1fr; gap:0 12px; }
+ .roleLabel .number { grid-row:1 / 3; margin:0; padding-top:6px; }
+ .roleLabel p { margin:10px 0 0; font-size:12px; }
+ .roleBody h3 { font-size:22px; }
+ .roleBody p { margin:13px 0; font-size:14px; }
+ .workList h3,.scopeList h3 { font-size:23px; }
+ .workList p,.scopeList p { font-size:14px; }
+ .network { grid-template-columns:1fr; border-left:1px solid #83a6a0; margin-left:4px; padding-left:22px; gap:27px; }
+ .network li { border-top:0; padding-top:0; }
+ .network li::before { left:-27px; top:8px; }
+ .network h3 { font-size:22px; }
+ .network p { margin-top:7px; }
+ .networkNote { grid-template-columns:1fr; gap:11px; margin-top:30px; }
+ .operatorImage { height:300px; }
+ .operatorSequence { gap:25px; }
+ .operatorSequence li { flex:1; font-size:12px; }
+ .operatorSequence li:not(:last-child)::after { right:-19px; }
+ .workflow article { grid-template-columns:1fr; gap:18px; padding-block:29px; }
+ .workflowIndex { gap:18px; }
+ .workflowIndex h3 { font-size:32px; }
+ .workflow article p { font-size:14px; margin-top:12px; }
+ .betaSection .action { max-width:100%; }
+ .contactBody { gap:28px; }
+ .conversation { grid-template-columns:20px 1fr; gap:12px; padding-block:25px; }
+ .conversation h3 { font-size:22px; }
+ .conversation h3 a { gap:16px; }
+ .conversationDescription { font-size:13px; }
+ .conversation:target { box-shadow:-8px 0 0 #eaf3ee,8px 0 0 #eaf3ee; }
+}
+@media (max-width:360px) {
+ .title,.aquaOpening .title { font-size:37px; }
+ .heading { font-size:32px; }
+ .directContact>a { font-size:19px; }
+ .operatorImage { height:270px; }
+}

@@ -42,7 +42,7 @@ export default function PrivacyPage() {
             ["8. International Transfers", "If information is processed across borders, we apply reasonable measures designed to protect data consistent with applicable privacy requirements."],
             ["9. Children's Privacy", "Our website and services are not directed to children under 13, and we do not knowingly collect personal information from children."],
             ["10. Policy Updates", "We may update this policy from time to time. Material changes will be posted on this page with an updated effective date."],
-            ["11. Contact", "For privacy requests or questions, contact: sameer@crabionics.com."],
+            ["11. Contact", "For privacy requests or questions, contact: info@crabionics.com."],
           ].map(([title, body]) => (
             <section key={title}>
               <h2 className="text-2xl font-semibold text-white">{title}</h2>

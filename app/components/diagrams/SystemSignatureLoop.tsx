@@ -18,10 +18,10 @@ function SequenceNode({ label, number, tone, position }: (typeof sequence)[numbe
   );
 }
 
-export default function SystemSignatureLoop() {
+export default function SystemSignatureLoop({ variant = "feature" }: { variant?: "feature" | "hero" }) {
   return (
-    <div className="system-signature-loop" aria-label="Habitat to learning operating sequence">
-      <div className="loop-desktop-stage" aria-hidden="true">
+    <div className={`system-signature-loop signature-${variant}`} aria-label="Habitat to learning operating sequence">
+      <div className="loop-desktop-stage">
         <div className="loop-ring loop-ring-outer" />
         <div className="loop-ring loop-ring-inner" />
         <div className="loop-axis loop-axis-horizontal" />

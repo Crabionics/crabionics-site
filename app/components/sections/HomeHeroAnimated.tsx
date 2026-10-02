@@ -82,7 +82,7 @@ export default function HomeHeroAnimated() {
         </Link>
 
         <Link
-          href="mailto:sameer@crabionics.com"
+          href="mailto:info@crabionics.com"
           className="secondary-button w-full border-slate-300/70 bg-white/60 text-slate-900 sm:w-auto"
         >
           Request Demo →

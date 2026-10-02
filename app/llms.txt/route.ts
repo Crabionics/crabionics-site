@@ -18,7 +18,7 @@ Crabionics works across habitat, observation, local intervention, operating reco
 ## Company identity
 
 - Legal name used on this site: Crabionics Aquaculture Pvt. Ltd.
-- Email: sameer@crabionics.com
+- Email: info@crabionics.com
 - LinkedIn: https://www.linkedin.com/company/crabionics-aquaculture-private-limited/
 
 ## Current boundaries

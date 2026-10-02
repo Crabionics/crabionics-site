@@ -1,21 +1,86 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import styles from "../components/public/Participation.module.css";
 
-export const metadata: Metadata = { title: "For Producers", description: "Production jobs, operating context and pilot questions for mud-crab producers considering Crabionics." , alternates: { canonical: "/producers" } };
+export const metadata: Metadata = {
+  title: "For Producers",
+  description: "Explore a pond partnership, controlled-finishing pilot or the requirements that connect mud-crab production to market.",
+  alternates: { canonical: "/producers" },
+};
 
-const jobs = [
-  ["01", "Set up the production environment", "Habitat", "Create a defined setting around the crab so handling, observation and operating conversations start from the same physical context.", "In development: the production setting and supporting infrastructure are being connected."],
-  ["02", "Know what is happening around the unit", "CrabSense", "Connect environmental and operating observations to a specific production unit instead of treating readings as isolated numbers.", "In development: sensing scope is defined with each validation activity."],
-  ["03", "Act close to the production work", "CrabPod", "Support flow, flushing and other local interventions where the operating decision is made.", "In development: hardware and deployment responsibilities are defined with each pilot partner."],
-  ["04", "Keep a useful operating record", "AquaOS", "Connect conditions, actions and outcomes so the team can review what changed and what to examine next.", "In development: the software is being developed alongside the production work."],
+const roles = [
+  { id: "pond-production", name: "Pond production", title: "Begin with the growing environment.", body: "Species, seed source, production routines and harvest condition give a pond partnership its starting point. The sensing and operating work needs to fit the pond and the people running it.", href: "/contact#production", label: "Discuss a pond partnership", detail: "Grow-out / farmer partner" },
+  { id: "controlled-finishing", name: "Controlled finishing", title: "Define the intake and the production unit.", body: "Individual habitats and their supporting water environment have a different operating context. Intake, handling, site requirements, equipment responsibilities and records need to be defined together.", href: "/contact#production", label: "Discuss a finishing pilot", detail: "Finishing operator" },
+  { id: "buyer-requirements", name: "Buyer requirements", title: "Work back from the requirement.", body: "Size, timing, condition, handling and destination shape a useful production conversation. Processors, buyers and cluster operators can help define what a future connection would need to deliver.", href: "/contact#market", label: "Discuss market requirements", detail: "Processor / buyer / cluster operator" },
 ];
 
 export default function ProducersPage() {
-  return <div className="public-page bg-white text-slate-900"><section className="producer-hero relative overflow-hidden bg-[#f5f8fb] py-20 lg:py-28"><div className="container-shell grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]"><div><p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#168bb8]">For mud-crab producers</p><h1 className="mt-4 text-5xl font-semibold tracking-[-0.04em] text-[#102C5C] sm:text-6xl">Start with the production job, not the technology label.</h1><p className="mt-7 max-w-3xl text-lg leading-8 text-slate-600">Crabionics is building around the practical work of mud-crab production: defining the habitat, seeing conditions, supporting intervention, keeping records and deciding what to learn next.</p><div className="mt-9 flex flex-wrap gap-3"><Link href="/contact" className="rounded-full bg-[#102C5C] px-6 py-3 text-sm font-semibold text-white">Discuss a mud-crab pilot</Link><Link href="/system" className="rounded-full border border-slate-300 bg-white px-6 py-3 text-sm font-semibold text-[#102C5C]">See the system</Link></div></div><div className="relative hidden min-h-[360px] lg:block"><div className="absolute inset-y-0 left-1/2 w-px bg-[#102C5C]/15"></div><div className="absolute left-10 top-4 w-64 border border-[#102C5C] bg-white p-5 shadow-[12px_12px_0_#a8dfed]"><span className="text-xs font-semibold uppercase tracking-[0.16em] text-[#168bb8]">01</span><p className="mt-3 text-xl font-semibold text-[#102C5C]">Set up the production environment</p></div><div className="absolute right-0 top-32 w-64 border border-[#102C5C] bg-white p-5 shadow-[12px_12px_0_#dcecf0]"><span className="text-xs font-semibold uppercase tracking-[0.16em] text-[#168bb8]">02</span><p className="mt-3 text-xl font-semibold text-[#102C5C]">Know what is happening around the unit</p></div><div className="absolute bottom-0 left-20 w-64 border border-[#102C5C] bg-[#102C5C] p-5 text-white shadow-[12px_12px_0_#168bb8]"><span className="text-xs font-semibold uppercase tracking-[0.16em] text-[#9bd8eb]">03 → 04</span><p className="mt-3 text-xl font-semibold">Act, record and learn</p></div></div><div className="mt-10 grid gap-2 lg:hidden">{jobs.slice(0, 3).map(([number,title])=><div key={title} className="flex items-center gap-4 border border-[var(--public-ocean-cyan)]/60 bg-white p-4"><span className="text-xs font-semibold uppercase tracking-[0.16em] text-[var(--public-ocean-cyan)]">{number}</span><span className="text-sm font-semibold text-[var(--public-deep-navy)]">{title}</span></div>)}<div className="flex items-center gap-4 border border-[var(--public-ocean-cyan)] bg-[var(--public-deep-navy)] p-4 text-white"><span className="text-xs font-semibold uppercase tracking-[0.16em] text-[var(--public-ice)]">03 → 04</span><span className="text-sm font-semibold">Act, record and learn</span></div></div></div></section>
+  return (
+    <div data-page="producers" className={styles.page}>
+      <section className={`${styles.section} ${styles.pale} ${styles.producerOpening}`}>
+        <div className={styles.container}>
+          <p className={styles.eyebrow}>For mud-crab producers</p>
+          <div className={styles.openingGrid}>
+            <div>
+              <h1 className={styles.title}>Start with your production setting.</h1>
+              <p className={styles.lead}>Explore a pond partnership, controlled-finishing pilot or the requirements that connect production to market.</p>
+              <div className={styles.actions}>
+                <Link className={styles.action} href="/contact#production">Discuss a pond partnership <span aria-hidden="true">↗</span></Link>
+                <Link className={styles.textLink} href="/aquaos#grow-out-beta">AquaOS grow-out beta interest <span aria-hidden="true">→</span></Link>
+              </div>
+            </div>
+            <div className={styles.settingIndex} aria-label="Three production roles">
+              <p className={styles.indexHeading}>Your role in the work</p>
+              <a href="#pond-production"><span>Pond</span><small>Growing conditions · routines · biomass</small><b aria-hidden="true">↘</b></a>
+              <a href="#controlled-finishing"><span>Finishing</span><small>Intake · habitat · operating context</small><b aria-hidden="true">↘</b></a>
+              <a href="#buyer-requirements"><span>Market</span><small>Condition · timing · requirements</small><b aria-hidden="true">↘</b></a>
+            </div>
+          </div>
+        </div>
+      </section>
 
-    <section className="py-16 lg:py-20"><div className="container-shell"><div className="max-w-3xl"><p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#168bb8]">Production jobs</p><h2 className="mt-3 text-4xl font-semibold tracking-[-0.035em] text-[#102C5C] sm:text-5xl">Four questions the operating team needs to keep connected.</h2><p className="mt-5 text-lg leading-8 text-slate-600">The system is being developed around these jobs. It is not a promise that every job is already solved.</p></div><div className="mt-12 grid gap-5 md:grid-cols-2">{jobs.map(([number,title,layer,body,status])=><article key={title} className="rounded-none border border-slate-200 border-l-4 border-l-[#168bb8] bg-white p-7 shadow-[0_18px_50px_rgba(16,44,92,0.07)] transition hover:-translate-y-1 hover:border-[#8bcfe4] hover:shadow-[0_24px_60px_rgba(16,44,92,0.12)]"><div className="flex items-center justify-between gap-4"><span className="text-xs font-semibold uppercase tracking-[0.16em] text-[#168bb8]">{number}</span><span className="rounded-full bg-[#f1fbf7] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.12em] text-[#287a59]">{layer}</span></div><h2 className="mt-6 text-2xl font-semibold text-[#102C5C]">{title}</h2><p className="mt-4 text-sm leading-7 text-slate-600">{body}</p><p className="mt-5 border-t border-slate-100 pt-4 text-xs leading-6 text-slate-500">{status}</p></article>)}</div></div></section>
+      <section className={styles.section}>
+        <div className={styles.container}>
+          <div className={styles.sectionIntro}><p className={styles.eyebrow}>Production contexts</p><h2 className={styles.heading}>Different settings.<br />Specific responsibilities.</h2></div>
+          <div className={styles.roleList}>
+            {roles.map((role, index) => (
+              <article className={styles.roleRow} id={role.id} key={role.name}>
+                <div className={styles.roleLabel}><span className={styles.number}>{String(index + 1).padStart(2, "0")}</span><h3>{role.name}</h3><p>{role.detail}</p></div>
+                <div className={styles.roleBody}><h3>{role.title}</h3><p>{role.body}</p><Link className={styles.textLink} href={role.href}>{role.label} <span aria-hidden="true">→</span></Link></div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
 
-    <section className="bg-[#102C5C] py-16 text-white lg:py-20"><div className="container-shell grid gap-8 lg:grid-cols-[0.8fr_1.2fr]"><div><p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#65c7e8]">What a pilot involves</p><h2 className="mt-3 text-4xl font-semibold text-white">A defined production question and a shared operating plan.</h2></div><div><p className="text-lg leading-8 text-slate-200">A useful pilot conversation starts with the setting, the production question, the responsibilities on each side and the measurement that would inform the next step.</p><div className="mt-7 grid gap-3 sm:grid-cols-2"><div className="rounded-2xl border border-white/15 bg-white/5 p-5"><p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#9bd8eb]">Partner brings</p><p className="mt-3 text-sm leading-7 text-slate-200">Site or production context, operating knowledge, equipment information and the people responsible for day-to-day work.</p></div><div className="rounded-2xl border border-white/15 bg-white/5 p-5"><p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#9bd8eb]">Together we define</p><p className="mt-3 text-sm leading-7 text-slate-200">What Crabionics supplies, what is measured, how responsibilities are shared and what learning would justify the next step.</p></div></div><Link href="/contact" className="mt-8 inline-flex rounded-full bg-white px-6 py-3 text-sm font-semibold text-[#102C5C]">Discuss a mud-crab pilot</Link></div></div></section>
+      <section className={`${styles.section} ${styles.dark}`}>
+        <div className={`${styles.container} ${styles.editorialGrid}`}>
+          <div><p className={styles.eyebrow}>The daily work</p><h2 className={styles.heading}>Conditions, handling and the next decision.</h2></div>
+          <div className={styles.workList}>
+            <article><h3>Observe the setting.</h3><p>Connect environmental and operating observations to the pond, cohort or production unit they describe.</p></article>
+            <article><h3>Act with a defined responsibility.</h3><p>Identify who reviews an observation, who handles the stock and where a local intervention is appropriate.</p></article>
+            <article><h3>Keep the response in the record.</h3><p>AquaOS is being developed to connect conditions, operator decisions, actions and outcomes so the team can review what changed.</p></article>
+            <Link className={styles.textLink} href="/system">See how the system fits together <span aria-hidden="true">→</span></Link>
+          </div>
+        </div>
+      </section>
 
-    <section className="py-14"><div className="container-shell flex flex-col justify-between gap-6 md:flex-row md:items-center"><div><h2 className="text-3xl font-semibold text-[#102C5C]">Need the technical detail first?</h2><p className="mt-3 text-slate-600">See how habitat, observations, decisions, intervention and learning fit together.</p></div><Link href="/system" className="rounded-full border border-slate-300 px-6 py-3 text-sm font-semibold text-[#102C5C]">How the system works</Link></div></section></div>;
+      <section className={`${styles.section} ${styles.pale}`}>
+        <div className={styles.container}>
+          <div className={styles.sectionIntro}><p className={styles.eyebrow}>Proposed production connection</p><h2 className={styles.heading}>Connect the work<br />between settings.</h2><p className={styles.body}>The wider direction links farmer production with controlled finishing and downstream requirements. Transfer condition, size and timing need to be examined alongside the biological and operating work.</p></div>
+          <ol className={styles.network} aria-label="Proposed production pathway">
+            {[ ["Seed / nursery", "Starting stock and its production context"], ["Farmer production", "Growing conditions and biomass"], ["Controlled finishing", "Intake, handling and operating records"], ["Market requirements", "Size, condition, cadence and destination"] ].map(([title, body]) => <li key={title}><h3>{title}</h3><p>{body}</p></li>)}
+          </ol>
+          <div className={styles.networkNote}><span>Production partners help define the connection.</span><p>Seed source, aggregation, grading, logistics and the commercial integration model are questions to work through with each partner.</p></div>
+        </div>
+      </section>
+
+      <section className={styles.section}>
+        <div className={`${styles.container} ${styles.editorialGrid}`}>
+          <div><p className={styles.eyebrow}>Start a conversation</p><h2 className={styles.heading}>Bring a setting.<br />Define the question.</h2></div>
+          <div><p className={styles.body}>Tell us your operating role, region and species; how you currently work; and the production or market question you want to examine. We can discuss site responsibilities, trial scope and a useful measurement plan.</p><div className={styles.actions}><Link className={styles.action} href="/contact#production">Production partnership <span aria-hidden="true">↗</span></Link><Link className={styles.textLink} href="/contact#market">Buyer or cluster enquiry <span aria-hidden="true">→</span></Link></div></div>
+        </div>
+      </section>
+    </div>
+  );
 }

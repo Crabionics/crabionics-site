@@ -1,15 +1,24 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import styles from "@/app/components/public/CompanyPages.module.css";
 
-export const metadata: Metadata = { title: "Insights", description: "Crabionics project notes, field learning and technical updates, published when the material is ready." , alternates: { canonical: "/insights" } };
+export const metadata: Metadata = {
+  title: "Insights",
+  description: "Crabionics research notes, field learning and production updates, published when the material is ready.",
+  alternates: { canonical: "/insights" },
+};
 
-  const formats = [
-  ["Research note", "A defined system or biological question, the setting, what was observed and what remains open."],
-  ["Pilot design", "The production context, responsibilities, measurements and learning plan for a proposed activity."],
-  ["Field-learning update", "A grounded account of what the team learned from a production or operating setting."],
-  ["Technology milestone", "A concrete integration step and the boundary between what it demonstrates and what it does not."],
+const topics = [
+  ["Research", "The question, its setting and what the observations show."],
+  ["Production & pilots", "The production context, measurements and learning plan."],
+  ["Field learning", "Pond biology, biomass conditions and connections between stages."],
+  ["Technology", "Physical integration and the operating work around it."],
 ];
 
 export default function InsightsPage() {
-  return <div className="public-page bg-white text-slate-900"><section className="bg-[#f5f8fb] py-20 lg:py-24"><div className="container-shell max-w-5xl"><p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#168bb8]">Insights / Projects &amp; Learning</p><h1 className="mt-4 text-5xl font-semibold tracking-[-0.04em] text-[#102C5C] sm:text-6xl">Useful notes from the work, when there is something real to publish.</h1><p className="mt-7 max-w-3xl text-lg leading-8 text-slate-600">This library will hold research notes, pilot designs, field-learning updates and technology milestones. It will grow from actual work rather than generic thought leadership or invented case studies.</p></div></section><section className="py-16 lg:py-20"><div className="container-shell"><div className="max-w-3xl"><p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#168bb8]">Planned formats</p><h2 className="mt-3 text-4xl font-semibold text-[#102C5C] sm:text-5xl">A simple record of what was asked, tried and learned.</h2></div><div className="mt-10 grid gap-5 md:grid-cols-2">{formats.map(([title,description])=><article key={title} className="rounded-none border border-slate-200 border-t-4 border-t-[#168bb8] bg-white p-7 shadow-[0_18px_50px_rgba(16,44,92,0.07)]"><p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#168bb8]">Coming when ready</p><h3 className="mt-4 text-2xl font-semibold text-[#102C5C]">{title}</h3><p className="mt-3 text-sm leading-7 text-slate-600">{description}</p></article>)}</div><div className="mt-8 border-l-4 border-[#168bb8] bg-[#f8fafc] p-8 shadow-[0_16px_40px_rgba(16,44,92,0.07)]"><p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#168bb8]">Current status</p><h2 className="mt-3 text-3xl font-semibold text-[#102C5C]">The public library is being established.</h2><p className="mt-4 max-w-3xl text-sm leading-7 text-slate-600">Until publishable material is ready, the most useful public information is the system, company context and validation programme.</p><div className="mt-7 flex flex-wrap gap-3"><Link href="/validation" className="rounded-full bg-[#102C5C] px-6 py-3 text-sm font-semibold text-white">See validation</Link><Link href="/contact" className="rounded-full border border-slate-300 px-6 py-3 text-sm font-semibold text-[#102C5C]">Discuss the work</Link></div></div></div></section></div>;
+  return <div data-page="insights" className={styles.page}>
+    <section className={`${styles.insightsIntro} ${styles.pale}`}><div className={styles.wrap}><p className={styles.eyebrow}>Insights / Projects &amp; learning</p><h1>Notes from the work.</h1><div className={styles.insightsLead}><p className={styles.lead}>What we ask, test and learn.</p><p>The public library is being established. Research notes, production and field-learning updates will be published when there is a defined setting, a useful record and evidence to share.</p></div></div></section>
+    <section className={styles.section}><div className={`${styles.wrap} ${styles.insightsBody}`}><div><p className={styles.eyebrow}>Future topics</p><h2>A record grounded in the work.</h2></div><ul className={styles.topics}>{topics.map(([title, text]) => <li key={title}><h3>{title}</h3><p>{text}</p></li>)}</ul></div></section>
+    <section className={`${styles.section} ${styles.dark} ${styles.closing}`}><div className={`${styles.wrap} ${styles.essay}`}><div><p className={styles.eyebrow}>Explore Crabionics today</p><h2>The system and the questions behind it.</h2></div><div><p>For current information, explore the production architecture and validation programme, or discuss the work with the team.</p><div className={styles.actions}><Link className={styles.button} href="/system">Explore the system <span aria-hidden="true">↗</span></Link><Link className={styles.textLink} href="/validation">Validation programme <span aria-hidden="true">↗</span></Link><Link className={styles.textLink} href="/contact#research">Discuss the work <span aria-hidden="true">↗</span></Link></div></div></div></section>
+  </div>;
 }

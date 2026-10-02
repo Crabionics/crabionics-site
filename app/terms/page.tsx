@@ -42,7 +42,7 @@ export default function TermsPage() {
             ["8. Indemnification", "You agree to indemnify and hold harmless Crabionics from claims, liabilities, damages, and expenses resulting from your misuse of the website or violation of these terms."],
             ["9. Changes to Terms", "We may revise these terms at any time. Updated terms will be posted on this page with the revised effective date."],
             ["10. Governing Law", "These terms are governed by applicable laws of India, without regard to conflict-of-law principles."],
-            ["11. Contact", "For legal notices or questions regarding these terms, contact: sameer@crabionics.com."],
+            ["11. Contact", "For legal notices or questions regarding these terms, contact: info@crabionics.com."],
           ].map(([title, body]) => (
             <section key={title}>
               <h2 className="text-2xl font-semibold text-white">{title}</h2>

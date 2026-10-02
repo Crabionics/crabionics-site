@@ -1,0 +1,174 @@
+/* The wider company story uses the same Depth + Loop identity.
+   A production pathway connects stages; the Loop connects work in a setting. */
+.public-page .story-eyebrow {
+  color: #356b77; font-family: ui-monospace, monospace;
+  font-size: 11px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase;
+}
+.public-page .depth-home-system .story-eyebrow,
+.public-page .depth-band .story-eyebrow,
+.public-page .depth-hero .story-eyebrow { color: #a5c8ce; }
+.public-page .story-section-heading {
+  display: grid; grid-template-columns: 1.1fr .9fr; gap: 80px;
+  grid-column: 1 / -1; align-items: end;
+}
+.public-page .story-section-heading > p { margin: 0 0 4px; max-width: 540px; font-size: 17px; line-height: 1.8; }
+.public-page .story-section-heading h2 { max-width: 720px; }
+
+.public-page .story-home-hero > .container-shell:first-of-type {
+  min-height: 0; padding-block: 54px 36px;
+}
+/* The background image precedes the shell, so target by the grid class. */
+.public-page .story-home-hero > .container-shell.grid { min-height: 0; padding-block: 54px 36px; }
+.public-page .story-home-hero h1 { max-width: 620px; font-size: clamp(48px,4.8vw,72px); }
+.public-page .story-home-hero .story-development-label {
+  margin-top: 24px; font-family: ui-monospace,monospace; font-size: 11px; letter-spacing: .04em;
+}
+.public-page .story-home-hero > .hero-production-bridge {
+  display: grid; grid-template-columns: 1fr 40px 1fr 40px 1fr; gap: 24px;
+  align-items: end; min-height: 0; padding-block: 20px 32px;
+  border-top: 1px solid #789fa455;
+}
+.public-page .hero-production-bridge > div { border-left: 2px solid #83aeb8; padding-left: 18px; }
+.public-page .hero-production-bridge p { color: #e0eee9; font-size: clamp(18px,1.8vw,26px); font-weight: 400; margin: 8px 0 0; line-height: 1.25; }
+.public-page .hero-production-bridge > span { align-self: end; font-size: 24px; color: #a4c9ce; }
+.public-page .hero-production-bridge .story-eyebrow { font-size: 9px; color: #a4c9ce; letter-spacing: .06em; }
+.public-page .story-home-network > .container-shell { gap: 48px; }
+.public-page .story-network-stage { grid-column: 1 / -1; min-width: 0; }
+.public-page .story-tools-heading { grid-column: 1 / -1; margin-top: 32px; }
+.public-page .story-tools-heading h2 { margin-top: 12px; font-size: clamp(30px,3vw,44px); }
+.public-page .story-tools-heading > p:last-child { max-width: 800px; margin-top: 18px; }
+.public-page .story-home-network .home-component-flow { margin-top: 0; }
+.public-page .story-home-network .story-loop-caption { padding: 24px; line-height: 1.9; }
+.public-page .depth-home-evidence h2 { font-size: clamp(36px,4vw,54px); }
+.public-page .story-evidence-questions { display: flex; flex-direction: column; gap: 0; margin-top: 52px; }
+.public-page .story-evidence-questions article {
+  display: grid; grid-template-columns: 70px .7fr 1.3fr; gap: 40px;
+  padding-block: 28px; border-top: 1px solid #61858e;
+}
+.public-page .story-evidence-questions article > span { font: 20px ui-monospace,monospace; color: #a4c9ce; }
+.public-page .story-evidence-questions h3 { font-size: 30px; }
+.public-page .story-evidence-questions p { margin: 0; }
+.public-page .story-evidence-band a.bg-white { color: #071f2b; }
+
+/* A connected production corridor, with demand above and the intended
+   operating layer below. Shared by Home and System. */
+.public-page .production-network {
+  margin: 0; background: #0e2d3b; color: #e3eeea;
+  border-top: 2px solid #8ab2b8; padding: 28px 28px 22px; min-width: 0;
+}
+.public-page .production-network h3 { color: #e6efeb; }
+.public-page .production-network p { color: #c1d4d6; }
+.public-page .production-network .story-eyebrow { color: #a5c8ce; }
+.public-page .network-caption {
+  display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px;
+  color: #a4c9ce; font: 10px ui-monospace,monospace; letter-spacing: .07em; text-transform: uppercase;
+}
+.public-page .network-demand {
+  display: grid; grid-template-columns: 1fr 1.15fr auto; gap: 30px; align-items: center;
+  margin-top: 24px; padding: 24px 0; border-top: 1px solid #65848d; border-bottom: 1px solid #65848d;
+}
+.public-page .network-demand h3 { font-size: 24px; margin-top: 8px; }
+.public-page .network-demand p { margin: 0; font-size: 14px; }
+.public-page .network-status { color: #dce9e3; font: 10px ui-monospace,monospace; padding: 8px 0; border-bottom: 1px dashed #9fcbd0; }
+.public-page .network-stages { display: grid; grid-template-columns: repeat(6,minmax(0,1fr)); list-style: none; margin: 38px 0 0; padding: 0; }
+.public-page .network-stages li { position: relative; min-width: 0; border-top: 1px solid #9fcbd0; padding: 30px 16px 28px; }
+.public-page .network-stages li:not(:last-child)::after { content: "→"; position: absolute; right: -8px; top: -14px; padding: 0 4px; color: #c9dfd9; background: #0e2d3b; z-index: 1; }
+.public-page .network-stage-production { background: #183d4b; border-top: 3px solid #b1d1cf !important; padding-top: 28px !important; }
+.public-page .network-stage-number { color: #b4cfcf; font: 11px ui-monospace,monospace; }
+.public-page .network-stages h3 { font-size: 21px; line-height: 1.2; margin-top: 14px; min-height: 76px; }
+.public-page .network-stages .network-stage-role { margin-top: 14px; font: 10px/1.7 ui-monospace,monospace; color: #aecbd0; min-height: 35px; }
+.public-page .network-stages .network-stage-detail { margin-top: 12px; font-size: 12px; line-height: 1.7; }
+.public-page .network-software { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; border-top: 1px solid #7f9fa6; border-bottom: 1px solid #7f9fa6; padding: 24px 0; }
+.public-page .network-software p { margin-top: 10px; font-size: 14px; line-height: 1.65; max-width: 500px; }
+.public-page .network-footnote { margin-top: 22px; max-width: 980px; font-size: 12px; line-height: 1.75; }
+.public-page .depth-system-layers > .container-shell > .story-network-stage:first-child { padding-bottom: 0; border: 0; }
+.public-page .depth-system-layers .story-tools-heading { margin-top: 0; margin-bottom: 32px; }
+.public-page .depth-system-layers > .container-shell > .story-tools-heading { margin-top: 76px; }
+.public-page .depth-system-layers .story-tools-heading h2 { color: #071f2b; }
+.public-page .depth-system-layers .production-network p { color: #c1d4d6; }
+
+/* Partner roles and scale are connected sequences, not product packages. */
+.public-page .story-partner-roles { margin-top: 36px; }
+.public-page .story-partner-roles article { border-top: 1px solid #678b96; padding: 24px 0; }
+.public-page .story-partner-roles h3 { margin-top: 12px; font-size: 27px; }
+.public-page .story-partner-roles p:last-child { margin-top: 12px; font-size: 14px; max-width: 680px; }
+.public-page .story-scale-block { margin-bottom: 64px; }
+.public-page .story-scale-block h2 { margin-top: 14px; max-width: 760px; font-size: clamp(34px,3.5vw,50px); }
+.public-page .scale-evidence-path { margin-top: 32px; }
+.public-page .scale-evidence-path > p { margin-bottom: 24px; }
+.public-page .scale-evidence-path ol { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); list-style: none; margin: 0; padding: 0; }
+.public-page .scale-evidence-path li { position: relative; border-top: 1px solid #7c9da5; padding: 26px 28px 16px 0; }
+.public-page .scale-evidence-path li:not(:last-child)::after { content: "→"; position: absolute; right: 22px; top: -14px; color: #477b8b; background: #e5ece7; padding-inline: 4px; }
+.public-page .scale-gate-number { font: 12px ui-monospace,monospace; color: #356b77; }
+.public-page .scale-evidence-path h3 { font-size: 27px; margin-top: 15px; color: #071f2b; }
+.public-page .scale-evidence-path li p { margin-top: 14px; font-size: 13px; line-height: 1.75; color: #435c63; }
+.public-page .depth-boundary > .container-shell > .story-scale-block:first-child { padding: 0; border: 0; background: transparent; }
+.public-page .depth-boundary .story-scale-block + div { background: transparent; border: 0; border-left: 3px solid #377d8a; box-shadow: none; }
+.public-page .depth-boundary .story-scale-block + div p.text-white { color: #071f2b; }
+
+@media (max-width: 1100px) {
+  .public-page .story-section-heading { gap: 40px; }
+  .public-page .network-stages { display: flex; flex-direction: column; margin-top: 26px; border-left: 1px solid #8cb1bb; padding-left: 18px; }
+  .public-page .network-stages li {
+    display: grid; grid-template-columns: 32px 1fr .8fr 1.2fr; gap: 22px; align-items: start;
+    border: 0; border-bottom: 1px solid #65848d; padding: 26px 16px !important;
+  }
+  .public-page .network-stage-production { background: #183d4b; border-top: 0 !important; }
+  .public-page .network-stages li:not(:last-child)::after { content: "↓"; top: auto; bottom: -12px; right: auto; left: -25px; font-size: 17px; }
+  .public-page .network-stages :is(h3,.network-stage-role,.network-stage-detail) { min-height: 0; margin: 0; }
+  .public-page .network-stages h3 { font-size: 22px; }
+  .public-page .network-demand { grid-template-columns: 1fr 1fr; gap: 20px; }
+  .public-page .network-status { grid-column: 1 / -1; justify-self: start; }
+}
+
+@media (max-width: 767px) {
+  .public-page .story-home-hero > .container-shell.grid { padding-block: 40px 30px; gap: 30px; }
+  .public-page .story-home-hero h1 { font-size: clamp(36px,10vw,54px); }
+  .public-page .story-home-hero .story-development-label { margin-top: 20px; font-size: 10px; }
+  .public-page .story-home-hero > .hero-production-bridge {
+    grid-template-columns: 1fr 16px 1fr 16px 1fr; gap: 10px; padding-block: 44px 30px;
+  }
+  .public-page .hero-production-bridge > div { padding-left: 8px; }
+  .public-page .hero-production-bridge p { font-size: 14px; line-height: 1.4; }
+  .public-page .hero-production-bridge > span { font-size: 16px; align-self: center; }
+  .public-page .hero-production-bridge .story-eyebrow { position: absolute; left: 22px; top: 16px; font-size: 9px; }
+  .public-page .story-section-heading { display: flex; flex-direction: column; align-items: stretch; gap: 24px; }
+  .public-page .story-section-heading > p { font-size: 15px; line-height: 1.75; }
+  .public-page .story-home-network > .container-shell { gap: 34px; }
+  .public-page .story-tools-heading { margin-top: 18px; }
+  .public-page .story-tools-heading h2 { font-size: 30px; }
+  .public-page .production-network { padding: 22px 18px; }
+  .public-page .network-caption { font-size: 9px; }
+  .public-page .network-demand { grid-template-columns: 1fr; padding-block: 22px; gap: 14px; }
+  .public-page .network-demand h3 { font-size: 25px; }
+  .public-page .network-demand p { font-size: 13px; }
+  .public-page .network-stages { padding-left: 10px; }
+  .public-page .network-stages li { grid-template-columns: 24px 1fr; gap: 12px 16px; padding: 24px 12px !important; }
+  .public-page .network-stages li:not(:last-child)::after { left: -17px; }
+  .public-page .network-stage-number { grid-row: 1 / 4; padding-top: 5px; }
+  .public-page .network-stages h3 { font-size: 22px; }
+  .public-page .network-stages .network-stage-role,
+  .public-page .network-stages .network-stage-detail { grid-column: 2; }
+  .public-page .network-software { grid-template-columns: 1fr; gap: 24px; }
+  .public-page .network-software p { font-size: 13px; }
+  .public-page .network-footnote { font-size: 11px; }
+  .public-page .story-evidence-questions { margin-top: 34px; }
+  .public-page .story-evidence-questions article { grid-template-columns: 32px 1fr; gap: 16px 20px; padding-block: 24px; }
+  .public-page .story-evidence-questions h3 { font-size: 27px; }
+  .public-page .story-evidence-questions p { grid-column: 2; font-size: 15px; }
+  .public-page .scale-evidence-path ol { display: flex; flex-direction: column; padding-left: 22px; border-left: 1px solid #7c9da5; }
+  .public-page .scale-evidence-path li { display: grid; grid-template-columns: 24px 1fr; gap: 14px; border-top: 0; border-bottom: 1px solid #a5bcbe; padding: 24px 0; }
+  .public-page .scale-evidence-path h3 { margin: 0; font-size: 26px; }
+  .public-page .scale-evidence-path li p { grid-column: 2; margin: 0; }
+  .public-page .scale-evidence-path li:not(:last-child)::after { content: "↓"; top: auto; right: auto; left: -28px; bottom: -12px; }
+  .public-page .story-scale-block { margin-bottom: 42px; }
+}
+
+/* Keep pathway text legible within the light System section. */
+.public-page .depth-system-layers > .container-shell > .story-network-stage:first-child .production-network p { color: #c1d4d6; }
+
+@media (max-width: 359px) {
+  .public-page .story-home-hero > .hero-production-bridge { grid-template-columns: 1fr; gap: 10px; }
+  .public-page .hero-production-bridge > span { justify-self: start; margin-left: 10px; transform: rotate(90deg); }
+  .public-page .hero-production-bridge p { font-size: 18px; }
+}

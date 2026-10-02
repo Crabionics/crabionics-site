@@ -1,18 +1,45 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import styles from "../components/public/Participation.module.css";
 
-export const metadata: Metadata = { title: "Talk to us", description: "Discuss a mud-crab pilot, technical brief or research partnership with Crabionics." , alternates: { canonical: "/contact" } };
+export const metadata: Metadata = {
+  title: "Talk to us",
+  description: "Talk to Crabionics about pond and finishing partnerships, AquaOS grow-out beta interest, research, institutional collaboration or investment.",
+  alternates: { canonical: "/contact" },
+};
 
-const paths = [
-  ["Discuss a mud-crab pilot", "For producers and operating partners exploring a defined production question.", "Producer"],
-  ["Request the technical brief", "For people who want the system, operating logic and current development boundary in one conversation.", "Technical"],
-  ["Explore a research or technology partnership", "For researchers, institutions and technology partners working on validation or integration.", "Partner"],
+const conversations = [
+  { id: "production", label: "Production", title: "Discuss a pond or finishing partnership", description: "Your setting, location, species and operating role—and the production question you want to examine.", subject: "Pond / finishing partnership enquiry" },
+  { id: "market", label: "Market", title: "Discuss buyer or cluster requirements", description: "Size, condition, supply frequency, handling and destination requirements for a buyer, processor or cluster conversation.", subject: "Buyer / cluster requirements enquiry" },
+  { id: "technical", label: "Technical", title: "Discuss the technical scope", description: "Request a technical brief or discuss how the production setting, sensing, local intervention and operating record fit together.", subject: "Technical brief enquiry" },
+  { id: "research", label: "Research", title: "Explore a research partnership", description: "Your institution and research question, from seed and biological outcomes to system integration and production learning.", subject: "Research partnership enquiry" },
+  { id: "aquaos-beta", label: "AquaOS", title: "Register grow-out beta interest", description: "Tell us about your pond, production team and current record-keeping so we can discuss fit with the work being developed.", subject: "AquaOS grow-out beta interest" },
+  { id: "institutions", label: "Institutions", title: "Discuss a government or institutional collaboration", description: "Your organisation, programme and region, and the production or fisheries question you are working on.", subject: "Government / institutional collaboration" },
+  { id: "investors", label: "Investors", title: "Discuss the company and investment", description: "Your organisation and interest in Crabionics, its development programme and the wider production direction.", subject: "Investment enquiry" },
 ];
 
 export default function ContactPage() {
-  return <div className="public-page bg-white text-slate-900"><section className="bg-[#f5f8fb] py-20 lg:py-24"><div className="container-shell max-w-5xl"><p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#168bb8]">Talk to us</p><h1 className="mt-4 text-5xl font-semibold tracking-[-0.04em] text-[#102C5C] sm:text-6xl">Start with the production question.</h1><p className="mt-7 max-w-3xl text-lg leading-8 text-slate-600">Tell us what you are trying to produce, understand or validate. The first conversation is direct and practical.</p><a href="mailto:sameer@crabionics.com" className="mt-9 inline-flex rounded-full bg-[#102C5C] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#0A1F45]">sameer@crabionics.com</a></div></section>
+  return (
+    <div data-page="contact" className={styles.page}>
+      <section className={`${styles.section} ${styles.pale} ${styles.contactOpening}`}>
+        <div className={`${styles.container} ${styles.contactIntro}`}>
+          <div><p className={styles.eyebrow}>Talk to Crabionics</p><h1 className={styles.title}>Talk to the team.</h1><p className={styles.lead}>Bring a production setting, a software question, a research or institutional opportunity, or an interest in the company.</p></div>
+          <div className={styles.directContact}><p className={styles.eyebrow}>A direct conversation</p><a href="mailto:info@crabionics.com">info@crabionics.com <span aria-hidden="true">↗</span></a><p>Choose a subject below, or write to us directly.</p></div>
+        </div>
+      </section>
 
-    <section className="py-16 lg:py-20"><div className="container-shell"><div className="max-w-3xl"><p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#168bb8]">Choose a conversation</p><h2 className="mt-3 text-4xl font-semibold text-[#102C5C] sm:text-5xl">Three practical ways to engage.</h2><p className="mt-5 text-lg leading-8 text-slate-600">Choose the closest starting point. Each link opens a direct email with the subject already prepared.</p></div><div className="mt-12 grid gap-5 lg:grid-cols-3">{paths.map(([title,description,category])=><a key={title} href={`mailto:sameer@crabionics.com?subject=${encodeURIComponent(title)}`} className="rounded-none border border-slate-200 border-l-4 border-l-[#168bb8] bg-white p-7 shadow-[0_18px_50px_rgba(16,44,92,0.07)] transition hover:-translate-y-1 hover:border-l-[#102C5C] hover:shadow-[0_24px_60px_rgba(16,44,92,0.12)]"><span className="rounded-full bg-[#effafd] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.12em] text-[#176d85]">{category}</span><h3 className="mt-6 text-2xl font-semibold text-[#102C5C]">{title}</h3><p className="mt-3 text-sm leading-7 text-slate-600">{description}</p><span className="mt-6 inline-flex text-sm font-semibold text-[#168bb8]">Start an email →</span></a>)}</div></div></section>
-
-    <section className="bg-[#102C5C] py-16 text-white lg:py-20"><div className="container-shell grid gap-10 lg:grid-cols-[0.8fr_1.2fr]"><div><p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#65c7e8]">Useful context</p><h2 className="mt-3 text-4xl font-semibold text-white">Help us understand your operating context.</h2></div><div><p className="text-lg leading-8 text-slate-200">A useful first message can include your name, organisation, role, country or operating region, whether you are a producer, researcher, processor, technology partner or investor, and what you would like to discuss.</p><p className="mt-6 text-sm leading-7 text-slate-300">Site requirements, equipment responsibilities, pilot duration and partner outputs are discussed directly and are not published here until confirmed.</p><Link href="/validation" className="mt-7 inline-flex rounded-full bg-white px-6 py-3 text-sm font-semibold text-[#102C5C]">Understand the validation programme</Link></div></div></section></div>;
+      <section className={styles.section}>
+        <div className={`${styles.container} ${styles.contactBody}`}>
+          <div className={styles.contactGuide}><p className={styles.eyebrow}>Choose a conversation</p><h2 className={styles.smallHeading}>Start with <br />what matters to you.</h2><p>Each link opens an email with the subject prepared. Include your name, organisation, role and operating region.</p><a className={styles.textLink} href="mailto:info@crabionics.com">Email the team <span aria-hidden="true">→</span></a></div>
+          <div className={styles.conversationList}>
+            {conversations.map((conversation, index) => (
+              <article className={styles.conversation} id={conversation.id} key={conversation.id}>
+                <span className={styles.conversationNumber} aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
+                <div><p className={styles.eyebrow}>{conversation.label}</p><h3><a href={`mailto:info@crabionics.com?subject=${encodeURIComponent(conversation.subject)}`}>{conversation.title}<span aria-hidden="true">↗</span></a></h3><p className={styles.conversationDescription}>{conversation.description}</p></div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+    </div>
+  );
 }
