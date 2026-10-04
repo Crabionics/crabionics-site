@@ -2,18 +2,18 @@ const siteIndex = `# Crabionics
 
 > Crabionics is building a connected production system for more controlled mud-crab farming.
 
-Crabionics works across habitat, observation, local intervention, operating records and production learning. The company does not publish biological results, customer outcomes or performance metrics unless they are supported by confirmed evidence.
+Crabionics works across biology, habitat, sensing, local equipment and operating software. Its wider direction connects hatchery and nursery development, farmer pond production, aggregation and grading, controlled finishing and processor or buyer requirements. These production connections are proposed arrangements being examined through development and partner work.
 
 ## Primary pages
 
-- [System](https://crabionics.com/system): How habitat, observation, decision, intervention and learning fit together.
+- [System](https://crabionics.com/system): How habitat, sensing, operating decisions, defined rules and local equipment connect under operator oversight.
 - [For Producers](https://crabionics.com/producers): Production jobs, operating context and pilot questions.
 - [Validation](https://crabionics.com/validation): Separate tracks for system integration, biology and commercial demand.
 - [Company](https://crabionics.com/company): Company history, team and institutional relationships.
-- [AquaOS](https://crabionics.com/aquaos): The operating software layer being developed within the production system.
+- [AquaOS](https://crabionics.com/aquaos): The operating and control layer being developed, with a distinct grow-out beta-interest path.
 - [Investors](https://crabionics.com/investors): Factual company context, development work and validation pathway.
 - [Insights](https://crabionics.com/insights): Research notes, pilot designs and field-learning updates when publishable material is ready.
-- [Talk to us](https://crabionics.com/contact): Contact for producer, technical, research and technology partnership conversations.
+- [Talk to us](https://crabionics.com/contact): Production, market, technical, beta, research, institutional and investment enquiry paths via info@crabionics.com.
 
 ## Company identity
 
@@ -23,7 +23,7 @@ Crabionics works across habitat, observation, local intervention, operating reco
 
 ## Current boundaries
 
-AquaOS is in development. The validation programme describes questions and evidence tracks, not completed biological or commercial results. Public pages should be read as current company context and development direction, not as a catalogue of completed product capabilities.
+AquaOS is in development. Its design links observations, operating state, decisions, defined rules, alerts, bounded commands and outcomes. Software foundations exist; physical integration and a complete biological control loop remain to be demonstrated. Technical, biological and commercial results require separate measurements. The proposed 600-box configuration is a later validation setting.
 `;
 
 export function GET() {

@@ -32,7 +32,7 @@ export default function CompanyPage() {
             <Link className={styles.textLink} href="/system">Explore the production system <span aria-hidden="true">↗</span></Link>
           </div>
           <figure className={styles.worldDetail}>
-            <Image src="/images/company-world.webp" alt="Concept illustration showing individual blue crab habitats, production racks, water equipment and a human operator." fill sizes="(max-width: 767px) 100vw, 45vw" className={styles.detailImage} />
+            <Image src="/images/versioned/company-world.93a5d529.webp" alt="Concept illustration showing individual blue crab habitats, production racks, water equipment and a human operator." fill sizes="(max-width: 767px) 100vw, 45vw" className={styles.detailImage} />
             <figcaption>Concept illustration</figcaption>
           </figure>
         </div>
@@ -48,7 +48,7 @@ export default function CompanyPage() {
         <div className={styles.prose}>
           <p>Mud-crab production brings together animal behaviour, habitat, water conditions, handling and operator decisions. These conditions need to be understood together.</p>
           <p>Individual habitats, sensing, local intervention and AquaOS are being developed around that physical work. The people running production remain central to observation, decisions and care.</p>
-          <p>Crabionics connects the physical production environment, the biological problem and the operating decisions around them. Relevant Odisha and Andhra Pradesh field work, including Ninjacrab 2022, forms part of the company’s research and operating history.</p>
+          <p>Crabionics connects the physical production environment, the biological problem and the operating decisions around them. The predecessor Ninjacrab work began in 2021. The founding team took on installation, water logistics and daily care, learning through successive recirculating aquaculture configurations. Operating records grew from notebooks into digital tools, forming the starting point for AquaOS.</p>
         </div>
       </div>
     </section>
@@ -70,7 +70,7 @@ export default function CompanyPage() {
         <div><p className={styles.eyebrow}>Development programme</p><h2>Bring the system together. Learn in production.</h2></div>
         <div className={styles.prose}>
           <p>The current focus is system integration and defined production validation. Scientific validation capability is being established alongside that work.</p>
-          <p>Funded research, pond biological learning and the controlled-finishing pilot examine different parts of the production problem. Biological outcomes, operating repeatability and commercial fit are measured in their own settings.</p>
+          <p>Funded research, pond biological learning and the proposed controlled-finishing pilot examine different parts of the production problem. Biological outcomes, operating repeatability and commercial fit are measured in their own settings.</p>
           <div className={styles.actions}><Link href="/validation" className={styles.button}>See the validation programme <span aria-hidden="true">↗</span></Link><Link href="/investors" className={styles.textLink}>Investor context <span aria-hidden="true">↗</span></Link></div>
         </div>
       </div>
@@ -89,7 +89,7 @@ export default function CompanyPage() {
     <section className={`${styles.section} ${styles.pale}`}>
       <div className={`${styles.wrap} ${styles.essay}`}>
         <div><p className={styles.eyebrow}>Longer-term direction / CIN</p><h2>Extend what can be repeated.</h2></div>
-        <div className={styles.prose}><p>The wider direction connects seed and farmer grow-out, controlled finishing and market requirements. CIN is the longer-term direction for learning across multiple clusters.</p><p>That development depends on repeatable production units, reliable biomass supply and demonstrated partner demand.</p><Link className={styles.textLink} href="/producers">Explore the proposed production connection <span aria-hidden="true">↗</span></Link></div>
+        <div className={styles.prose}><p>The wider vision connects hatchery and nursery development, farmer pond grow-out, aggregation and grading, controlled finishing and processor or buyer requirements. CIN is the longer-term direction for learning from reliable production histories across sites.</p><p>That development depends on repeatable production units, reliable biomass supply and demonstrated partner demand.</p><Link className={styles.textLink} href="/producers">Explore the proposed production connection <span aria-hidden="true">↗</span></Link></div>
       </div>
     </section>
 

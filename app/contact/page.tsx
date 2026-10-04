@@ -8,13 +8,13 @@ export const metadata: Metadata = {
 };
 
 const conversations = [
-  { id: "production", label: "Production", title: "Discuss a pond or finishing partnership", description: "Your setting, location, species and operating role—and the production question you want to examine.", subject: "Pond / finishing partnership enquiry" },
-  { id: "market", label: "Market", title: "Discuss buyer or cluster requirements", description: "Size, condition, supply frequency, handling and destination requirements for a buyer, processor or cluster conversation.", subject: "Buyer / cluster requirements enquiry" },
-  { id: "technical", label: "Technical", title: "Discuss the technical scope", description: "Request a technical brief or discuss how the production setting, sensing, local intervention and operating record fit together.", subject: "Technical brief enquiry" },
+  { id: "production", label: "Production", title: "Discuss a pond or finishing partnership", description: "Your role and location, species, stock size and condition, expected quantity and availability dates or season, and the production question you want to examine.", subject: "Pond / finishing partnership enquiry" },
+  { id: "market", label: "Market", title: "Discuss buyer or cluster requirements", description: "Species, size, condition, quantity, required dates or season, supply frequency, handling and destination for a buyer, processor or cluster conversation.", subject: "Buyer / cluster requirements enquiry" },
+  { id: "technical", label: "Technical", title: "Discuss the technical scope", description: "Request a technical brief or discuss how the production setting, sensing, local equipment and operating control fit together.", subject: "Technical brief enquiry" },
   { id: "research", label: "Research", title: "Explore a research partnership", description: "Your institution and research question, from seed and biological outcomes to system integration and production learning.", subject: "Research partnership enquiry" },
-  { id: "aquaos-beta", label: "AquaOS", title: "Register grow-out beta interest", description: "Tell us about your pond, production team and current record-keeping so we can discuss fit with the work being developed.", subject: "AquaOS grow-out beta interest" },
+  { id: "aquaos-beta", label: "AquaOS", title: "Register grow-out beta interest", description: "Your pond, team, observations, stock and handling routines, and current records. We can discuss the grow-out software work, trial scope and timing.", subject: "AquaOS grow-out beta interest" },
   { id: "institutions", label: "Institutions", title: "Discuss a government or institutional collaboration", description: "Your organisation, programme and region, and the production or fisheries question you are working on.", subject: "Government / institutional collaboration" },
-  { id: "investors", label: "Investors", title: "Discuss the company and investment", description: "Your organisation and interest in Crabionics, its development programme and the wider production direction.", subject: "Investment enquiry" },
+  { id: "investors", label: "Investors", title: "Discuss the company and investment", description: "Your organisation and interest in the integrated prototype, production-validation programme and wider Crabionics direction.", subject: "Investment enquiry" },
 ];
 
 export default function ContactPage() {

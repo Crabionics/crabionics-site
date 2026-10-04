@@ -1,0 +1,8 @@
+import { ClerkProvider } from "@clerk/nextjs";
+import type { ReactNode } from "react";
+
+export default function AuthProviders({ children }: { children: ReactNode }) {
+  return process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY
+    ? <ClerkProvider>{children}</ClerkProvider>
+    : <>{children}</>;
+}

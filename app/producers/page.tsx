@@ -9,9 +9,9 @@ export const metadata: Metadata = {
 };
 
 const roles = [
-  { id: "pond-production", name: "Pond production", title: "Begin with the growing environment.", body: "Species, seed source, production routines and harvest condition give a pond partnership its starting point. The sensing and operating work needs to fit the pond and the people running it.", href: "/contact#production", label: "Discuss a pond partnership", detail: "Grow-out / farmer partner" },
-  { id: "controlled-finishing", name: "Controlled finishing", title: "Define the intake and the production unit.", body: "Individual habitats and their supporting water environment have a different operating context. Intake, handling, site requirements, equipment responsibilities and records need to be defined together.", href: "/contact#production", label: "Discuss a finishing pilot", detail: "Finishing operator" },
-  { id: "buyer-requirements", name: "Buyer requirements", title: "Work back from the requirement.", body: "Size, timing, condition, handling and destination shape a useful production conversation. Processors, buyers and cluster operators can help define what a future connection would need to deliver.", href: "/contact#market", label: "Discuss market requirements", detail: "Processor / buyer / cluster operator" },
+  { id: "pond-production", name: "Pond production", title: "Begin with the growing environment.", body: "Growers contribute the pond, daily care and knowledge of the stock. Species, seed source, size, harvest condition, expected quantity and availability season give a partnership its starting point. Sensing and software work need to fit those routines.", href: "/contact#production", label: "Discuss a pond partnership", detail: "Grow-out / farmer partner" },
+  { id: "controlled-finishing", name: "Controlled finishing", title: "Define the intake and the production unit.", body: "Finishing operators contribute the receiving setting, handling and daily production work. Intake condition, grading, equipment responsibilities, water management and operating records need to be defined together with the pond partner.", href: "/contact#production", label: "Discuss a finishing pilot", detail: "Finishing operator" },
+  { id: "buyer-requirements", name: "Buyer requirements", title: "Work back from the requirement.", body: "Processors, buyers and cluster operators contribute the specification: species, size, condition, quantity, required dates, handling and destination. These requirements help shape the trials and proposed production connection.", href: "/contact#market", label: "Discuss market requirements", detail: "Processor / buyer / cluster operator" },
 ];
 
 export default function ProducersPage() {
@@ -67,18 +67,18 @@ export default function ProducersPage() {
 
       <section className={`${styles.section} ${styles.pale}`}>
         <div className={styles.container}>
-          <div className={styles.sectionIntro}><p className={styles.eyebrow}>Proposed production connection</p><h2 className={styles.heading}>Connect the work<br />between settings.</h2><p className={styles.body}>The wider direction links farmer production with controlled finishing and downstream requirements. Transfer condition, size and timing need to be examined alongside the biological and operating work.</p></div>
+          <div className={styles.sectionIntro}><p className={styles.eyebrow}>Proposed production connection</p><h2 className={styles.heading}>Connect the work<br />between settings.</h2><p className={styles.body}>The proposed model links farmer pond biomass with aggregation, grading and controlled finishing around downstream requirements. Transfer condition, size, available quantity and timing need to be examined alongside biological performance and operating costs.</p></div>
           <ol className={styles.network} aria-label="Proposed production pathway">
-            {[ ["Seed / nursery", "Starting stock and its production context"], ["Farmer production", "Growing conditions and biomass"], ["Controlled finishing", "Intake, handling and operating records"], ["Market requirements", "Size, condition, cadence and destination"] ].map(([title, body]) => <li key={title}><h3>{title}</h3><p>{body}</p></li>)}
+            {[ ["Hatchery / nursery", "Starting stock and its production context"], ["Farmer production", "Growing conditions and biomass"], ["Controlled finishing", "Intake, handling and operating records"], ["Market requirements", "Size, condition, cadence and destination"] ].map(([title, body]) => <li key={title}><h3>{title}</h3><p>{body}</p></li>)}
           </ol>
-          <div className={styles.networkNote}><span>Production partners help define the connection.</span><p>Seed source, aggregation, grading, logistics and the commercial integration model are questions to work through with each partner.</p></div>
+          <div className={styles.networkNote}><span>Production partners help define the connection.</span><p>Partners help define who grows, grades, transports and finishes the stock, and who specifies the required output. Responsibilities, costs and trial arrangements are agreed for each setting.</p></div>
         </div>
       </section>
 
       <section className={styles.section}>
         <div className={`${styles.container} ${styles.editorialGrid}`}>
           <div><p className={styles.eyebrow}>Start a conversation</p><h2 className={styles.heading}>Bring a setting.<br />Define the question.</h2></div>
-          <div><p className={styles.body}>Tell us your operating role, region and species; how you currently work; and the production or market question you want to examine. We can discuss site responsibilities, trial scope and a useful measurement plan.</p><div className={styles.actions}><Link className={styles.action} href="/contact#production">Production partnership <span aria-hidden="true">↗</span></Link><Link className={styles.textLink} href="/contact#market">Buyer or cluster enquiry <span aria-hidden="true">→</span></Link></div></div>
+          <div><p className={styles.body}>Tell us your operating role, region and species; size and condition of the stock; expected quantity and availability dates; handling and destination; and the production question you want to examine. We can discuss responsibilities, trial scope and useful measurements.</p><div className={styles.actions}><Link className={styles.action} href="/contact#production">Production partnership <span aria-hidden="true">↗</span></Link><Link className={styles.textLink} href="/contact#market">Buyer or cluster enquiry <span aria-hidden="true">→</span></Link></div></div>
         </div>
       </section>
     </div>

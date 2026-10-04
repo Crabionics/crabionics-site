@@ -1,5 +1,6 @@
 import { auth, currentUser } from "@clerk/nextjs/server";
 import { notFound } from "next/navigation";
+import AuthProviders from "../components/auth/AuthProviders";
 
 export default async function ControlTowerLayout({
   children,
@@ -19,5 +20,5 @@ export default async function ControlTowerLayout({
     notFound();
   }
 
-  return children;
+  return <AuthProviders>{children}</AuthProviders>;
 }
