@@ -12,7 +12,7 @@ import { registrationConfigured } from "../lib/registration-service";
 export const metadata: Metadata = {
   title: "Join Early Access",
   description:
-    "Express interest in shaping AquaOS pond observations and operating records.",
+    "Express interest in the proposed AquaOS operator workflow: production setup, observations, history and record-grounded assistance.",
   alternates: { canonical: "/early-access" },
 };
 export default function EarlyAccessPage() {
@@ -24,11 +24,10 @@ export default function EarlyAccessPage() {
         title="Help shape the work that helps your team."
       >
         <p className={s.lead}>
-          For growers, operating teams and partners interested in better pond
-          observations and records.
+          For growers and operating teams interested in setting up production context, recording observations and returning to a useful history.
         </p>
         <Button href="/demo" secondary>
-          Explore the walkthrough first
+          Explore the workflow preview first
         </Button>
       </Intro>
       <Section tone="mist">
@@ -36,8 +35,8 @@ export default function EarlyAccessPage() {
           items={[
             [
               "record",
-              "First beta direction",
-              "Observations & operating history",
+              "Proposed beta direction",
+              "Setup, observations, history & assistance",
             ],
             ["pond", "Bring your setting", "Region, role & daily routines"],
             ["decision", "Next step together", "Discuss fit, scope & timing"],
@@ -49,7 +48,7 @@ export default function EarlyAccessPage() {
           <div>
             <h2>Tell us where you work.</h2>
             <p>
-              Early access is an expression of interest. A place, trial start
+              The operator beta is in development. Early access is an expression of interest. A place, trial start
               date and equipment integration are not guaranteed.
             </p>
             <h3>What happens next</h3>

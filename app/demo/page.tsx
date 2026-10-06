@@ -7,23 +7,22 @@ import {
   Section,
   styles as s,
 } from "../components/public/Experience";
-import { BetaDirection, VisualFacts } from "../components/public/Visuals";
+import { VisualFacts } from "../components/public/Visuals";
 export const metadata: Metadata = {
   title: "Explore AquaOS",
   description:
-    "Try a sample pond observation and operating-record walkthrough, then help shape the AquaOS beta.",
+    "Explore an illustrative AquaOS operator workflow with sample information, then express early-access interest.",
   alternates: { canonical: "/demo" },
 };
 export default function DemoPage() {
   return (
     <Page name="demo">
       <Intro
-        eyebrow="AquaOS / Explore the beta direction"
-        title="From an observation to an operating history."
+        eyebrow="AquaOS / Illustrative workflow preview"
+        title="See an observation become a traceable next step."
       >
         <p className={s.lead}>
-          Try four steps with sample information. See the workflow we want to
-          shape with producers.
+          Choose a sample observation and follow an operator review, a follow-up task and its history. This website preview is separate from the proposed AquaOS beta.
         </p>
       </Intro>
       <Section>
@@ -32,7 +31,7 @@ export default function DemoPage() {
       <Section tone="mist">
         <VisualFacts
           items={[
-            ["pond", "For pond teams", "Daily observations & records"],
+            ["habitat", "A concrete example", "An individual-habitat feeding round"],
             [
               "decision",
               "With operator oversight",
@@ -50,7 +49,7 @@ export default function DemoPage() {
         </div>
         <Button href="/early-access">Help shape early access</Button>
       </Section>
-      <BetaDirection />
+
     </Page>
   );
 }

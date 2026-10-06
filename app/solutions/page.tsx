@@ -27,8 +27,9 @@ export default function SolutionsPage() {
         title="Built around the production work."
         aside={
           <ImagePanel
-            src="/photos/ras-plumbing.jpg"
-            alt="Individual production racks with water-management equipment."
+            src="/images/versioned/company-world-mobile.ebb1281c.webp"
+            alt="Concept illustration of the connected mud-crab production environment."
+            caption="Concept illustration"
             priority
           />
         }

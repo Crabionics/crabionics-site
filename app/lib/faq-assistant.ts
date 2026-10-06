@@ -4,7 +4,7 @@ export const assistantAnswers = [
     question: "What suits my pond?",
     keywords: ["pond", "grower", "farm", "growout", "grow-out", "farmer"],
     answer:
-      "Start with your pond, stock and daily routines. The first AquaOS beta direction focuses on observations and operating records. Equipment, measurements and any trial are scoped for your setting.",
+      "Start with your production setting, stock and daily routines. The proposed AquaOS early-access workflow includes setup, observations, returning history and assistance grounded in stored records. Equipment and trials are scoped separately.",
     links: [
       ["For producers", "/producers#pond-production"],
       ["Join early access", "/early-access"],
@@ -15,15 +15,15 @@ export const assistantAnswers = [
     question: "What can I try today?",
     keywords: ["demo", "try", "walkthrough", "today", "available"],
     answer:
-      "Explore a four-step sample walkthrough: observe, review, log a follow-up and see the history. It demonstrates a proposed record workflow, using sample information. It does not control farm equipment.",
-    links: [["Try the walkthrough", "/demo"]],
+      "Explore an illustrative feeding-round workflow: choose a sample observation, review the available context, log an operator follow-up and see the history. This website preview is not a released operator beta. It saves no farm records and controls no equipment.",
+    links: [["Explore the workflow preview", "/demo"]],
   },
   {
     id: "beta",
     question: "How do I join the beta?",
     keywords: ["beta", "access", "register", "signup", "sign up", "join"],
     answer:
-      "Share your role, region and interest on the early-access page. Registration expresses interest; a trial place and date are discussed individually. In preview mode, the page prepares an email rather than adding a verified registration.",
+      "Share your role, region and interest on the early-access page. The operator beta is in development. Registration expresses interest; a trial place and date are discussed individually. In preview mode, the page prepares an email rather than adding a verified registration.",
     links: [["Early-access interest", "/early-access"]],
   },
   {

@@ -5,6 +5,7 @@ import {
   Eyebrow,
   Heading,
   Intro,
+  ImagePanel,
   Page,
   Section,
   styles as s,
@@ -22,7 +23,8 @@ export default function ValidationPage() {
     <Page name="validation">
       <Intro
         eyebrow="Research & production validation"
-        title="Evidence for the next step."
+        title="Measure the response. Earn the next step."
+        aside={<ImagePanel src="/images/versioned/sensing.b79a337c.webp" alt="Concept illustration of environmental measurements in a mud-crab habitat." caption="Concept illustration · sensing context" priority />}
       >
         <p className={s.lead}>
           Integration, biology and commercial fit each need their own evidence.
@@ -44,9 +46,9 @@ export default function ValidationPage() {
           </div>
           <div id="pond-biology">
             <small>Production learning</small>
-            <strong>Pond biology & biomass</strong>
+            <strong>Biological & production learning</strong>
             <p>
-              Cohort performance, stock condition, handling and supply timing.
+              Defined protocols and scientific ownership before biological trials; pond baselines and cohort learning.
             </p>
           </div>
           <div id="controlled-finishing">
@@ -77,8 +79,7 @@ export default function ValidationPage() {
             <Eyebrow>Demand & adoption</Eyebrow>
             <h2>Learn from the people doing the work.</h2>
             <p>
-              Producer needs, buyer specifications and verified early-access
-              interest inform the next step.
+              Producer needs and buyer specifications inform the next step. Verified interest is a discovery signal; actual use, willingness to pay and repeat orders need separate evidence.
             </p>
             <Button href="/early-access">Share your interest</Button>
           </div>

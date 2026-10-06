@@ -12,6 +12,7 @@ import {
   TextLink,
   styles as s,
 } from "../components/public/Experience";
+import { CompanyEngines } from "../components/public/Narrative";
 export const metadata: Metadata = {
   title: "People & Company",
   description:
@@ -26,8 +27,9 @@ export default function CompanyPage() {
         title="Built from the production problem outward."
         aside={
           <ImagePanel
-            src="/photos/ras-plumbing.jpg"
-            alt="Individual habitats and water equipment in a production installation."
+            src="/images/versioned/company-world-mobile.ebb1281c.webp"
+            alt="Concept illustration of a mud-crab production setting with habitats, equipment and an operator."
+            caption="Concept illustration"
             priority
           />
         }
@@ -52,11 +54,14 @@ export default function CompanyPage() {
               logistics and daily care.
             </p>
             <p>
-              Notebooks grew into digital records—the starting point for AquaOS.
+              Daily care exposed the need to connect each crab, its habitat, feeding, water conditions and stock changes. Notebooks grew into digital workflows—the starting point for AquaOS.
             </p>
             <TextLink href="/system">Explore the connected system</TextLink>
           </div>
         </div>
+      </Section>
+      <Section>
+        <CompanyEngines />
       </Section>
       <Section tone="mist">
         <Heading
@@ -73,7 +78,7 @@ export default function CompanyPage() {
             ],
             [
               "M Abhishek",
-              "Technology / AquaOS",
+              "Co-founder / CTO",
               "Technology systems, software/firmware and the AquaOS system.",
               "/team/m-abhishek.jpg",
             ],

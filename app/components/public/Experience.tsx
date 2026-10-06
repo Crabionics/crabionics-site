@@ -347,10 +347,10 @@ export function AquaPreview() {
       </div>
       <div className={s.dashRows}>
         {[
-          ["01", "Observation recorded", "Pond A · sample context", "Observe"],
-          ["02", "Operator review", "Conditions & recent work", "Decide"],
-          ["03", "Action requested", "Integration required", "Respond"],
-          ["04", "Response recorded", "Acknowledgement & follow-up", "Review"],
+          ["01", "Feeding observation", "Habitat B-12 · sample context", "Observe"],
+          ["02", "Operator review", "Earlier feed responses: missing", "Review"],
+          ["03", "Follow-up task", "Operator inspection · no command", "Follow up"],
+          ["04", "Outcome still needed", "Return to record what changed", "History"],
         ].map(([n, title, detail, tag]) => (
           <div key={n} className={s.dashRow}>
             <span className={s.dashMarker}>{n}</span>

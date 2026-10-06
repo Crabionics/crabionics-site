@@ -473,3 +473,6 @@
     grid-template-columns: 1fr;
   }
 }
+.sampleSelect { display:block; width:100%; max-width:520px; padding:13px 14px; margin:10px 0 20px; border:1px solid #aecac4; border-radius:6px; background:#fff; color:#123a42; font:inherit; }
+.sampleSelect:focus-visible { outline:3px solid #087c7b; outline-offset:3px; }
+.oversight { padding:18px 20px; margin:24px 0 0 !important; border-left:3px solid #087c7b; background:#e5f2ee; font-size:14px !important; line-height:1.7; }

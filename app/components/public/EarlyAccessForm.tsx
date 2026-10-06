@@ -102,7 +102,7 @@ export default function EarlyAccessForm({ enabled }: { enabled: boolean }) {
             id="beta-setting"
             name="setting"
             maxLength={500}
-            placeholder="Pond or production setting, current records, and what you want to improve."
+            placeholder="Site or production system, current records, and the daily task you want to improve."
           />
         </div>
         <div className={s.honeypot} aria-hidden="true">

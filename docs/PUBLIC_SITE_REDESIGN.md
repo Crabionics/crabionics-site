@@ -18,4 +18,12 @@ The route validates origin, content type, topic and field lengths, rejects the h
 
 The 600-box finishing configuration and wider network remain proposed work. Guide content covers scoping and the existing production approach; it makes no biological performance or ROI claims. Concept and illustrative software panels are labelled. Institutional captions specify incubation, research or recognition rather than asserting customer endorsement.
 
-Photos use responsive Next.js image optimisation, with the homepage image preloaded. Pages stay server-rendered; the only added client interaction is the enquiry form. No video autoplay, external font download, analytics or animation library was added. Existing immutable asset caching and scoped authentication middleware are preserved.
+Photos use responsive Next.js image optimisation, with the homepage image preloaded. Pages stay server-rendered; client interactions are confined to enquiries, interest registration, an illustrative workflow preview, private demand review and the lazy-loaded FAQ assistant. No video autoplay, external font download, analytics or animation library was added. Existing immutable asset caching and scoped authentication middleware are preserved.
+
+## PMO-aligned presentation — 6 October 2026
+
+The public presentation connects production, technology and learning. A labelled concept visual explains the proposed seed/nursery → pond grow-out → aggregation → controlled finishing → buyer requirement journey. It does not claim a deployed supply network. System, AquaOS, company, producer and solution introductions reuse the existing explanatory art rather than repeating the equipment photo. System retains the operator/defined-rule decision, permitted local response and measured outcome relationship.
+
+The workflow preview is an illustrative individual-habitat feeding round: sample observation selection, operator review, follow-up task and a history that explicitly preserves missing outcomes. State is local to the mounted preview, not durable farm storage. This is separate from the proposed AquaOS operator beta in owning issue #76: production setup, persistence/resume, observations, history and record-grounded assistance. Interest collection does not release that product or promote its maturity. Website FAQ answers are separate from product Copilot capabilities.
+
+Public content was reconciled against PMO CURRENT_STATE, October Capability Reality Register, scientific R&D architecture, supply-chain strategy and AquaOS #76. Working strategic maps inform direction, not implementation proof. No private PMO, banking, vendor, customer or protected engineering detail is published.

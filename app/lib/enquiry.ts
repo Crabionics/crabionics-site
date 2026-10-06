@@ -3,7 +3,7 @@ export const topics = {
   market: "Buyer / cluster requirements",
   technical: "Technical scope",
   research: "Research partnership",
-  "aquaos-beta": "AquaOS grow-out beta interest",
+  "aquaos-beta": "AquaOS operator early-access interest",
   institutions: "Government / institutional collaboration",
   investors: "Company / investment",
 } as const;

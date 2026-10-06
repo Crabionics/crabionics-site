@@ -24,7 +24,7 @@ const roles = [
     id: "pond-production",
     tag: "Growers & operating teams",
     title: "Pond growers & operating teams.",
-    text: "Start with your pond, stock and daily routines.",
+    text: "Your pond produces the biomass. Start with stock, daily routines and the conditions that affect transfer and harvest.",
     items: [
       "Location & operating role",
       "Species, condition & quantity",
@@ -54,7 +54,7 @@ const roles = [
     id: "buyer-requirements",
     tag: "Buyers, processors & cluster partners",
     title: "Buyers & cluster partners.",
-    text: "Start with the species, condition, quantity and supply dates you need.",
+    text: "Buyer requirements should shape production planning. Start with species, condition, quantity and supply dates; supply commitments follow validated capacity.",
     items: [
       "Species, size & quantity",
       "Dates & supply frequency",
@@ -74,8 +74,9 @@ export default function ProducersPage() {
         title="Let’s plan around your production needs."
         aside={
           <ImagePanel
-            src="/photos/ras-plumbing.jpg"
-            alt="Aquaculture production racks and water equipment."
+            src="/images/versioned/company-world-mobile.ebb1281c.webp"
+            alt="Concept illustration of production habitats, water equipment and an operator."
+            caption="Concept illustration"
             priority
           />
         }
@@ -101,7 +102,7 @@ export default function ProducersPage() {
           <Button href="/contact#production">
             Discuss a production partnership
           </Button>
-          <TextLink href="/aquaos#grow-out-beta">AquaOS grow-out beta</TextLink>
+          <TextLink href="/aquaos#grow-out-beta">AquaOS early-access direction</TextLink>
         </div>
       </Intro>
       {roles.map((role, i) => (

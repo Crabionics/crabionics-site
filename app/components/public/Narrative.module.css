@@ -1,0 +1,38 @@
+.journey { margin:0; }
+.scene { position:relative; min-height:430px; overflow:hidden; border-radius:14px 14px 0 0; background:#092e3d; }
+.scene img { object-fit:cover; object-position:60% 50%; }
+.scene::after { content:""; position:absolute; inset:0; background:linear-gradient(90deg,#082934f2 0%,#082934c9 33%,#08293412 72%); }
+.sceneCopy { position:relative; z-index:1; padding:64px 42px; max-width:530px; }
+.sceneCopy h2 { color:#fff !important; }
+.sceneCopy p { color:#d0e5e5 !important; max-width:350px; }
+.sceneCopy p:first-child { color:#a8e8d8 !important; }
+.caption { position:absolute; z-index:1; bottom:15px; right:18px; background:#123a42e8; color:#fff; padding:8px 12px; font-size:11px; }
+.stages { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); padding:0; margin:0; list-style:none; background:#f0f7f5; }
+.stages li { padding:24px 18px; border-right:1px solid #ccdfdb; }
+.stages li:last-child { border:0; }
+.stages small { color:#087c7b; display:block; font-size:11px; margin-bottom:12px; }
+.stages a { display:flex; justify-content:space-between; gap:8px; font-size:16px; font-weight:600; color:#123a42; }
+.stages a span { color:#087c7b; }
+.stages p { font-size:12px !important; margin:8px 0 0 !important; }
+.journeyNote { font-size:12px; line-height:1.6; color:#4c6469; margin-top:16px; }
+.engines { display:grid; grid-template-columns:repeat(3,1fr); gap:32px; }
+.engines article { border-top:2px solid #76b5aa; padding-top:24px; }
+.engines p { font-size:15px !important; }
+.scope { display:grid; grid-template-columns:1.1fr 1fr; gap:72px; }
+.scope ol { list-style:none; padding:0; margin:0; }
+.scope li { display:flex; gap:22px; padding:20px 0; border-bottom:1px solid #cfe0dc; }
+.scope li>span { font-size:12px; color:#087c7b; padding-top:4px; }
+.scope strong { font-size:22px; font-weight:500; }
+.scope small { display:block; font-size:14px; color:#4c6469; margin-top:7px; }
+@media(max-width:767px) {
+.scene { min-height:490px; }
+.scene img { object-position:65% 50%; }
+.scene::after { background:linear-gradient(180deg,#082934e8 0%,#082934a8 45%,#0829340a 85%); }
+.sceneCopy { padding:30px 24px; }
+.sceneCopy h2 { font-size:34px !important; }
+.stages { grid-template-columns:1fr; }
+.stages li { display:grid; grid-template-columns:26px 1fr; gap:5px 10px; padding:15px 20px; border-right:0; border-bottom:1px solid #ccdfdb; }
+.stages small { margin:3px 0 0; }
+.stages p { grid-column:2; margin:0 !important; }
+.engines,.scope { grid-template-columns:1fr; gap:28px; }
+}

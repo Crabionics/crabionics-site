@@ -2,7 +2,7 @@
 
 ## Working without external services
 
-The visual explanations, interactive four-step walkthrough and lazy-loaded FAQ assistant work without third-party accounts. The assistant uses a curated local answer matcher, not a generative AI model. Questions are not transmitted or stored. It provides approved site links, a fallback for unknown topics and a care-specific handoff. The demonstration uses sample information; it stores no farm information and controls no equipment.
+The visual explanations, interactive four-step illustrative workflow preview and lazy-loaded FAQ assistant work without third-party accounts. The assistant uses a curated local answer matcher, not a generative AI model. Questions are not transmitted or stored. It provides approved site links, a fallback for unknown topics and a care-specific handoff. The demonstration uses a sample individual-habitat feeding round with selectable observations. Review/task state lasts only while the component is mounted; it stores no farm information and controls no equipment. It is not the released AquaOS operator beta.
 
 Enquiries and early-access interest prepare a reviewable email when services are absent. The early-access form explicitly says it does not create a verified registration in this mode. No public demand count is displayed. Preview service setup is separate from production.
 
@@ -13,12 +13,12 @@ Provision Resend with a verified sender and a private Upstash Redis database in 
 Set these server-only variables in the intended Vercel environment, then rebuild:
 
 - `RESEND_API_KEY`
-- `CONTACT_FROM_EMAIL` — verified sender, such as `Crabionics <updates@mail.crabionics.com>`
+- `CONTACT_FROM_EMAIL` â€” verified sender, such as `Crabionics <updates@mail.crabionics.com>`
 - `UPSTASH_REDIS_REST_URL`
 - `UPSTASH_REDIS_REST_TOKEN`
-- `PUBLIC_SITE_URL` — canonical trusted origin used for confirmation links; use the preview origin when testing
-- `REGISTRATION_NAMESPACE` — use different values for preview and production
-- `REGISTRATION_EXPORT_TOKEN` — a randomly generated private secret of at least 32 bytes
+- `PUBLIC_SITE_URL` â€” canonical trusted origin used for confirmation links; use the preview origin when testing
+- `REGISTRATION_NAMESPACE` â€” use different values for preview and production
+- `REGISTRATION_EXPORT_TOKEN` â€” a randomly generated private secret of at least 32 bytes
 
 The confirmed team inbox is `info@crabionics.com`. Keep existing mailbox DNS intact; verify a sending subdomain and use the records supplied by the provider. Do not paste credentials into chat or source control.
 
@@ -40,4 +40,4 @@ Honor removal requests received at the team inbox. Remove the email's SHA-256 re
 
 ## Launch verification
 
-Run `npm run test:public`, the production build, and lint for changed files. Verify the resource → demonstration → registration journey, keyboard/phone assistant behavior, valid/expired confirmation links, duplicate signup, failed provider response, authorized/unauthorized review and CSV output. Use a team-controlled test email after service configuration to check verification, acknowledgement, replies and real inbox receipt. Review content/status labels and performance on the deployed preview before production.
+Run `npm run test:public`, the production build, and lint for changed files. Verify the resource â†’ demonstration â†’ registration journey, keyboard/phone assistant behavior, valid/expired confirmation links, duplicate signup, failed provider response, authorized/unauthorized review and CSV output. Use a team-controlled test email after service configuration to check verification, acknowledgement, replies and real inbox receipt. Review content/status labels and performance on the deployed preview before production.

@@ -14,7 +14,7 @@ export function SolutionOverview() {
         ["habitat", "Habitat", "A defined space for care and handling.", "/solutions/habitat"],
         ["sense", "CrabSense", "Water observations linked to the right setting.", "/solutions/crabsense"],
         ["pod", "CrabPod", "A developing connection to local equipment.", "/solutions/crabpod"],
-        ["record", "AquaOS", "Daily observations, decisions and follow-up.", "/aquaos"],
+        ["record", "AquaOS", "Operating context, decisions, local response and history.", "/aquaos"],
       ].map(([icon,title,detail,href], i) => <article key={title}>
         <span className={e.number}>0{i+1}</span><Glyph kind={icon} />
         <div><h3>{title}</h3><p>{detail}</p><TextLink href={href}>Explore {title}</TextLink></div>
@@ -26,10 +26,10 @@ export function SolutionOverview() {
 }
 export function EvidenceStrip() {
   return <div className={e.evidence}>
-    <div><Eyebrow>Research & validation</Eyebrow><h2>Built through research.<br />Tested step by step.</h2><TextLink href="/validation">View the development pathway</TextLink></div>
+    <div><Eyebrow>Research & validation</Eyebrow><h2>Learn in the lab.<br />Earn the next step.</h2><TextLink href="/validation">View the development pathway</TextLink></div>
     <ol>
-      <li><span>Current work</span><strong>Research & integration</strong><p>Funded IHMS development.</p></li>
-      <li><span>Production learning</span><strong>Pond biology & biomass</strong><p>Stock, handling and cohort records.</p></li>
+      <li><span>Current work</span><strong>Research & integration</strong><p>Funded IHMS monitoring and control development.</p></li>
+      <li><span>Production learning</span><strong>Biological & production learning</strong><p>Defined experiments, stock and cohort records.</p></li>
       <li><span>Proposed later</span><strong>Controlled finishing</strong><p>600-box validation proposal.</p></li>
     </ol>
   </div>;

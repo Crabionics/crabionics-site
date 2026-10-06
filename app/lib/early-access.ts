@@ -1,5 +1,5 @@
 export const interests = [
-  "Pond observations & records",
+  "Operator setup, observations & history",
   "Controlled finishing",
   "Buyer / cluster partnership",
   "Research collaboration",

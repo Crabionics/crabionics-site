@@ -222,7 +222,7 @@ export const partnershipFaq = [
   ],
   [
     "Is AquaOS available for my pond?",
-    "Early-access interest is welcome. Start with the sample walkthrough; trial access and equipment integration are discussed individually.",
+    "Early-access interest is welcome. Explore the illustrative workflow preview. No released operator beta is evidenced yet; trial access and equipment integration are discussed individually.",
   ],
   [
     "What production results have been demonstrated?",

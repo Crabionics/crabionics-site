@@ -36,14 +36,14 @@ export function ConnectedDiagram() {
       aria-label="Developing operating loop: habitat conditions are observed by CrabSense, reviewed in AquaOS under operator oversight, and connected to local equipment through CrabPod. The response is observed again."
     >
       <figcaption className={v.diagramTitle}>
-        Follow the operating loop.
+        Follow the observation through to its response.
       </figcaption>
       <div className={v.diagramNodes}>
         {[
-          ["habitat", "Habitat", "The animal’s setting", "/solutions/habitat"],
+          ["habitat", "Habitat", "Habitat & water environment", "/solutions/habitat"],
           ["sense", "CrabSense", "Observe conditions", "/solutions/crabsense"],
-          ["decision", "AquaOS", "Review & decide", "/aquaos"],
-          ["pod", "CrabPod", "Connect local response", "/solutions/crabpod"],
+          ["decision", "AquaOS", "Operating context & history", "/aquaos"],
+          ["pod", "CrabPod", "Permitted equipment response", "/solutions/crabpod"],
         ].map(([icon, title, caption, href]) => (
           <Link href={href} key={title}>
             <Glyph kind={icon} />
@@ -52,8 +52,9 @@ export function ConnectedDiagram() {
           </Link>
         ))}
       </div>
+      <p className={v.oversight}>Operator / defined rules → review the context → decide the permitted next action</p>
       <div className={v.returnLine}>
-        ↶ Observe the response · keep the operating history
+        ↶ Observe what changed · connect action, response and history
       </div>
       <small>
         Operating design in development · operator oversight throughout
@@ -116,15 +117,15 @@ export function BetaDirection({ showcase = false }: { showcase?: boolean }) {
     <Section tone="mist">
       <div className={s.split}>
         <div>
-          <Eyebrow>AquaOS / First beta direction</Eyebrow>
-          <h2>One pond. One observation. A clear next step.</h2>
+          <Eyebrow>AquaOS / Explore the direction</Eyebrow>
+          <h2>Your setting. Your observations. A history you can return to.</h2>
           <p>
-            Explore how a pond observation becomes a reviewed decision and a daily record. Help shape the beta around your work.
+            Explore a sample operator workflow, then help shape the proposed beta: setup, observations, returning history and record-grounded assistance.
           </p>
           <div className={s.actions}>
-            <Button href="/demo">Try the walkthrough</Button>
+            <Button href="/demo">Explore the workflow preview</Button>
             <Button href="/early-access" secondary>
-              Join early access
+              Express early-access interest
             </Button>
           </div>
         </div>
@@ -132,12 +133,12 @@ export function BetaDirection({ showcase = false }: { showcase?: boolean }) {
           {[
             [
               "Explore now",
-              "Sample AquaOS walkthrough",
-              "Available to explore",
+              "Illustrative operator workflow",
+              "Sample preview available",
             ],
             [
               "Shape next",
-              "Grower feedback & record workflows",
+              "Setup, observations, history & assistance",
               "Early-access interest",
             ],
             [

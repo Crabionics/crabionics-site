@@ -13,6 +13,7 @@ import {
 } from "./components/public/Experience";
 import { BetaDirection } from "./components/public/Visuals";
 import { SolutionOverview, EvidenceStrip } from "./components/public/Editorial";
+import { ProductionJourney } from "./components/public/Narrative";
 export const metadata: Metadata = {
   title: { absolute: "Crabionics | Mud-Crab Aquaculture, Connected" },
   description:
@@ -92,8 +93,11 @@ export default function HomePage() {
         </div>
       </div>
       <Section>
-        <Heading eyebrow="Built for the daily work" title="Care for the stock. Understand the water. Keep a useful record." />
+        <Heading eyebrow="Built for the daily work" title="Biology, infrastructure and daily operations. Connected." />
         <SolutionOverview />
+      </Section>
+      <Section>
+        <ProductionJourney />
       </Section>
       <Section tone="dark">
         <EvidenceStrip />

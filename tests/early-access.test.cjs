@@ -13,7 +13,7 @@ const sample = {
   role: "Pond grower",
   region: "Odisha",
   setting: "Pond observations",
-  interest: "Pond observations & records",
+  interest: "Operator setup, observations & history",
   consent: true,
   updates: false,
   website: "",

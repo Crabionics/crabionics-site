@@ -151,7 +151,7 @@ export async function confirm(token: string) {
       await sendMail(
         record.email,
         "Your Crabionics early-access interest is confirmed",
-        `Hello ${record.name},\n\nYour interest is registered. Our first beta direction is pond observations and operating records. The team will review your setting and contact you when there is a suitable next step. Trial scope and timing are discussed individually.\n\nExplore the sample walkthrough: ${new URL("/demo", process.env.PUBLIC_SITE_URL)}\n\nYou can reply to this email to update or remove your details.\n\nCrabionics team`,
+        `Hello ${record.name},\n\nYour interest is registered. The proposed beta direction is production setup, observations, returning history and record-grounded assistance. This registration records interest; it does not provide access to a released operator beta. The team will review your setting and contact you when there is a suitable next step. Trial scope and timing are discussed individually.\n\nExplore the illustrative workflow preview: ${new URL("/demo", process.env.PUBLIC_SITE_URL)}\n\nYou can reply to this email to update or remove your details.\n\nCrabionics team`,
         `welcome-${id}`,
       );
       record.notification = "sent";

@@ -10,6 +10,7 @@ import {
   TextLink,
   styles as s,
 } from "../components/public/Experience";
+import { CompanyEngines } from "../components/public/Narrative";
 export const metadata: Metadata = {
   title: "Investors",
   description:
@@ -24,7 +25,7 @@ export default function InvestorsPage() {
         title="Building the infrastructure for mud-crab aquaculture."
         aside={
           <ImagePanel
-            src="/images/versioned/company-world-medium.f49975f0.webp"
+            src="/images/versioned/company-world-mobile.ebb1281c.webp"
             alt="Concept illustration of connected mud-crab production infrastructure."
             caption="Concept illustration"
             priority
@@ -45,28 +46,8 @@ export default function InvestorsPage() {
           eyebrow="The infrastructure thesis"
           title="Start with the unit. Establish what repeats."
         />
-        <div className={s.detailGrid}>
-          {[
-            ["Production problem", "Biology, water, handling and decisions."],
-            [
-              "System approach",
-              "Habitat, sensing, local equipment and software.",
-            ],
-            [
-              "Immediate development",
-              "Prototype integration and funded research.",
-            ],
-            [
-              "Commercial questions",
-              "Requirements, adoption and responsibilities.",
-            ],
-          ].map(([title, body]) => (
-            <article className={s.detailBox} key={title}>
-              <h3>{title}</h3>
-              <p>{body}</p>
-            </article>
-          ))}
-        </div>
+        <CompanyEngines />
+        <div className={s.note}><p>Controlled production and managed supply are models we are testing. Deployment and wider network opportunities depend on repeatable production, measured economics and external customer evidence.</p></div>
       </Section>
       <Section tone="mist">
         <Heading

@@ -31,7 +31,7 @@ export default function ResourcesPage() {
         <div className={s.note}>
           <p>
             These guides explain the production and partnership approach.
-            Research results and field-learning reports will be published when
+            Field notes, production breakdowns and research updates will be published when
             there is evidence from a defined setting to share.
           </p>
         </div>

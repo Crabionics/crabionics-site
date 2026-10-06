@@ -1,94 +1,35 @@
 "use client";
 import { useState } from "react";
 import v from "./Refinements.module.css";
-const stages = [
-  {
-    name: "Observe",
-    title: "A useful record starts with context.",
-    body: "Choose a pond and attach the observation to the work happening there.",
-    action: "Record sample observation",
-    rows: [
-      "Pond A · sample cohort",
-      "Routine check · stock handling noted",
-      "Source: operator observation",
-    ],
-  },
-  {
-    name: "Review",
-    title: "See the setting before deciding.",
-    body: "Review the observation alongside recent operating work.",
-    action: "Log sample decision",
-    rows: [
-      "Observation added to Pond A",
-      "Recent event: handling recorded",
-      "Operator review: follow-up check needed",
-    ],
-  },
-  {
-    name: "Act",
-    title: "Keep the operator decision visible.",
-    body: "Record a follow-up task and who will review it. No equipment command is sent.",
-    action: "See operating history",
-    rows: [
-      "Decision: schedule another observation",
-      "Assigned role: pond operator",
-      "Equipment connection: outside this walkthrough",
-    ],
-  },
-  {
-    name: "History",
-    title: "The record follows the work.",
-    body: "The observation, review and follow-up remain connected in one timeline.",
-    action: "Start again",
-    rows: [
-      "01 · Observation recorded",
-      "02 · Operator review completed",
-      "03 · Follow-up task logged",
-    ],
-  },
-];
+const observations = ["Feed refusal noted", "Feeding response observed", "Follow-up inspection needed"] as const;
+const stages = ["Observe", "Review", "Follow up", "History"];
 export default function BetaDemo() {
   const [step, setStep] = useState(0);
-  const stage = stages[step];
-  return (
-    <div className={v.demo}>
-      <div className={v.demoHeader}>
-        <strong>AquaOS / Pond A</strong>
-        <span>Interactive walkthrough · sample data</span>
-      </div>
-      <nav className={v.demoSteps} aria-label="Walkthrough steps">
-        {stages.map((stage, i) => (
-          <button
-            key={stage.name}
-            type="button"
-            aria-current={step === i ? "step" : undefined}
-            onClick={() => setStep(i)}
-          >
-            {i + 1}. {stage.name}
-          </button>
-        ))}
-      </nav>
-      <div className={v.demoBody} aria-live="polite">
-        <span className={v.sample}>
-          Step {step + 1} of 4 · {stage.name}
-        </span>
-        <h3>{stage.title}</h3>
-        <p>{stage.body}</p>
-        <div className={v.demoRecord}>
-          {stage.rows.map((row) => (
-            <span key={row}>{row}</span>
-          ))}
-        </div>
-      </div>
-      <div className={v.demoFoot}>
-        <small>
-          Sample information only. No farm data is saved and no equipment is
-          controlled.
-        </small>
-        <button onClick={() => setStep((step + 1) % 4)}>
-          {stage.action} →
-        </button>
+  const [observation, setObservation] = useState<string>(observations[0]);
+  const [reviewed, setReviewed] = useState(false);
+  const [followUp, setFollowUp] = useState(false);
+  const titles = ["Record what the operator saw.", "Review the context before deciding.", "Keep the next task visible.", "Reconstruct the sample episode."];
+  function advance() {
+    if(step===1) setReviewed(true);
+    if(step===2) setFollowUp(true);
+    if(step===3) { setStep(0); setReviewed(false); setFollowUp(false); return; }
+    setStep(s=>s+1);
+  }
+  return <div className={v.demo}>
+    <div className={v.demoHeader}><strong>AquaOS / Habitat B-12</strong><span>Illustrative workflow · sample data</span></div>
+    <nav className={v.demoSteps} aria-label="Workflow preview steps">{stages.map((title,i)=><button key={title} type="button" aria-current={step===i?"step":undefined} onClick={()=>setStep(i)}>{i+1}. {title}</button>)}</nav>
+    <div className={v.demoBody} aria-live="polite">
+      <span className={v.sample}>Step {step+1} of 4 · {stages[step]}</span><h3>{titles[step]}</h3>
+      {step===0 ? <><p>During the morning feeding round, attach an observation to the individual habitat.</p><label htmlFor="sample-observation">Sample observation</label><select id="sample-observation" className={v.sampleSelect} value={observation} onChange={event=>{setObservation(event.target.value);setReviewed(false);setFollowUp(false);}}>{observations.map(value=><option key={value}>{value}</option>)}</select></> : null}
+      <div className={v.demoRecord}>
+        <span>Example site: RAS grow-out · habitat B-12</span>
+        <span>Source: operator · morning round</span>
+        {step===0 ? <span>{observation}</span> : null}
+        {step===1 ? <><span>Current observation: {observation}</span><span>Earlier feed responses: not provided in this example</span><span>No cause, diagnosis or recommendation is inferred.</span></> : null}
+        {step===2 ? <><span>Operator task: inspect B-12 and record the next observation</span><span>Review: {reviewed?"logged in this sample session":"not logged—return to Review"}</span><span>Equipment command: none</span></> : null}
+        {step===3 ? <><span>01 · Observation: {observation}</span><span>02 · Operator review: {reviewed?"logged":"not logged"}</span><span>03 · Follow-up: {followUp?"task logged; outcome still missing":"not logged"}</span><span>Next evidence: the operator’s follow-up observation</span></> : null}
       </div>
     </div>
-  );
+    <div className={v.demoFoot}><small>Illustrative example, not the released beta. Your choices last only while this preview is open. No farm records are saved or equipment controlled.</small><button type="button" onClick={advance}>{["Review sample observation", "Log sample review", "Log follow-up task", "Start again"][step]} →</button></div>
+  </div>;
 }
