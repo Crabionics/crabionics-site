@@ -6,18 +6,21 @@ import {
   Button,
   CTA,
   Eyebrow,
-  Flow,
   Heading,
-  ImagePanel,
   Page,
   ResourceCards,
-  RoleCards,
   Section,
   SolutionCards,
   Status,
   TextLink,
   styles as s,
 } from "./components/public/Experience";
+import {
+  AnnotatedProduction,
+  BetaDirection,
+  ConnectedDiagram,
+  VisualFacts,
+} from "./components/public/Visuals";
 export const metadata: Metadata = {
   title: { absolute: "Crabionics | Mud-Crab Aquaculture, Connected" },
   description:
@@ -104,26 +107,15 @@ export default function HomePage() {
           Crab biology, water, handling and operator decisions belong in the
           same picture.
         </Heading>
-        <div className={s.split}>
-          <ImagePanel
-            src="/photos/isolation-box.jpg"
-            alt="Mud crab within an individual blue habitat."
+        <AnnotatedProduction />
+        <div style={{ marginTop: 28 }}>
+          <VisualFacts
+            items={[
+              ["habitat", "Care & handling", "A defined animal environment"],
+              ["sense", "Understand conditions", "Observations in context"],
+              ["record", "Keep the history", "Decisions & follow-up"],
+            ]}
           />
-          <div>
-            <h3>Build around the animal. Support the people.</h3>
-            <p>
-              Every production setting brings its own questions. Crabionics
-              connects the physical environment, observations and operating work
-              so teams can understand what happened and what to examine next.
-            </p>
-            <ul className={s.checklist}>
-              <li>A defined environment for care and handling</li>
-              <li>Observations tied to a unit, pond or cohort</li>
-              <li>Decisions and local response under operator oversight</li>
-              <li>An operating history that keeps the work in context</li>
-            </ul>
-            <TextLink href="/system">See how the system connects</TextLink>
-          </div>
         </div>
       </Section>
       <Section tone="mist">
@@ -144,27 +136,12 @@ export default function HomePage() {
       </Section>
       <Section>
         <Heading
-          eyebrow="For producers & operating partners"
-          title="Start where you work."
-        >
-          Choose your production setting and explore what a partnership could
-          involve.
-        </Heading>
-        <RoleCards />
-      </Section>
-      <Section tone="dark">
-        <Heading
           eyebrow="The connected system"
           title="Observe. Decide. Respond. Review."
-        >
-          The operating design connects conditions to actions and the response
-          that follows.
-        </Heading>
-        <Flow />
+        />
+        <ConnectedDiagram />
         <div className={s.actions}>
-          <Button href="/system" secondary>
-            Explore the operating relationship
-          </Button>
+          <Button href="/system">Explore the operating relationship</Button>
         </div>
       </Section>
       <Section>
@@ -173,13 +150,12 @@ export default function HomePage() {
             <Eyebrow>AquaOS</Eyebrow>
             <h2>The record follows the work.</h2>
             <p>
-              Operating software being developed to connect observations,
-              operator decisions, bounded control and outcomes.
+              Observations, decisions and follow-up in one developing workflow.
             </p>
             <Status>Grow-out beta interest</Status>
             <div className={s.actions}>
-              <Button href="/aquaos">Explore AquaOS</Button>
-              <TextLink href="/aquaos#grow-out-beta">Bring your pond</TextLink>
+              <Button href="/demo">Try the walkthrough</Button>
+              <TextLink href="/early-access">Join early access</TextLink>
             </div>
           </div>
           <AquaPreview />
@@ -189,26 +165,23 @@ export default function HomePage() {
         <Heading
           eyebrow="Research & validation"
           title="Build with evidence. Learn in production."
-        >
-          The current programme connects integration work, pond biology and
-          planning for controlled-finishing validation.
-        </Heading>
+        />
         <div className={s.three}>
           {[
             [
               "Integration",
               "Research & system build",
-              "Funded IHMS work examines the physical system, observations and operating routines.",
+              "Funded IHMS integration work.",
             ],
             [
               "Production learning",
               "Pond biology & biomass",
-              "Defined settings examine stock condition, cohort performance, handling and supply timing.",
+              "Stock, handling and cohort learning.",
             ],
             [
               "Proposed validation",
               "Controlled finishing",
-              "A later 600-box configuration would examine biological and operating outcomes.",
+              "Proposed later 600-box validation.",
             ],
           ].map(([label, title, body]) => (
             <article key={title} className={s.card}>
@@ -230,12 +203,10 @@ export default function HomePage() {
         <Heading
           eyebrow="Practical resources"
           title="Useful context before the conversation."
-        >
-          Guides to partnership scoping, operating records and production
-          connections.
-        </Heading>
+        />
         <ResourceCards />
       </Section>
+      <BetaDirection />
       <CTA />
     </Page>
   );

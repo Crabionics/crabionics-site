@@ -7,6 +7,7 @@ import {
   Section,
   styles as s,
 } from "../components/public/Experience";
+import { BetaDirection } from "../components/public/Visuals";
 export const metadata: Metadata = {
   title: "Resources",
   description:
@@ -35,6 +36,7 @@ export default function ResourcesPage() {
           </p>
         </div>
       </Section>
+      <BetaDirection />
       <CTA />
     </Page>
   );

@@ -4,8 +4,7 @@ export const solutions = [
     name: "Habitat",
     category: "Production environment",
     title: "A setting built around the animal.",
-    description:
-      "Individual habitats give handling, observation and daily production work a defined physical context.",
+    description: "A defined setting for care, handling and observation.",
     image: "/photos/isolation-box.jpg",
     alt: "Mud crab in an individual blue habitat.",
     concept: false,
@@ -18,7 +17,7 @@ export const solutions = [
       "Water management and supporting equipment",
     ],
     scope:
-      "Individual habitats and their supporting infrastructure are being connected through the development programme. Pond production has its own requirements.",
+      "Habitat integration is in development. Pond settings have separate requirements.",
     question:
       "How does the physical setting support observation, handling and repeatable operating work?",
   },
@@ -27,8 +26,7 @@ export const solutions = [
     name: "CrabSense",
     category: "Environmental observation",
     title: "Understand conditions in context.",
-    description:
-      "Connect environmental observations to the pond, unit or operating event they describe.",
+    description: "Observe conditions in their production context.",
     image: "/images/versioned/sensing.b79a337c.webp",
     alt: "Concept illustration of sensing probes beside a mud-crab habitat.",
     concept: true,
@@ -41,7 +39,7 @@ export const solutions = [
       "The farm, unit or cohort each reading describes",
     ],
     scope:
-      "The sensing scope is defined for each research or production setting. Physical integration and the usefulness of observations are evaluated in that context.",
+      "Define the sensing scope and evaluate observations for each setting.",
     question:
       "Can reliable observations be linked to the right setting and the action that follows?",
   },
@@ -50,8 +48,7 @@ export const solutions = [
     name: "CrabPod",
     category: "Local equipment connection",
     title: "Connect decisions to local response.",
-    description:
-      "Bring observations, commands and equipment responses together close to the production work.",
+    description: "Connect local equipment to observations and commands.",
     image: "/photos/ras-plumbing.jpg",
     alt: "Production racks and water equipment in an aquaculture installation.",
     concept: false,
@@ -64,7 +61,7 @@ export const solutions = [
       "Communication, power and response verification",
     ],
     scope:
-      "CrabPod is being developed to connect local devices, carry observations and commands, and report responses. Aeration, water movement and flushing are examples to examine in defined test settings.",
+      "Local integration is in development. Define permitted actions and verify each equipment response.",
     question:
       "Does an authorised command produce an observable, recorded equipment response?",
   },
@@ -73,8 +70,7 @@ export const solutions = [
     name: "AquaOS",
     category: "Operating software",
     title: "Keep the production work connected.",
-    description:
-      "An operating and control layer linking observations, decisions, bounded actions and history.",
+    description: "Link observations, decisions and operating history.",
     image: null,
     alt: "",
     concept: true,
@@ -87,7 +83,7 @@ export const solutions = [
       "Trial scope and physical integration where relevant",
     ],
     scope:
-      "Software foundations for observations, records, execution requests and history exist. Physical integration is in development; a complete biological control loop remains to be demonstrated.",
+      "Software foundations exist. Physical integration and the biological control loop need further demonstration.",
     question:
       "Can the team connect what was observed, what was decided and what changed?",
   },
@@ -213,23 +209,23 @@ export const resources = [
 
 export const partnershipFaq = [
   [
-    "Who can start a partnership conversation?",
-    "Pond growers, finishing operators, processors, buyers and cluster partners can bring a production setting or requirement. We begin by discussing the role, location, stock and question to understand fit.",
+    "Who can enquire?",
+    "Growers, finishing operators, buyers and partners. Bring your role, region, stock and question.",
   ],
   [
     "What will Crabionics supply?",
-    "The appropriate habitat, sensing, software or local equipment scope is defined for each trial. Equipment supply, installation, maintenance, stock handling and daily operating responsibilities are agreed together.",
+    "Scope is agreed for each setting: equipment, installation, maintenance, stock handling and operating responsibilities.",
   ],
   [
-    "What does a pilot cost and how long does it take?",
-    "Costs and timing depend on the setting, equipment, stock and measurements. These are agreed during scoping; the website does not offer a standard package or guaranteed start date.",
+    "Pilot costs and timing?",
+    "Agreed during scoping. There is no standard package or guaranteed start date.",
   ],
   [
     "Is AquaOS available for my pond?",
-    "We welcome grow-out beta interest to define useful software work and suitable trial settings. Trial scope and timing are discussed with interested teams. Local equipment control depends on integration in the relevant setting.",
+    "Early-access interest is welcome. Start with the sample walkthrough; trial access and equipment integration are discussed individually.",
   ],
   [
     "What production results have been demonstrated?",
-    "System integration, biological performance and commercial fit are separate validation questions. The current programme describes what is being developed and measured. Specific outcome claims require evidence from their own production settings.",
+    "Integration, biological performance and commercial fit need separate evidence. Proposed validation is not a demonstrated result.",
   ],
 ] as const;

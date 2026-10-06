@@ -10,6 +10,8 @@ const publicRoutes = [
   "/validation",
   "/company",
   "/aquaos",
+  "/demo",
+  "/early-access",
   "/investors",
   "/solutions",
   "/resources",

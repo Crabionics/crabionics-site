@@ -32,9 +32,7 @@ export default function InvestorsPage() {
         }
       >
         <p className={s.lead}>
-          An integrated approach to biology, habitat, sensing, local equipment
-          and operating software, developed around the people running
-          production.
+          Biology, infrastructure and operating tools built around producers.
         </p>
         <div className={s.actions}>
           <Button href="/contact#investors">
@@ -49,21 +47,18 @@ export default function InvestorsPage() {
         />
         <div className={s.detailGrid}>
           {[
-            [
-              "Production problem",
-              "Animal behaviour, habitat, water, handling and human decisions need to be understood together.",
-            ],
+            ["Production problem", "Biology, water, handling and decisions."],
             [
               "System approach",
-              "Individual habitats, CrabSense, operator-governed CrabPod response and AquaOS connect the physical and operating work.",
+              "Habitat, sensing, local equipment and software.",
             ],
             [
               "Immediate development",
-              "Integrated-prototype work, funded research and defined biological and operating learning.",
+              "Prototype integration and funded research.",
             ],
             [
               "Commercial questions",
-              "Producer and buyer requirements, adoption, responsibilities and who would support the integration layer.",
+              "Requirements, adoption and responsibilities.",
             ],
           ].map(([title, body]) => (
             <article className={s.detailBox} key={title}>

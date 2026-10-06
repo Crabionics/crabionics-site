@@ -36,6 +36,24 @@ export default function PrivacyPage() {
       </section>
       <Section tone="mist">
         <article className="mx-auto max-w-5xl space-y-10 rounded-2xl bg-white p-8 lg:p-12">
+          <section>
+            <h2>Early access and the website assistant</h2>
+            <p>
+              Early-access interest includes your name, email, role, region,
+              selected interest and optional production context. Direct
+              registration, when enabled, uses private storage and email
+              verification. Pending verification details expire after seven
+              days; confirmed records expire after one year unless you ask for
+              removal sooner. Optional progress updates have a separate choice.
+              You may request an update or removal at info@crabionics.com.
+            </p>
+            <p>
+              In preview email mode, the website prepares a message but does not
+              submit or store your registration. The FAQ assistant answers
+              locally from approved content; questions are not sent to an AI
+              provider or stored by Crabionics.
+            </p>
+          </section>
           {[
             [
               "1. Information We Collect",

@@ -1,5 +1,6 @@
 import { enquiryMessage, parseEnquiry, topics } from "../../lib/enquiry";
 import { deliveryConfigured } from "../../lib/enquiry-delivery";
+import { digest, limited, sendMail } from "../../lib/registration-service";
 export const runtime = "nodejs";
 const recent = new Map<string, { count: number; until: number }>();
 export async function POST(request: Request) {
@@ -31,6 +32,26 @@ export async function POST(request: Request) {
       503,
     );
   const now = Date.now();
+  if (
+    process.env.UPSTASH_REDIS_REST_URL &&
+    process.env.UPSTASH_REDIS_REST_TOKEN
+  ) {
+    try {
+      if (await limited(request))
+        return respond(
+          { error: "Please wait a few minutes before trying again." },
+          429,
+        );
+    } catch {
+      return respond(
+        {
+          error:
+            "Delivery is temporarily unavailable. Please use the email option.",
+        },
+        503,
+      );
+    }
+  }
   for (const [key, value] of recent) if (value.until < now) recent.delete(key);
   const ip =
     request.headers.get("x-vercel-forwarded-for") ||
@@ -88,7 +109,19 @@ export async function POST(request: Request) {
         },
         502,
       );
-    return respond({ sent: true }, 200);
+    let acknowledgement = false;
+    try {
+      await sendMail(
+        data.email,
+        "We received your Crabionics enquiry",
+        `Hello ${data.name},\n\nThank you for sharing your production setting with Crabionics. We received your enquiry about ${topics[data.topic]}. The team will review it and reply to discuss fit and next steps. Trial scope, cost and timing are agreed individually.\n\nYou can reply to this email to add context.\n\nCrabionics team`,
+        `enquiry-ack-${digest(receipt.id)}`,
+      );
+      acknowledgement = true;
+    } catch {
+      /* Team delivery succeeded; acknowledgement failure must not cause duplicate enquiries. */
+    }
+    return respond({ sent: true, acknowledgement }, 200);
   } catch {
     return respond(
       {

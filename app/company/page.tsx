@@ -48,15 +48,11 @@ export default function CompanyPage() {
           </div>
           <div>
             <p>
-              The predecessor Ninjacrab work began in 2021. The founding team
-              took on installation, water logistics and daily care, learning
-              through successive recirculating aquaculture configurations.
+              Ninjacrab, our predecessor, began in 2021 with installation, water
+              logistics and daily care.
             </p>
             <p>
-              Operating records grew from notebooks into digital tools, forming
-              the starting point for AquaOS. The production environment remains
-              the foundation for how habitat, observations and operating
-              decisions are connected.
+              Notebooks grew into digital records—the starting point for AquaOS.
             </p>
             <TextLink href="/system">Explore the connected system</TextLink>
           </div>
@@ -104,10 +100,7 @@ export default function CompanyPage() {
         <Heading
           eyebrow="Institutional relationships"
           title="Our incubation and research context."
-        >
-          These relationships support different parts of the company’s
-          development.
-        </Heading>
+        />
         <div className={s.three}>
           {[
             ["KIIT-TBI", "Technology incubation", "/logos/kiit-tbi.png"],
@@ -138,15 +131,12 @@ export default function CompanyPage() {
           </div>
           <div>
             <p>
-              The current focus is system integration and defined production
-              validation. Scientific validation capability is being established
-              alongside that work.
+              Current focus: system integration and defined production
+              validation.
             </p>
             <p>
-              The longer-term direction connects hatchery and nursery, pond
-              grow-out, aggregation and grading, controlled finishing and market
-              requirements. CIN is the direction for learning from reliable
-              histories across sites.
+              Longer-term direction: connect production stages and learn from
+              reliable histories across sites.
             </p>
             <TextLink href="/validation">
               See the development programme

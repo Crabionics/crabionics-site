@@ -83,12 +83,28 @@ test("provider success, rejection and missing receipt are handled without sendin
     global.fetch = async (url, init) => {
       assert.equal(url, "https://api.resend.com/emails");
       const body = JSON.parse(init.body);
-      assert.deepEqual(body.to, ["info@crabionics.com"]);
-      assert.equal(body.reply_to, sample.email);
-      assert.match(body.text, /pond records/);
+      if (body.to[0] === "info@crabionics.com") {
+        assert.equal(body.reply_to, sample.email);
+        assert.match(body.text, /pond records/);
+      } else {
+        assert.deepEqual(body.to, [sample.email]);
+        assert.equal(body.reply_to, "info@crabionics.com");
+        assert.match(body.text, /received your enquiry/);
+      }
       return Response.json({ id: "test-message-id" });
     };
-    assert.deepEqual(await (await POST(request())).json(), { sent: true });
+    assert.deepEqual(await (await POST(request())).json(), {
+      sent: true,
+      acknowledgement: true,
+    });
+    global.fetch = async (url, init) =>
+      JSON.parse(init.body).to[0] === "info@crabionics.com"
+        ? Response.json({ id: "team-receipt" })
+        : Response.json({ error: "ack rejected" }, { status: 422 });
+    assert.deepEqual(await (await POST(request())).json(), {
+      sent: true,
+      acknowledgement: false,
+    });
     global.fetch = async () =>
       Response.json({ error: "rejected" }, { status: 422 });
     assert.equal((await POST(request())).status, 502);

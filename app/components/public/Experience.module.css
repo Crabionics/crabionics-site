@@ -370,6 +370,9 @@
   color: var(--teal);
   margin-bottom: 25px;
 }
+.dark .cardIcon {
+  color: #a8e8d8;
+}
 .cardIcon svg {
   width: 100%;
   height: 100%;

@@ -1,0 +1,475 @@
+.diagram {
+  margin: 0;
+  border: 1px solid #cfe3df;
+  background: #f4faf8;
+  border-radius: 22px;
+  padding: 30px;
+  color: #123a42;
+}
+.diagramTitle {
+  font-size: 24px;
+  margin-bottom: 28px;
+  font-weight: 600;
+}
+.diagramNodes {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+.diagramNodes a {
+  position: relative;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+  gap: 10px;
+  padding: 24px 12px;
+  border-radius: 14px;
+  background: white;
+  border: 1px solid #d7e5e3;
+  color: #123a42;
+}
+.diagramNodes a:not(:last-child)::after {
+  content: "→";
+  position: absolute;
+  right: -18px;
+  top: 40%;
+  color: #087c7b;
+}
+.diagramNodes span {
+  font-size: 13px;
+  color: #4c6469;
+}
+.returnLine {
+  border-bottom: 2px solid #78bfb0;
+  border-radius: 0 0 20px 20px;
+  text-align: center;
+  padding: 22px 0;
+  margin-bottom: 15px;
+  font-size: 14px;
+}
+.diagram > small {
+  display: block;
+  text-align: center;
+  font-size: 12px;
+  color: #4c6469;
+}
+.annotated {
+  margin: 0;
+}
+.photo {
+  position: relative;
+  aspect-ratio: 1.65;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #edf7f5;
+}
+.photo img {
+  object-fit: cover;
+}
+.photo > small {
+  position: absolute;
+  right: 15px;
+  bottom: 15px;
+  background: #123a42;
+  color: white;
+  padding: 8px;
+  font-size: 11px;
+}
+.pin {
+  position: absolute;
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #fff;
+  color: #123a42;
+  border: 3px solid #087c7b;
+  box-shadow: 0 0 0 5px #ffffff50;
+  font-weight: 700;
+}
+.pinOne {
+  left: 26%;
+  top: 40%;
+}
+.pinTwo {
+  left: 59%;
+  top: 62%;
+}
+.pinThree {
+  left: 81%;
+  top: 50%;
+}
+.legend {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  margin-top: 20px;
+}
+.legend > div {
+  display: flex;
+  gap: 10px;
+}
+.legend b {
+  color: #087c7b;
+}
+.legend strong,
+.legend small {
+  display: block;
+}
+.legend strong {
+  font-size: 14px;
+}
+.legend small {
+  font-size: 12px;
+  color: #4c6469;
+  margin-top: 5px;
+}
+.facts {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.facts > div {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 24px;
+  border: 1px solid #d7e5e3;
+  border-radius: 16px;
+  background: #fff;
+  color: #123a42;
+}
+.facts svg {
+  color: #087c7b;
+}
+.facts strong {
+  font-size: 18px;
+}
+.facts span {
+  font-size: 14px;
+  color: #4c6469;
+}
+.roadmap {
+  border-left: 2px solid #bad8d1;
+  padding-left: 25px;
+}
+.roadmap > div {
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+  padding: 20px 0;
+}
+.roadmap > div > span {
+  border-radius: 50%;
+  padding: 12px;
+  background: #123a42;
+  color: #fff;
+  font-size: 12px;
+}
+.roadmap strong {
+  font-size: 23px;
+  color: #123a42;
+}
+.roadmap p {
+  margin: 8px 0 !important;
+  font-size: 15px !important;
+}
+.roadmap small {
+  color: #087c7b;
+  font-size: 12px;
+}
+.demo {
+  border: 1px solid #d7e5e3;
+  border-radius: 24px;
+  background: #fff;
+  overflow: hidden;
+  box-shadow: 0 18px 45px #123a4210;
+}
+.demoHeader {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  padding: 22px;
+  background: #123a42;
+  color: white;
+}
+.demoHeader span {
+  font-size: 12px;
+  color: #afe7d8;
+}
+.demoSteps {
+  display: flex;
+  padding: 15px;
+  gap: 8px;
+  border-bottom: 1px solid #d7e5e3;
+}
+.demoSteps button {
+  flex: 1;
+  border: 1px solid #d7e5e3;
+  background: #f4faf8;
+  padding: 14px 8px;
+  border-radius: 8px;
+  color: #123a42;
+  cursor: pointer;
+  font-size: 13px;
+}
+.demoSteps button[aria-current="step"] {
+  background: #087c7b;
+  color: #fff;
+}
+.demoBody {
+  padding: 32px;
+  min-height: 320px;
+}
+.demoBody h3 {
+  font-size: 28px !important;
+}
+.sample {
+  display: inline-block;
+  padding: 6px 10px;
+  background: #edf7f5;
+  color: #087c7b;
+  font-size: 12px;
+  border-radius: 6px;
+  margin-bottom: 15px;
+}
+.demoRecord {
+  background: #f4faf8;
+  border-left: 3px solid #087c7b;
+  padding: 20px;
+  margin: 20px 0;
+  display: grid;
+  gap: 10px;
+}
+.demoRecord span {
+  font-size: 14px;
+  color: #4c6469;
+}
+.demoFoot {
+  padding: 20px 30px;
+  border-top: 1px solid #d7e5e3;
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.demoFoot small {
+  color: #4c6469;
+  font-size: 12px;
+  flex: 1;
+}
+.demoFoot button {
+  background: #b94329;
+  color: #fff;
+  border: 0;
+  border-radius: 7px;
+  padding: 14px 20px;
+  cursor: pointer;
+}
+.demoFoot button:disabled {
+  background: #cbd5d4;
+}
+.chatLauncher {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 90;
+  border: 1px solid #b8d9d1;
+  border-radius: 40px;
+  padding: 15px 20px;
+  background: #123a42;
+  color: white;
+  box-shadow: 0 5px 20px #123a4225;
+  cursor: pointer;
+  font: 600 14px Arial;
+}
+.chat {
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  z-index: 90;
+  width: 380px;
+  max-width: calc(100vw - 24px);
+  max-height: min(620px, calc(100dvh - 110px));
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  color: #123a42;
+  border: 1px solid #bad8d1;
+  border-radius: 20px;
+  box-shadow: 0 15px 60px #123a4230;
+  overflow: hidden;
+  font: 14px Arial;
+}
+.chatTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #123a42;
+  color: white;
+  padding: 18px;
+}
+.chatTop button {
+  background: none;
+  border: 0;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+}
+.chatBody {
+  overflow: auto;
+  padding: 18px;
+}
+.chatBody p {
+  font-size: 14px !important;
+  line-height: 1.6 !important;
+  color: #4c6469 !important;
+}
+.suggestions {
+  display: grid;
+  gap: 8px;
+  margin: 15px 0;
+}
+.suggestions button {
+  padding: 12px;
+  text-align: left;
+  border: 1px solid #d7e5e3;
+  border-radius: 9px;
+  background: #f4faf8;
+  color: #123a42;
+  cursor: pointer;
+}
+.chatAnswer {
+  margin: 18px 0;
+  background: #edf7f5;
+  padding: 15px;
+  border-radius: 12px;
+}
+.chatAnswer a {
+  display: inline-block;
+  margin: 6px 12px 0 0;
+  color: #087c7b;
+  font-weight: 600;
+}
+.chatForm {
+  display: flex;
+  gap: 8px;
+  padding: 14px;
+  border-top: 1px solid #d7e5e3;
+}
+.chatForm input {
+  min-width: 0;
+  flex: 1;
+  border: 1px solid #bad8d1;
+  border-radius: 8px;
+  padding: 12px;
+  color: #123a42;
+  background: #fff;
+}
+.chatForm button {
+  border: 0;
+  background: #087c7b;
+  color: white;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.chat :is(button, a, input):focus-visible,
+.demo button:focus-visible,
+.diagram a:focus-visible {
+  outline: 3px solid #b94329;
+  outline-offset: 3px;
+}
+.consent {
+  display: flex;
+  gap: 12px;
+  font-size: 14px;
+  line-height: 1.6;
+  align-items: flex-start;
+  margin: 18px 0;
+  color: #4c6469;
+}
+.consent input {
+  margin-top: 4px;
+  flex-shrink: 0;
+}
+.notice {
+  border: 1px solid #cce2dc;
+  background: #edf7f5;
+  padding: 18px;
+  border-radius: 12px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #123a42;
+  margin: 20px 0;
+}
+.states {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+.states > div {
+  padding: 28px;
+  background: #fff;
+  border: 1px solid #d7e5e3;
+  border-radius: 16px;
+}
+.states small {
+  display: inline-block;
+  color: #087c7b;
+  border-bottom: 2px solid #87cbbb;
+  padding-bottom: 8px;
+  margin-bottom: 20px;
+}
+.states strong {
+  display: block;
+  font-size: 22px;
+  color: #123a42;
+}
+.states p {
+  font-size: 15px !important;
+  margin: 12px 0 0 !important;
+}
+@media (max-width: 767px) {
+  .diagram {
+    padding: 20px;
+  }
+  .diagramNodes {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+  .diagramNodes a::after {
+    display: none;
+  }
+  .facts {
+    grid-template-columns: 1fr;
+  }
+  .legend {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .demoBody {
+    padding: 24px 18px;
+  }
+  .demoSteps {
+    gap: 5px;
+    padding: 10px;
+  }
+  .demoSteps button {
+    font-size: 11px;
+  }
+  .chatLauncher {
+    bottom: 14px;
+    right: 12px;
+    padding: 12px 16px;
+  }
+  .chat {
+    right: 12px;
+    bottom: 68px;
+  }
+  .states {
+    grid-template-columns: 1fr;
+  }
+}

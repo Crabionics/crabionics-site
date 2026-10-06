@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "test:enquiry": "tsc app/lib/enquiry.ts app/api/enquiry/route.ts --rootDir app --outDir .verification --target ES2022 --module commonjs --skipLibCheck && node --test tests/enquiry.test.cjs"
+    "test:enquiry": "tsc app/lib/enquiry.ts app/api/enquiry/route.ts --rootDir app --outDir .verification --target ES2022 --module commonjs --skipLibCheck && node --test tests/enquiry.test.cjs",
+    "test:public": "tsc app/lib/enquiry.ts app/lib/faq-assistant.ts app/api/enquiry/route.ts app/api/early-access/route.ts app/api/early-access/export/route.ts --rootDir app --outDir .verification --target ES2022 --module commonjs --skipLibCheck && node --test tests/*.test.cjs"
   },
   "dependencies": {
     "@clerk/nextjs": "^7.6.5",

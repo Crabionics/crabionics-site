@@ -9,6 +9,7 @@ import {
   styles as s,
 } from "../../components/public/Experience";
 import { resources } from "../../components/public/site-content";
+import { BetaDirection } from "../../components/public/Visuals";
 export function generateStaticParams() {
   return resources.map(({ slug }) => ({ slug }));
 }
@@ -70,6 +71,7 @@ export default async function ResourcePage({
           </div>
         </article>
       </Section>
+      <BetaDirection />
       <CTA />
     </Page>
   );

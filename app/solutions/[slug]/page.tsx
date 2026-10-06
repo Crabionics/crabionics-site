@@ -14,6 +14,7 @@ import {
   styles as s,
 } from "../../components/public/Experience";
 import { solutions } from "../../components/public/site-content";
+import { ConnectedDiagram, Glyph } from "../../components/public/Visuals";
 export function generateStaticParams() {
   return solutions
     .filter((solution) => solution.slug !== "aquaos")
@@ -87,7 +88,9 @@ export default async function SolutionPage({
         <div className={s.three}>
           {solution.requirements.map((requirement, i) => (
             <article className={s.detailBox} key={requirement}>
-              <span className={s.number}>0{i + 1}</span>
+              <div className={s.cardIcon}>
+                <Glyph kind={["habitat", "decision", "record"][i]} />
+              </div>
               <h3>{requirement}</h3>
             </article>
           ))}
@@ -104,17 +107,9 @@ export default async function SolutionPage({
           <div>
             <Eyebrow>Part of Crabionics</Eyebrow>
             <h2>Connected to the whole system.</h2>
-            <p>
-              Habitat, observation, operating software and local equipment form
-              one relationship under operator oversight.
-            </p>
             <TextLink href="/system">Explore the connected system</TextLink>
           </div>
-          <ImagePanel
-            src="/images/versioned/company-world-medium.f49975f0.webp"
-            alt="Concept illustration of the wider mud-crab production setting."
-            caption="Concept illustration"
-          />
+          <ConnectedDiagram />
         </div>
       </Section>
       <CTA

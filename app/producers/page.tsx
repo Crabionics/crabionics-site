@@ -25,11 +25,11 @@ const roles = [
     id: "pond-production",
     tag: "Growers & operating teams",
     title: "Bring your pond and daily work.",
-    text: "Start with the growing environment, stock and operating routines. Species, seed source, stock condition and expected availability give a partnership its starting point.",
+    text: "Start with your pond, stock and daily routines.",
     items: [
-      "Your location, pond setting and operating role",
-      "Species, size, condition and available quantity",
-      "Daily care, handling and current records",
+      "Location & operating role",
+      "Species, condition & quantity",
+      "Daily routines & records",
     ],
     href: "/contact#production",
     label: "Discuss a pond partnership",
@@ -40,11 +40,11 @@ const roles = [
     id: "controlled-finishing",
     tag: "Finishing operators",
     title: "Define intake before the production unit.",
-    text: "Connect the receiving setting with pond supply, grading, handling and daily care. Equipment and water-management responsibilities are defined alongside the measurement plan.",
+    text: "Define stock intake, handling and water management together.",
     items: [
-      "Receiving site, equipment and water management",
-      "Intake condition, grading and stock handling",
-      "Operating roles, records and trial measurements",
+      "Site & water equipment",
+      "Intake, grading & handling",
+      "Roles & measurements",
     ],
     href: "/contact#production",
     label: "Discuss a finishing pilot",
@@ -55,11 +55,11 @@ const roles = [
     id: "buyer-requirements",
     tag: "Buyers, processors & cluster partners",
     title: "Work back from the market requirement.",
-    text: "Your specifications help shape the proposed production connection. Bring species, size, condition, quantity and required dates, together with handling and destination requirements.",
+    text: "Start with the species, condition, quantity and supply dates you need.",
     items: [
-      "Species, size, condition and expected quantity",
-      "Required dates, season and supply frequency",
-      "Handling, logistics and destination",
+      "Species, size & quantity",
+      "Dates & supply frequency",
+      "Handling & destination",
     ],
     href: "/contact#market",
     label: "Discuss market requirements",
@@ -96,8 +96,7 @@ export default function ProducersPage() {
         }
       >
         <p className={s.lead}>
-          Explore a pond partnership, a controlled-finishing trial or the
-          requirements that connect mud-crab production to market.
+          Choose your production setting and start the conversation.
         </p>
         <div className={s.actions}>
           <Button href="/contact#production">
@@ -138,22 +137,10 @@ export default function ProducersPage() {
         </Heading>
         <ol className={s.flow}>
           {[
-            [
-              "Start the conversation",
-              "Share your role, region, stock and production question.",
-            ],
-            [
-              "Understand fit",
-              "Review the setting, routines, equipment and useful measurements.",
-            ],
-            [
-              "Agree the trial",
-              "Define scope, responsibilities, costs and review points together.",
-            ],
-            [
-              "Measure & review",
-              "Keep a useful record and assess what would inform the next step.",
-            ],
+            ["Start the conversation", "Role, region & stock"],
+            ["Understand fit", "Setting & useful measurements"],
+            ["Agree the trial", "Scope, roles & costs"],
+            ["Measure & review", "Records & next step"],
           ].map(([title, body], i) => (
             <li key={title}>
               <small>0{i + 1}</small>
@@ -171,10 +158,8 @@ export default function ProducersPage() {
         <Flow production />
         <div className={s.note}>
           <p>
-            Aggregation and grading would connect pond harvests to suitable
-            finishing intake. Biological performance, transfer condition,
-            operating costs and partner demand need to be examined alongside one
-            another.
+            Proposed connection: validate intake, transfer condition, biology
+            and operating costs.
           </p>
         </div>
       </Section>

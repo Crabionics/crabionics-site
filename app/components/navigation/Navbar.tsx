@@ -103,6 +103,8 @@ export default function Navbar() {
         <div className={s.secondary}>
           {[
             ["AquaOS", "/aquaos"],
+            ["Try the walkthrough", "/demo"],
+            ["Early access", "/early-access"],
             ["How it connects", "/system"],
             ["Investors", "/investors"],
           ].map(([label, href]) => (

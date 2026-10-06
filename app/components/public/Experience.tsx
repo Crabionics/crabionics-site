@@ -205,19 +205,19 @@ export function RoleCards() {
         [
           "pond",
           "Pond growers",
-          "Start with the pond, daily routines and stock. Explore production learning and AquaOS grow-out beta interest.",
+          "Pond, stock & daily records.",
           "/producers#pond-production",
         ],
         [
           "finishing",
           "Finishing operators",
-          "Define intake, handling, the production unit and responsibilities for a controlled-finishing trial.",
+          "Intake, handling & daily care.",
           "/producers#controlled-finishing",
         ],
         [
           "habitat",
           "Buyers & cluster partners",
-          "Bring species, condition, quantity and supply timing. Work back from the market requirement.",
+          "Specifications, quantity & supply dates.",
           "/producers#buyer-requirements",
         ],
       ].map(([icon, title, description, href]) => (
@@ -238,16 +238,16 @@ export function RoleCards() {
 export function Flow({ production = false }: { production?: boolean }) {
   const steps = production
     ? [
-        ["Hatchery & nursery", "Starting stock and early production context."],
-        ["Pond production", "Growing conditions, cohort and biomass."],
-        ["Controlled finishing", "Aggregation, grading, intake and handling."],
-        ["Market requirements", "Species, condition, quantity and timing."],
+        ["Hatchery & nursery", "Starting stock"],
+        ["Pond production", "Cohort & biomass"],
+        ["Controlled finishing", "Grade & handle"],
+        ["Market requirements", "Condition & timing"],
       ]
     : [
-        ["Observe", "Connect conditions to the pond, unit or cohort."],
-        ["Decide", "Operators govern decisions and defined rules."],
-        ["Respond", "Bounded commands connect to local equipment."],
-        ["Review", "Record the response and what changed."],
+        ["Observe", "Conditions in context"],
+        ["Decide", "Operator oversight"],
+        ["Respond", "Bounded local action"],
+        ["Review", "Response & history"],
       ];
   return (
     <ol
@@ -260,7 +260,11 @@ export function Flow({ production = false }: { production?: boolean }) {
     >
       {steps.map(([title, body], i) => (
         <li key={title}>
-          <small>0{i + 1}</small>
+          <div className={s.cardIcon}>
+            <Icon
+              name={(["habitat", "sense", "pod", "record"] as IconName[])[i]}
+            />
+          </div>
           <h3>{title}</h3>
           <p>{body}</p>
         </li>
@@ -286,7 +290,7 @@ export function Faq({
 }
 export function CTA({
   title = "Let’s start with your production setting.",
-  children = "Bring your role, region and production question. We’ll discuss the next step together.",
+  children = "Bring your role, region and production question.",
   href = "/contact#production",
   label = "Discuss a partnership",
 }: {
@@ -317,7 +321,6 @@ export function ResourceCards() {
               {resource.category} · {resource.reading}
             </div>
             <h3>{resource.title}</h3>
-            <p>{resource.description}</p>
             <TextLink href={`/resources/${resource.slug}`}>
               Read the guide
             </TextLink>
@@ -344,30 +347,10 @@ export function AquaPreview() {
       </div>
       <div className={s.dashRows}>
         {[
-          [
-            "01",
-            "Observation recorded",
-            "Pond A · daily operating context",
-            "Observe",
-          ],
-          [
-            "02",
-            "Operator reviews the setting",
-            "Conditions, stock and recent handling",
-            "Decide",
-          ],
-          [
-            "03",
-            "Defined action requested",
-            "Local equipment integration required",
-            "Respond",
-          ],
-          [
-            "04",
-            "Response linked to the record",
-            "Review acknowledgement and next observation",
-            "Review",
-          ],
+          ["01", "Observation recorded", "Pond A · sample context", "Observe"],
+          ["02", "Operator review", "Conditions & recent work", "Decide"],
+          ["03", "Action requested", "Integration required", "Respond"],
+          ["04", "Response recorded", "Acknowledgement & follow-up", "Review"],
         ].map(([n, title, detail, tag]) => (
           <div key={n} className={s.dashRow}>
             <span className={s.dashMarker}>{n}</span>
@@ -382,8 +365,7 @@ export function AquaPreview() {
       <figcaption className={s.dashFooter}>
         Illustrative workflow · sample information
         <br />
-        Physical integration is in development. Biological outcomes require
-        their own measurements.
+        Integration in development · biological outcomes measured separately.
       </figcaption>
     </figure>
   );
