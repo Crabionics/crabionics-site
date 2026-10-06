@@ -1,86 +1,191 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import styles from "../components/public/Participation.module.css";
-
+import {
+  Button,
+  CTA,
+  Eyebrow,
+  Faq,
+  Flow,
+  Heading,
+  ImagePanel,
+  Intro,
+  Page,
+  Section,
+  TextLink,
+  styles as s,
+} from "../components/public/Experience";
+import { partnershipFaq } from "../components/public/site-content";
 export const metadata: Metadata = {
-  title: "For Producers",
-  description: "Explore a pond partnership, controlled-finishing pilot or the requirements that connect mud-crab production to market.",
+  title: "For Producers & Operating Partners",
+  description:
+    "Explore mud-crab pond partnerships, controlled-finishing trials and buyer requirements. Understand pilot scope, responsibilities and how to enquire.",
   alternates: { canonical: "/producers" },
 };
-
 const roles = [
-  { id: "pond-production", name: "Pond production", title: "Begin with the growing environment.", body: "Growers contribute the pond, daily care and knowledge of the stock. Species, seed source, size, harvest condition, expected quantity and availability season give a partnership its starting point. Sensing and software work need to fit those routines.", href: "/contact#production", label: "Discuss a pond partnership", detail: "Grow-out / farmer partner" },
-  { id: "controlled-finishing", name: "Controlled finishing", title: "Define the intake and the production unit.", body: "Finishing operators contribute the receiving setting, handling and daily production work. Intake condition, grading, equipment responsibilities, water management and operating records need to be defined together with the pond partner.", href: "/contact#production", label: "Discuss a finishing pilot", detail: "Finishing operator" },
-  { id: "buyer-requirements", name: "Buyer requirements", title: "Work back from the requirement.", body: "Processors, buyers and cluster operators contribute the specification: species, size, condition, quantity, required dates, handling and destination. These requirements help shape the trials and proposed production connection.", href: "/contact#market", label: "Discuss market requirements", detail: "Processor / buyer / cluster operator" },
+  {
+    id: "pond-production",
+    tag: "Growers & operating teams",
+    title: "Bring your pond and daily work.",
+    text: "Start with the growing environment, stock and operating routines. Species, seed source, stock condition and expected availability give a partnership its starting point.",
+    items: [
+      "Your location, pond setting and operating role",
+      "Species, size, condition and available quantity",
+      "Daily care, handling and current records",
+    ],
+    href: "/contact#production",
+    label: "Discuss a pond partnership",
+    image: "/photos/isolation-box.jpg",
+    alt: "Mud crab in an individual habitat.",
+  },
+  {
+    id: "controlled-finishing",
+    tag: "Finishing operators",
+    title: "Define intake before the production unit.",
+    text: "Connect the receiving setting with pond supply, grading, handling and daily care. Equipment and water-management responsibilities are defined alongside the measurement plan.",
+    items: [
+      "Receiving site, equipment and water management",
+      "Intake condition, grading and stock handling",
+      "Operating roles, records and trial measurements",
+    ],
+    href: "/contact#production",
+    label: "Discuss a finishing pilot",
+    image: "/photos/ras-plumbing.jpg",
+    alt: "Individual blue production racks and water equipment.",
+  },
+  {
+    id: "buyer-requirements",
+    tag: "Buyers, processors & cluster partners",
+    title: "Work back from the market requirement.",
+    text: "Your specifications help shape the proposed production connection. Bring species, size, condition, quantity and required dates, together with handling and destination requirements.",
+    items: [
+      "Species, size, condition and expected quantity",
+      "Required dates, season and supply frequency",
+      "Handling, logistics and destination",
+    ],
+    href: "/contact#market",
+    label: "Discuss market requirements",
+    image: "/images/versioned/company-world-medium.f49975f0.webp",
+    alt: "Concept illustration of connected production infrastructure.",
+  },
 ];
-
 export default function ProducersPage() {
   return (
-    <div data-page="producers" className={styles.page}>
-      <section className={`${styles.section} ${styles.pale} ${styles.producerOpening}`}>
-        <div className={styles.container}>
-          <p className={styles.eyebrow}>For mud-crab producers</p>
-          <div className={styles.openingGrid}>
-            <div>
-              <h1 className={styles.title}>Start with your production setting.</h1>
-              <p className={styles.lead}>Explore a pond partnership, controlled-finishing pilot or the requirements that connect production to market.</p>
-              <div className={styles.actions}>
-                <Link className={styles.action} href="/contact#production">Discuss a pond partnership <span aria-hidden="true">↗</span></Link>
-                <Link className={styles.textLink} href="/aquaos#grow-out-beta">AquaOS grow-out beta interest <span aria-hidden="true">→</span></Link>
-              </div>
-            </div>
-            <div className={styles.settingIndex} aria-label="Three production roles">
-              <p className={styles.indexHeading}>Your role in the work</p>
-              <a href="#pond-production"><span>Pond</span><small>Growing conditions · routines · biomass</small><b aria-hidden="true">↘</b></a>
-              <a href="#controlled-finishing"><span>Finishing</span><small>Intake · habitat · operating context</small><b aria-hidden="true">↘</b></a>
-              <a href="#buyer-requirements"><span>Market</span><small>Condition · timing · requirements</small><b aria-hidden="true">↘</b></a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className={styles.section}>
-        <div className={styles.container}>
-          <div className={styles.sectionIntro}><p className={styles.eyebrow}>Production contexts</p><h2 className={styles.heading}>Different settings.<br />Specific responsibilities.</h2></div>
-          <div className={styles.roleList}>
-            {roles.map((role, index) => (
-              <article className={styles.roleRow} id={role.id} key={role.name}>
-                <div className={styles.roleLabel}><span className={styles.number}>{String(index + 1).padStart(2, "0")}</span><h3>{role.name}</h3><p>{role.detail}</p></div>
-                <div className={styles.roleBody}><h3>{role.title}</h3><p>{role.body}</p><Link className={styles.textLink} href={role.href}>{role.label} <span aria-hidden="true">→</span></Link></div>
-              </article>
+    <Page name="producers">
+      <Intro
+        eyebrow="For producers & operating partners"
+        title="Your setting. Our next conversation."
+        aside={
+          <ImagePanel
+            src="/photos/ras-plumbing.jpg"
+            alt="Aquaculture production racks and water equipment."
+            priority
+          />
+        }
+        links={
+          <>
+            {[
+              ["Pond growers", "pond-production"],
+              ["Finishing operators", "controlled-finishing"],
+              ["Buyer & cluster partners", "buyer-requirements"],
+              ["Pilot process", "pilot-process"],
+            ].map(([name, id]) => (
+              <a href={`#${id}`} key={id}>
+                {name}
+              </a>
             ))}
+          </>
+        }
+      >
+        <p className={s.lead}>
+          Explore a pond partnership, a controlled-finishing trial or the
+          requirements that connect mud-crab production to market.
+        </p>
+        <div className={s.actions}>
+          <Button href="/contact#production">
+            Discuss a production partnership
+          </Button>
+          <TextLink href="/aquaos#grow-out-beta">AquaOS grow-out beta</TextLink>
+        </div>
+      </Intro>
+      {roles.map((role, i) => (
+        <Section id={role.id} tone={i % 2 ? "mist" : undefined} key={role.id}>
+          <div className={s.split}>
+            <div>
+              <Eyebrow>{role.tag}</Eyebrow>
+              <h2>{role.title}</h2>
+              <p>{role.text}</p>
+              <ul className={s.checklist}>
+                {role.items.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+              <Button href={role.href}>{role.label}</Button>
+            </div>
+            <ImagePanel
+              src={role.image}
+              alt={role.alt}
+              caption={i === 2 ? "Concept illustration" : undefined}
+            />
           </div>
+        </Section>
+      ))}
+      <Section tone="dark" id="pilot-process">
+        <Heading
+          eyebrow="What a pilot involves"
+          title="A defined question. A shared operating plan."
+        >
+          Equipment, costs, responsibilities and timing are agreed for each
+          setting.
+        </Heading>
+        <ol className={s.flow}>
+          {[
+            [
+              "Start the conversation",
+              "Share your role, region, stock and production question.",
+            ],
+            [
+              "Understand fit",
+              "Review the setting, routines, equipment and useful measurements.",
+            ],
+            [
+              "Agree the trial",
+              "Define scope, responsibilities, costs and review points together.",
+            ],
+            [
+              "Measure & review",
+              "Keep a useful record and assess what would inform the next step.",
+            ],
+          ].map(([title, body], i) => (
+            <li key={title}>
+              <small>0{i + 1}</small>
+              <h3>{title}</h3>
+              <p>{body}</p>
+            </li>
+          ))}
+        </ol>
+      </Section>
+      <Section tone="mist">
+        <Heading
+          eyebrow="Proposed production connection"
+          title="Connect the work between settings."
+        />
+        <Flow production />
+        <div className={s.note}>
+          <p>
+            Aggregation and grading would connect pond harvests to suitable
+            finishing intake. Biological performance, transfer condition,
+            operating costs and partner demand need to be examined alongside one
+            another.
+          </p>
         </div>
-      </section>
-
-      <section className={`${styles.section} ${styles.dark}`}>
-        <div className={`${styles.container} ${styles.editorialGrid}`}>
-          <div><p className={styles.eyebrow}>The daily work</p><h2 className={styles.heading}>Conditions, handling and the next decision.</h2></div>
-          <div className={styles.workList}>
-            <article><h3>Observe the setting.</h3><p>Connect environmental and operating observations to the pond, cohort or production unit they describe.</p></article>
-            <article><h3>Act with a defined responsibility.</h3><p>Identify who reviews an observation, who handles the stock and where a local intervention is appropriate.</p></article>
-            <article><h3>Keep the response in the record.</h3><p>AquaOS is being developed to connect conditions, operator decisions, actions and outcomes so the team can review what changed.</p></article>
-            <Link className={styles.textLink} href="/system">See how the system fits together <span aria-hidden="true">→</span></Link>
-          </div>
-        </div>
-      </section>
-
-      <section className={`${styles.section} ${styles.pale}`}>
-        <div className={styles.container}>
-          <div className={styles.sectionIntro}><p className={styles.eyebrow}>Proposed production connection</p><h2 className={styles.heading}>Connect the work<br />between settings.</h2><p className={styles.body}>The proposed model links farmer pond biomass with aggregation, grading and controlled finishing around downstream requirements. Transfer condition, size, available quantity and timing need to be examined alongside biological performance and operating costs.</p></div>
-          <ol className={styles.network} aria-label="Proposed production pathway">
-            {[ ["Hatchery / nursery", "Starting stock and its production context"], ["Farmer production", "Growing conditions and biomass"], ["Controlled finishing", "Intake, handling and operating records"], ["Market requirements", "Size, condition, cadence and destination"] ].map(([title, body]) => <li key={title}><h3>{title}</h3><p>{body}</p></li>)}
-          </ol>
-          <div className={styles.networkNote}><span>Production partners help define the connection.</span><p>Partners help define who grows, grades, transports and finishes the stock, and who specifies the required output. Responsibilities, costs and trial arrangements are agreed for each setting.</p></div>
-        </div>
-      </section>
-
-      <section className={styles.section}>
-        <div className={`${styles.container} ${styles.editorialGrid}`}>
-          <div><p className={styles.eyebrow}>Start a conversation</p><h2 className={styles.heading}>Bring a setting.<br />Define the question.</h2></div>
-          <div><p className={styles.body}>Tell us your operating role, region and species; size and condition of the stock; expected quantity and availability dates; handling and destination; and the production question you want to examine. We can discuss responsibilities, trial scope and useful measurements.</p><div className={styles.actions}><Link className={styles.action} href="/contact#production">Production partnership <span aria-hidden="true">↗</span></Link><Link className={styles.textLink} href="/contact#market">Buyer or cluster enquiry <span aria-hidden="true">→</span></Link></div></div>
-        </div>
-      </section>
-    </div>
+      </Section>
+      <Section>
+        <Heading
+          eyebrow="Before you enquire"
+          title="Practical partnership questions."
+        />
+        <Faq items={partnershipFaq} />
+      </Section>
+      <CTA />
+    </Page>
   );
 }

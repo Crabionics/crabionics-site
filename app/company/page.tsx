@@ -1,98 +1,164 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
-import styles from "@/app/components/public/CompanyPages.module.css";
-
+import {
+  Button,
+  CTA,
+  Eyebrow,
+  Heading,
+  ImagePanel,
+  Intro,
+  Page,
+  Section,
+  TextLink,
+  styles as s,
+} from "../components/public/Experience";
 export const metadata: Metadata = {
-  title: "Company",
-  description: "The field experience, people, physical production work and research relationships behind Crabionics.",
+  title: "People & Company",
+  description:
+    "The field experience, people, production infrastructure and research context behind Crabionics Aquaculture.",
   alternates: { canonical: "/company" },
 };
-
-const people = [
-  { name: "Sameer Kumar Dalai", role: "Founder / Company Lead", photo: "/team/sameer-kumar-dalai.jpg", bio: "Field aquaculture, system design and company execution." },
-  { name: "M Abhishek", role: "Technology / AquaOS", photo: "/team/m-abhishek.jpg", bio: "Technology systems, software/firmware and the AquaOS system." },
-];
-
-const institutions = [
-  { name: "KIIT-TBI", caption: "Technology incubation", logo: "/logos/kiit-tbi.png" },
-  { name: "BIRAC / IHMS", caption: "Funded research relationship", logo: "/logos/birac-big.png" },
-  { name: "DPIIT Recognition", caption: "Startup recognition", logo: "/logos/dpiit-startup-india.png" },
-];
-
 export default function CompanyPage() {
-  return <div data-page="company" className={styles.page}>
-    <section className={`${styles.companyIntro} ${styles.pale}`}>
-      <div className={styles.wrap}>
-        <p className={styles.eyebrow}>Company</p>
-        <div className={styles.companyOpening}>
+  return (
+    <Page name="company">
+      <Intro
+        eyebrow="People & company"
+        title="Built from the production problem outward."
+        aside={
+          <ImagePanel
+            src="/photos/ras-plumbing.jpg"
+            alt="Individual habitats and water equipment in a production installation."
+            priority
+          />
+        }
+      >
+        <p className={s.lead}>
+          Crabionics brings biology, physical infrastructure, engineering and
+          operating software together around mud-crab aquaculture.
+        </p>
+        <div className={s.actions}>
+          <Button href="/producers">Work with Crabionics</Button>
+        </div>
+      </Intro>
+      <Section>
+        <div className={s.split}>
           <div>
-            <h1>Built from the production problem outward.</h1>
-            <p className={styles.lead}>Crabionics brings biology, physical production infrastructure, engineering and operating software together around mud-crab aquaculture.</p>
-            <Link className={styles.textLink} href="/system">Explore the production system <span aria-hidden="true">↗</span></Link>
+            <Eyebrow>Our starting point</Eyebrow>
+            <h2>Field work shapes the system.</h2>
           </div>
-          <figure className={styles.worldDetail}>
-            <Image src="/images/versioned/company-world.93a5d529.webp" alt="Concept illustration showing individual blue crab habitats, production racks, water equipment and a human operator." fill sizes="(max-width: 767px) 100vw, 45vw" className={styles.detailImage} />
-            <figcaption>Concept illustration</figcaption>
-          </figure>
+          <div>
+            <p>
+              The predecessor Ninjacrab work began in 2021. The founding team
+              took on installation, water logistics and daily care, learning
+              through successive recirculating aquaculture configurations.
+            </p>
+            <p>
+              Operating records grew from notebooks into digital tools, forming
+              the starting point for AquaOS. The production environment remains
+              the foundation for how habitat, observations and operating
+              decisions are connected.
+            </p>
+            <TextLink href="/system">Explore the connected system</TextLink>
+          </div>
         </div>
-        <div className={styles.companyCoordinates} aria-label="Company disciplines">
-          <span>Biology</span><span>Production infrastructure</span><span>Engineering</span><span>Operating software</span>
+      </Section>
+      <Section tone="mist">
+        <Heading
+          eyebrow="The people"
+          title="Field operations, engineering and software."
+        />
+        <div className={s.detailGrid}>
+          {[
+            [
+              "Sameer Kumar Dalai",
+              "Founder / Company Lead",
+              "Field aquaculture, system design and company execution.",
+              "/team/sameer-kumar-dalai.jpg",
+            ],
+            [
+              "M Abhishek",
+              "Technology / AquaOS",
+              "Technology systems, software/firmware and the AquaOS system.",
+              "/team/m-abhishek.jpg",
+            ],
+          ].map(([name, role, bio, photo]) => (
+            <article className={s.person} key={name}>
+              <div className={s.portrait}>
+                <Image
+                  src={photo}
+                  alt={name}
+                  fill
+                  sizes="(max-width: 767px) 110px, 180px"
+                />
+              </div>
+              <div>
+                <Eyebrow>{role}</Eyebrow>
+                <h3>{name}</h3>
+                <p>{bio}</p>
+              </div>
+            </article>
+          ))}
         </div>
-      </div>
-    </section>
-
-    <section className={styles.section}>
-      <div className={`${styles.wrap} ${styles.essay}`}>
-        <div><p className={styles.eyebrow}>Why Crabionics exists</p><h2>The production environment is the starting point.</h2></div>
-        <div className={styles.prose}>
-          <p>Mud-crab production brings together animal behaviour, habitat, water conditions, handling and operator decisions. These conditions need to be understood together.</p>
-          <p>Individual habitats, sensing, local intervention and AquaOS are being developed around that physical work. The people running production remain central to observation, decisions and care.</p>
-          <p>Crabionics connects the physical production environment, the biological problem and the operating decisions around them. The predecessor Ninjacrab work began in 2021. The founding team took on installation, water logistics and daily care, learning through successive recirculating aquaculture configurations. Operating records grew from notebooks into digital tools, forming the starting point for AquaOS.</p>
+      </Section>
+      <Section>
+        <Heading
+          eyebrow="Institutional relationships"
+          title="Our incubation and research context."
+        >
+          These relationships support different parts of the company’s
+          development.
+        </Heading>
+        <div className={s.three}>
+          {[
+            ["KIIT-TBI", "Technology incubation", "/logos/kiit-tbi.png"],
+            [
+              "BIRAC / IHMS",
+              "Funded research relationship",
+              "/logos/birac-big.png",
+            ],
+            [
+              "DPIIT Recognition",
+              "Startup recognition",
+              "/logos/dpiit-startup-india.png",
+            ],
+          ].map(([name, role, logo]) => (
+            <article className={s.institution} key={name}>
+              <Image src={logo} alt={name} width={140} height={66} />
+              <h3>{name}</h3>
+              <p>{role}</p>
+            </article>
+          ))}
         </div>
-      </div>
-    </section>
-
-    <section className={`${styles.section} ${styles.pale}`}>
-      <div className={styles.wrap}>
-        <div className={styles.sectionHeading}><div><p className={styles.eyebrow}>The people</p><h2>Field operations, engineering and software.</h2></div><p>The team combines company execution, field aquaculture, system design and software/firmware work around the production problem.</p></div>
-        <div className={styles.people}>
-          {people.map(({ name, role, photo, bio }) => <article className={styles.person} key={name}>
-            <div className={styles.portrait}><Image src={photo} alt={`${name}, ${role}`} fill sizes="(max-width: 767px) 100vw, 40vw" className={styles.portraitImage} /></div>
-            <div className={styles.personCopy}><p className={styles.eyebrow}>{role}</p><h3>{name}</h3><p>{bio}</p></div>
-          </article>)}
+      </Section>
+      <Section tone="dark">
+        <div className={s.split}>
+          <div>
+            <Eyebrow>Company → System → Network</Eyebrow>
+            <h2>Extend what can be repeated.</h2>
+          </div>
+          <div>
+            <p>
+              The current focus is system integration and defined production
+              validation. Scientific validation capability is being established
+              alongside that work.
+            </p>
+            <p>
+              The longer-term direction connects hatchery and nursery, pond
+              grow-out, aggregation and grading, controlled finishing and market
+              requirements. CIN is the direction for learning from reliable
+              histories across sites.
+            </p>
+            <TextLink href="/validation">
+              See the development programme
+            </TextLink>
+          </div>
         </div>
-      </div>
-    </section>
-
-    <section className={`${styles.section} ${styles.dark}`}>
-      <div className={`${styles.wrap} ${styles.essay}`}>
-        <div><p className={styles.eyebrow}>Development programme</p><h2>Bring the system together. Learn in production.</h2></div>
-        <div className={styles.prose}>
-          <p>The current focus is system integration and defined production validation. Scientific validation capability is being established alongside that work.</p>
-          <p>Funded research, pond biological learning and the proposed controlled-finishing pilot examine different parts of the production problem. Biological outcomes, operating repeatability and commercial fit are measured in their own settings.</p>
-          <div className={styles.actions}><Link href="/validation" className={styles.button}>See the validation programme <span aria-hidden="true">↗</span></Link><Link href="/investors" className={styles.textLink}>Investor context <span aria-hidden="true">↗</span></Link></div>
-        </div>
-      </div>
-    </section>
-
-    <section className={styles.section}>
-      <div className={styles.wrap}>
-        <div className={styles.sectionHeading}><div><p className={styles.eyebrow}>Institutional relationships</p><h2>Support for the build and research context.</h2></div><p>These relationships form part of Crabionics’ current incubation, recognition and funded research context.</p></div>
-        <div className={styles.institutions}>{institutions.map(({ name, caption, logo }) => <div key={name} className={styles.institution}>
-          <div className={styles.logo}><Image src={logo} alt={name} fill sizes="(max-width: 767px) 200px, 260px" className={styles.logoImage} /></div>
-          <h3>{name}</h3><p>{caption}</p>
-        </div>)}</div>
-      </div>
-    </section>
-
-    <section className={`${styles.section} ${styles.pale}`}>
-      <div className={`${styles.wrap} ${styles.essay}`}>
-        <div><p className={styles.eyebrow}>Longer-term direction / CIN</p><h2>Extend what can be repeated.</h2></div>
-        <div className={styles.prose}><p>The wider vision connects hatchery and nursery development, farmer pond grow-out, aggregation and grading, controlled finishing and processor or buyer requirements. CIN is the longer-term direction for learning from reliable production histories across sites.</p><p>That development depends on repeatable production units, reliable biomass supply and demonstrated partner demand.</p><Link className={styles.textLink} href="/producers">Explore the proposed production connection <span aria-hidden="true">↗</span></Link></div>
-      </div>
-    </section>
-
-    <section className={`${styles.section} ${styles.dark} ${styles.closing}`}><div className={`${styles.wrap} ${styles.essay}`}><div><p className={styles.eyebrow}>Work with Crabionics</p><h2>Start with the question you want to explore.</h2></div><div><p>Discuss a research partnership, institutional collaboration or a current company conversation.</p><div className={styles.actions}><Link className={styles.button} href="/contact#research">Research partnership <span aria-hidden="true">↗</span></Link><Link className={styles.textLink} href="/contact#institutions">Government or institutional collaboration <span aria-hidden="true">↗</span></Link></div></div></div></section>
-  </div>;
+      </Section>
+      <CTA
+        href="/contact#institutions"
+        title="Build the next conversation together."
+        label="Discuss a collaboration"
+      />
+    </Page>
+  );
 }

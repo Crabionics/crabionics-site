@@ -1,45 +1,73 @@
 import type { Metadata } from "next";
-import styles from "../components/public/Participation.module.css";
-
+import {
+  Eyebrow,
+  Intro,
+  Page,
+  Section,
+  styles as s,
+} from "../components/public/Experience";
+import EnquiryForm from "../components/public/EnquiryForm";
+import { topics } from "../lib/enquiry";
+import { deliveryConfigured } from "../lib/enquiry-delivery";
 export const metadata: Metadata = {
-  title: "Talk to us",
-  description: "Talk to Crabionics about pond and finishing partnerships, AquaOS grow-out beta interest, research, institutional collaboration or investment.",
+  title: "Discuss a Partnership",
+  description:
+    "Start a production, technical, research or AquaOS conversation with Crabionics. Prepare an enquiry with your operating role, region and production question.",
   alternates: { canonical: "/contact" },
 };
-
-const conversations = [
-  { id: "production", label: "Production", title: "Discuss a pond or finishing partnership", description: "Your role and location, species, stock size and condition, expected quantity and availability dates or season, and the production question you want to examine.", subject: "Pond / finishing partnership enquiry" },
-  { id: "market", label: "Market", title: "Discuss buyer or cluster requirements", description: "Species, size, condition, quantity, required dates or season, supply frequency, handling and destination for a buyer, processor or cluster conversation.", subject: "Buyer / cluster requirements enquiry" },
-  { id: "technical", label: "Technical", title: "Discuss the technical scope", description: "Request a technical brief or discuss how the production setting, sensing, local equipment and operating control fit together.", subject: "Technical brief enquiry" },
-  { id: "research", label: "Research", title: "Explore a research partnership", description: "Your institution and research question, from seed and biological outcomes to system integration and production learning.", subject: "Research partnership enquiry" },
-  { id: "aquaos-beta", label: "AquaOS", title: "Register grow-out beta interest", description: "Your pond, team, observations, stock and handling routines, and current records. We can discuss the grow-out software work, trial scope and timing.", subject: "AquaOS grow-out beta interest" },
-  { id: "institutions", label: "Institutions", title: "Discuss a government or institutional collaboration", description: "Your organisation, programme and region, and the production or fisheries question you are working on.", subject: "Government / institutional collaboration" },
-  { id: "investors", label: "Investors", title: "Discuss the company and investment", description: "Your organisation and interest in the integrated prototype, production-validation programme and wider Crabionics direction.", subject: "Investment enquiry" },
-];
-
 export default function ContactPage() {
   return (
-    <div data-page="contact" className={styles.page}>
-      <section className={`${styles.section} ${styles.pale} ${styles.contactOpening}`}>
-        <div className={`${styles.container} ${styles.contactIntro}`}>
-          <div><p className={styles.eyebrow}>Talk to Crabionics</p><h1 className={styles.title}>Talk to the team.</h1><p className={styles.lead}>Bring a production setting, a software question, a research or institutional opportunity, or an interest in the company.</p></div>
-          <div className={styles.directContact}><p className={styles.eyebrow}>A direct conversation</p><a href="mailto:info@crabionics.com">info@crabionics.com <span aria-hidden="true">↗</span></a><p>Choose a subject below, or write to us directly.</p></div>
-        </div>
-      </section>
-
-      <section className={styles.section}>
-        <div className={`${styles.container} ${styles.contactBody}`}>
-          <div className={styles.contactGuide}><p className={styles.eyebrow}>Choose a conversation</p><h2 className={styles.smallHeading}>Start with <br />what matters to you.</h2><p>Each link opens an email with the subject prepared. Include your name, organisation, role and operating region.</p><a className={styles.textLink} href="mailto:info@crabionics.com">Email the team <span aria-hidden="true">→</span></a></div>
-          <div className={styles.conversationList}>
-            {conversations.map((conversation, index) => (
-              <article className={styles.conversation} id={conversation.id} key={conversation.id}>
-                <span className={styles.conversationNumber} aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
-                <div><p className={styles.eyebrow}>{conversation.label}</p><h3><a href={`mailto:info@crabionics.com?subject=${encodeURIComponent(conversation.subject)}`}>{conversation.title}<span aria-hidden="true">↗</span></a></h3><p className={styles.conversationDescription}>{conversation.description}</p></div>
-              </article>
+    <Page name="contact">
+      <Intro
+        eyebrow="Talk to Crabionics"
+        title="Let’s start with your setting."
+      >
+        <p className={s.lead}>
+          Tell us about your work and the question you want to explore. Choose a
+          conversation below and prepare your enquiry.
+        </p>
+      </Intro>
+      <Section>
+        <div className={s.split} style={{ alignItems: "start" }}>
+          <div>
+            <Eyebrow>Choose a conversation</Eyebrow>
+            <h2>Bring the question that matters to you.</h2>
+            <nav aria-label="Enquiry topics" className={s.checklist}>
+              {Object.entries(topics).map(([id, label]) => (
+                <a key={id} href={`#${id}`} className={s.textLink}>
+                  {label} <span aria-hidden="true">→</span>
+                </a>
+              ))}
+            </nav>
+            <div className={s.note}>
+              <p>
+                Prefer a direct email?
+                <br />
+                <a className={s.textLink} href="mailto:info@crabionics.com">
+                  info@crabionics.com
+                </a>
+              </p>
+            </div>
+            <h3 style={{ marginTop: 36 }}>What happens next?</h3>
+            <p>
+              The team reviews the production setting and discusses fit,
+              responsibilities and useful measurements. Trial scope, costs and
+              timing are agreed individually.
+            </p>
+          </div>
+          <div>
+            {Object.keys(topics).map((id) => (
+              <span
+                key={id}
+                id={id}
+                style={{ display: "block", scrollMarginTop: 110 }}
+                aria-hidden="true"
+              />
             ))}
+            <EnquiryForm deliveryEnabled={deliveryConfigured()} />
           </div>
         </div>
-      </section>
-    </div>
+      </Section>
+    </Page>
   );
 }

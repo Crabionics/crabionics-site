@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "test:enquiry": "tsc app/lib/enquiry.ts app/api/enquiry/route.ts --rootDir app --outDir .verification --target ES2022 --module commonjs --skipLibCheck && node --test tests/enquiry.test.cjs"
   },
   "dependencies": {
     "@clerk/nextjs": "^7.6.5",
