@@ -8,7 +8,7 @@ import {
   Status,
   styles as s,
 } from "../components/public/Experience";
-import { BetaDirection, VisualFacts } from "../components/public/Visuals";
+import { BetaDirection } from "../components/public/Visuals";
 import BetaDemo from "../components/public/BetaDemo";
 export const metadata: Metadata = {
   title: "AquaOS | Operating Software",
@@ -21,7 +21,7 @@ export default function AquaOSPage() {
     <Page name="aquaos">
       <Intro
         eyebrow="AquaOS / Operating & control layer"
-        title="The record follows the work."
+        title="Turn daily observations into useful records."
       >
         <p className={s.lead}>
           Observations, operator decisions and follow-up in one developing
@@ -36,13 +36,6 @@ export default function AquaOSPage() {
         <BetaDemo />
       </Section>
       <Section tone="mist">
-        <VisualFacts
-          items={[
-            ["sense", "Observe in context", "Pond, unit or cohort"],
-            ["decision", "Operator oversight", "Review before action"],
-            ["record", "Keep the history", "Connect the response"],
-          ]}
-        />
         <div className={s.note}>
           <p>
             Software foundations exist. Physical integration remains in

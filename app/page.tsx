@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import {
-  AquaPreview,
   Button,
   CTA,
   Eyebrow,
@@ -10,17 +9,11 @@ import {
   Page,
   ResourceCards,
   Section,
-  SolutionCards,
-  Status,
   TextLink,
   styles as s,
 } from "./components/public/Experience";
-import {
-  AnnotatedProduction,
-  BetaDirection,
-  ConnectedDiagram,
-  VisualFacts,
-} from "./components/public/Visuals";
+import { BetaDirection } from "./components/public/Visuals";
+import { SolutionOverview, EvidenceStrip } from "./components/public/Editorial";
 export const metadata: Metadata = {
   title: { absolute: "Crabionics | Mud-Crab Aquaculture, Connected" },
   description:
@@ -100,114 +93,22 @@ export default function HomePage() {
         </div>
       </div>
       <Section>
-        <Heading
-          eyebrow="The production challenge"
-          title="Better decisions start with a connected setting."
-        >
-          Crab biology, water, handling and operator decisions belong in the
-          same picture.
-        </Heading>
-        <AnnotatedProduction />
-        <div style={{ marginTop: 28 }}>
-          <VisualFacts
-            items={[
-              ["habitat", "Care & handling", "A defined animal environment"],
-              ["sense", "Understand conditions", "Observations in context"],
-              ["record", "Keep the history", "Decisions & follow-up"],
-            ]}
-          />
-        </div>
+        <Heading eyebrow="Built for the daily work" title="Care for the stock. Understand the water. Keep a useful record." />
+        <SolutionOverview />
       </Section>
-      <Section tone="mist">
-        <Heading
-          eyebrow="Our solutions"
-          title="Physical infrastructure. Operating intelligence."
-        >
-          Four connected components, each with a specific role in the production
-          work.
-        </Heading>
-        <SolutionCards />
-        <div className={s.note}>
-          <p>
-            The system is in development. Integration, biological performance
-            and commercial fit are tested separately in defined settings.
-          </p>
-        </div>
-      </Section>
-      <Section>
-        <Heading
-          eyebrow="The connected system"
-          title="Observe. Decide. Respond. Review."
-        />
-        <ConnectedDiagram />
-        <div className={s.actions}>
-          <Button href="/system">Explore the operating relationship</Button>
-        </div>
-      </Section>
-      <Section>
-        <div className={s.feature}>
-          <div>
-            <Eyebrow>AquaOS</Eyebrow>
-            <h2>The record follows the work.</h2>
-            <p>
-              Observations, decisions and follow-up in one developing workflow.
-            </p>
-            <Status>Grow-out beta interest</Status>
-            <div className={s.actions}>
-              <Button href="/demo">Try the walkthrough</Button>
-              <TextLink href="/early-access">Join early access</TextLink>
-            </div>
-          </div>
-          <AquaPreview />
-        </div>
-      </Section>
-      <Section tone="mist">
-        <Heading
-          eyebrow="Research & validation"
-          title="Build with evidence. Learn in production."
-        />
-        <div className={s.three}>
-          {[
-            [
-              "Integration",
-              "Research & system build",
-              "Funded IHMS integration work.",
-            ],
-            [
-              "Production learning",
-              "Pond biology & biomass",
-              "Stock, handling and cohort learning.",
-            ],
-            [
-              "Proposed validation",
-              "Controlled finishing",
-              "Proposed later 600-box validation.",
-            ],
-          ].map(([label, title, body]) => (
-            <article key={title} className={s.card}>
-              <div className={s.cardBody}>
-                <span className={s.cardTag}>{label}</span>
-                <h3>{title}</h3>
-                <p>{body}</p>
-              </div>
-            </article>
-          ))}
-        </div>
-        <div className={s.actions}>
-          <TextLink href="/validation">
-            Explore the validation programme
-          </TextLink>
-        </div>
+      <Section tone="dark">
+        <EvidenceStrip />
       </Section>
       <Section>
         <Heading
           eyebrow="Practical resources"
-          title="Useful context before the conversation."
+          title="Start with a practical question."
         />
         <ResourceCards />
       </Section>
-      <BetaDirection />
+      <BetaDirection showcase />
       <CTA />
     </Page>
   );
 }
+

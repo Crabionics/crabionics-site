@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Button, Eyebrow, Section, styles as s } from "./Experience";
+import { Button, Eyebrow, Section, AquaPreview, styles as s } from "./Experience";
 import v from "./Refinements.module.css";
 
 export function Glyph({ kind }: { kind: string }) {
@@ -111,15 +111,15 @@ export function VisualFacts({
     </div>
   );
 }
-export function BetaDirection() {
+export function BetaDirection({ showcase = false }: { showcase?: boolean }) {
   return (
     <Section tone="mist">
       <div className={s.split}>
         <div>
-          <Eyebrow>Read it. Explore it. Shape what follows.</Eyebrow>
-          <h2>Your daily work is the starting point.</h2>
+          <Eyebrow>AquaOS / First beta direction</Eyebrow>
+          <h2>One pond. One observation. A clear next step.</h2>
           <p>
-            Our first beta direction: pond observations and operating records.
+            Explore how a pond observation becomes a reviewed decision and a daily record. Help shape the beta around your work.
           </p>
           <div className={s.actions}>
             <Button href="/demo">Try the walkthrough</Button>
@@ -128,7 +128,7 @@ export function BetaDirection() {
             </Button>
           </div>
         </div>
-        <div className={v.roadmap}>
+        {showcase ? <AquaPreview /> : <div className={v.roadmap}>
           {[
             [
               "Explore now",
@@ -155,7 +155,7 @@ export function BetaDirection() {
               </div>
             </div>
           ))}
-        </div>
+        </div>}
       </div>
     </Section>
   );

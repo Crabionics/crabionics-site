@@ -4,7 +4,6 @@ import {
   CTA,
   Eyebrow,
   Faq,
-  Flow,
   Heading,
   ImagePanel,
   Intro,
@@ -24,7 +23,7 @@ const roles = [
   {
     id: "pond-production",
     tag: "Growers & operating teams",
-    title: "Bring your pond and daily work.",
+    title: "Pond growers & operating teams.",
     text: "Start with your pond, stock and daily routines.",
     items: [
       "Location & operating role",
@@ -39,7 +38,7 @@ const roles = [
   {
     id: "controlled-finishing",
     tag: "Finishing operators",
-    title: "Define intake before the production unit.",
+    title: "Controlled finishing.",
     text: "Define stock intake, handling and water management together.",
     items: [
       "Site & water equipment",
@@ -54,7 +53,7 @@ const roles = [
   {
     id: "buyer-requirements",
     tag: "Buyers, processors & cluster partners",
-    title: "Work back from the market requirement.",
+    title: "Buyers & cluster partners.",
     text: "Start with the species, condition, quantity and supply dates you need.",
     items: [
       "Species, size & quantity",
@@ -72,7 +71,7 @@ export default function ProducersPage() {
     <Page name="producers">
       <Intro
         eyebrow="For producers & operating partners"
-        title="Your setting. Our next conversation."
+        title="Let’s plan around your production needs."
         aside={
           <ImagePanel
             src="/photos/ras-plumbing.jpg"
@@ -149,19 +148,6 @@ export default function ProducersPage() {
             </li>
           ))}
         </ol>
-      </Section>
-      <Section tone="mist">
-        <Heading
-          eyebrow="Proposed production connection"
-          title="Connect the work between settings."
-        />
-        <Flow production />
-        <div className={s.note}>
-          <p>
-            Proposed connection: validate intake, transfer condition, biology
-            and operating costs.
-          </p>
-        </div>
       </Section>
       <Section>
         <Heading

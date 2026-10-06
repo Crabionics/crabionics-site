@@ -12,7 +12,6 @@ import {
 import {
   AnnotatedProduction,
   ConnectedDiagram,
-  VisualFacts,
 } from "../components/public/Visuals";
 export const metadata: Metadata = {
   title: "The Connected System",
@@ -28,8 +27,7 @@ export default function SystemPage() {
         title="One setting. Four connected roles."
       >
         <p className={s.lead}>
-          Observe conditions, review the context, connect a bounded response and
-          keep the history.
+          See how the habitat, sensors, software and local equipment fit together. Operators review decisions; integration remains in development.
         </p>
         <Button href="/demo">Explore the record walkthrough</Button>
       </Intro>
@@ -49,44 +47,7 @@ export default function SystemPage() {
           </p>
         </div>
       </Section>
-      <Section>
-        <VisualFacts
-          items={[
-            ["habitat", "Habitat", "Care & handling"],
-            ["sense", "CrabSense", "Observations in context"],
-            ["decision", "AquaOS", "Operator review & history"],
-          ]}
-        />
-        <div id="habitat" />
-        <div id="observation" />
-        <div id="decisions" />
-        <div style={{ marginTop: 18 }}>
-          <VisualFacts
-            items={[
-              ["pod", "CrabPod", "Local equipment connection"],
-              ["pond", "Water environment", "Management for the setting"],
-              [
-                "record",
-                "Measured response",
-                "Integration & biology evaluated separately",
-              ],
-            ]}
-          />
-        </div>
-        <div id="intervention" />
-        <div id="water" />
-      </Section>
-      <Section tone="dark">
-        <Heading
-          eyebrow="Operating design in development"
-          title="Observe. Decide. Respond. Review."
-        />
-        <Flow />
-        <p className={s.note}>
-          Operator oversight governs permitted actions. A recorded equipment
-          response does not establish a biological outcome.
-        </p>
-      </Section>
+      <div id="habitat" /><div id="observation" /><div id="decisions" /><div id="intervention" /><div id="water" />
       <Section tone="mist">
         <Heading
           eyebrow="Proposed production connection"
