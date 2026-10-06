@@ -9,7 +9,6 @@ import {
   Page,
   ResourceCards,
   Section,
-  TextLink,
   styles as s,
 } from "./components/public/Experience";
 import { BetaDirection } from "./components/public/Visuals";
@@ -111,4 +110,3 @@ export default function HomePage() {
     </Page>
   );
 }
-
