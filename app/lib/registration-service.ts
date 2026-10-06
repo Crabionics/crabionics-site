@@ -4,10 +4,12 @@ export const namespace = () =>
   process.env.REGISTRATION_NAMESPACE || "crabionics:early-access";
 export const digest = (text: string) =>
   createHash("sha256").update(text).digest("hex");
+const storageUrl = () => process.env.UPSTASH_REDIS_REST_URL || process.env.KV_REST_API_URL;
+const storageToken = () => process.env.UPSTASH_REDIS_REST_TOKEN || process.env.KV_REST_API_TOKEN;
+export const storageConfigured = () => Boolean(storageUrl() && storageToken());
 export const registrationConfigured = () =>
   Boolean(
-    process.env.UPSTASH_REDIS_REST_URL &&
-      process.env.UPSTASH_REDIS_REST_TOKEN &&
+    storageConfigured() &&
       process.env.RESEND_API_KEY &&
       process.env.CONTACT_FROM_EMAIL &&
       process.env.PUBLIC_SITE_URL,
@@ -15,8 +17,8 @@ export const registrationConfigured = () =>
 export async function redis<T = unknown>(
   command: (string | number)[],
 ): Promise<T> {
-  const url = process.env.UPSTASH_REDIS_REST_URL;
-  const token = process.env.UPSTASH_REDIS_REST_TOKEN;
+  const url = storageUrl();
+  const token = storageToken();
   if (!url || !token) throw new Error("Storage unavailable");
   const response = await fetch(url, {
     method: "POST",

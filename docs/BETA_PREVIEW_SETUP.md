@@ -20,6 +20,8 @@ Set these server-only variables in the intended Vercel environment, then rebuild
 - `REGISTRATION_NAMESPACE` â€” use different values for preview and production
 - `REGISTRATION_EXPORT_TOKEN` â€” a randomly generated private secret of at least 32 bytes
 
+Vercel Marketplace Upstash currently provisions `KV_REST_API_URL` and `KV_REST_API_TOKEN`. The server accepts these as alternatives to the `UPSTASH_REDIS_REST_*` names, without copying or exposing credentials. Production and preview use separate registration namespaces and review credentials.
+
 The confirmed team inbox is `info@crabionics.com`. Keep existing mailbox DNS intact; verify a sending subdomain and use the records supplied by the provider. Do not paste credentials into chat or source control.
 
 ## Registration lifecycle

@@ -1,6 +1,6 @@
 import { enquiryMessage, parseEnquiry, topics } from "../../lib/enquiry";
 import { deliveryConfigured } from "../../lib/enquiry-delivery";
-import { digest, limited, sendMail } from "../../lib/registration-service";
+import { digest, limited, sendMail, storageConfigured } from "../../lib/registration-service";
 export const runtime = "nodejs";
 const recent = new Map<string, { count: number; until: number }>();
 export async function POST(request: Request) {
@@ -32,10 +32,7 @@ export async function POST(request: Request) {
       503,
     );
   const now = Date.now();
-  if (
-    process.env.UPSTASH_REDIS_REST_URL &&
-    process.env.UPSTASH_REDIS_REST_TOKEN
-  ) {
+  if (storageConfigured()) {
     try {
       if (await limited(request))
         return respond(

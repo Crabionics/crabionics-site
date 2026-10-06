@@ -7,6 +7,29 @@ const {
 const { answerQuestion } = require("../.verification/lib/faq-assistant.js");
 const { POST } = require("../.verification/api/early-access/route.js");
 const { GET } = require("../.verification/api/early-access/export/route.js");
+const { storageConfigured, redis } = require("../.verification/lib/registration-service.js");
+test("Vercel Marketplace Redis credentials connect without copying secrets", async () => {
+  const env = { ...process.env };
+  const original = global.fetch;
+  try {
+    delete process.env.UPSTASH_REDIS_REST_URL;
+    delete process.env.UPSTASH_REDIS_REST_TOKEN;
+    process.env.KV_REST_API_URL = "https://marketplace-storage.example";
+    process.env.KV_REST_API_TOKEN = "test-marketplace-token";
+    assert.equal(storageConfigured(), true);
+    global.fetch = async (url, init) => {
+      assert.equal(url, "https://marketplace-storage.example");
+      assert.equal(init.headers.Authorization, "Bearer test-marketplace-token");
+      assert.equal(init.cache, "no-store");
+      return Response.json({ result: "PONG" });
+    };
+    assert.equal(await redis(["PING"]), "PONG");
+  } finally {
+    global.fetch = original;
+    for (const key of Object.keys(process.env)) if (!(key in env)) delete process.env[key];
+    Object.assign(process.env, env);
+  }
+});
 const sample = {
   name: "Test Operator",
   email: "operator@example.com",
