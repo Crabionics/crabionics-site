@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     title: "Crabionics Terms of Use",
     description:
       "Website use terms and legal conditions for access to Crabionics content.",
-    url: "https://crabionics.com/terms",
+    url: "https://www.crabionics.com/terms",
     type: "website",
   },
 };

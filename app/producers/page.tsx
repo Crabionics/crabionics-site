@@ -100,9 +100,9 @@ export default function ProducersPage() {
         </p>
         <div className={s.actions}>
           <Button href="/contact#production">
-            Discuss a production partnership
+            Discuss a production project
           </Button>
-          <TextLink href="/aquaos#grow-out-beta">AquaOS early-access direction</TextLink>
+          <TextLink href="/aquaos">Explore AquaOS for your team</TextLink>
         </div>
       </Intro>
       {roles.map((role, i) => (

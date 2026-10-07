@@ -4,6 +4,7 @@ import {
   limited,
   register,
   registrationConfigured,
+  operation,
 } from "../../lib/registration-service";
 export const runtime = "nodejs";
 export async function POST(request: Request) {
@@ -43,7 +44,7 @@ export async function POST(request: Request) {
       503,
     );
   try {
-    if (await limited(request))
+    if (await limited(request, isConfirmation ? "confirmation" : "signup"))
       return reply(
         { error: "Please wait a few minutes before trying again." },
         429,
@@ -58,6 +59,7 @@ export async function POST(request: Request) {
     await register(data!);
     return reply({ verificationRequested: true });
   } catch {
+    operation("request_failed", { purpose: isConfirmation ? "confirmation" : "signup" });
     return reply(
       {
         error:

@@ -27,9 +27,9 @@ export default function CompanyPage() {
         title="Built from the production problem outward."
         aside={
           <ImagePanel
-            src="/images/versioned/company-world-mobile.ebb1281c.webp"
-            alt="Concept illustration of a mud-crab production setting with habitats, equipment and an operator."
-            caption="Concept illustration"
+            src="/photos/ras-plumbing.jpg"
+            alt="Individual production racks and connected water equipment from Crabionics installation work."
+            caption="Production equipment photograph · installation context"
             priority
           />
         }
@@ -59,6 +59,21 @@ export default function CompanyPage() {
             <TextLink href="/system">Explore the connected system</TextLink>
           </div>
         </div>
+      </Section>
+      <Section tone="mist">
+        <Heading eyebrow="From the field" title="The physical work behind the direction." />
+        <div className={s.detailGrid}>
+          {[
+            ["/photos/ras-plumbing.jpg", "Production racks and connected water equipment.", "Installation & water", "The installation photograph shows individual racks and plumbing—the physical setting that daily operating records need to describe."],
+            ["/photos/isolation-box.jpg", "An individual isolation box used in production work.", "Individual habitats", "An individual box makes handling and observation possible. Its photograph documents equipment, while survival and growth require separate measured evidence."],
+          ].map(([src, alt, title, body]) => (
+            <article className={s.card} key={src}>
+              <div className={s.cardImage}><Image src={src} alt={alt} fill sizes="(max-width: 767px) 100vw, 33vw" /></div>
+              <div className={s.cardBody}><h3>{title}</h3><p>{body}</p></div>
+            </article>
+          ))}
+        </div>
+        <p className={s.note}>Existing production and equipment photographs. Capture dates and measured trial results are not presented here; see the research programme for the proposed validation work.</p>
       </Section>
       <Section>
         <CompanyEngines />

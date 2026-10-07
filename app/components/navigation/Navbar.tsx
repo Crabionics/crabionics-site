@@ -7,6 +7,7 @@ import s from "../public/Identity.module.css";
 const links = [
   ["Solutions", "/solutions"],
   ["For Producers", "/producers"],
+  ["AquaOS", "/aquaos"],
   ["Research", "/validation"],
   ["Resources", "/resources"],
   ["Company", "/company"],
@@ -23,7 +24,7 @@ export default function Navbar() {
     return (
       pathname === href ||
       pathname.startsWith(`${href}/`) ||
-      (href === "/solutions" && ["/system", "/aquaos"].includes(pathname))
+      (href === "/solutions" && pathname === "/system")
     );
   }
   return (
@@ -63,7 +64,7 @@ export default function Navbar() {
           ))}
         </nav>
         <Link href="/contact#production" className={s.contact} onClick={close}>
-          Discuss a pilot <span aria-hidden="true">↗</span>
+          Discuss a project <span aria-hidden="true">↗</span>
         </Link>
         <button
           ref={toggle}
@@ -102,7 +103,6 @@ export default function Navbar() {
         </div>
         <div className={s.secondary}>
           {[
-            ["AquaOS", "/aquaos"],
             ["Try the walkthrough", "/demo"],
             ["Early access", "/early-access"],
             ["How it connects", "/system"],
@@ -118,12 +118,12 @@ export default function Navbar() {
           href="/contact#production"
           onClick={close}
         >
-          Discuss a pilot ↗
+          Discuss a project ↗
         </Link>
       </nav>
       <noscript>
         <nav className={s.fallback} aria-label="Site navigation">
-          {[...links, ["AquaOS", "/aquaos"], ["Contact", "/contact"]].map(
+          {[...links, ["Contact", "/contact"]].map(
             ([label, href]) => (
               <a key={href} href={href}>
                 {label}

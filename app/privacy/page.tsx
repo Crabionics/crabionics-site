@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     title: "Crabionics Privacy Policy",
     description:
       "How Crabionics handles personal information and privacy rights.",
-    url: "https://crabionics.com/privacy",
+    url: "https://www.crabionics.com/privacy",
     type: "website",
   },
 };
@@ -36,6 +36,11 @@ export default function PrivacyPage() {
       </section>
       <Section tone="mist">
         <article className="mx-auto max-w-5xl space-y-10 rounded-2xl bg-white p-8 lg:p-12">
+          <section>
+            <h2>Anonymous website journey counts</h2>
+            <p>Vercel Web Analytics provides aggregate traffic, referral and device information for public pages. Vercel Speed Insights samples public-page performance. We exclude private, API and email-confirmation pages, remove query strings and fragments before reporting page URLs, and do not send form values. Do Not Track and Global Privacy Control requests disable this reporting.</p>
+            <p>We count visits and steps such as opening AquaOS, attempting an enquiry and requesting email verification. These are aggregate daily counts by page and broad source (direct, YouTube, LinkedIn or other), retained for 90 days. We do not attach them to your registration, store your questions or form contents in analytics, or use tracking cookies. A source category may be kept in this browser tab’s session storage. Do Not Track and Global Privacy Control requests disable these counts. Temporary hashed network addresses used to limit automated analytics requests expire after one minute.</p>
+          </section>
           <section>
             <h2>Early access and the website assistant</h2>
             <p>

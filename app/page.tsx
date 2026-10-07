@@ -47,7 +47,7 @@ export default function HomePage() {
           >
             <Button href="/solutions">Explore the solutions</Button>
             <Button href="/contact#production" secondary>
-              Discuss a partnership
+              Discuss a production project
             </Button>
           </div>
         </div>
@@ -92,6 +92,27 @@ export default function HomePage() {
           ))}
         </div>
       </div>
+      <Section>
+        <Heading eyebrow="Choose your next step" title="Start with the work you need to move forward." />
+        <div className={s.detailGrid}>
+          <article className={s.card}>
+            <div className={s.cardBody}>
+              <Eyebrow>Production projects</Eyebrow>
+              <h3>Explore your production setting.</h3>
+              <p>Bring your site, production stage and constraints. Discuss fit, responsibilities and the evidence needed before agreeing scope, cost and timing.</p>
+              <Button href="/contact#production">Discuss a production project</Button>
+            </div>
+          </article>
+          <article className={s.card}>
+            <div className={s.cardBody}>
+              <Eyebrow>AquaOS / In development</Eyebrow>
+              <h3>Help shape connected daily operations.</h3>
+              <p>Bring one routine your team needs to manage better. Register interest for a focused operator pilot; the team reviews fit before inviting participants.</p>
+              <Button href="/early-access#register" secondary>Help shape AquaOS</Button>
+            </div>
+          </article>
+        </div>
+      </Section>
       <Section>
         <Heading eyebrow="Built for the daily work" title="Biology, infrastructure and daily operations. Connected." />
         <SolutionOverview />

@@ -9,6 +9,7 @@ import {
   type Topic,
 } from "../../lib/enquiry";
 import s from "./Experience.module.css";
+import { journeyEvent } from "./JourneyMetrics";
 function subscribe(listener: () => void) {
   window.addEventListener("hashchange", listener);
   return () => window.removeEventListener("hashchange", listener);
@@ -56,7 +57,10 @@ export default function EnquiryForm({
           body: JSON.stringify(raw),
         });
         const payload = await response.json();
-        if (response.ok && payload.sent === true) setSent(true);
+        if (response.ok && payload.sent === true) {
+          setSent(true);
+          journeyEvent("enquiry_sent", "contact");
+        }
         else
           setError(
             payload.error ||

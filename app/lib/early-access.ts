@@ -1,5 +1,5 @@
 export const interests = [
-  "Operator setup, observations & history",
+  "Connected daily operations with AquaOS",
   "Controlled finishing",
   "Buyer / cluster partnership",
   "Research collaboration",

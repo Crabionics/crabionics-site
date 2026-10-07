@@ -3,9 +3,11 @@ import "./globals.css";
 import Navbar from "@/app/components/navigation/Navbar";
 import Footer from "./components/layout/Footer";
 import AskCrabionics from "./components/public/AskCrabionics";
+import JourneyMetrics from "./components/public/JourneyMetrics";
+import VercelObservability from "./components/public/VercelObservability";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://crabionics.com"),
+  metadataBase: new URL("https://www.crabionics.com"),
   title: {
     default: "Crabionics | Production Architecture for Mud-Crab Aquaculture",
     template: "%s | Crabionics",
@@ -23,7 +25,7 @@ export const metadata: Metadata = {
     title: "Crabionics | Production Architecture for Mud-Crab Aquaculture",
     description:
       "Biology, physical infrastructure and operating tools for mud-crab production.",
-    url: "https://crabionics.com",
+    url: "https://www.crabionics.com",
     siteName: "Crabionics",
     type: "website",
     images: [
@@ -50,10 +52,10 @@ const organizationJsonLd = {
   "@graph": [
     {
       "@type": "Organization",
-      "@id": "https://crabionics.com/#organization",
+      "@id": "https://www.crabionics.com/#organization",
       name: "Crabionics Aquaculture Pvt. Ltd.",
-      url: "https://crabionics.com",
-      logo: "https://crabionics.com/logo.png",
+      url: "https://www.crabionics.com",
+      logo: "https://www.crabionics.com/logo.png",
       email: "info@crabionics.com",
       description:
         "Crabionics is developing production architecture for mud-crab aquaculture.",
@@ -63,12 +65,12 @@ const organizationJsonLd = {
     },
     {
       "@type": "WebSite",
-      "@id": "https://crabionics.com/#website",
+      "@id": "https://www.crabionics.com/#website",
       name: "Crabionics",
-      url: "https://crabionics.com",
+      url: "https://www.crabionics.com",
       description:
         "Production architecture for mud-crab aquaculture, in development.",
-      publisher: { "@id": "https://crabionics.com/#organization" },
+      publisher: { "@id": "https://www.crabionics.com/#organization" },
       inLanguage: "en",
     },
   ],
@@ -99,6 +101,8 @@ export default function RootLayout({
         </main>
         <Footer />
         <AskCrabionics />
+        <JourneyMetrics />
+        <VercelObservability />
       </body>
     </html>
   );
