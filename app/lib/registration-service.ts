@@ -120,9 +120,12 @@ export async function confirm(token: string) {
   try { await retryNotification(id); } catch { operation("notification_retry_deferred"); }
   return true;
 }
+// Compare the original record in the same operation as delivery writes. A staff
+// deletion (or a later replacement registration) must never be undone by a retry.
+const deliveryWriteScript = `if redis.call('EXISTS',KEYS[3])==1 or redis.call('GET',KEYS[1])~=ARGV[1] then return 0 end; redis.call('SET',KEYS[2],ARGV[2],'EX',ARGV[3]); if ARGV[4]~='' then local record=cjson.decode(ARGV[1]); record.notification=ARGV[4]; redis.call('SET',KEYS[1],cjson.encode(record),'EX',ARGV[3]); if ARGV[4]=='sent' then redis.call('ZREM',KEYS[4],ARGV[5]) else redis.call('ZADD',KEYS[4],ARGV[6],ARGV[5]) end end; return 1`;
 export async function retryNotification(id: string) {
   const lock = `${namespace()}:delivery-lock:${id}`;
-  if (!await redis(["SET", lock, "1", "NX", "EX", 60])) return false;
+  if (!await redis(["SET", lock, "1", "NX", "EX", 120])) return false;
   try {
     const raw = await redis<string | null>(["GET", `${namespace()}:record:${id}`]);
     const status = await redis<string | null>(["GET", `${namespace()}:delivery:${id}`]);
@@ -133,6 +136,10 @@ export async function retryNotification(id: string) {
     const state: DeliveryState = status ? JSON.parse(status) : {team: record.notification === "sent" ? "sent" : "pending", welcome: record.notification === "sent" ? "sent" : "pending", attempts:0};
     state.attempts += 1;
     state.lastAttempt = new Date().toISOString();
+    const persist = (notification = "") => redis<number>(["EVAL", deliveryWriteScript, 4,
+      `${namespace()}:record:${id}`, `${namespace()}:delivery:${id}`,
+      `${namespace()}:deleted:${id}`, `${namespace()}:outbox`,
+      raw, JSON.stringify(state), retention, notification, id, Date.now() + 300000]);
     for (const target of ["team", "welcome"] as const) {
       if (state[target] === "sent") continue;
       try {
@@ -142,13 +149,10 @@ export async function retryNotification(id: string) {
         state[target] = "sent";
       } catch { operation("notification_failed", {target}); }
       // Persist each result independently; failure of team delivery never prevents welcome delivery.
-      await redis(["SET", `${namespace()}:delivery:${id}`, JSON.stringify(state), "EX", retention]);
+      if (!await persist()) return false;
     }
     const sent = state.team === "sent" && state.welcome === "sent";
-    record.notification = sent ? "sent" : "failed";
-    await redis(["SET", `${namespace()}:record:${id}`, JSON.stringify(record), "EX", retention]);
-    if (sent) await redis(["ZREM", `${namespace()}:outbox`, id]);
-    else await redis(["ZADD", `${namespace()}:outbox`, Date.now() + 300000, id]);
+    if (!await persist(sent ? "sent" : "failed")) return false;
     operation(sent ? "notifications_complete" : "notifications_pending");
     return sent;
   } finally { await redis(["DEL", lock]); }
