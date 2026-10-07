@@ -19,10 +19,10 @@ export default function DemoPage() {
     <Page name="demo">
       <Intro
         eyebrow="AquaOS / Illustrative workflow preview"
-        title="See an observation become a traceable next step."
+        title="From a daily observation to a useful operating history."
       >
         <p className={s.lead}>
-          Choose a sample observation and follow an operator review, a follow-up task and its history. This website preview is separate from the proposed AquaOS beta.
+          A feeding round flags one crab for attention. Explore how a proposed AquaOS workflow connects its setting, an operator review, a follow-up action and the next observation. Each entry must be recorded explicitly in this sample.
         </p>
       </Intro>
       <Section>
@@ -31,23 +31,21 @@ export default function DemoPage() {
       <Section tone="mist">
         <VisualFacts
           items={[
-            ["habitat", "A concrete example", "An individual-habitat feeding round"],
+            ["habitat", "Know the setting", "One crab, one habitat, one operating round"],
             [
               "decision",
-              "With operator oversight",
-              "People review the next step",
+              "Make the next step visible",
+              "An operator reviews & assigns follow-up",
             ],
-            ["record", "What to help shape", "Useful context & follow-up"],
+            ["record", "Keep the evidence together", "Observation, action & recorded outcome"],
           ]}
         />
         <div className={s.note}>
           <p>
-            This demonstrates a proposed software workflow. It does not
-            demonstrate a complete biological control loop or connected
-            equipment.
+            This interactive example demonstrates the proposed workflow using sample information. The wider AquaOS direction includes record-grounded assistance and physical integration; neither is demonstrated by this preview.
           </p>
         </div>
-        <Button href="/early-access">Help shape early access</Button>
+        <Button href="/early-access">Help shape an operator pilot</Button>
       </Section>
 
     </Page>
