@@ -1,11 +1,116 @@
-import type {Metadata} from "next";
-import {Section,Action,Figure,Network,Icon,styles as s} from "./components/public/Public";
-import WorldHero from "./components/public/WorldHero";
-import OperatingLoop from "./components/public/OperatingLoop";
-export const metadata:Metadata={title:"Crabionics",description:"Crabionics is developing mud-crab production infrastructure: habitat, environmental observation, operating control and connected production work.",alternates:{canonical:"/"}};
-export default function HomePage(){return <div className={s.page} data-page="home"><WorldHero/>
-<Section pale><div className={s.editorial}><div><p className={s.eyebrow}>The production environment</p><h2>Biology, water and the people doing the work.</h2></div><p>Mud-crab production brings together animal behaviour, habitat, water conditions, handling and operator decisions. These need to be understood together.</p><p>Crabionics develops the physical environment and the tools around it: observation, local action and a useful record of what happened.</p></div></Section>
-<Section dark><div className={s.heading}><div><p className={s.eyebrow}>The connected system</p><h2>Conditions. Decisions.<br/>Action. Observation.</h2></div><p>The Loop links the production setting, what is observed, operating decisions and the physical response under operator oversight. Water treatment supports the environment where the setting requires it.</p></div><div className={s.split}><div><Figure src="/photos/isolation-box.jpg" alt="Mud crab in a blue individual habitat." className={s.detailImage}/><div className={s.actions}><Action href="/system" secondary>Meet the system</Action></div></div><OperatingLoop/></div></Section>
-<Section><div className={s.heading}><div><p className={s.eyebrow}>The development programme</p><h2>Build, observe and learn<br/>in defined settings.</h2></div><p>System integration, biological performance and commercial fit each have their own questions. Current work connects research, pond learning and planning for controlled-finishing validation.</p></div><div className={s.rows}>{[["01","Research & integration","Funded IHMS work examines how the physical system, sensing and operating routines fit together."],["02","Biological & production learning","Pond and controlled-finishing studies examine cohort performance, handling, conditions and operating records."],["03","Partners & commercial fit","Production partners and downstream conversations help define requirements, responsibilities and the commercial questions to test."]].map(([n,t,p])=><article className={s.row} key={n}><span>{n}</span><h3>{t}</h3><p>{p}</p></article>)}</div><div className={s.actions}><Action href="/validation">Explore the validation programme</Action><Action href="/company" secondary>People behind the work</Action></div></Section>
-<Section pale><div className={s.heading}><div><p className={s.eyebrow}>Future deployment</p><h2>A wider production connection.</h2></div><p>The longer-term direction connects hatchery and nursery development, farmer pond production, aggregation and grading, controlled finishing and the requirements of processors and buyers.</p></div><Network compact/><div className={s.actions}><Action href="/producers">Explore production partnerships</Action></div></Section>
-<Section><p className={s.eyebrow}>Get involved</p><h2>Find your place in the work.</h2><div className={s.doors}>{[["pond","Producers & operators","Discuss a pond partnership, finishing context or grow-out beta interest.","/producers"],["research","Research & institutions","Bring a biological question, research setting or public programme.","/contact#institutions"],["habitat","Investors","Understand the company, infrastructure and development pathway.","/investors"]].map(([icon,t,p,href])=><article className={s.door} key={t}><Icon name={icon as "pond"|"research"|"habitat"}/><h3>{t}</h3><p>{p}</p><a href={href}>Explore the conversation →</a></article>)}</div></Section></div>}
+import type { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
+import {
+  Button,
+  CTA,
+  Eyebrow,
+  Heading,
+  Page,
+  ResourceCards,
+  Section,
+  styles as s,
+} from "./components/public/Experience";
+import { BetaDirection } from "./components/public/Visuals";
+import { SolutionOverview, EvidenceStrip } from "./components/public/Editorial";
+import { ProductionJourney } from "./components/public/Narrative";
+export const metadata: Metadata = {
+  title: { absolute: "Crabionics | Mud-Crab Aquaculture, Connected" },
+  description:
+    "Explore mud-crab production infrastructure, AquaOS and production partnerships. Habitat, sensing, local equipment and operating software in development.",
+  alternates: { canonical: "/" },
+};
+export default function HomePage() {
+  return (
+    <Page name="home">
+      <section className={s.hero}>
+        <Image
+          src="/photos/ras-plumbing.jpg"
+          alt="Blue individual production racks connected to water equipment in an aquaculture installation."
+          fill
+          preload
+          sizes="100vw"
+          className={s.heroImage}
+        />
+        <div className={s.heroCopy}>
+          <Eyebrow>Crabionics aquaculture</Eyebrow>
+          <h1>
+            Mud-crab aquaculture.<span>Connected.</span>
+          </h1>
+          <p className={s.lead}>
+            We’re developing habitats, sensing, local equipment and AquaOS
+            around the people running mud-crab production.
+          </p>
+          <div
+            className={`${s.actions} ${s.dark}`}
+            style={{ background: "transparent" }}
+          >
+            <Button href="/solutions">Explore the solutions</Button>
+            <Button href="/contact#production" secondary>
+              Discuss a partnership
+            </Button>
+          </div>
+        </div>
+        <span className={s.heroCaption}>Production equipment photograph</span>
+      </section>
+      <nav className={s.roleBar} aria-label="Choose your production setting">
+        {[
+          ["Pond production", "Growers & operating teams", "pond-production"],
+          [
+            "Controlled finishing",
+            "Intake, habitat & daily care",
+            "controlled-finishing",
+          ],
+          [
+            "Buyer & cluster partnerships",
+            "Condition, quantity & timing",
+            "buyer-requirements",
+          ],
+        ].map(([title, detail, id]) => (
+          <Link key={id} className={s.roleLink} href={`/producers#${id}`}>
+            <strong>{title}</strong>
+            <small>{detail}</small>
+            <span aria-hidden="true">↗</span>
+          </Link>
+        ))}
+      </nav>
+      <div className={s.trust}>
+        <div className={`${s.wrap} ${s.trustInner}`}>
+          <p>Our incubation, research and recognition context</p>
+          {[
+            ["KIIT-TBI", "Technology incubation", "/logos/kiit-tbi.png"],
+            ["BIRAC / IHMS", "Funded research", "/logos/birac-big.png"],
+            ["DPIIT", "Startup recognition", "/logos/dpiit-startup-india.png"],
+          ].map(([name, detail, logo]) => (
+            <div className={s.trustItem} key={name}>
+              <Image src={logo} alt={name} width={76} height={42} />
+              <div>
+                <strong>{name}</strong>
+                <small>{detail}</small>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+      <Section>
+        <Heading eyebrow="Built for the daily work" title="Biology, infrastructure and daily operations. Connected." />
+        <SolutionOverview />
+      </Section>
+      <Section>
+        <ProductionJourney />
+      </Section>
+      <Section tone="dark">
+        <EvidenceStrip />
+      </Section>
+      <Section>
+        <Heading
+          eyebrow="Practical resources"
+          title="Start with a practical question."
+        />
+        <ResourceCards />
+      </Section>
+      <BetaDirection showcase />
+      <CTA />
+    </Page>
+  );
+}
