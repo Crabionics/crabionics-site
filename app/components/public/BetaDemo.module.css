@@ -1,0 +1,12 @@
+.workspace{display:grid;grid-template-columns:260px minmax(0,1fr)}
+.context{padding:30px 24px;background:#f4faf8;border-right:1px solid #d7e5e3;min-width:0}
+.kicker{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#087c7b}
+.habitat{display:grid;gap:12px;padding:22px 0;color:#087c7b}
+.habitat strong{font-size:40px;color:#123a42}.habitat>span{font-size:14px;line-height:1.5;color:#536a70}
+.context dl{margin:0}.context dl>div{padding:12px 0;border-top:1px solid #d7e5e3}.context dt{font-size:12px;color:#536a70}.context dd{margin:5px 0 0;font-size:14px;font-weight:600}
+.episodeStatus{display:flex;gap:8px;align-items:flex-start;margin-top:20px;padding:12px;background:#fff;border:1px solid #cfe3df;border-radius:8px;font-size:12px;line-height:1.6}
+.dot{width:8px;height:8px;flex-shrink:0;background:#087c7b;border-radius:50%;margin-top:5px}
+.history{padding:24px 30px;border-top:1px solid #d7e5e3;background:#fcfefd}.historyHeading{display:flex;align-items:center;justify-content:space-between;gap:16px}.historyHeading h3{font-size:19px!important;margin:0!important}.historyHeading>span{font-size:12px;color:#536a70}
+.history ol{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));list-style:none;padding:0;margin:24px 0 0;gap:20px}.history li{display:flex;gap:10px;min-width:0}.marker{display:grid;place-items:center;width:26px;height:26px;border:1px solid #bed7d6;border-radius:50%;font-size:12px;flex-shrink:0;color:#536a70}.complete .marker{background:#087c7b;color:white;border-color:#087c7b}.history li>div{display:grid;align-content:start;gap:8px}.history strong{font-size:14px}.history li span:not(.marker){font-size:12px;color:#536a70;line-height:1.6}.history small{font-size:10px;text-transform:uppercase;letter-spacing:.04em;color:#536a70}.complete small{color:#087c7b}
+@media(max-width:900px){.workspace{grid-template-columns:220px minmax(0,1fr)}.history ol{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){.workspace{grid-template-columns:1fr}.context{padding:18px;border-right:0;border-bottom:1px solid #d7e5e3}.habitat{grid-template-columns:40px 1fr;align-items:center;gap:8px;padding:14px 0}.habitat strong{font-size:28px}.habitat>span{grid-column:1/-1}.context dl{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.context dd{font-size:12px;line-height:1.5}.episodeStatus{margin-top:8px}.history{padding:22px 18px}.historyHeading{align-items:flex-start}.history ol{grid-template-columns:1fr;gap:16px}.history li>div{gap:4px}}

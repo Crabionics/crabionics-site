@@ -8,6 +8,7 @@ import {
 } from "../../lib/early-access";
 import s from "./Experience.module.css";
 import v from "./Refinements.module.css";
+import { journeyEvent } from "./JourneyMetrics";
 export default function EarlyAccessForm({ enabled }: { enabled: boolean }) {
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
@@ -40,7 +41,10 @@ export default function EarlyAccessForm({ enabled }: { enabled: boolean }) {
           body: JSON.stringify({ ...data, website: raw.website }),
         });
         const payload = await response.json();
-        if (response.ok && payload.verificationRequested) setSent(true);
+        if (response.ok && payload.verificationRequested) {
+          setSent(true);
+          journeyEvent("verification_requested", "early-access");
+        }
         else setError(payload.error || "Please use the email option below.");
       } catch {
         setError("Please use the email option below.");

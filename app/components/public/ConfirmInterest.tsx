@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import s from "./Experience.module.css";
+import { journeyEvent } from "./JourneyMetrics";
 export default function ConfirmInterest({ token }: { token: string }) {
   const [state, setState] = useState("");
   const [busy, setBusy] = useState(false);
@@ -18,6 +19,7 @@ export default function ConfirmInterest({ token }: { token: string }) {
               body: JSON.stringify({ token }),
             });
             const body = await response.json();
+            if (response.ok && body.confirmed) journeyEvent("confirmed", "early-access");
             setState(
               response.ok && body.confirmed
                 ? "confirmed"

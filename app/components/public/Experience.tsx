@@ -292,7 +292,7 @@ export function CTA({
   title = "Let’s start with your production setting.",
   children = "Bring your role, region and production question.",
   href = "/contact#production",
-  label = "Discuss a partnership",
+  label = "Discuss a production project",
 }: {
   title?: string;
   children?: ReactNode;

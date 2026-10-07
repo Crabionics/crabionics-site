@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { resources, solutions } from "./components/public/site-content";
 
-const baseUrl = "https://crabionics.com";
+const baseUrl = "https://www.crabionics.com";
 
 const publicRoutes = [
   "/",

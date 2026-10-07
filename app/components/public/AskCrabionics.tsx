@@ -25,7 +25,7 @@ export default function AskCrabionics() {
       {open && <Panel close={close} />}
       <button
         ref={button}
-        className={v.chatLauncher}
+        className={`${v.chatLauncher} ${["/contact", "/early-access"].includes(path) ? v.formLauncher : ""}`}
         aria-expanded={open}
         aria-haspopup="dialog"
         onClick={() => (open ? close() : setOpenAt(path))}

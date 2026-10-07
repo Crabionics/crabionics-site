@@ -6,17 +6,17 @@ Crabionics works across biology, habitat, sensing, local equipment and operating
 
 ## Primary pages
 
-- [Solutions](https://crabionics.com/solutions): Habitat, CrabSense, CrabPod and AquaOS, with their current development scope.
-- [System](https://crabionics.com/system): How habitat, sensing, operating decisions, defined rules and local equipment connect under operator oversight.
-- [For Producers](https://crabionics.com/producers): Production jobs, operating context and pilot questions.
-- [Validation](https://crabionics.com/validation): Separate tracks for system integration, biology and commercial demand.
-- [Company](https://crabionics.com/company): Company history, team and institutional relationships.
-- [AquaOS](https://crabionics.com/aquaos): The operating and control layer being developed, with a proposed operator early-access workflow.
-- [Investors](https://crabionics.com/investors): Factual company context, development work and validation pathway.
-- [Workflow preview](https://crabionics.com/demo): An illustrative sample operator workflow, not a released beta.
-- [Early access](https://crabionics.com/early-access): Express interest in the proposed operator workflow.
-- [Resources](https://crabionics.com/resources): Practical guides to pilot scoping, operating history and finishing intake. Research results will be published when evidence is ready.
-- [Talk to us](https://crabionics.com/contact): Production, market, technical, beta, research, institutional and investment enquiry paths via info@crabionics.com.
+- [Solutions](https://www.crabionics.com/solutions): Habitat, CrabSense, CrabPod and AquaOS, with their current development scope.
+- [System](https://www.crabionics.com/system): How habitat, sensing, operating decisions, defined rules and local equipment connect under operator oversight.
+- [For Producers](https://www.crabionics.com/producers): Production jobs, operating context and pilot questions.
+- [Validation](https://www.crabionics.com/validation): Separate tracks for system integration, biology and commercial demand.
+- [Company](https://www.crabionics.com/company): Company history, team and institutional relationships.
+- [AquaOS](https://www.crabionics.com/aquaos): The operating and control layer being developed, with a proposed operator early-access workflow.
+- [Investors](https://www.crabionics.com/investors): Factual company context, development work and validation pathway.
+- [Workflow preview](https://www.crabionics.com/demo): An illustrative sample operator workflow, not a released beta.
+- [Early access](https://www.crabionics.com/early-access): Express interest in the proposed operator workflow.
+- [Resources](https://www.crabionics.com/resources): Practical guides to pilot scoping, operating history and finishing intake. Research results will be published when evidence is ready.
+- [Talk to us](https://www.crabionics.com/contact): Production, market, technical, beta, research, institutional and investment enquiry paths via info@crabionics.com.
 
 ## Company identity
 

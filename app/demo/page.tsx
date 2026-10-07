@@ -19,10 +19,10 @@ export default function DemoPage() {
     <Page name="demo">
       <Intro
         eyebrow="AquaOS / Illustrative workflow preview"
-        title="From a daily observation to a useful operating history."
+        title="One feeding round. A connected operating history."
       >
         <p className={s.lead}>
-          A feeding round flags one crab for attention. Explore how a proposed AquaOS workflow connects its setting, an operator review, a follow-up action and the next observation. Each entry must be recorded explicitly in this sample.
+          Follow habitat B-12 from an observation to an operator review, assigned inspection and recorded outcome. Watch its history build as you record each sample entry.
         </p>
       </Intro>
       <Section>
@@ -42,7 +42,7 @@ export default function DemoPage() {
         />
         <div className={s.note}>
           <p>
-            This interactive example demonstrates the proposed workflow using sample information. The wider AquaOS direction includes record-grounded assistance and physical integration; neither is demonstrated by this preview.
+            Illustrative prototype, not a live farm workspace. The proposed beta will test agreed operator routines; copilot assistance and equipment integration require their own development and validation.
           </p>
         </div>
         <Button href="/early-access">Help shape an operator pilot</Button>

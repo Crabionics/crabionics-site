@@ -19,6 +19,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ["/control-tower", "/sign-in", "/sign-up"],
       },
     ],
-    sitemap: "https://crabionics.com/sitemap.xml",
+    sitemap: "https://www.crabionics.com/sitemap.xml",
   };
 }

@@ -23,8 +23,7 @@ export default function ContactPage() {
         title="Let’s start with your setting."
       >
         <p className={s.lead}>
-          Tell us about your work and the question you want to explore. Choose a
-          conversation below and prepare your enquiry.
+          Tell us your production stage, location and the question you need to resolve. We’ll review the setting with you and agree whether a project, research collaboration or pilot is a useful next step.
         </p>
       </Intro>
       <Section>

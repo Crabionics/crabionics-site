@@ -34,7 +34,7 @@ export async function POST(request: Request) {
   const now = Date.now();
   if (storageConfigured()) {
     try {
-      if (await limited(request))
+      if (await limited(request, "enquiry"))
         return respond(
           { error: "Please wait a few minutes before trying again." },
           429,
@@ -73,6 +73,7 @@ export async function POST(request: Request) {
       headers: {
         Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
         "Content-Type": "application/json",
+        "Idempotency-Key": `enquiry-${digest(JSON.stringify(data))}-${Math.floor(Date.now() / 300000)}`,
       },
       body: JSON.stringify({
         from: process.env.CONTACT_FROM_EMAIL,

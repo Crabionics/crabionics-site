@@ -6,7 +6,7 @@ const {
 } = require("../.verification/lib/early-access.js");
 const { answerQuestion } = require("../.verification/lib/faq-assistant.js");
 const { POST } = require("../.verification/api/early-access/route.js");
-const { GET } = require("../.verification/api/early-access/export/route.js");
+const { GET, POST: staffAction } = require("../.verification/api/early-access/export/route.js");
 const { storageConfigured, redis } = require("../.verification/lib/registration-service.js");
 test("Vercel Marketplace Redis credentials connect without copying secrets", async () => {
   const env = { ...process.env };
@@ -36,7 +36,7 @@ const sample = {
   role: "Pond grower",
   region: "Odisha",
   setting: "Pond observations",
-  interest: "Operator setup, observations & history",
+  interest: "Connected daily operations with AquaOS",
   consent: true,
   updates: false,
   website: "",
@@ -101,6 +101,7 @@ test("mocked delivery verifies interest once, preserves consent and exposes only
   const ids = [];
   const emails = [];
   let failMail = false;
+  let failTeam = false;
   let limit = 1;
   Object.assign(process.env, {
     UPSTASH_REDIS_REST_URL: "https://storage.example",
@@ -114,7 +115,7 @@ test("mocked delivery verifies interest once, preserves consent and exposes only
   global.fetch = async (url, init) => {
     const body = JSON.parse(init.body);
     if (url === "https://api.resend.com/emails") {
-      if (failMail)
+      if (failMail || (failTeam && body.to[0] === "info@crabionics.com"))
         return Response.json({ error: "rejected" }, { status: 422 });
       emails.push(body);
       return Response.json({ id: "test-email-id" });
@@ -129,7 +130,25 @@ test("mocked delivery verifies interest once, preserves consent and exposes only
         memory.set(key, value);
         result = "OK";
       }
-    } else if (cmd === "EVAL") result = limit;
+    } else if (cmd === "EVAL") {
+      if (key.includes("INCR")) result = limit;
+      else if (key.includes("local current")) {
+        const keys = body.slice(3,8); const [record,score,state,id] = body.slice(8);
+        if (memory.has(keys[4])) result = null;
+        else {
+          result = memory.get(keys[0]) || record;
+          if (!memory.has(keys[0])) {memory.set(keys[0],record); memory.set(keys[2],state);}
+          if (!ids.includes(id)) ids.push(id);
+        }
+      } else if (key.includes("SMEMBERS")) {
+        const keys = body.slice(3,9); const id = body[9];
+        memory.delete(keys[0]); memory.delete(keys[1]); memory.set(keys[4],"1");
+        const position=ids.indexOf(id); if(position>=0) ids.splice(position,1); result=1;
+      } else if (key.includes("604800")) {memory.set(body[3],body[6]);memory.set(body[4],body[7]);result=1;}
+      else throw new Error("Unknown script");
+    } else if (cmd === "DEL") {memory.delete(key); result=1;}
+    else if (cmd === "ZREM") result=1;
+    else if (cmd === "ZRANGEBYSCORE") result=[];
     else if (cmd === "ZADD") {
       const id = body.at(-1);
       if (!ids.includes(id)) ids.push(id);
@@ -146,6 +165,8 @@ test("mocked delivery verifies interest once, preserves consent and exposes only
     assert.equal((await response.json()).verificationRequested, true);
     assert.equal(ids.length, 0);
     assert.equal(emails.length, 1);
+    await POST(req());
+    assert.equal(emails.length, 1, "email cooldown prevents duplicate verification");
     const token = emails[0].text.match(/token=([a-f0-9]{64})/)[1];
     const expired = await POST(req({ token: "f".repeat(64) }));
     assert.equal(expired.status, 410);
@@ -173,6 +194,20 @@ test("mocked delivery verifies interest once, preserves consent and exposes only
       }),
     );
     assert.equal((await review.json()).records[0].updates, false);
+    const { retryNotification, digest } = require("../.verification/lib/registration-service.js");
+    await POST(req({ ...sample, email: "retry@example.com" }));
+    const retryToken = emails.at(-1).text.match(/token=([a-f0-9]{64})/)[1];
+    failTeam = true;
+    assert.equal((await POST(req({token:retryToken}))).status, 200);
+    const retryId = digest("retry@example.com");
+    const failed = JSON.parse(memory.get(`test-beta:delivery:${retryId}`));
+    assert.equal(failed.team,"pending");
+    assert.equal(failed.welcome,"sent", "welcome succeeds independently of team failure");
+    const welcomeCount = emails.filter(mail => mail.to[0] === "retry@example.com").length;
+    failTeam = false;
+    await retryNotification(retryId);
+    assert.equal(JSON.parse(memory.get(`test-beta:delivery:${retryId}`)).team,"sent");
+    assert.equal(emails.filter(mail => mail.to[0] === "retry@example.com").length,welcomeCount,"retry does not resend accepted welcome");
     limit = 6;
     assert.equal((await POST(req())).status, 429);
     limit = 1;
@@ -181,7 +216,12 @@ test("mocked delivery verifies interest once, preserves consent and exposes only
       (await POST(req({ ...sample, email: "second@example.com" }))).status,
       502,
     );
-    assert.equal(ids.length, 1);
+    assert.equal(ids.length, 2);
+    const deletion = await staffAction(new Request("https://example.com/api/early-access/export", {method:"POST", headers:{origin:"https://example.com", authorization:"Bearer test-private-export","content-type":"application/json"},body:JSON.stringify({action:"delete",email:"retry@example.com"})}));
+    assert.equal(deletion.status,200);
+    assert.equal(ids.length,1);
+    failMail = false;
+    assert.equal((await POST(req({token:retryToken}))).status,410,"deleted registration cannot be recreated by old confirmation link");
   } finally {
     global.fetch = original;
     for (const key of Object.keys(process.env))

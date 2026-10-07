@@ -8,14 +8,18 @@
     "start": "next start",
     "lint": "eslint",
     "test:enquiry": "tsc app/lib/enquiry.ts app/api/enquiry/route.ts --rootDir app --outDir .verification --target ES2022 --module commonjs --skipLibCheck && node --test tests/enquiry.test.cjs",
-    "test:public": "tsc app/lib/enquiry.ts app/lib/faq-assistant.ts app/api/enquiry/route.ts app/api/early-access/route.ts app/api/early-access/export/route.ts --rootDir app --outDir .verification --target ES2022 --module commonjs --skipLibCheck && node --test tests/*.test.cjs"
+    "test:public": "tsc app/lib/enquiry.ts app/lib/faq-assistant.ts app/api/enquiry/route.ts app/api/early-access/route.ts app/api/early-access/export/route.ts app/api/funnel/route.ts app/api/registration-recovery/route.ts --rootDir app --outDir .verification --target ES2022 --module commonjs --skipLibCheck && node --test tests/*.test.cjs",
+    "check:links": "node scripts/check-public-links.mjs",
+    "lint:public": "eslint app/components/public app/components/navigation app/api app/lib/early-access.ts app/lib/registration-service.ts app/lib/registration-access.ts app/lib/funnel.ts app/aquaos/page.tsx app/company/page.tsx app/contact/page.tsx app/demo/page.tsx app/early-access app/layout.tsx app/page.tsx app/privacy/page.tsx app/producers/page.tsx app/validation/page.tsx next.config.ts proxy.ts"
   },
   "dependencies": {
     "@clerk/nextjs": "^7.6.5",
+    "@vercel/analytics": "^2.0.1",
+    "@vercel/speed-insights": "^2.0.0",
     "framer-motion": "^12.38.0",
-    "next": "16.1.6",
-    "react": "19.2.3",
-    "react-dom": "19.2.3"
+    "next": "^16.4.0",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
@@ -23,7 +27,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
-    "eslint-config-next": "16.1.6",
+    "eslint-config-next": "^16.4.0",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

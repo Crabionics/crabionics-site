@@ -7,7 +7,6 @@ import {
   styles as s,
 } from "../components/public/Experience";
 import EarlyAccessForm from "../components/public/EarlyAccessForm";
-import { VisualFacts } from "../components/public/Visuals";
 import { registrationConfigured } from "../lib/registration-service";
 export const metadata: Metadata = {
   title: "Join Early Access",
@@ -24,50 +23,20 @@ export default function EarlyAccessPage() {
         title="Help build AquaOS around your daily production work."
       >
         <p className={s.lead}>
-          Bring one routine your team needs to manage better—from a feeding round to a follow-up inspection. Help shape a proposed operator pilot that connects what happened, what needs attention and what happened next.
+          Bring one routine—from a feeding round to an inspection—that your team needs to manage better. Register interest to help shape a focused operator pilot.
         </p>
-        <Button href="/demo" secondary>
-          Explore the workflow preview first
-        </Button>
-      </Intro>
-      <Section tone="mist">
-        <VisualFacts
-          items={[
-            [
-              "record",
-              "Bring a real routine",
-              "A daily task, its records & a recurring difficulty",
-            ],
-            ["pond", "Help shape the pilot", "Test a focused workflow & share feedback"],
-            ["decision", "Follow through", "Connect observations, actions & outcomes"],
-          ]}
-        />
-      </Section>
-      <Section>
-        <div className={s.split}>
-          <div>
-            <h2>A first useful step towards connected operations.</h2>
-            <p>AquaOS is being developed to connect production context, decisions, actions and evidence. The proposed first pilot focuses on the work an operator returns to every day.</p>
-            <Button href="/aquaos" secondary>Understand the AquaOS direction</Button>
-          </div>
-          <div>
-            <h3>What we propose to explore together</h3>
-            <ul className={s.checklist}>
-              <li>Establish the site, production stage and operating units.</li>
-              <li>Record daily observations and review what needs attention.</li>
-              <li>Keep follow-up actions and outcomes with their history.</li>
-              <li>Explore assistance grounded in those records.</li>
-            </ul>
-            <p>The founders will agree the exact pilot scope and support before inviting participants to test it.</p>
-          </div>
+        <div className={s.actions}>
+          <Button href="#register">Register interest</Button>
+          <Button href="/demo" secondary>Try the operating example</Button>
         </div>
-      </Section>
-      <Section>
-        <div className={s.split}>
+      </Intro>
+      <Section id="register">
+        <div className={s.split} style={{ alignItems: "start" }}>
+          <EarlyAccessForm enabled={enabled} />
           <div>
             <h2>Tell us about your team and routine.</h2>
             <p>
-              The operator beta is in development. Registering starts a conversation about fit; it does not provide immediate software access. Pilot invitations, timing and any equipment integration depend on agreed scope and readiness.
+              The operator beta is in development. Registration starts a fit conversation; software access follows an agreed pilot scope and invitation.
             </p>
             <h3>What happens next</h3>
             <ol className={s.checklist}>
@@ -76,13 +45,29 @@ export default function EarlyAccessPage() {
               <li>If there is a suitable fit, discuss the pilot task, support and feedback process.</li>
             </ol>
           </div>
-          <EarlyAccessForm enabled={enabled} />
         </div>
       </Section>
       <Section tone="mist">
+        <div className={s.split}>
+          <div>
+            <h2>A focused routine. A useful history.</h2>
+            <p>The proposed pilot connects an observation, its follow-up and the recorded outcome. Your team helps test whether that makes everyday work easier to manage.</p>
+            <Button href="/aquaos" secondary>Explore the AquaOS direction</Button>
+          </div>
+          <div>
+            <h3>We agree the pilot before testing</h3>
+            <ul className={s.checklist}>
+              <li>Your site, production stage and operating units.</li>
+              <li>One daily routine and the records it needs.</li>
+              <li>The task, support, timing and feedback process.</li>
+            </ul>
+          </div>
+        </div>
+      </Section>
+      <Section>
         <h2>Exploring a production project instead?</h2>
         <p>For seed, nursery, pond production, controlled finishing, buyer requirements or research collaboration, describe your project directly to the team.</p>
-        <Button href="/contact">Discuss your production setting</Button>
+        <Button href="/contact">Discuss a production project</Button>
       </Section>
     </Page>
   );
