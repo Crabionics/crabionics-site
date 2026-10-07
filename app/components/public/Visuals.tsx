@@ -118,12 +118,12 @@ export function BetaDirection({ showcase = false }: { showcase?: boolean }) {
       <div className={s.split}>
         <div>
           <Eyebrow>AquaOS / Explore the direction</Eyebrow>
-          <h2>Your setting. Your observations. A history you can return to.</h2>
+          <h2>Connect the daily work to the next decision.</h2>
           <p>
-            Explore a sample operator workflow, then help shape the proposed beta: setup, observations, returning history and record-grounded assistance.
+            AquaOS is our developing operating layer for mud-crab production: context, observations, operator decisions, actions and outcomes. Explore one sample round, then help shape a useful operator beta.
           </p>
           <div className={s.actions}>
-            <Button href="/demo">Explore the workflow preview</Button>
+            <Button href="/aquaos">Understand AquaOS</Button>
             <Button href="/early-access" secondary>
               Express early-access interest
             </Button>
@@ -138,7 +138,7 @@ export function BetaDirection({ showcase = false }: { showcase?: boolean }) {
             ],
             [
               "Shape next",
-              "Setup, observations, history & assistance",
+              "Daily operator work, history & grounded assistance",
               "Early-access interest",
             ],
             [

@@ -96,7 +96,7 @@ export default function EarlyAccessForm({ enabled }: { enabled: boolean }) {
         </div>
         <div className={`${s.field} ${s.full}`}>
           <label htmlFor="beta-setting">
-            Your production setting (optional)
+            Your setting and daily routine (optional)
           </label>
           <textarea
             id="beta-setting"
