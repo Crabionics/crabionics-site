@@ -144,7 +144,7 @@ export default function EarlyAccessForm({ enabled }: { enabled: boolean }) {
             : "Prepare early-access email"}{" "}
         ↗
       </button>
-      {message && (
+      {message && !busy && (
         <div
           ref={result}
           tabIndex={-1}

@@ -202,7 +202,7 @@ export default function EnquiryForm({
               : "Prepare email enquiry"}
         <span aria-hidden="true">↗</span>
       </button>
-      {prepared && (
+      {prepared && !busy && (
         <div
           ref={result}
           tabIndex={-1}
