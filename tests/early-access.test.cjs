@@ -102,6 +102,7 @@ test("mocked delivery verifies interest once, preserves consent and exposes only
   const emails = [];
   let failMail = false;
   let failTeam = false;
+  let duringMail;
   let limit = 1;
   Object.assign(process.env, {
     UPSTASH_REDIS_REST_URL: "https://storage.example",
@@ -115,6 +116,7 @@ test("mocked delivery verifies interest once, preserves consent and exposes only
   global.fetch = async (url, init) => {
     const body = JSON.parse(init.body);
     if (url === "https://api.resend.com/emails") {
+      if (duringMail) { const callback = duringMail; duringMail = null; await callback(); }
       if (failMail || (failTeam && body.to[0] === "info@crabionics.com"))
         return Response.json({ error: "rejected" }, { status: 422 });
       emails.push(body);
@@ -132,17 +134,26 @@ test("mocked delivery verifies interest once, preserves consent and exposes only
       }
     } else if (cmd === "EVAL") {
       if (key.includes("INCR")) result = limit;
+      else if (key.includes("cjson.decode")) {
+        const keys=body.slice(3,7); const [original,state,ttl,notification,id,score]=body.slice(7);
+        if (memory.has(keys[2]) || memory.get(keys[0]) !== original) result=0;
+        else {
+          memory.set(keys[1],state);
+          if (notification) {const row=JSON.parse(original); row.notification=notification; memory.set(keys[0],JSON.stringify(row)); const outbox=memory.get(keys[3]) || new Set(); notification === "sent" ? outbox.delete(id) : outbox.add(id); memory.set(keys[3],outbox);}
+          result=1;
+        }
+      }
       else if (key.includes("local current")) {
         const keys = body.slice(3,8); const [record,score,state,id] = body.slice(8);
         if (memory.has(keys[4])) result = null;
         else {
           result = memory.get(keys[0]) || record;
-          if (!memory.has(keys[0])) {memory.set(keys[0],record); memory.set(keys[2],state);}
+          if (!memory.has(keys[0])) {memory.set(keys[0],record); memory.set(keys[2],state); const outbox=memory.get(keys[3]) || new Set(); outbox.add(id); memory.set(keys[3],outbox);}
           if (!ids.includes(id)) ids.push(id);
         }
       } else if (key.includes("SMEMBERS")) {
         const keys = body.slice(3,9); const id = body[9];
-        memory.delete(keys[0]); memory.delete(keys[1]); memory.set(keys[4],"1");
+        memory.delete(keys[0]); memory.delete(keys[1]); memory.set(keys[4],"1"); memory.get(keys[3])?.delete(id);
         const position=ids.indexOf(id); if(position>=0) ids.splice(position,1); result=1;
       } else if (key.includes("604800")) {memory.set(body[3],body[6]);memory.set(body[4],body[7]);result=1;}
       else throw new Error("Unknown script");
@@ -208,6 +219,21 @@ test("mocked delivery verifies interest once, preserves consent and exposes only
     await retryNotification(retryId);
     assert.equal(JSON.parse(memory.get(`test-beta:delivery:${retryId}`)).team,"sent");
     assert.equal(emails.filter(mail => mail.to[0] === "retry@example.com").length,welcomeCount,"retry does not resend accepted welcome");
+    // Deletion races an email provider request already in flight. Resolving that
+    // request must not recreate the record, delivery state or pending outbox.
+    await POST(req({...sample,email:"race@example.com"}));
+    const raceToken=emails.at(-1).text.match(/token=([a-f0-9]{64})/)[1];
+    const raceId=digest("race@example.com");
+    duringMail = async () => {
+      const response=await staffAction(new Request("https://example.com/api/early-access/export", {method:"POST",headers:{origin:"https://example.com",authorization:"Bearer test-private-export","content-type":"application/json"},body:JSON.stringify({action:"delete",email:"race@example.com"})}));
+      assert.equal(response.status,200);
+    };
+    assert.equal((await POST(req({token:raceToken}))).status,200);
+    assert.equal(memory.has(`test-beta:record:${raceId}`),false,"in-flight retry cannot recreate deleted personal data");
+    assert.equal(memory.has(`test-beta:delivery:${raceId}`),false,"in-flight retry cannot recreate delivery state");
+    assert.equal(ids.includes(raceId),false,"deleted registration remains absent from index");
+    assert.equal(memory.get("test-beta:outbox")?.has(raceId),false,"in-flight retry cannot requeue a deleted registration");
+    assert.equal(emails.some(mail => mail.to[0] === "race@example.com" && mail.subject.includes("confirmed")),false,"next recipient is skipped after deletion");
     limit = 6;
     assert.equal((await POST(req())).status, 429);
     limit = 1;

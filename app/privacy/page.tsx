@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   },
 };
 
-const effectiveDate = "May 13, 2026";
+const effectiveDate = "October 7, 2026";
 
 export default function PrivacyPage() {
   return (
