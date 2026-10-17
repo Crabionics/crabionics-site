@@ -47,7 +47,7 @@ export default function ConnectedAssembly(){
   chapterRefs.current.forEach(el=>{if(el)observer.observe(el)});return()=>observer.disconnect();
  },[]);
  const chapter=chapters[active];
- function select(i:number){setActive(i);setMode("system");chapterRefs.current[i]?.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth',block:'center'});}
+ function select(i:number){setActive(i);setMode("system");chapterRefs.current[i]?.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth',block:'start'});}
  return <section className={s.assembly} id="connected-system" aria-labelledby="assembly-title">
   <div className={s.sectionHeading}><div><p>THE CONNECTED SYSTEM / 01—05</p><h2 id="assembly-title">Follow the connections.<br/><span>Understand the whole.</span></h2></div><p>One production context. Five connected roles.<br/>Scroll through the system, or choose a layer.</p></div>
   <div className={s.assemblyGrid}>
