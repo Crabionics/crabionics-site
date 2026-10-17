@@ -1,3 +1,4 @@
+import { TechnologyExplorer } from "../components/public/TechnologyExplorer";
 import type { Metadata } from "next";
 import {
   Button,
@@ -9,7 +10,6 @@ import {
   Intro,
   Page,
   Section,
-  SolutionCards,
   TextLink,
   styles as s,
 } from "../components/public/Experience";
@@ -27,9 +27,9 @@ export default function SolutionsPage() {
         title="Built around the production work."
         aside={
           <ImagePanel
-            src="/images/versioned/company-world-mobile.ebb1281c.webp"
-            alt="Concept illustration of the connected mud-crab production environment."
-            caption="Concept illustration"
+            src="/photos/ras-plumbing.jpg"
+            alt="Blue individual production racks and supporting water treatment equipment."
+            caption="Production equipment photograph"
             priority
           />
         }
@@ -50,7 +50,7 @@ export default function SolutionsPage() {
           Explore the role, development scope and production questions for each
           component.
         </Heading>
-        <SolutionCards />
+        <TechnologyExplorer />
       </Section>
       <Section tone="mist">
         <div className={s.split}>
