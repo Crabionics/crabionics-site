@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Button, CTA, Eyebrow, ImagePanel, Intro, Page, Section, Status, TextLink, styles as s } from "../components/public/Experience";
+import { Button, CTA, Eyebrow, Intro, Page, Section, Status, TextLink, styles as s } from "../components/public/Experience";
+import { OperatingPreview } from "../components/public/TechnologyExplorer";
 import { OperatingLoop, OperatingExample, OperatorCapabilities, DevelopmentLayers, CopilotPosition } from "../components/public/AquaOSStory";
 export const metadata: Metadata = {
  title: "AquaOS | Connecting Production, Decisions & Outcomes",
@@ -8,7 +9,7 @@ export const metadata: Metadata = {
 };
 export default function AquaOSPage() {
  return <Page name="aquaos">
- <Intro eyebrow="AquaOS / The operating layer" title="Connect production, decisions and outcomes." aside={<ImagePanel src="/images/versioned/company-world-mobile.ebb1281c.webp" alt="Concept illustration of an operator, crab habitats and connected production equipment." caption="Connected production direction · concept illustration" priority/>}>
+ <Intro eyebrow="AquaOS / The operating layer" title="Connect production, decisions and outcomes." aside={<OperatingPreview/>}>
  <p className={s.lead}>Bring stock, feeding, water observations and follow-ups into one operating history—so your team can see what changed and what needs attention.</p><Status>In development · proposed operator beta</Status><div className={s.actions}><Button href="/demo">Try an operating example</Button><TextLink href="#operating-loop">See how AquaOS fits</TextLink></div></Intro>
  <Section><OperatingExample/></Section>
  <Section id="operating-loop"><div className={s.heading}><div><Eyebrow>Why an operating layer?</Eyebrow><h2>Every decision has<br/>a production context.</h2></div><p>Seed and stock, production stage, water, feeding and labour all shape the work. Connecting the records helps teams see what happened, what they chose and what still needs checking.</p></div><OperatingLoop/></Section>

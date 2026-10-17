@@ -599,10 +599,10 @@
 }
 .cta h2 {
   font-size: 38px !important;
-  color: white !important;
+  color: var(--ink) !important;
 }
 .cta p {
-  color: #c7dedc !important;
+  color: #3d5f68 !important;
   margin: 0 !important;
 }
 .cta .button {
@@ -1174,3 +1174,15 @@
     scroll-behavior: auto !important;
   }
 }
+
+/* Connected production identity: shared by every public route. */
+.page{--ink:#142f3e;--teal:#246f78;--mist:#eef1eb;--line:#cbd5d0;--coral:#143c4e;background:#fafbf7;font-family:"Helvetica Neue",Arial,sans-serif}
+.page.page :is(h1,h2,h3,h4){font-weight:400;letter-spacing:-.045em}
+.page.page h1{font-size:clamp(44px,5.6vw,80px);line-height:1.02}
+.page.page h2{font-size:clamp(32px,3.6vw,52px);line-height:1.08}
+.page.page p{color:#506872;font-size:16px;line-height:1.75}
+.page.page .eyebrow{font:10px/1.6 ui-monospace,SFMono-Regular,monospace;letter-spacing:.09em;font-weight:400}
+.section{padding:100px 0}.heading{gap:50px;margin-bottom:45px}.heading>div{max-width:720px}.heading>p{max-width:365px;font-size:15px!important}.wrap{max-width:1320px;padding:0 44px}.mist{background:#eef1eb}.dark{background:#0c2535}.page .dark p{color:#bed2d7}.page .dark .eyebrow{color:#a2d2cd}.button{border-radius:0;font-weight:500;letter-spacing:.01em;padding:16px 22px;min-height:50px;background:#163e50}.button:hover{background:#275d69;transform:translateY(-2px)}.secondary{background:transparent}.secondary:hover{background:#e3ebe4}.dark .button:not(.secondary){background:#dceee4;color:#133440!important}.dark .button:not(.secondary):hover{background:#a1ddcd}.dark .secondary{background:transparent}.textLink{font-weight:500;text-decoration:none;border-bottom:1px solid #a6bdba;gap:28px}.intro{background:#eef1eb;border-bottom:1px solid #d4ddd7;padding:80px 0}.intro .split{gap:65px}.intro .lead{font-size:18px;max-width:590px}.introNav{font-family:ui-monospace,monospace;font-size:11px}.imagePanel,.card,.feature,.detailBox,.form,.institution{border-radius:3px}.imagePanel figcaption{border-radius:0;font:10px/1.6 ui-monospace,monospace}.card{background:#fff;box-shadow:none;border-color:#ccd7d2;transition:border-color .2s,transform .2s}.card:hover{border-color:#7d9c9e;transform:translateY(-3px)}.cardBody{padding:28px}.cardTag,.status{font:10px/1.7 ui-monospace,monospace;letter-spacing:.04em}.cardImage{border-radius:0}.cta{background:#dce8dd;border:0;border-radius:0;padding:65px 50px;margin:0 auto;max-width:1232px;gap:60px}.cta h2{font-size:clamp(32px,4vw,56px)!important;max-width:740px}.cta p{max-width:600px}.three,.four{gap:24px}.note{border-radius:0;border-left:2px solid #438a8b}.imageLabel{border-radius:0;font:10px ui-monospace,monospace}.form :is(input,select,textarea){border-radius:2px}.form :is(input,select,textarea):focus-visible{outline-color:#24858d}.form .button{border-radius:0}
+@media(max-width:1023px){.wrap{padding:0 28px}.intro .split{gap:35px}.section{padding:75px 0}}
+@media(max-width:767px){.wrap{padding:0 22px}.section{padding:60px 0}.heading{gap:15px;margin-bottom:30px}.intro{padding:42px 0}.intro .split{gap:28px}.page.page h1{font-size:44px}.page.page h2{font-size:34px}.cta{padding:40px 24px;margin:0}.cta h2{font-size:35px!important}.cta .button{margin-top:24px}.three,.four{gap:18px}.cardBody{padding:25px}.imagePanel{min-width:0}.intro .lead{font-size:17px}.introNav{gap:12px 20px}}
+@media(prefers-reduced-motion:reduce){.card:hover,.button:hover{transform:none}}
