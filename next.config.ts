@@ -10,6 +10,8 @@ const nextConfig: NextConfig = {
         {key:"X-Frame-Options",value:"DENY"},
         {key:"Referrer-Policy",value:"strict-origin"},
       ]},
+      // The preview-only visual review frame can be embedded by its own origin.
+      {source:"/design-review/frame",headers:[{key:"X-Frame-Options",value:"SAMEORIGIN"}]},
       {
         source: "/images/versioned/:path*",
         headers: [
