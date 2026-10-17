@@ -31,11 +31,11 @@ export function TechnologyExplorer() {
         }}><span className={s.index}>0{i + 1}</span><span><strong>{item.name}</strong><small>{item.label}</small></span><span aria-hidden="true">↗</span></button>)}
     </div>
     <div id={`${id}-panel`} role="tabpanel" aria-labelledby={`${id}-tab-${selected}`} tabIndex={0} className={s.panel}>
-      <div className={s.visual}>
+      <div key={layer.name} className={s.visual}>
         {layer.image ? <Image key={layer.image} src={layer.image} alt={layer.alt} fill sizes="(max-width: 767px) 100vw, 55vw" className={selected === 0 ? s.crabPhoto : s.equipmentPhoto} /> : <OperatingPreview />}
         <span className={s.caption}>{layer.caption}</span>
       </div>
-      <div className={s.description}>
+      <div key={`${layer.name}-description`} className={s.description}>
         <div><span className={s.kicker}>{layer.detail}</span><h3>{layer.title}</h3><p>{layer.description}</p></div>
         <Link href={layer.href}>Explore {layer.name} <span aria-hidden="true">↗</span></Link>
       </div>

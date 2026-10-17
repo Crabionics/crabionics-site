@@ -55,7 +55,6 @@ export default function Footer() {
             </div>
           </div>
         </div>
-        <div className={s.footerWordmark} aria-hidden="true">CRABIONICS<span>BIOLOGY. ENGINEERING. CONNECTED.</span></div>
         <div className={s.legal}>
           <p>© {new Date().getFullYear()} Crabionics Aquaculture Pvt. Ltd.</p>
           <div>

@@ -95,7 +95,7 @@ export default function RootLayout({
         <main
           id="main-content"
           tabIndex={-1}
-          className="relative z-10 min-h-screen bg-white"
+          className="relative z-10 bg-white"
         >
           {children}
         </main>

@@ -4,3 +4,11 @@
 @media(prefers-reduced-motion:reduce){.explorer *,.water *{transition:none!important}}
 
 .consoleMain,.consoleBody{min-width:0}.record>div{min-width:0}.record em{flex-shrink:0}.consoleRail small{letter-spacing:0}.water p.waterNote{max-width:none}
+
+/* Panel changes read as a new slide while focus stays on the tab control. */
+@media(prefers-reduced-motion:no-preference){
+ .visual{animation:layer-arrive .38s cubic-bezier(.2,.7,.2,1) both}
+ .description{animation:copy-arrive .3s ease-out both}
+ @keyframes layer-arrive{from{clip-path:inset(0 0 3% 0);transform:translateY(5px)}to{clip-path:inset(0);transform:translateY(0)}}
+ @keyframes copy-arrive{from{transform:translateY(8px)}to{transform:translateY(0)}}
+}

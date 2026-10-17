@@ -599,10 +599,10 @@
 }
 .cta h2 {
   font-size: 38px !important;
-  color: white !important;
+  color: var(--ink) !important;
 }
 .cta p {
-  color: #c7dedc !important;
+  color: #3d5f68 !important;
   margin: 0 !important;
 }
 .cta .button {
