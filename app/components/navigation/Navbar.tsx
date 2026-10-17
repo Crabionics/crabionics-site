@@ -2,7 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import s from "../public/Identity.module.css";
 const links = [
   ["Solutions", "/solutions"],
@@ -14,6 +14,15 @@ const links = [
 ];
 export default function Navbar() {
   const pathname = usePathname();
+  const technology = useRef<HTMLDetailsElement>(null);
+  useEffect(() => {
+    function dismiss(event: PointerEvent) {
+      const menu = technology.current;
+      if (menu?.open && event.target instanceof Node && !menu.contains(event.target)) menu.open = false;
+    }
+    document.addEventListener("pointerdown", dismiss);
+    return () => document.removeEventListener("pointerdown", dismiss);
+  }, []);
   const [openAt, setOpenAt] = useState<string | null>(null);
   const open = openAt === pathname;
   const toggle = useRef<HTMLButtonElement>(null);
@@ -54,7 +63,7 @@ export default function Navbar() {
         </Link>
         <nav className={s.desktopNav} aria-label="Primary navigation">
           {links.map(([label, href]) => href === "/solutions" ? (
-            <details key={href} className={s.navGroup} onKeyDown={event=>{if(event.key === "Escape"){event.currentTarget.open=false;event.currentTarget.querySelector("summary")?.focus();}}} onClick={event=>{if(event.target instanceof Element && event.target.closest("a")) event.currentTarget.open=false;}}>
+            <details ref={technology} key={href} className={s.navGroup} onKeyDown={event=>{if(event.key === "Escape"){event.currentTarget.open=false;event.currentTarget.querySelector("summary")?.focus();}}} onClick={event=>{if(event.target instanceof Element && event.target.closest("a")) event.currentTarget.open=false;}}>
               <summary>Technology <span aria-hidden="true">⌄</span></summary>
               <div className={s.flyout}>
                 {[

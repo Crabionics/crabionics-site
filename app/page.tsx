@@ -65,6 +65,10 @@ export default function HomePage() {
           ))}
         </div>
       </div>
+      <ConnectedAssembly />
+      <Section>
+        <ProductionJourney />
+      </Section>
       <Section>
         <Heading eyebrow="Choose your next step" title="Start with the work you need to move forward." />
         <div className={s.detailGrid}>
@@ -85,10 +89,6 @@ export default function HomePage() {
             </div>
           </article>
         </div>
-      </Section>
-      <ConnectedAssembly />
-      <Section>
-        <ProductionJourney />
       </Section>
       <Section tone="dark">
         <EvidenceStrip />
