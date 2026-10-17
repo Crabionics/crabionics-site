@@ -5,6 +5,8 @@ import Image from "next/image";
 import Link from "next/link";
 import s from "./TechnologyExplorer.module.css";
 
+const layerAssets = ["cube", "wifi", "setting", "computer"] as const;
+
 const layers = [
   { name: "Habitat", label: "Biological environment", title: "Start with the animal.", description: "Individual spaces bring care, handling and observation to the scale of a single crab. Water management supports the production setting around it.", detail: "Physical layer", relation: "Habitat → observations", href: "/solutions/habitat", image: "/photos/isolation-box.jpg", alt: "A mud crab resting inside an individual blue habitat.", caption: "Individual habitat · production photograph" },
   { name: "CrabSense", label: "Sensing & observation", title: "Give every reading a context.", description: "Connect water measurements and operator observations to a production unit and time. Calibration, maintenance and measurement quality are part of the sensing work.", detail: "Observation layer", relation: "Observations → operator review", href: "/solutions/crabsense", image: "/photos/ras-plumbing.jpg", alt: "Production racks and supporting water equipment.", caption: "Production setting · sensing integration in development" },
@@ -28,7 +30,7 @@ export function TechnologyExplorer() {
           else return;
           event.preventDefault(); setSelected(next);
           document.getElementById(`${id}-tab-${next}`)?.focus();
-        }}><span className={s.index}>0{i + 1}</span><span><strong>{item.name}</strong><small>{item.label}</small></span><span aria-hidden="true">↗</span></button>)}
+        }}><span className={s.layerMark}><Image src={`/3d/${layerAssets[i]}.webp`} alt="" width={56} height={56} sizes="56px" /><span className={s.index}>0{i + 1}</span></span><span className={s.layerLabel}><strong>{item.name}</strong><small>{item.label}</small></span><span aria-hidden="true">↗</span></button>)}
     </div>
     <div id={`${id}-panel`} role="tabpanel" aria-labelledby={`${id}-tab-${selected}`} tabIndex={0} className={s.panel}>
       <div key={layer.name} className={s.visual}>
