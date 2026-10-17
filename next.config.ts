@@ -10,6 +10,8 @@ const nextConfig: NextConfig = {
         {key:"X-Frame-Options",value:"DENY"},
         {key:"Referrer-Policy",value:"strict-origin"},
       ]},
+      // Only the noindex visual review frame can be embedded, by this origin.
+      {source: "/design-review/frame", headers:[{key:"X-Frame-Options",value:"SAMEORIGIN"}]},
       {
         source: "/images/versioned/:path*",
         headers: [

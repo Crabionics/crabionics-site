@@ -695,3 +695,7 @@ a:hover {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Clip decorative overflow without creating a scroll container around the sticky masthead. */
+html { overflow-x: clip; }
+body.public-site { overflow-x: clip; }
