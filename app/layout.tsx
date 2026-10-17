@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import localFont from "next/font/local";
 import "./globals.css";
 import Navbar from "@/app/components/navigation/Navbar";
 import Footer from "./components/layout/Footer";
@@ -6,7 +7,10 @@ import AskCrabionics from "./components/public/AskCrabionics";
 import JourneyMetrics from "./components/public/JourneyMetrics";
 import VercelObservability from "./components/public/VercelObservability";
 
+const manrope = localFont({ src: "../public/fonts/manrope-latin.woff", variable: "--font-manrope", display: "swap", weight: "200 800" });
+
 export const metadata: Metadata = {
+  robots: process.env.VERCEL_ENV === "preview" ? { index: false, follow: false } : undefined,
   metadataBase: new URL("https://www.crabionics.com"),
   title: {
     default: "Crabionics | Production Architecture for Mud-Crab Aquaculture",
@@ -83,19 +87,19 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="public-site">
+      <body className={`public-site ${manrope.variable}`}>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(organizationJsonLd),
           }}
         />
-        <style>{`.public-site{--site-header-height:72px;background:#fff;color:#0f172a}.public-site>main{padding-top:0}.public-site h1,.public-site h2,.public-site h3,.public-site h4,.public-site h5,.public-site h6{color:#102C5C}.public-site p{color:#475569}.public-site .text-white{color:#fff}.public-site .text-slate-200{color:#e2e8f0}.public-site .text-slate-300{color:#cbd5e1}.public-site .text-slate-400{color:#94a3b8}.public-site .text-slate-500{color:#64748b}.public-site .text-slate-600{color:#475569}.public-site .text-slate-700{color:#334155}`}</style>
+        <style>{`.public-site{--site-header-height:78px;background:#fff;color:#0f172a}.public-site>main{padding-top:0}.public-site h1,.public-site h2,.public-site h3,.public-site h4,.public-site h5,.public-site h6{color:#102C5C}.public-site p{color:#475569}.public-site .text-white{color:#fff}.public-site .text-slate-200{color:#e2e8f0}.public-site .text-slate-300{color:#cbd5e1}.public-site .text-slate-400{color:#94a3b8}.public-site .text-slate-500{color:#64748b}.public-site .text-slate-600{color:#475569}.public-site .text-slate-700{color:#334155}`}</style>
         <Navbar />
         <main
           id="main-content"
           tabIndex={-1}
-          className="relative z-10 min-h-screen bg-white"
+          className="relative z-10 bg-white"
         >
           {children}
         </main>

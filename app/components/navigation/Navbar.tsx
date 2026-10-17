@@ -53,7 +53,21 @@ export default function Navbar() {
           <span>Crabionics</span>
         </Link>
         <nav className={s.desktopNav} aria-label="Primary navigation">
-          {links.map(([label, href]) => (
+          {links.map(([label, href]) => href === "/solutions" ? (
+            <details key={href} className={s.navGroup} onKeyDown={event=>{if(event.key === "Escape"){event.currentTarget.open=false;event.currentTarget.querySelector("summary")?.focus();}}} onClick={event=>{if(event.target instanceof Element && event.target.closest("a")) event.currentTarget.open=false;}}>
+              <summary>Technology <span aria-hidden="true">⌄</span></summary>
+              <div className={s.flyout}>
+                {[
+                  ["The connected system", "Biology, equipment & operating context", "/system"],
+                  ["Habitat", "The individual production environment", "/solutions/habitat"],
+                  ["CrabSense", "Sensing & environmental observation", "/solutions/crabsense"],
+                  ["CrabPod", "The local equipment connection", "/solutions/crabpod"],
+                  ["AquaOS", "Decisions, actions & operating history", "/aquaos"],
+                  ["All solutions", "Explore the full technology scope", "/solutions"],
+                ].map(([title,description,to])=><Link href={to} key={to}><strong>{title}</strong><small>{description}</small><b aria-hidden="true">↗</b></Link>)}
+              </div>
+            </details>
+          ) : (
             <Link
               key={href}
               href={href}

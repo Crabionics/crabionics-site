@@ -12,7 +12,9 @@ import {
   styles as s,
 } from "./components/public/Experience";
 import { BetaDirection } from "./components/public/Visuals";
-import { SolutionOverview, EvidenceStrip } from "./components/public/Editorial";
+import { EvidenceStrip } from "./components/public/Editorial";
+import CinematicHero from "./components/cinematic/CinematicHero";
+import ConnectedAssembly from "./components/cinematic/ConnectedAssembly";
 import { ProductionJourney } from "./components/public/Narrative";
 export const metadata: Metadata = {
   title: { absolute: "Crabionics | Mud-Crab Aquaculture, Connected" },
@@ -23,36 +25,7 @@ export const metadata: Metadata = {
 export default function HomePage() {
   return (
     <Page name="home">
-      <section className={s.hero}>
-        <Image
-          src="/photos/ras-plumbing.jpg"
-          alt="Blue individual production racks connected to water equipment in an aquaculture installation."
-          fill
-          preload
-          sizes="100vw"
-          className={s.heroImage}
-        />
-        <div className={s.heroCopy}>
-          <Eyebrow>Crabionics aquaculture</Eyebrow>
-          <h1>
-            Mud-crab aquaculture.<span>Connected.</span>
-          </h1>
-          <p className={s.lead}>
-            We’re developing habitats, sensing, local equipment and AquaOS
-            around the people running mud-crab production.
-          </p>
-          <div
-            className={`${s.actions} ${s.dark}`}
-            style={{ background: "transparent" }}
-          >
-            <Button href="/solutions">Explore the solutions</Button>
-            <Button href="/contact#production" secondary>
-              Discuss a production project
-            </Button>
-          </div>
-        </div>
-        <span className={s.heroCaption}>Production equipment photograph</span>
-      </section>
+      <CinematicHero />
       <nav className={s.roleBar} aria-label="Choose your production setting">
         {[
           ["Pond production", "Growers & operating teams", "pond-production"],
@@ -113,10 +86,7 @@ export default function HomePage() {
           </article>
         </div>
       </Section>
-      <Section>
-        <Heading eyebrow="Built for the daily work" title="Biology, infrastructure and daily operations. Connected." />
-        <SolutionOverview />
-      </Section>
+      <ConnectedAssembly />
       <Section>
         <ProductionJourney />
       </Section>
