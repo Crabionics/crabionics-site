@@ -43,7 +43,7 @@ export default function ConnectedAssembly(){
  const [mode,setMode]=useState<"system"|"field">("system");
  const chapterRefs=useRef<(HTMLElement|null)[]>([]);
  useEffect(()=>{
-  const observer=new IntersectionObserver(entries=>{const visible=entries.filter(e=>e.isIntersecting);if(visible.length){const top=visible.sort((a,b)=>Math.abs(a.boundingClientRect.top-innerHeight*.4)-Math.abs(b.boundingClientRect.top-innerHeight*.4))[0];setActive(Number((top.target as HTMLElement).dataset.chapter));}},{rootMargin:"-20% 0px -40% 0px",threshold:0});
+  const observer=new IntersectionObserver(entries=>{const visible=entries.filter(e=>e.isIntersecting);if(visible.length){const top=visible.sort((a,b)=>Math.abs(a.boundingClientRect.top-innerHeight*.4)-Math.abs(b.boundingClientRect.top-innerHeight*.4))[0];setActive(Number((top.target as HTMLElement).dataset.chapter));}},{rootMargin:window.matchMedia("(max-width:767px) and (min-height:651px)").matches?"-55% 0px -10% 0px":"-20% 0px -40% 0px",threshold:0});
   chapterRefs.current.forEach(el=>{if(el)observer.observe(el)});return()=>observer.disconnect();
  },[]);
  const chapter=chapters[active];
