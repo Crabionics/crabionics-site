@@ -5,3 +5,4 @@
 @media(prefers-reduced-motion:reduce){.workspace,.heroActions a,.settings>a{transform:none!important;transition:none!important}}
 @supports(animation-timeline:view()){@media(prefers-reduced-motion:no-preference){.settings>a,.research li,.editorial>div:first-child,.workspace{animation:section-enter linear both;animation-timeline:view();animation-range:entry 0% entry 22%}@keyframes section-enter{from{opacity:.45;translate:0 22px}to{opacity:1;translate:0 0}}}}
 .hero p.eyebrow{color:#a8c7cf!important}
+@media(min-width:768px) and (max-width:1000px){.editorial,.softwareGrid{grid-template-columns:1fr;gap:38px}.editorial>div:first-child{max-width:600px}.editorial>div:first-child>p:not(.eyebrow){max-width:520px}.softwareGrid>div:first-child{max-width:600px}.softwareGrid>div:first-child>p{max-width:520px}.workspace{transform:none}}
