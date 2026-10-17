@@ -16,7 +16,7 @@ export default function CinematicHero() {
         <div className={s.introduction}>
           <div className={s.biologyIntro}>
             <Image src="/photos/isolation-box.jpg" alt="Mud crab in an individual blue habitat." width={72} height={72} sizes="72px" />
-            <p>We’re developing individual habitats, recirculating water systems, sensing and local equipment connections—with AquaOS bringing the operating context together.</p>
+            <p>Modular habitats, recirculating water, sensing and local equipment—being developed together with AquaOS.</p>
           </div>
           <div className={s.actions}>
             <a className={s.primaryAction} href="#connected-system">Explore the connected system <span aria-hidden="true">↓</span></a>

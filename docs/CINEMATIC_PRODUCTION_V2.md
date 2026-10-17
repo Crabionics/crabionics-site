@@ -30,3 +30,12 @@ No paid templates, third-party screenshots or new AI-generated product imagery a
 Production build, TypeScript, public integration suite and built link/anchor check are run for the preview. Browser validation and comparison are recorded in the PR. Form delivery tests are mocked: no real messages are sent. Browser viewport testing does not establish real-device performance or Core Web Vitals.
 
 The water model explains component roles without prescribing biological setpoints or claiming demonstrated yield, survival, water savings, autonomy or commercial readiness. Treatment capacity, stock biology and integration require their own validation.
+
+## Creative and interaction review
+
+- Replaced the abstract opening with “Built around the crab. Connected by design.” and visible system/project actions above the photograph. Removed the photograph’s competing conversion button.
+- Moved the connected-system presentation ahead of conversion cards, preserving all production sections and destinations. The hero’s layer index now links to the corresponding chapters.
+- Increased navigation and model control sizes; added selected-layer names, explanatory captions, visual focus and 44px minimum view/assembly controls.
+- Replaced entry-only intersection tracking with a passive, animation-frame-coalesced reading-position update. Resizes remeasure the sticky stage; mobile anchor offsets use its actual height. Short screens use a normal-flow model.
+- Technology flyout dismisses on outside pointer interaction as well as Escape.
+- Added a 320×667 small-phone review alongside 390×844, 768px and 1280px.
