@@ -2,20 +2,15 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import {
-  Button,
   CTA,
-  Eyebrow,
   Heading,
   Page,
-  ResourceCards,
   Section,
   styles as s,
 } from "./components/public/Experience";
 import { BetaDirection } from "./components/public/Visuals";
-import { EvidenceStrip } from "./components/public/Editorial";
 import CinematicHero from "./components/cinematic/CinematicHero";
 import ConnectedAssembly from "./components/cinematic/ConnectedAssembly";
-import { ProductionJourney } from "./components/public/Narrative";
 export const metadata: Metadata = {
   title: { absolute: "Crabionics | Mud-Crab Aquaculture, Connected" },
   description:
@@ -49,7 +44,7 @@ export default function HomePage() {
       </nav>
       <div className={s.trust}>
         <div className={`${s.wrap} ${s.trustInner}`}>
-          <p>Our incubation, research and recognition context</p>
+          <p>Incubation & research</p>
           {[
             ["KIIT-TBI", "Technology incubation", "/logos/kiit-tbi.png"],
             ["BIRAC / IHMS", "Funded research", "/logos/birac-big.png"],
@@ -66,42 +61,16 @@ export default function HomePage() {
         </div>
       </div>
       <ConnectedAssembly />
-      <Section>
-        <ProductionJourney />
-      </Section>
-      <Section>
-        <Heading eyebrow="Choose your next step" title="Start with the work you need to move forward." />
-        <div className={s.detailGrid}>
-          <article className={s.card}>
-            <div className={s.cardBody}>
-              <Eyebrow>Production projects</Eyebrow>
-              <h3>Explore your production setting.</h3>
-              <p>Bring your site, production stage and constraints. Discuss fit, responsibilities and the evidence needed before agreeing scope, cost and timing.</p>
-              <Button href="/contact#production">Discuss a production project</Button>
-            </div>
-          </article>
-          <article className={s.card}>
-            <div className={s.cardBody}>
-              <Eyebrow>AquaOS / In development</Eyebrow>
-              <h3>Help shape connected daily operations.</h3>
-              <p>Bring one routine your team needs to manage better. Register interest for a focused operator pilot; the team reviews fit before inviting participants.</p>
-              <Button href="/early-access#register" secondary>Help shape AquaOS</Button>
-            </div>
-          </article>
+      <Section tone="dark">
+        <Heading eyebrow="Research & development" title="What we’re working on." />
+        <p>Funded IHMS monitoring and control research, alongside biological trials. A 600-box controlled-finishing validation facility is proposed.</p>
+        <div className={s.actions}>
+          <Link href="/validation">Research and validation ↗</Link>
+          <Link href="/resources">Read the practical guides ↗</Link>
         </div>
       </Section>
-      <Section tone="dark">
-        <EvidenceStrip />
-      </Section>
-      <Section>
-        <Heading
-          eyebrow="Practical resources"
-          title="Start with a practical question."
-        />
-        <ResourceCards />
-      </Section>
       <BetaDirection showcase />
-      <CTA />
+      <CTA title="Planning a mud-crab project?" label="Discuss a project">Tell us where you farm, your production stage and what you need help with.</CTA>
     </Page>
   );
 }
