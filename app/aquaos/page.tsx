@@ -2,19 +2,19 @@ import type { Metadata } from "next";
 import { Button, Intro, Page, Section, styles as s } from "../components/public/Experience";
 import AquaDiscovery from "../components/discovery/AquaDiscovery";
 export const metadata: Metadata = {
- title: "AquaOS | See the Work. Keep the Thread.",
- description: "Discover AquaOS through three short interactions. Working RAS grow-out software in CrabDesk, upcoming pond workflows and guided demonstrations by request.",
+ title: "CrabDesk + Moltie | AquaOS",
+ description: "Explore CrabDesk and Moltie through authentic demo captures and recorded answers. Working RAS grow-out software, with pond workflows upcoming.",
  alternates: { canonical: "/aquaos" },
 };
 export default function AquaOSPage() {
  return <Page name="aquaos">
-  <Intro eyebrow="AquaOS / Connected farm records" title="The next person shouldn’t have to start again.">
-   <p className={s.lead}>See what needs attention, follow a change and keep its history together. Discover the idea in three short interactions.</p>
+  <Intro eyebrow="AquaOS / CrabDesk + Moltie" title="RAS grow-out management. Meet CrabDesk.">
+   <p className={s.lead}>CrabDesk is the first working application in the AquaOS platform. Explore the dashboard, ask Moltie a question and check the source behind its answer.</p>
    <div className={s.actions}><Button href="#discover">Explore in 30–45 seconds</Button><Button href="/contact#aquaos-beta" secondary>Request a guided demo</Button></div>
   </Intro>
   <div id="discover"><AquaDiscovery page="aquaos" /></div>
   <Section id="capabilities">
-   <div className={s.heading}><div><p className={s.eyebrow}>Product status</p><h2>A clear view of what’s ready.</h2></div><p>AquaOS is the broader product direction. CrabDesk is the working RAS grow-out application developed by our technical lead, Abhishek.</p></div>
+   <div className={s.heading}><div><p className={s.eyebrow}>Product status</p><h2>A clear view of what’s ready.</h2></div><p>AquaOS is the broader product direction. CrabDesk is the working RAS grow-out application developed by our technical lead, Abhishek. Moltie is its built-in assistant.</p></div>
    <div className={s.three}>
     <article className={s.card}><div className={s.cardBody}><p className={s.eyebrow}>Working software</p><h3>RAS grow-out</h3><p>CrabDesk brings the operator’s overview and records into a working application. Guided demonstrations are arranged around approved scope.</p></div></article>
     <article className={s.card}><div className={s.cardBody}><p className={s.eyebrow}>Upcoming</p><h3>Pond operations</h3><p>Pond workflows are a separate capability in development. Register interest to discuss your setting and hear about progress.</p></div></article>
