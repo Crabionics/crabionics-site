@@ -8,7 +8,7 @@ import {
   Section,
   styles as s,
 } from "./components/public/Experience";
-import { BetaDirection } from "./components/public/Visuals";
+import AquaDiscovery from "./components/discovery/AquaDiscovery";
 import CinematicHero from "./components/cinematic/CinematicHero";
 import ConnectedAssembly from "./components/cinematic/ConnectedAssembly";
 export const metadata: Metadata = {
@@ -69,7 +69,7 @@ export default function HomePage() {
           <Link href="/resources">Read the practical guides ↗</Link>
         </div>
       </Section>
-      <BetaDirection showcase />
+      <AquaDiscovery page="home" />
       <CTA title="Planning a mud-crab project?" label="Discuss a project">Tell us where you farm, your production stage and what you need help with.</CTA>
     </Page>
   );

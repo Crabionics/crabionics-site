@@ -1,21 +1,26 @@
 import type { Metadata } from "next";
-import { Button, CTA, Eyebrow, ImagePanel, Intro, Page, Section, Status, TextLink, styles as s } from "../components/public/Experience";
-import { OperatingLoop, OperatingExample, OperatorCapabilities, DevelopmentLayers, CopilotPosition } from "../components/public/AquaOSStory";
+import { Button, Intro, Page, Section, styles as s } from "../components/public/Experience";
+import AquaDiscovery from "../components/discovery/AquaDiscovery";
 export const metadata: Metadata = {
- title: "AquaOS | Connecting Production, Decisions & Outcomes",
- description: "AquaOS is the developing operating layer for mud-crab production: connecting production context, observations, operator decisions, actions and outcome evidence.",
+ title: "AquaOS | See the Work. Keep the Thread.",
+ description: "Discover AquaOS through three short interactions. Working RAS grow-out software in CrabDesk, upcoming pond workflows and guided demonstrations by request.",
  alternates: { canonical: "/aquaos" },
 };
 export default function AquaOSPage() {
  return <Page name="aquaos">
- <Intro eyebrow="AquaOS / The operating layer" title="Connect production, decisions and outcomes." aside={<ImagePanel src="/images/versioned/company-world-mobile.ebb1281c.webp" alt="Concept illustration of an operator, crab habitats and connected production equipment." caption="Connected production direction · concept illustration" priority/>}>
- <p className={s.lead}>Bring stock, feeding, water observations and follow-ups into one operating history—so your team can see what changed and what needs attention.</p><Status>In development · proposed operator beta</Status><div className={s.actions}><Button href="/demo">Try an operating example</Button><TextLink href="#operating-loop">See how AquaOS fits</TextLink></div></Intro>
- <Section><OperatingExample/></Section>
- <Section id="operating-loop"><div className={s.heading}><div><Eyebrow>Why an operating layer?</Eyebrow><h2>Every decision has<br/>a production context.</h2></div><p>Seed and stock, production stage, water, feeding and labour all shape the work. Connecting the records helps teams see what happened, what they chose and what still needs checking.</p></div><OperatingLoop/></Section>
- <Section tone="mist" id="capabilities"><div className={s.heading}><div><Eyebrow>Designed around the operator</Eyebrow><h2>Make the daily work<br/>easier to follow.</h2></div><p>Four connected jobs for the proposed operator workspace.</p></div><OperatorCapabilities/></Section>
- <Section><CopilotPosition/></Section>
- <Section tone="mist" id="development"><div className={s.heading}><div><Eyebrow>What you can explore and what comes next</Eyebrow><h2>Build the foundation.<br/>Prove each connection.</h2></div><p>Beta interest starts a fit discussion. Product access, physical integration and production benefits each depend on the agreed scope and validation.</p></div><DevelopmentLayers/></Section>
- <Section tone="dark"><div className={s.split}><div><Eyebrow>From records to evidence</Eyebrow><h2>A response needs<br/>an outcome.</h2><p>Connect the action to what happened afterwards. A recorded task alone cannot show a biological result.</p></div><div><h3>Measure the production question.</h3><p>Survival, growth, water, labour and economics guide what we observe and validate.</p><TextLink href="/validation">Explore research & validation</TextLink></div></div></Section>
- <CTA href="/early-access" label="Express beta interest" title="Bring a real operating routine.">Help shape the first useful AquaOS workflow around your production setting and daily work.</CTA>
+  <Intro eyebrow="AquaOS / Connected farm records" title="The next person shouldn’t have to start again.">
+   <p className={s.lead}>See what needs attention, follow a change and keep its history together. Discover the idea in three short interactions.</p>
+   <div className={s.actions}><Button href="#discover">Explore in 30–45 seconds</Button><Button href="/contact#aquaos-beta" secondary>Request a guided demo</Button></div>
+  </Intro>
+  <div id="discover"><AquaDiscovery page="aquaos" /></div>
+  <Section id="capabilities">
+   <div className={s.heading}><div><p className={s.eyebrow}>Product status</p><h2>A clear view of what’s ready.</h2></div><p>AquaOS is the broader product direction. CrabDesk is the working RAS grow-out application developed by our technical lead, Abhishek.</p></div>
+   <div className={s.three}>
+    <article className={s.card}><div className={s.cardBody}><p className={s.eyebrow}>Working software</p><h3>RAS grow-out</h3><p>CrabDesk brings the operator’s overview and records into a working application. Guided demonstrations are arranged around approved scope.</p></div></article>
+    <article className={s.card}><div className={s.cardBody}><p className={s.eyebrow}>Upcoming</p><h3>Pond operations</h3><p>Pond workflows are a separate capability in development. Register interest to discuss your setting and hear about progress.</p></div></article>
+    <article className={s.card}><div className={s.cardBody}><p className={s.eyebrow}>Separate validation</p><h3>Hardware connections</h3><p>Sensor and equipment integration require their own testing. Functioning software does not establish biological results or a validated physical control loop.</p></div></article>
+   </div>
+  </Section>
+  <Section tone="dark"><div className={s.split}><div><p className={s.eyebrow}>A closer look</p><h2>See the product with the team.</h2><p>Request a guided demonstration of the working RAS software. We agree what can be shown before the session.</p><Button href="/contact#aquaos-beta">Request a guided demo</Button></div><div><h3>Interested in an operator pilot?</h3><p>Register your interest, confirm your email and discuss fit with Crabionics. Access follows review and an individual invitation.</p><Button href="/early-access#register" secondary>Register early-access interest</Button></div></div></Section>
  </Page>;
 }
