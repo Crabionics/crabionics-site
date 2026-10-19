@@ -22,6 +22,7 @@ export default function AquaDiscovery({ page = "home" }: { page?: DiscoveryPage 
   const [explored, setExplored] = useState<number[]>([]);
   const root = useRef<HTMLElement>(null);
   const tabs = useRef<(HTMLButtonElement | null)[]>([]);
+  const stage = useRef<HTMLDivElement>(null);
   const events = useRef(new Set<string>());
   const id = useId();
   function count(event:string) {
@@ -48,9 +49,13 @@ export default function AquaDiscovery({ page = "home" }: { page?: DiscoveryPage 
   }
   function choose(index:number) {setActive(index);count("teaser_start");}
   function next(index:number) {choose(index);tabs.current[index]?.focus();}
-  function ask(value:"count"|"help") {setQuestion(value);mark(1);count(value==="count"?"moltie_count_replay":"moltie_help_replay");}
+  function revealOnPhone() {
+    if (!window.matchMedia("(max-width: 650px)").matches) return;
+    requestAnimationFrame(() => stage.current?.scrollIntoView({block:"start",behavior:window.matchMedia("(prefers-reduced-motion: reduce)").matches?"instant":"smooth"}));
+  }
+  function ask(value:"count"|"help") {setQuestion(value);mark(1);count(value==="count"?"moltie_count_replay":"moltie_help_replay");revealOnPhone();}
   const complete=explored.length===3;
-  return <section ref={root} className={s.discovery} aria-labelledby={`${id}-title`} data-product-discovery>
+  return <section id="crabdesk-discovery" ref={root} className={s.discovery} aria-labelledby={`${id}-title`} data-product-discovery>
     <header className={s.heading}>
       <div><p className={s.kicker}>AQUAOS / FIRST PRODUCT CAPABILITY</p><h2 id={`${id}-title`}>CrabDesk <span>+ Moltie.</span></h2></div>
       <div className={s.intro}><p>RAS grow-out management. See the real software, ask a question and check the answer.</p><span>30–45 SECONDS · NO SIGN-IN</span></div>
@@ -64,7 +69,7 @@ export default function AquaDiscovery({ page = "home" }: { page?: DiscoveryPage 
         }}><span className={s.stepNo}>{explored.includes(index)?"✓":`0${index+1}`}</span><strong>{label}</strong><span className={s.tabArrow} aria-hidden="true">↗</span></button>)}
       </div>
       <div className={s.panel} id={`${id}-panel`} role="tabpanel" aria-labelledby={`${id}-tab-${active}`} tabIndex={0}>
-        <div className={s.stage}>
+        <div ref={stage} className={s.stage}>
           <div className={s.stageLabel}><span>{active===0?"THE FARM AT A GLANCE":active===1?"MOLTIE / RECORDED EXCHANGE":"TRACE THE ANSWER"}</span><span>19 OCT 2026</span></div>
           <div key={`${active}-${active===0?view:active===1?question:sourceOpen}`} className={s.scene}>
             {active===0 ? <div className={s.captureFrame} data-view={view}><Capture name={view==="overview"?"overview":view==="month"?"activity-month":"activity-week"} width={465} height={view==="overview"?483:295} alt={view==="overview"?"Actual CrabDesk demo dashboard: 131.7 kilograms of stock, 331 crabs and monthly activity chart.":view==="month"?"Actual monthly activity view with 89 molts, 13 deaths, 59 regular harvests and 15 soft-shell harvests. Demo records.":"Actual weekly activity view, with zero recorded events for the current week. Demo records."}/></div>
@@ -79,7 +84,7 @@ export default function AquaDiscovery({ page = "home" }: { page?: DiscoveryPage 
           <p className={s.chapter}>0{active+1} / 03</p>
           <h3>{["Start with the overview.","Ask a farm question.","Check what it points to."][active]}</h3>
           <p className={s.description}>{["Check the demo stock and activity. Switch the period to see how the view changes.","Choose a question below. You’ll see an answer captured from the working Moltie assistant.","Moltie displayed a dashboard source link. Compare its answer with the count shown there."][active]}</p>
-          {active===0?<div className={s.options} role="group" aria-label="Dashboard view">{[["overview","Stock & activity"],["month","This month"],["week","This week"]].map(([value,label])=><button key={value} type="button" aria-pressed={view===value} onClick={()=>{setView(value as typeof view);mark(0);}}>{label}<span aria-hidden="true">{view===value?"●":"↗"}</span></button>)}</div>
+          {active===0?<div className={s.options} role="group" aria-label="Dashboard view">{[["overview","Stock & activity"],["month","This month"],["week","This week"]].map(([value,label])=><button key={value} type="button" aria-pressed={view===value} onClick={()=>{setView(value as typeof view);mark(0);revealOnPhone();}}>{label}<span aria-hidden="true">{view===value?"●":"↗"}</span></button>)}</div>
           :active===1?<div className={s.options} role="group" aria-label="Recorded Moltie questions"><button type="button" aria-pressed={question==="count"} onClick={()=>ask("count")}>How many crabs are in the system?<span aria-hidden="true">↗</span></button><button type="button" aria-pressed={question==="help"} onClick={()=>ask("help")}>What can Moltie help with?<span aria-hidden="true">↗</span></button></div>
           :<div className={s.sourceExplanation}><span className={s.recorded}>DASHBOARD / THIS MONTH</span><p>Source links make an answer easier to check. This example confirms the displayed stock count; it does not validate every assistant answer.</p></div>}
           <div className={s.announcement} role="status" aria-live="polite" aria-atomic="true">{active===0?(explored.includes(0)?`${view==="overview"?"Overview":view==="month"?"Monthly activity":"Weekly activity"} explored.`:"Choose a view to start."):active===1?(question?`Recorded answer shown. ${question==="count"?"331 crabs in the demo system.":"Moltie describes help with farm records and app use."}`:"Recorded responses, not a live chat."):sourceOpen?"Dashboard source opened. Both counts show 331 crabs.":"Open the dashboard source to compare."}</div>
