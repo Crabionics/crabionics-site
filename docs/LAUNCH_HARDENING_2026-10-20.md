@@ -33,3 +33,5 @@ Initial local build failed because reused node_modules was symlinked outside Tur
 3. Abhishek retains ownership of CrabDesk and approval of any future product footage or exposed workflow. This release changes neither his application nor hardware/biological validation claims.
 
 Jira/PMO searched before tracking: CP-81 remains the existing product-demonstration anchor; no duplicate Jira/Confluence records created. Production outcome and post-release checks are recorded in the release PR.
+
+A sitemap-driven HTTP metadata sweep covered 20 public URLs. It caught a missing H1 on /demo and missing legal-page OpenGraph images. Corrected film heading semantics on the dedicated demo page and supplied the existing social card on privacy/terms. The queued initial production build was canceled before domain assignment so these corrections ship in the same public release.

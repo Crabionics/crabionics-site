@@ -10,6 +10,7 @@ export default function ProductFilm({page="home"}:{page?:"home"|"aquaos"|"demo"}
   const completed=useRef(false);
   const started=useRef(false);
   const id=useId();
+  const Heading=page === "demo" ? "h1" : "h2";
   useEffect(()=>{
     if(!source) return;
     player.current?.focus({preventScroll:true});
@@ -26,7 +27,7 @@ export default function ProductFilm({page="home"}:{page?:"home"|"aquaos"|"demo"}
 
   }
   return <section className={s.film} id="crabdesk-film" aria-labelledby={`${id}-title`}>
-    <div className={s.heading}><div><p className={s.eyebrow}>AQUAOS / FIRST WORKING CAPABILITY</p><h2 id={`${id}-title`}>CrabDesk <span>+ Moltie.</span></h2></div><p className={s.introduction}>RAS grow-out management, with a built-in assistant.<br/>See the working software in 30 seconds.</p></div>
+    <div className={s.heading}><div><p className={s.eyebrow}>AQUAOS / FIRST WORKING CAPABILITY</p><Heading id={`${id}-title`}>CrabDesk <span>+ Moltie.</span></Heading></div><p className={s.introduction}>RAS grow-out management, with a built-in assistant.<br/>See the working software in 30 seconds.</p></div>
     <div className={s.frame}>
       {source ? <video key={source} ref={player} className={s.video} controls muted playsInline preload="metadata" tabIndex={0} aria-label="CrabDesk and Moltie product demonstration" aria-describedby={`${id}-summary`} onPlay={()=>{if(!started.current){started.current=true;journeyEvent("film_start",page);}}} onEnded={()=>{if(!completed.current){completed.current=true;journeyEvent("film_complete",page);}}}><source src={`/product/film/crabdesk-${source}.mp4`} type="video/mp4"/>Your browser does not support this video. <a href={`/product/film/crabdesk-${source}.mp4`}>Download the film</a>.</video> : <>
         {/* Real captured product imagery; the responsive poster never downloads the video. */}
