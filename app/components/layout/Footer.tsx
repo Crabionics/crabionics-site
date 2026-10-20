@@ -33,7 +33,7 @@ export default function Footer() {
                 ["Solutions", "solutions"],
                 ["For Producers", "producers"],
                 ["AquaOS", "aquaos"],
-                ["Workflow preview", "demo"],
+                ["Product film", "demo"],
                 ["Early access", "early-access"],
                 ["How it connects", "system"],
                 ["Research & validation", "validation"],

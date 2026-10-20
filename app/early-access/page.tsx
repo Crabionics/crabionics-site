@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { redirect } from "next/navigation";
 import {
   Button,
   Intro,
@@ -16,6 +17,8 @@ export const metadata: Metadata = {
 };
 export default function EarlyAccessPage() {
   const enabled = registrationConfigured();
+  // Reuse the already-tested production signup rather than a disconnected preview form.
+  if (process.env.VERCEL_ENV === "preview" && !enabled) redirect("https://www.crabionics.com/early-access#register");
   return (
     <Page name="early-access">
       <Intro
@@ -27,7 +30,7 @@ export default function EarlyAccessPage() {
         </p>
         <div className={s.actions}>
           <Button href="#register">Register interest</Button>
-          <Button href="/demo" secondary>Explore product discovery</Button>
+          <Button href="/demo" secondary>Watch the product film</Button>
         </div>
       </Intro>
       <Section id="register">

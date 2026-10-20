@@ -15,8 +15,8 @@ export const assistantAnswers = [
     question: "What can I try today?",
     keywords: ["demo", "try", "walkthrough", "today", "available"],
     answer:
-      "Explore authentic CrabDesk demo captures, reveal recorded Moltie answers and check the dashboard source. This is a read-only replay using demo records, not a live chat or farm workspace. Request a guided demonstration through the team.",
-    links: [["Explore product discovery", "/demo"]],
+      "Watch the short CrabDesk and Moltie product film. It shows the working dashboard and a recorded assistant response using demo records. Register through the existing early-access form; confirm your email and the team will follow up.",
+    links: [["Watch the product film", "/demo"]],
   },
   {
     id: "beta",

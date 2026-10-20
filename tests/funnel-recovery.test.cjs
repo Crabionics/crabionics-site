@@ -37,7 +37,7 @@ test("discovery events persist only closed aggregate dimensions", async () => {
     process.env.KV_REST_API_URL="https://storage.example"; process.env.KV_REST_API_TOKEN="test";
     delete process.env.UPSTASH_REDIS_REST_URL; delete process.env.UPSTASH_REDIS_REST_TOKEN;
     global.fetch=async(_url,init)=>{commands.push(JSON.parse(init.body));return Response.json({result:1});};
-    for(const event of ["teaser_view","teaser_start","teaser_overview","teaser_change","teaser_history","teaser_complete","guided_demo_click","registration_click","moltie_count_replay","moltie_help_replay"]){
+    for(const event of ["teaser_view","teaser_start","teaser_overview","teaser_change","teaser_history","teaser_complete","guided_demo_click","registration_click","moltie_count_replay","moltie_help_replay","film_start","film_complete"]){
       const response=await funnel.POST(new Request("https://example.com/api/funnel",{method:"POST",headers:{origin:"https://example.com"},body:JSON.stringify({event,page:"aquaos",source:"direct"})}));
       assert.equal(response.status,204);
       assert.equal(commands.at(-1).at(-1),`direct:aquaos:${event}`);

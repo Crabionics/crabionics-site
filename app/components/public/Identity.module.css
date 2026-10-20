@@ -346,3 +346,6 @@
 
 .desktopNav>a,.navGroup>summary{font-size:12px}.desktopNav>a{min-height:44px;display:flex;align-items:center}.contact{font-size:12px}.flyout small{font-size:11px;line-height:1.6}
 @media(min-width:900px) and (max-width:1199px){.desktopNav{gap:16px}.desktopNav>a,.navGroup>summary{font-size:11px}}
+
+/* Crisp light navigation, ocean footer and the original Crabionics teal mark. */
+.header{background:#f8fcfff5;border-color:#a9ccd9;color:#0a344d}.desktopNav>a:hover{color:#087f8e}.desktopNav [aria-current=page]{color:#087282;border-color:#087f8e}.contact{background:#0b425f;color:#fff;border-color:#0b425f;border-radius:4px}.header .contact:hover{background:#08647a}.navigation,.flyout{background:#f5fbfd;border-color:#aacbd8}.desktopNav .flyout a:hover{background:#e0f1f5}.flyout small{color:#426978}.menu{border-color:#80adbe;color:#0c425b}.footer{background:linear-gradient(125deg,#082b43,#041725);border-top:1px solid #33748b}.footer.footer p{color:#bbd7e4}.footer h2{color:#7edfd9!important}.footerLinks a{color:#edf7fc}.footerLinks a:hover{color:#84eee2}.legal{border-color:#365f73}.social{color:#95ebe2}.header:after{background:#19a6ae}

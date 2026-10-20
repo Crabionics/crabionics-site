@@ -1,6 +1,6 @@
 import { namespace, redis, storageConfigured } from "./registration-service";
 
-export const funnelEvents = ["view", "journey_click", "form_attempt", "verification_requested", "confirmed", "enquiry_sent", "teaser_view", "teaser_start", "teaser_overview", "teaser_change", "teaser_history", "teaser_complete", "guided_demo_click", "registration_click", "moltie_count_replay", "moltie_help_replay"] as const;
+export const funnelEvents = ["view", "journey_click", "form_attempt", "verification_requested", "confirmed", "enquiry_sent", "teaser_view", "teaser_start", "teaser_overview", "teaser_change", "teaser_history", "teaser_complete", "guided_demo_click", "registration_click", "moltie_count_replay", "moltie_help_replay", "film_start", "film_complete"] as const;
 export const funnelPages = ["home", "producers", "aquaos", "demo", "early-access", "contact", "resources"] as const;
 export const funnelSources = ["direct", "youtube", "linkedin", "other"] as const;
 export async function recordFunnel(event: string, source: string, page: string) {
