@@ -171,14 +171,14 @@ export function SolutionCards() {
             <div
               className={s.cardImage}
               style={{
-                background: "#123a42",
+                background: "var(--site-navy)",
                 display: "grid",
                 placeItems: "center",
               }}
             >
               <span
                 style={{
-                  color: "#a8e8d8",
+                  color: "var(--site-mint)",
                   fontSize: 40,
                   letterSpacing: "-.05em",
                 }}
