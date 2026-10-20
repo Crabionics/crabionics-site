@@ -13,6 +13,7 @@ export const metadata: Metadata = {
       "How Crabionics handles personal information and privacy rights.",
     url: "https://www.crabionics.com/privacy",
     type: "website",
+    images: [{url:"/images/versioned/social-world.09a2efb2.webp",width:1200,height:630,alt:"Crabionics mud-crab production infrastructure concept"}],
   },
 };
 

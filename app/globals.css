@@ -5,6 +5,16 @@
 /* ------------------------------------------------ */
 
 :root {
+  /* Shared public palette: navy foundations, teal accents, cool surfaces. */
+  --site-navy: #082c46;
+  --site-ink: #0b3049;
+  --site-teal: #087e8b;
+  --site-mint: #69e1da;
+  --site-body: #416172;
+  --site-line: #bcd1dc;
+  --site-ice: #eaf4f8;
+  --site-paper: #f7fafc;
+
   --bg: #050816;
   --surface: #0b1120;
   --surface-2: #111827;
@@ -698,3 +708,7 @@ a:hover {
 
 /* Keep the masthead sticky without creating a horizontal scroll container. */
 html,body.public-site{overflow-x:clip}
+
+/* Shared sticky-header clearance, including heading and tab fragment targets. */
+.public-site :where([id]){scroll-margin-top:calc(var(--site-header-height,78px) + 16px)}
+@media(max-width:767px){.public-site{--site-header-height:72px!important}}

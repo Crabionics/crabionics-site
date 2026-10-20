@@ -135,16 +135,16 @@ test("mocked delivery verifies interest once, preserves consent and exposes only
     } else if (cmd === "EVAL") {
       if (key.includes("INCR")) result = limit;
       else if (key.includes("cjson.decode")) {
-        const keys=body.slice(3,7); const [original,state,ttl,notification,id,score]=body.slice(7);
+        const keys=body.slice(3,7); const [original,state,,notification,id]=body.slice(7);
         if (memory.has(keys[2]) || memory.get(keys[0]) !== original) result=0;
         else {
           memory.set(keys[1],state);
-          if (notification) {const row=JSON.parse(original); row.notification=notification; memory.set(keys[0],JSON.stringify(row)); const outbox=memory.get(keys[3]) || new Set(); notification === "sent" ? outbox.delete(id) : outbox.add(id); memory.set(keys[3],outbox);}
+          if (notification) {const row=JSON.parse(original); row.notification=notification; memory.set(keys[0],JSON.stringify(row)); const outbox=memory.get(keys[3]) || new Set(); if (notification === "sent") outbox.delete(id); else outbox.add(id); memory.set(keys[3],outbox);}
           result=1;
         }
       }
       else if (key.includes("local current")) {
-        const keys = body.slice(3,8); const [record,score,state,id] = body.slice(8);
+        const keys = body.slice(3,8); const [record,,state,id] = body.slice(8);
         if (memory.has(keys[4])) result = null;
         else {
           result = memory.get(keys[0]) || record;

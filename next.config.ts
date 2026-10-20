@@ -9,6 +9,7 @@ const nextConfig: NextConfig = {
         {key:"X-Content-Type-Options",value:"nosniff"},
         {key:"X-Frame-Options",value:"DENY"},
         {key:"Referrer-Policy",value:"strict-origin"},
+        {key:"Permissions-Policy",value:"camera=(), microphone=(), geolocation=()"},
       ]},
       // The preview-only visual review frame can be embedded by its own origin.
       {source:"/design-review/frame",headers:[{key:"X-Frame-Options",value:"SAMEORIGIN"}]},

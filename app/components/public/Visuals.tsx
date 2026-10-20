@@ -117,15 +117,15 @@ export function BetaDirection({ showcase = false }: { showcase?: boolean }) {
     <Section tone="mist">
       <div className={s.split}>
         <div>
-          <Eyebrow>AquaOS / Explore the direction</Eyebrow>
-          <h2>Connect the daily work to the next decision.</h2>
+          <Eyebrow>AquaOS / In development</Eyebrow>
+          <h2>Stock, feeding and water records. In one place.</h2>
           <p>
-            AquaOS is our developing operating layer for mud-crab production: context, observations, operator decisions, actions and outcomes. Explore one sample round, then help shape a useful operator beta.
+            We’re developing AquaOS to help teams record daily checks, track stock and follow up on issues. Try the sample workflow or register interest in an operator pilot.
           </p>
           <div className={s.actions}>
-            <Button href="/aquaos">Understand AquaOS</Button>
+            <Button href="/aquaos">Explore AquaOS</Button>
             <Button href="/early-access" secondary>
-              Express early-access interest
+              Register pilot interest
             </Button>
           </div>
         </div>

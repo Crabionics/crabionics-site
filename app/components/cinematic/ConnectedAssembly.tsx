@@ -7,11 +7,11 @@ import s from "./ConnectedAssembly.module.css";
 const layerRoles = ["Individual care & observation", "Circulation & treatment", "Measurements in context", "Local equipment connection", "Decisions & operating history"];
 
 const chapters = [
- {id:"habitat",name:"Habitat",tag:"01 / THE BIOLOGY",title:"One animal. A defined environment.",body:"An individual space brings feeding, handling and observation to the scale of a single crab. The animal and its production stage define the operating question.",href:"/solutions/habitat",link:"Explore the habitat",image:"/photos/isolation-box.jpg",alt:"A mud crab resting in a blue individual habitat.",caption:"Individual habitat · production photograph"},
- {id:"water",name:"RAS",tag:"02 / THE WATER",title:"The water connects the physical system.",body:"Circulation links habitats with solids removal, biological treatment and oxygenation. Configuration, treatment capacity and water exchange depend on the site and biological load.",href:"/system#water",link:"Follow the water system",image:"/photos/ras-plumbing.jpg",alt:"Production racks connected to circulation plumbing and water treatment equipment.",caption:"Water infrastructure · production photograph"},
- {id:"sense",name:"CrabSense",tag:"03 / THE OBSERVATION",title:"A reading needs a place and a time.",body:"Environmental measurements become useful when linked to the right unit, cohort and operating context. Calibration, maintenance and operator observations are part of that work.",href:"/solutions/crabsense",link:"Explore CrabSense",image:null,alt:"",caption:"Sensing scope & integration in development"},
- {id:"pod",name:"CrabPod",tag:"04 / THE RESPONSE",title:"Connect the decision to local equipment.",body:"Where integration is available, a permitted action passes to equipment under operator oversight. An acknowledgement and a measured response help establish what actually happened.",href:"/solutions/crabpod",link:"Explore CrabPod",image:null,alt:"",caption:"Local equipment integration in development"},
- {id:"aquaos",name:"AquaOS",tag:"05 / THE OPERATING HISTORY",title:"Bring the connections into one history.",body:"Connect stock, water observations, feeding and follow-ups with the decisions and outcomes that follow. A useful record keeps the next operating question grounded in context.",href:"/aquaos",link:"Explore AquaOS",image:null,alt:"",caption:"Operating layer in development · illustrative interface"},
+ {id:"habitat",name:"Habitat",tag:"01 / THE BIOLOGY",title:"Individual habitats for daily care.",body:"Individual compartments let teams feed, observe and handle each crab. Habitat design depends on the animal’s size and production stage.",href:"/solutions/habitat",link:"Explore the habitat",image:"/photos/isolation-box.jpg",alt:"A mud crab resting in a blue individual habitat.",caption:"Individual habitat · production photograph"},
+ {id:"water",name:"RAS",tag:"02 / THE WATER",title:"Recirculate and treat the water.",body:"RAS connects the habitats to solids removal, biological treatment and oxygenation. Treatment capacity and water exchange must suit the site and stock.",href:"/system#water",link:"Follow the water system",image:"/photos/ras-plumbing.jpg",alt:"Production racks connected to circulation plumbing and water treatment equipment.",caption:"Water infrastructure · production photograph"},
+ {id:"sense",name:"CrabSense",tag:"03 / THE OBSERVATION",title:"Measure water conditions.",body:"CrabSense is being developed to link environmental readings to the relevant unit and stock. Sensors require calibration and maintenance alongside manual checks.",href:"/solutions/crabsense",link:"Explore CrabSense",image:null,alt:"",caption:"Sensing scope & integration in development"},
+ {id:"pod",name:"CrabPod",tag:"04 / THE RESPONSE",title:"Link operators with equipment.",body:"CrabPod is being developed to connect local equipment under operator oversight, with acknowledgements and measurements to check the response.",href:"/solutions/crabpod",link:"Explore CrabPod",image:null,alt:"",caption:"Local equipment integration in development"},
+ {id:"aquaos",name:"AquaOS",tag:"05 / THE OPERATING HISTORY",title:"Keep the farm’s daily record.",body:"CrabDesk + Moltie is AquaOS’s first working RAS grow-out management capability. Watch the demonstration with sample records. Pond workflows and equipment integration are separate development tracks.",href:"/aquaos",link:"Explore AquaOS",image:null,alt:"",caption:"Working RAS software · demonstration records"},
 ];
 
 function point(x:number,y:number,z:number){return [295+(x-y)*.9,405+(x+y)*.36-z];}
@@ -43,53 +43,29 @@ export default function ConnectedAssembly(){
  const [active,setActive]=useState(0);
  const [exploded,setExploded]=useState(false);
  const [mode,setMode]=useState<"system"|"field">("system");
- const chapterRefs=useRef<(HTMLElement|null)[]>([]);
- const stageRef=useRef<HTMLDivElement>(null);
- const assemblyRef=useRef<HTMLElement>(null);
+ const tabRefs=useRef<(HTMLButtonElement|null)[]>([]);
  useEffect(()=>{
-  const stage=stageRef.current;
-  const assembly=assemblyRef.current;
-  if(!stage || !assembly) return;
-  let frame=0;
-  function update(){
-   frame=0;
-   if(!stage || !assembly) return;
-   const bounds=assembly.getBoundingClientRect();
-   if(bounds.bottom<0 || bounds.top>window.innerHeight) return;
-   const mobileSticky=window.matchMedia("(max-width:767px) and (min-height:741px)").matches;
-   const readingLine=mobileSticky ? Math.min(stage.getBoundingClientRect().bottom+55,window.innerHeight*.82) : window.innerHeight*.4;
-   let next=0;
-   chapterRefs.current.forEach((chapter,index)=>{if(chapter && chapter.getBoundingClientRect().top<=readingLine) next=index;});
-   setActive(previous=>previous===next?previous:next);
+  function followHash(){
+   const index=chapters.findIndex(ch=>window.location.hash===`#connection-${ch.id}`);
+   if(index>=0){setActive(index);document.getElementById("connected-system")?.scrollIntoView({block:"start",behavior:"instant"});}
   }
-  function schedule(){if(!frame) frame=window.requestAnimationFrame(update);}
-  function measure(){
-   if(stage && assembly) assembly.style.setProperty("--stage-height",`${stage.offsetHeight}px`);
-   schedule();
-  }
-  const observer=new ResizeObserver(measure);
-  observer.observe(stage);
-  window.addEventListener("scroll",schedule,{passive:true});
-  window.addEventListener("resize",measure);
-  measure();
-  return()=>{observer.disconnect();window.removeEventListener("scroll",schedule);window.removeEventListener("resize",measure);window.cancelAnimationFrame(frame);};
+  const frame=requestAnimationFrame(followHash);
+  window.addEventListener("hashchange",followHash);
+  return()=>{cancelAnimationFrame(frame);window.removeEventListener("hashchange",followHash);};
  },[]);
  const chapter=chapters[active];
- function select(i:number){
-  setActive(i);
-  chapterRefs.current[i]?.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth',block:'start'});
- }
- return <section ref={assemblyRef} className={s.assembly} id="connected-system" aria-labelledby="assembly-title">
-  <div className={s.sectionHeading}><div><p>THE CONNECTED SYSTEM / 01—05</p><h2 id="assembly-title">Follow the connections.<br/><span>Understand the whole.</span></h2></div><p>One production context. Five connected roles.<br/>Scroll through the system, or choose a layer.</p></div>
+ function select(i:number){ setActive(i); }
+ return <section className={s.assembly} id="connected-system" aria-labelledby="assembly-title">
+  <div className={s.sectionHeading}><div><p>THE CONNECTED SYSTEM / 01—05</p><h2 id="assembly-title">Five parts.<br/><span>One farming system.</span></h2></div><p>Choose a part to see its role.<br/>Explore the detail when you need it.</p></div>
   <div className={s.assemblyGrid}>
-   <div ref={stageRef} className={s.stickyStage}>
+   <div className={s.stickyStage}>
     <div className={s.stageTop}><span><b>0{active+1}</b> {chapter.name}</span><div role="group" aria-label="System visual view"><button type="button" aria-pressed={mode==='system'} onClick={()=>setMode('system')}>3D schematic</button><button type="button" aria-pressed={mode==='field'} onClick={()=>setMode('field')}>In the field</button></div></div>
     <div className={s.stageVisual}>{mode==='system'?<><SystemModel active={active} exploded={exploded}/><button type="button" className={s.explode} aria-pressed={exploded} onClick={()=>setExploded(previous=>!previous)}>{exploded?'Assemble layers':'Separate layers'} <span aria-hidden="true">{exploded?'−':'+'}</span></button></>:<div className={s.fieldVisual}><Image src={chapter.image||'/photos/ras-plumbing.jpg'} alt={chapter.alt||'Real production racks and supporting water equipment; the context for developing system integration.'} fill sizes="(max-width:1000px) 100vw, 55vw"/><span>{chapter.image?chapter.caption:'Production setting · '+chapter.caption}</span></div>}</div>
-    <div className={s.layerButtons} role="group" aria-label="Choose a system layer">{chapters.map((ch,i)=><button type="button" key={ch.id} aria-pressed={active===i} aria-controls={`connection-${ch.id}`} onClick={()=>select(i)}><span>0{i+1}</span>{ch.name}</button>)}</div>
+    <div className={s.layerButtons} role="tablist" aria-label="Choose a system layer">{chapters.map((ch,i)=><button type="button" key={ch.id} id={`connection-${ch.id}`} role="tab" aria-selected={active===i} tabIndex={active===i?0:-1} aria-controls={`panel-${ch.id}`} ref={el=>{tabRefs.current[i]=el}} onClick={()=>select(i)} onKeyDown={event=>{const next=event.key==="ArrowRight"?(i+1)%5:event.key==="ArrowLeft"?(i+4)%5:event.key==="Home"?0:event.key==="End"?4:-1;if(next>=0){event.preventDefault();select(next);tabRefs.current[next]?.focus();}}}><span>0{i+1}</span>{ch.name}</button>)}</div>
     <div className={s.activeCaption}><span aria-hidden="true">↳</span><p>{layerRoles[active]}</p></div><p className={s.stageNote}>Conceptual schematic · integration in development</p>
    </div>
-   <div className={s.chapters}>{chapters.map((ch,i)=><article key={ch.id} id={`connection-${ch.id}`} data-chapter={i} data-active={active===i} ref={el=>{chapterRefs.current[i]=el}}><span className={s.chapterTag}>{ch.tag}</span><h3>{ch.title}</h3><p>{ch.body}</p><Link href={ch.href}>{ch.link}<span aria-hidden="true">↗</span></Link><span className={s.chapterCounter} aria-hidden="true">0{i+1}</span></article>)}</div>
+   <div className={s.chapters}>{chapters.map((ch,i)=><article key={ch.id} id={`panel-${ch.id}`} role="tabpanel" aria-labelledby={`connection-${ch.id}`} tabIndex={0} hidden={active!==i}><span className={s.chapterTag}>{ch.tag}</span><h3>{ch.title}</h3><p>{ch.body}</p><Link href={ch.href}>{ch.link}<span aria-hidden="true">↗</span></Link><span className={s.chapterCounter} aria-hidden="true">0{i+1}</span></article>)}</div>
   </div>
-  <div className={s.summary}><span aria-hidden="true">↳</span><p>Observe the response. Record what changed. <strong>Biological outcomes need their own evidence.</strong></p><Link href="/system">Explore the full system ↗</Link></div>
+  <div className={s.summary}><span aria-hidden="true">↳</span><p>Habitat, water treatment, sensors, equipment and farm records.</p><Link href="/system">Explore the full system ↗</Link></div>
  </section>;
 }

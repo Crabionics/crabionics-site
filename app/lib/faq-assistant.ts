@@ -15,8 +15,8 @@ export const assistantAnswers = [
     question: "What can I try today?",
     keywords: ["demo", "try", "walkthrough", "today", "available"],
     answer:
-      "Explore an illustrative feeding round: review a sample observation, choose an operator follow-up, record a sample outcome and see the history. This website preview is not a released operator beta. It saves no farm records and controls no equipment.",
-    links: [["Explore the workflow preview", "/demo"]],
+      "Watch the short CrabDesk and Moltie product film. It shows the working dashboard and a recorded assistant response using demo records. Register through the existing early-access form; confirm your email and the team will follow up.",
+    links: [["Watch the product film", "/demo"]],
   },
   {
     id: "beta",

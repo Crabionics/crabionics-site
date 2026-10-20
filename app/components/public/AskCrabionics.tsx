@@ -18,7 +18,7 @@ export default function AskCrabionics() {
   const open = openAt === path;
   function close() {
     setOpenAt(null);
-    button.current?.focus();
+    button.current?.focus({preventScroll:true});
   }
   return (
     <>

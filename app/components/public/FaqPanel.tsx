@@ -11,10 +11,10 @@ export default function FaqPanel({ close }: { close: () => void }) {
   const input = useRef<HTMLInputElement>(null);
   const end = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    input.current?.focus();
+    input.current?.focus({preventScroll:true});
   }, []);
   useEffect(() => {
-    end.current?.scrollIntoView({ block: "nearest" });
+    end.current?.parentElement?.scrollTo({top:end.current.parentElement.scrollHeight,behavior:"instant"});
   }, [answers]);
   function ask(text: string) {
     if (!text.trim()) return;

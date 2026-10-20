@@ -20,7 +20,7 @@ export default function CinematicHero() {
           </div>
           <div className={s.actions}>
             <a className={s.primaryAction} href="#connected-system">Explore the connected system <span aria-hidden="true">↓</span></a>
-            <Link href="/contact#production">Discuss your production setting <span aria-hidden="true">↗</span></Link>
+            <Link href="/contact#production">Discuss a project <span aria-hidden="true">↗</span></Link>
           </div>
         </div>
       </div>
@@ -29,7 +29,7 @@ export default function CinematicHero() {
         <div className={s.imageTop}><span>INSIDE THE PRODUCTION ENVIRONMENT</span><span>Production equipment photograph</span></div>
         <a className={`${s.hotspot} ${s.habitat}`} href="#connection-habitat"><span className={s.target} aria-hidden="true" /><span>Individual habitats <b aria-hidden="true">↗</b></span></a>
         <a className={`${s.hotspot} ${s.water}`} href="#connection-water"><span className={s.target} aria-hidden="true" /><span>Water infrastructure <b aria-hidden="true">↗</b></span></a>
-        <figcaption className={s.imageBottom}><span>THE PHYSICAL FOUNDATION</span><p>A defined environment.<br />A connected operating system.</p></figcaption>
+        <figcaption className={s.imageBottom}><span>THE PHYSICAL FOUNDATION</span><p>Individual crab habitats.<br />Shared water treatment.</p></figcaption>
       </figure>
       <nav className={s.index} aria-label="Explore the technology layers">
         <span className={s.indexLabel}>FOLLOW THE CONNECTIONS</span>
