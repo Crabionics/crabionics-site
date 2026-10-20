@@ -1,3 +1,4 @@
+import AskCrabionics from "../public/AskCrabionics";
 import Link from "next/link";
 import Image from "next/image";
 import s from "../public/Identity.module.css";
@@ -55,6 +56,7 @@ export default function Footer() {
             </div>
           </div>
         </div>
+        <AskCrabionics />
         <div className={s.legal}>
           <p>© {new Date().getFullYear()} Crabionics Aquaculture Pvt. Ltd.</p>
           <div>

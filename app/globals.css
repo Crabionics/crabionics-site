@@ -708,3 +708,7 @@ a:hover {
 
 /* Keep the masthead sticky without creating a horizontal scroll container. */
 html,body.public-site{overflow-x:clip}
+
+/* Shared sticky-header clearance, including heading and tab fragment targets. */
+.public-site :where([id]){scroll-margin-top:calc(var(--site-header-height,78px) + 16px)}
+@media(max-width:767px){.public-site{--site-header-height:72px!important}}

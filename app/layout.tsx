@@ -3,7 +3,6 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Navbar from "@/app/components/navigation/Navbar";
 import Footer from "./components/layout/Footer";
-import AskCrabionics from "./components/public/AskCrabionics";
 import JourneyMetrics from "./components/public/JourneyMetrics";
 import VercelObservability from "./components/public/VercelObservability";
 
@@ -104,7 +103,6 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
-        <AskCrabionics />
         <JourneyMetrics />
         <VercelObservability />
       </body>

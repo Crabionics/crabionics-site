@@ -11,7 +11,7 @@ const chapters = [
  {id:"water",name:"RAS",tag:"02 / THE WATER",title:"Recirculate and treat the water.",body:"RAS connects the habitats to solids removal, biological treatment and oxygenation. Treatment capacity and water exchange must suit the site and stock.",href:"/system#water",link:"Follow the water system",image:"/photos/ras-plumbing.jpg",alt:"Production racks connected to circulation plumbing and water treatment equipment.",caption:"Water infrastructure · production photograph"},
  {id:"sense",name:"CrabSense",tag:"03 / THE OBSERVATION",title:"Measure water conditions.",body:"CrabSense is being developed to link environmental readings to the relevant unit and stock. Sensors require calibration and maintenance alongside manual checks.",href:"/solutions/crabsense",link:"Explore CrabSense",image:null,alt:"",caption:"Sensing scope & integration in development"},
  {id:"pod",name:"CrabPod",tag:"04 / THE RESPONSE",title:"Link operators with equipment.",body:"CrabPod is being developed to connect local equipment under operator oversight, with acknowledgements and measurements to check the response.",href:"/solutions/crabpod",link:"Explore CrabPod",image:null,alt:"",caption:"Local equipment integration in development"},
- {id:"aquaos",name:"AquaOS",tag:"05 / THE OPERATING HISTORY",title:"Keep the farm’s daily record.",body:"AquaOS brings stock records, water checks, feeding and follow-ups together. The software is in development; a sample workflow is available to explore.",href:"/aquaos",link:"Explore AquaOS",image:null,alt:"",caption:"Operating layer in development · illustrative interface"},
+ {id:"aquaos",name:"AquaOS",tag:"05 / THE OPERATING HISTORY",title:"Keep the farm’s daily record.",body:"CrabDesk + Moltie is AquaOS’s first working RAS grow-out management capability. Watch the demonstration with sample records. Pond workflows and equipment integration are separate development tracks.",href:"/aquaos",link:"Explore AquaOS",image:null,alt:"",caption:"Working RAS software · demonstration records"},
 ];
 
 function point(x:number,y:number,z:number){return [295+(x-y)*.9,405+(x+y)*.36-z];}
@@ -47,7 +47,7 @@ export default function ConnectedAssembly(){
  useEffect(()=>{
   function followHash(){
    const index=chapters.findIndex(ch=>window.location.hash===`#connection-${ch.id}`);
-   if(index>=0) setActive(index);
+   if(index>=0){setActive(index);document.getElementById("connected-system")?.scrollIntoView({block:"start",behavior:"instant"});}
   }
   const frame=requestAnimationFrame(followHash);
   window.addEventListener("hashchange",followHash);
