@@ -14,7 +14,7 @@ import ConnectedAssembly from "./components/cinematic/ConnectedAssembly";
 export const metadata: Metadata = {
   title: { absolute: "Crabionics | Mud-Crab Aquaculture, Connected" },
   description:
-    "Explore mud-crab production infrastructure, AquaOS and production partnerships. Habitat, sensing, local equipment and operating software in development.",
+    "Explore connected mud-crab production infrastructure and AquaOS. Watch CrabDesk + Moltie, our working RAS grow-out software demo; hardware integration is under development.",
   alternates: { canonical: "/" },
 };
 export default function HomePage() {
