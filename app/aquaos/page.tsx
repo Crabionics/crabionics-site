@@ -5,6 +5,21 @@ export const metadata: Metadata = {
  title: "CrabDesk + Moltie | AquaOS",
  description: "Watch CrabDesk and Moltie in a short product film. Working RAS grow-out software, with pond workflows upcoming.",
  alternates: { canonical: "/aquaos" },
+ openGraph: {
+  title: "CrabDesk + Moltie | AquaOS for RAS Grow-Out",
+  description: "See CrabDesk's working RAS grow-out application and Moltie assistant. Pond workflows are upcoming; hardware integration requires separate validation.",
+  url: "/aquaos",
+  images: [{
+   url: "/product/film/poster-desktop.webp",
+   width: 1920,
+   height: 1080,
+   alt: "CrabDesk + Moltie product film using demo records",
+  }],
+ },
+ twitter: {
+  card: "summary_large_image",
+  images: ["/product/film/poster-desktop.webp"],
+ },
 };
 export default function AquaOSPage() {
  return <Page name="aquaos">
