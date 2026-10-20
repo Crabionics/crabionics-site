@@ -36,6 +36,6 @@ export default function AquaOSPage() {
     <article className={s.card}><div className={s.cardBody}><p className={s.eyebrow}>Separate validation</p><h3>Hardware connections</h3><p>Sensor and equipment integration require their own testing. Functioning software does not establish biological results or a validated physical control loop.</p></div></article>
    </div>
   </Section>
-  <Section tone="dark"><p className={s.eyebrow}>Work with Crabionics</p><h2>See if CrabDesk fits your farm.</h2><p>Use our existing early-access registration. Confirm your email and the team will follow up about your setting and access.</p><Button href="/early-access#register">Register interest</Button></Section>
+  <Section tone="dark"><p className={s.eyebrow}>Work with Crabionics</p><h2>See if CrabDesk fits your farm.</h2><p>Register interest in a guided CrabDesk demonstration. Confirm your email and tell us about your farm or operating setting so our team can discuss the right next step.</p><Button href="/early-access#register">Register interest</Button></Section>
  </Page>;
 }
