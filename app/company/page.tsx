@@ -56,7 +56,13 @@ export default function CompanyPage() {
             <p>
               Daily care exposed the need to connect each crab, its habitat, feeding, water conditions and stock changes. Notebooks grew into digital workflows—the starting point for AquaOS.
             </p>
-            <TextLink href="/system">Explore the connected system</TextLink>
+            <p>
+              That practical experience now informs CrabDesk + Moltie, the
+              first working RAS grow-out application within AquaOS. The public
+              film uses demonstration records; pond workflows and physical
+              equipment integrations are separate development work.
+            </p>
+            <TextLink href="/aquaos">Explore CrabDesk + Moltie</TextLink>
           </div>
         </div>
       </Section>
