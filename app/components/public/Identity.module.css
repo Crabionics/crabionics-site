@@ -349,3 +349,7 @@
 
 /* Crisp light navigation, ocean footer and the original Crabionics teal mark. */
 .header{background:#f8fcfff5;border-color:#a9ccd9;color:#0a344d}.desktopNav>a:hover{color:#087f8e}.desktopNav [aria-current=page]{color:#087282;border-color:#087f8e}.contact{background:#0b425f;color:#fff;border-color:#0b425f;border-radius:4px}.header .contact:hover{background:#08647a}.navigation,.flyout{background:#f5fbfd;border-color:#aacbd8}.desktopNav .flyout a:hover{background:#e0f1f5}.flyout small{color:#426978}.menu{border-color:#80adbe;color:#0c425b}.footer{background:linear-gradient(125deg,#082b43,#041725);border-top:1px solid #33748b}.footer.footer p{color:#bbd7e4}.footer h2{color:#7edfd9!important}.footerLinks a{color:#edf7fc}.footerLinks a:hover{color:#84eee2}.legal{border-color:#365f73}.social{color:#95ebe2}.header:after{background:#19a6ae}
+
+.navGroup[open]>summary,.flyout b,.navigation a:hover{color:var(--site-teal)}
+.navGroup>summary:focus-visible,.header a:focus-visible,.menu:focus-visible{outline-color:var(--site-teal)}
+.footer a:focus-visible{outline-color:var(--site-mint)}

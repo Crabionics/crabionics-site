@@ -1,20 +1,20 @@
 .overview { display:grid; grid-template-columns: .95fr 1.05fr; gap:64px; align-items:start; }
-.stockPhoto { position:relative; margin:0; min-height:600px; border-radius:14px; overflow:hidden; background:#edf7f5; }
+.stockPhoto { position:relative; margin:0; min-height:600px; border-radius:14px; overflow:hidden; background:var(--site-ice); }
 .stockPhoto img { object-fit:cover; }
-.stockPhoto figcaption { position:absolute; bottom:18px; left:18px; right:18px; width:fit-content; background:#123a42; color:white; padding:8px 12px; font-size:12px; }
-.solutionList article { display:grid; grid-template-columns:24px 38px 1fr; gap:18px; border-bottom:1px solid #d7e5e3; padding:22px 0; }
+.stockPhoto figcaption { position:absolute; bottom:18px; left:18px; right:18px; width:fit-content; background:var(--site-ink); color:white; padding:8px 12px; font-size:12px; }
+.solutionList article { display:grid; grid-template-columns:24px 38px 1fr; gap:18px; border-bottom:1px solid var(--site-line); padding:22px 0; }
 .solutionList article:first-child { padding-top:0; }
-.solutionList article svg { color:#087c7b; width:32px; }
+.solutionList article svg { color:var(--site-teal); width:32px; }
 .solutionList article h3 { margin-bottom:6px !important; }
 .solutionList article p { margin-bottom:8px !important; font-size:15px !important; }
-.number { font-size:11px; color:#087c7b; padding-top:8px; }
+.number { font-size:11px; color:var(--site-teal); padding-top:8px; }
 .scope { font-size:12px !important; margin:20px 0 12px !important; }
 .evidence { display:grid; grid-template-columns:1fr 1fr; gap:80px; }
-.evidence a { color:#a8e8d8; }
+.evidence a { color:var(--site-mint); }
 .evidence ol { padding:0; margin:0; list-style:none; }
-.evidence li { padding:20px 0; border-bottom:1px solid #426168; }
+.evidence li { padding:20px 0; border-bottom:1px solid #426b83; }
 .evidence li:first-child { padding-top:0; }
-.evidence li span { display:block; text-transform:uppercase; letter-spacing:.12em; font-size:10px; color:#a8e8d8; margin-bottom:8px; }
+.evidence li span { display:block; text-transform:uppercase; letter-spacing:.12em; font-size:10px; color:var(--site-mint); margin-bottom:8px; }
 .evidence li strong { font-weight:500; font-size:22px; }
 .evidence li p { margin:6px 0 0 !important; font-size:14px !important; }
 @media(max-width:767px) {
