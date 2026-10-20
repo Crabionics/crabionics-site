@@ -482,3 +482,8 @@
   .formLauncher { position: relative; bottom: auto; right: auto; display: block; margin: 18px auto; }
   .chat { bottom: 68px; right: 12px; }
 }
+
+/* Keep the closed assistant in the footer, outside film controls and form fields. */
+.chatLauncher,.formLauncher{position:static;display:flex;width:fit-content;margin:28px 0 0;min-height:48px;border-color:#70b9c7;background:#0b425f;box-shadow:none;gap:8px}
+.chat{bottom:16px;right:16px;max-height:calc(100dvh - 110px)}
+@media(max-width:767px){.chat{bottom:max(12px,env(safe-area-inset-bottom));right:12px}.chatLauncher,.formLauncher{margin:24px 0 0}}

@@ -47,7 +47,7 @@ export default function ConnectedAssembly(){
  useEffect(()=>{
   function followHash(){
    const index=chapters.findIndex(ch=>window.location.hash===`#connection-${ch.id}`);
-   if(index>=0) setActive(index);
+   if(index>=0){setActive(index);document.getElementById("connected-system")?.scrollIntoView({block:"start",behavior:"instant"});}
   }
   const frame=requestAnimationFrame(followHash);
   window.addEventListener("hashchange",followHash);
