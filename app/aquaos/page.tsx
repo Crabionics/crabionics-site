@@ -42,7 +42,7 @@ export default function AquaOSPage() {
   return <Page name="aquaos">
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(software) }} />
     <Intro eyebrow="Mud-crab farming software / AquaOS" title="RAS grow-out management. Meet CrabDesk.">
-      <p className={s.lead}>CrabDesk is Crabionics' working mud-crab farm management application for individual-crab RAS grow-out. Follow intake, batches, habitats, sampling and manual water observations in the real interface, then meet Moltie, its built-in assistant. Demo records shown; proprietary farm operations are not published.</p>
+      <p className={s.lead}>CrabDesk is Crabionics&apos; working mud-crab farm management application for individual-crab RAS grow-out. Follow intake, batches, habitats, sampling and manual water observations in the real interface, then meet Moltie, its built-in assistant. Demo records shown; proprietary farm operations are not published.</p>
       <div className={s.actions}>
         <Button href="#discover">Watch the real product</Button>
         <Button href="/early-access#register" secondary>Request guided access</Button>
@@ -70,7 +70,7 @@ export default function AquaOSPage() {
     <Section tone="dark">
       <p className={s.eyebrow}>Work with Crabionics</p>
       <h2>See if CrabDesk fits your farm.</h2>
-      <p>Tell us whether you operate RAS grow-out, pond production or a related aquaculture facility. Use the existing registration system, confirm your email and we'll review the appropriate guided demonstration or pilot discussion.</p>
+      <p>Tell us whether you operate RAS grow-out, pond production or a related aquaculture facility. Use the existing registration system, confirm your email and we&apos;ll review the appropriate guided demonstration or pilot discussion.</p>
       <Button href="/early-access#register">Register operator interest</Button>
     </Section>
   </Page>;
