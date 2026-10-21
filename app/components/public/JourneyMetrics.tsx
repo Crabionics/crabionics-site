@@ -31,7 +31,7 @@ export default function JourneyMetrics() {
           : /(^|\.)(youtube\.com|youtu\.be)$/.test(host) ? "youtube"
           : /(^|\.)linkedin\.com$/.test(host) ? "linkedin"
           : host && host !== location.hostname ? "other" : "direct";
-        source = explicit || (saved && ["direct","youtube","linkedin","ai_search","other"].includes(saved) ? saved : referral);
+        source = explicit || (referral !== "direct" ? referral : saved && ["direct","youtube","linkedin","ai_search","other"].includes(saved) ? saved : "direct");
         sessionStorage.setItem("crabionics:source", source);
       } catch { source = "direct"; }
     }
