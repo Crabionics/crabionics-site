@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     template: "%s | Crabionics",
   },
   description:
-    "Crabionics is developing mud-crab production infrastructure around biology, habitat, observation and operating control.",
+    "Crabionics develops mud-crab aquaculture infrastructure and AquaOS. CrabDesk is working RAS grow-out software with Moltie; pond and hardware integration are upcoming.",
   keywords: [
     "Crabionics",
     "mud crab aquaculture",
@@ -27,16 +27,14 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Crabionics | Production Architecture for Mud-Crab Aquaculture",
     description:
-      "Biology, physical infrastructure and operating tools for mud-crab production.",
+      "Mud-crab production infrastructure and working CrabDesk RAS grow-out software, with Moltie assistance.",
     url: "https://www.crabionics.com",
     siteName: "Crabionics",
     type: "website",
     images: [
       {
-        url: "/images/versioned/social-world.09a2efb2.webp",
-        width: 1200,
-        height: 630,
-        alt: "Concept illustration of mud-crab production infrastructure",
+        url: "/photos/ras-plumbing.jpg",
+        alt: "Real mud-crab production racks, individual habitats and recirculating water equipment",
       },
     ],
   },
@@ -45,7 +43,7 @@ export const metadata: Metadata = {
     title: "Crabionics | Production Architecture for Mud-Crab Aquaculture",
     description:
       "Biology, physical infrastructure and operating tools for mud-crab production.",
-    images: ["/images/versioned/social-world.09a2efb2.webp"],
+    images: ["/photos/ras-plumbing.jpg"],
   },
   alternates: { canonical: "/" },
 };
@@ -61,7 +59,7 @@ const organizationJsonLd = {
       logo: "https://www.crabionics.com/logo.png",
       email: "info@crabionics.com",
       description:
-        "Crabionics is developing production architecture for mud-crab aquaculture.",
+        "Crabionics develops mud-crab production infrastructure and AquaOS, including the working CrabDesk RAS grow-out operator application with Moltie.",
       sameAs: [
         "https://www.linkedin.com/company/crabionics-aquaculture-private-limited/",
       ],
@@ -72,7 +70,7 @@ const organizationJsonLd = {
       name: "Crabionics",
       url: "https://www.crabionics.com",
       description:
-        "Production architecture for mud-crab aquaculture, in development.",
+        "Mud-crab aquaculture infrastructure, working RAS grow-out software and separately developing pond and equipment integration.",
       publisher: { "@id": "https://www.crabionics.com/#organization" },
       inLanguage: "en",
     },
