@@ -13,7 +13,7 @@ import { BetaDirection } from "../components/public/Visuals";
 export const metadata: Metadata = {
   title: "Resources",
   description:
-    "Practical guides to mud-crab production partnerships, operating records and planning controlled-finishing intake.",
+    "Explore mud-crab farm records, RAS grow-out software, production partnerships and practical planning guides for coastal aquaculture.",
   alternates: { canonical: "/resources" },
 };
 export default function ResourcesPage() {
