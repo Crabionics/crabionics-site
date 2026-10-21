@@ -22,7 +22,7 @@ export default function JourneyMetrics() {
         const host = document.referrer ? new URL(document.referrer).hostname.toLowerCase() : "";
         // Referrers can be intentionally suppressed by assistants and browsers.
         // In that case the session is direct/unknown, never inferred to be AI.
-        const aiHosts = /(^|\.)(chatgpt\.com|openai\.com|perplexity\.ai|claude\.ai|poe\.com|you\.com)$|^gemini\.google\.com$|^copilot\.microsoft\.com$/;
+        const aiHosts = /(^|\.)(chatgpt\.com|perplexity\.ai|claude\.ai|poe\.com|you\.com)$|^chat\.openai\.com$|^gemini\.google\.com$|^copilot\.microsoft\.com$/;
         const aiCampaigns = ["chatgpt", "perplexity", "gemini", "claude", "copilot", "ai_search", "ai-search", "ai"];
         const explicit = aiCampaigns.includes(campaign) || medium === "ai" || medium === "ai_search" ? "ai_search"
           : campaign === "youtube" ? "youtube"
