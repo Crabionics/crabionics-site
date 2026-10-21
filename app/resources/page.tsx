@@ -36,7 +36,7 @@ export default function ResourcesPage() {
         <div className={s.three}>
           {[
             ["Understand the setting", "Hatchery, nursery, pond grow-out and finishing each solve a different production problem.", "/producers", "Explore production settings"],
-            ["Connect the daily work", "See how AquaOS is being developed to connect observations, operator decisions, actions and outcomes.", "/aquaos", "Understand AquaOS"],
+            ["Connect the daily work", "See the working CrabDesk RAS grow-out application and Moltie assistant using demonstration records. Pond workflows remain upcoming.", "/aquaos", "Understand AquaOS"],
             ["Bring your question", "Already operating or planning a project? Share your stage, region and biggest bottleneck.", "/contact#production", "Discuss your production problem"],
           ].map(([title, body, href, label]) => <article className={s.card} key={title}><div className={s.cardBody}><h3>{title}</h3><p>{body}</p><TextLink href={href}>{label}</TextLink></div></article>)}
         </div>
