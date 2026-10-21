@@ -37,7 +37,7 @@ export default function DemoPage() {
   <Section>
    <div className={s.heading}><div><p className={s.eyebrow}>Accessible film companion</p><h2>What the demonstration shows.</h2></div><p>A readable overview for visitors who prefer text or cannot watch the film. This is a summary, not a transcript of the narration or an operational SOP.</p></div>
    <div className={s.three}>
-    <article className={s.card}><div className={s.cardBody}><h3>Operator overview</h3><p>CrabDesk's actual application screens show RAS grow-out records and an overview of intake, batches and individual habitat context. The footage uses demonstration records.</p></div></article>
+    <article className={s.card}><div className={s.cardBody}><h3>Operator overview</h3><p>CrabDesk&apos;s actual application screens show RAS grow-out records and an overview of intake, batches and individual habitat context. The footage uses demonstration records.</p></div></article>
     <article className={s.card}><div className={s.cardBody}><h3>Observations and records</h3><p>Sample records illustrate sampling and manual water-test entries in the software. The film does not publish internal operating procedures, control thresholds or an engineering specification.</p></div></article>
     <article className={s.card}><div className={s.cardBody}><h3>Ask Moltie</h3><p>Moltie appears inside the working interface and responds to a question about sample records with supporting sources. The film is not evidence of autonomous farm control or verified biological prediction.</p></div></article>
    </div>
