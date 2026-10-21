@@ -16,6 +16,14 @@ export const metadata: Metadata = {
   description:
     "Explore connected mud-crab production infrastructure and AquaOS. Watch CrabDesk + Moltie, our working RAS grow-out software demo; hardware integration is under development.",
   alternates: { canonical: "/" },
+  // Use an authentic published product-film poster rather than an older concept illustration.
+  openGraph: {
+    title: "Crabionics | Mud-Crab Aquaculture, Connected",
+    description: "Explore production infrastructure and working CrabDesk + Moltie RAS grow-out software.",
+    url: "/",
+    images: [{ url: "/product/film/poster-v2-desktop.webp", width: 1920, height: 1080, alt: "Actual CrabDesk + Moltie operator software demonstration using sample records" }],
+  },
+  twitter: { card: "summary_large_image", images: ["/product/film/poster-v2-desktop.webp"] },
 };
 export default function HomePage() {
   return (
