@@ -70,11 +70,11 @@ export const solutions = [
     name: "AquaOS",
     category: "Operating software",
     title: "Keep the production work connected.",
-    description: "Link observations, decisions and operating history.",
+    description: "CrabDesk tracks RAS grow-out operating records; pond operations are upcoming.",
     image: null,
     alt: "",
     concept: true,
-    status: "Grow-out beta interest",
+    status: "Working RAS grow-out software; pond upcoming",
     href: "/aquaos",
     icon: "record",
     requirements: [
@@ -83,13 +83,62 @@ export const solutions = [
       "Trial scope and physical integration where relevant",
     ],
     scope:
-      "Software foundations exist. Physical integration and the biological control loop need further demonstration.",
+      "CrabDesk is working RAS grow-out software. Pond workflows and physical integration remain separate development and validation work.",
     question:
       "Can the team connect what was observed, what was decided and what changed?",
   },
 ] as const;
 
 export const resources = [
+  {
+    slug: "mud-crab-farm-records",
+    category: "Farm software guide",
+    title: "Mud-crab farm records: what should management software track?",
+    description: "A practical guide to choosing useful records for RAS grow-out and pond production, and understanding what CrabDesk currently demonstrates.",
+    reading: "4 minute read",
+    sections: [
+      {
+        title: "Start with the production context, not the dashboard",
+        paragraphs: [
+          "Mud-crab operations differ by production stage. An individual-crab RAS grow-out facility may need records about individual stock and habitats, while a pond operator may work primarily with cohorts and routine farm observations. Software should reflect the actual operating setting, not force every farmer into the same screen.",
+          "Before evaluating a product, ask who will enter information, how it will be checked and what later question a stored record should help answer. The right minimum dataset depends on the operator's production goals, data quality and available time.",
+        ],
+        points: [
+          "Production stage and operator responsibilities",
+          "Stock or cohort identity appropriate to the setting",
+          "Source and time of each observation",
+          "A way to retrieve and correct operating history",
+        ],
+      },
+      {
+        title: "Records are useful when their meaning is clear",
+        paragraphs: [
+          "Feeding checks, water observations and stock changes are only interpretable when attached to the correct production context and time. Distinguish an actual field observation from a sample, a calculated value or an assistant suggestion.",
+          "For managers, useful software should make uncertain or missing information visible. A visually complete dashboard is not evidence that every field record was collected, checked or independently validated.",
+        ],
+      },
+      {
+        title: "What CrabDesk demonstrates today",
+        paragraphs: [
+          "CrabDesk is a working RAS grow-out application within Crabionics AquaOS. Its published product film shows genuine screens for intake, batches, habitats, sampling and manual water tests using demonstration records. Moltie, its built-in assistant, is also shown using sample record sources.",
+          "Pond operations are an upcoming separate workflow. CrabSense sensors, CrabPod equipment interfaces and physical closed-loop control require their own integration and validation. A functioning software view does not prove biological performance, better survival or farm profitability.",
+        ],
+      },
+      {
+        title: "Questions for an Odisha farm or any pilot site",
+        paragraphs: [
+          "A farmer in Odisha or another coastal aquaculture region should start by describing the farm type, operating routine and current recordkeeping difficulties. Compare products using a guided, permissioned demonstration rather than disclosing sensitive stock or farm data in public forms.",
+          "Ask whether the software supports your existing routine, works acceptably on the devices and network you use, retains history across visits and allows the team to review unknowns and errors. Agree training, access rights, support and pilot responsibilities before sharing real data.",
+        ],
+        points: [
+          "Does this version support my pond or RAS grow-out context?",
+          "Can I recover a dated record when I return later?",
+          "How are manually entered readings distinguished from sensor readings?",
+          "What does the pilot include, and what remains in development?",
+        ],
+      },
+    ],
+  },
   {
     slug: "planning-a-production-pilot",
     category: "Partnership guide",
@@ -222,7 +271,7 @@ export const partnershipFaq = [
   ],
   [
     "Is AquaOS available for my pond?",
-    "Early-access interest is welcome. Explore the illustrative workflow preview. No released operator beta is evidenced yet; trial access and equipment integration are discussed individually.",
+    "Pond operator workflows are upcoming. CrabDesk currently demonstrates RAS grow-out records with Moltie using sample data. Register interest to discuss a relevant scoped pilot.",
   ],
   [
     "What production results have been demonstrated?",
