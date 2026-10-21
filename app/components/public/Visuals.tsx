@@ -117,10 +117,10 @@ export function BetaDirection({ showcase = false }: { showcase?: boolean }) {
     <Section tone="mist">
       <div className={s.split}>
         <div>
-          <Eyebrow>AquaOS / In development</Eyebrow>
+          <Eyebrow>AquaOS / Working RAS grow-out software</Eyebrow>
           <h2>Stock, feeding and water records. In one place.</h2>
           <p>
-            We’re developing AquaOS to help teams record daily checks, track stock and follow up on issues. Try the sample workflow or register interest in an operator pilot.
+            CrabDesk is our working RAS grow-out application within AquaOS. Watch genuine software screens and meet Moltie using demonstration records. Pond workflows are upcoming.
           </p>
           <div className={s.actions}>
             <Button href="/aquaos">Explore AquaOS</Button>
@@ -133,13 +133,13 @@ export function BetaDirection({ showcase = false }: { showcase?: boolean }) {
           {[
             [
               "Explore now",
-              "Illustrative operator workflow",
-              "Sample preview available",
+              "Working CrabDesk + Moltie product film",
+              "Demo records shown",
             ],
             [
               "Shape next",
-              "Daily operator work, history & grounded assistance",
-              "Early-access interest",
+              "Upcoming pond operator workflows",
+              "Register interest",
             ],
             [
               "Validate later",
