@@ -3,15 +3,15 @@ import { Page } from "../components/public/Experience";
 import ProductFilm from "../components/product/ProductFilm";
 
 export const metadata: Metadata = {
-  title: "CrabDesk + Moltie | 30-Second Product Film",
+  title: "CrabDesk + Moltie | Product Film",
   description: "See CrabDesk's working RAS grow-out interface and Moltie assistant using demo records. Explore AquaOS and register interest in an operator pilot.",
   alternates: { canonical: "/demo" },
   openGraph: {
     title: "CrabDesk + Moltie | First Working AquaOS Capability",
-    description: "Watch the 30-second demonstration of CrabDesk RAS grow-out management and Moltie, using demo records.",
+    description: "Follow the CrabDesk operator journey and Moltie source-linked answers, using demo records. Narrated and captioned.",
     url: "/demo",
     images: [{
-      url: "/product/film/poster-desktop.webp",
+      url: "/product/film/poster-v2-desktop.webp",
       width: 1920,
       height: 1080,
       alt: "CrabDesk and Moltie product interface demonstrated with sample records",
@@ -20,8 +20,8 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "CrabDesk + Moltie | AquaOS Product Film",
-    description: "A 30-second look at working RAS grow-out software using demo records.",
-    images: ["/product/film/poster-desktop.webp"],
+    description: "A narrated operator journey through working RAS grow-out software, using demo records.",
+    images: ["/product/film/poster-v2-desktop.webp"],
   },
 };
 

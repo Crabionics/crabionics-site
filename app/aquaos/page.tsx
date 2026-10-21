@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   description: "See CrabDesk's working RAS grow-out application and Moltie assistant. Pond workflows are upcoming; hardware integration requires separate validation.",
   url: "/aquaos",
   images: [{
-   url: "/product/film/poster-desktop.webp",
+   url: "/product/film/poster-v2-desktop.webp",
    width: 1920,
    height: 1080,
    alt: "CrabDesk + Moltie product film using demo records",
@@ -18,14 +18,14 @@ export const metadata: Metadata = {
  },
  twitter: {
   card: "summary_large_image",
-  images: ["/product/film/poster-desktop.webp"],
+  images: ["/product/film/poster-v2-desktop.webp"],
  },
 };
 export default function AquaOSPage() {
  return <Page name="aquaos">
   <Intro eyebrow="AquaOS / CrabDesk + Moltie" title="RAS grow-out management. Meet CrabDesk.">
-   <p className={s.lead}>CrabDesk is the first working application in the AquaOS platform. Watch the dashboard and Moltie in action, using demo records.</p>
-   <div className={s.actions}><Button href="#discover">Watch the 30-second film</Button><Button href="/early-access#register" secondary>Register interest</Button></div>
+   <p className={s.lead}>CrabDesk is the first working application in the AquaOS platform. Follow individual intake, batches, habitats, sampling and manual water tests, then ask Moltie and check its sources. Demonstration records shown.</p>
+   <div className={s.actions}><Button href="#discover">Watch the product film</Button><Button href="/early-access#register" secondary>Register interest</Button></div>
   </Intro>
   <div id="discover"><ProductFilm page="aquaos" /></div>
   <Section id="capabilities">

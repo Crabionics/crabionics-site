@@ -7,3 +7,6 @@
 .frame{width:min(100%,960px,calc((100svh - 240px)*16/9));margin-inline:auto}
 .play{white-space:normal;width:max-content}
 @media(max-width:650px){.frame{width:min(100%,calc(72svh*9/16));max-height:none}.play{max-width:calc(100% - 20px);padding:12px;gap:9px}.play small{letter-spacing:0}}
+
+.mobileDuration{display:none}
+@media(max-width:650px){.desktopDuration{display:none}.mobileDuration{display:inline}}
