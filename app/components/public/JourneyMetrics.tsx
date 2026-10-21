@@ -16,9 +16,22 @@ export default function JourneyMetrics() {
       initialized = true;
       try {
         const saved = sessionStorage.getItem("crabionics:source");
-        const campaign = new URLSearchParams(location.search).get("utm_source")?.toLowerCase();
-        const host = document.referrer ? new URL(document.referrer).hostname : "";
-        source = saved && ["direct","youtube","linkedin","other"].includes(saved) ? saved : campaign === "youtube" || /(^|\.)youtube\.com$|(^|\.)youtu\.be$/.test(host) ? "youtube" : campaign === "linkedin" || /(^|\.)linkedin\.com$/.test(host) ? "linkedin" : host && host !== location.hostname ? "other" : "direct";
+        const query = new URLSearchParams(location.search);
+        const campaign = query.get("utm_source")?.toLowerCase().trim() || "";
+        const medium = query.get("utm_medium")?.toLowerCase().trim() || "";
+        const host = document.referrer ? new URL(document.referrer).hostname.toLowerCase() : "";
+        // Referrers can be intentionally suppressed by assistants and browsers.
+        // In that case the session is direct/unknown, never inferred to be AI.
+        const aiHosts = /(^|\.)(chatgpt\.com|openai\.com|perplexity\.ai|claude\.ai|poe\.com|you\.com)$|^gemini\.google\.com$|^copilot\.microsoft\.com$/;
+        const aiCampaigns = ["chatgpt", "perplexity", "gemini", "claude", "copilot", "ai_search", "ai-search", "ai"];
+        const explicit = aiCampaigns.includes(campaign) || medium === "ai" || medium === "ai_search" ? "ai_search"
+          : campaign === "youtube" ? "youtube"
+          : campaign === "linkedin" ? "linkedin" : null;
+        const referral = aiHosts.test(host) ? "ai_search"
+          : /(^|\.)(youtube\.com|youtu\.be)$/.test(host) ? "youtube"
+          : /(^|\.)linkedin\.com$/.test(host) ? "linkedin"
+          : host && host !== location.hostname ? "other" : "direct";
+        source = explicit || (saved && ["direct","youtube","linkedin","ai_search","other"].includes(saved) ? saved : referral);
         sessionStorage.setItem("crabionics:source", source);
       } catch { source = "direct"; }
     }
