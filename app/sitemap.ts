@@ -27,7 +27,7 @@ const publicRoutes = [
 export default function sitemap(): MetadataRoute.Sitemap {
   // Only report a last-modified timestamp for routes actually updated in this release.
   // Replacing every URL's date on every build would mislead crawlers.
-  const updated = new Set(["/", "/aquaos", "/demo", "/resources", "/resources/mud-crab-farm-records"]);
+  const updated = new Set(["/", "/aquaos", "/demo", "/resources", "/resources/mud-crab-farm-records", "/early-access"]);
   return publicRoutes.map((path) => ({
     url: `${baseUrl}${path === "/" ? "" : path}`,
     ...(updated.has(path) ? { lastModified: new Date("2026-10-21T00:00:00+05:30") } : {}),
