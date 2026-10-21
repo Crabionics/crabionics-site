@@ -10,9 +10,9 @@ import {
 import EarlyAccessForm from "../components/public/EarlyAccessForm";
 import { registrationConfigured } from "../lib/registration-service";
 export const metadata: Metadata = {
-  title: "Join Early Access",
+  title: "CrabDesk + AquaOS Operator Early Access",
   description:
-    "Help shape an AquaOS operator pilot around a real daily production routine, reviewed follow-up and useful operating history.",
+    "Register interest in a guided CrabDesk RAS grow-out demonstration or upcoming AquaOS pond workflows. Confirm your email to start an operator-fit discussion.",
   alternates: { canonical: "/early-access" },
 };
 export default function EarlyAccessPage() {
@@ -22,11 +22,11 @@ export default function EarlyAccessPage() {
   return (
     <Page name="early-access">
       <Intro
-        eyebrow="AquaOS / Early-access interest"
-        title="Help build AquaOS around your daily production work."
+        eyebrow="AquaOS / Operator early-access interest"
+        title="Explore CrabDesk. Help shape AquaOS."
       >
         <p className={s.lead}>
-          Bring one routine—from a feeding round to an inspection—that your team needs to manage better. Register interest to help shape a focused operator pilot.
+          CrabDesk is working RAS grow-out software; pond workflows are upcoming. Register with your farm setting and the daily routine you want to improve. We will discuss the right guided demonstration or pilot scope.
         </p>
         <div className={s.actions}>
           <Button href="#register">Register interest</Button>
@@ -55,7 +55,7 @@ export default function EarlyAccessPage() {
           <div>
             <h2>A focused routine. A useful history.</h2>
             <p>The proposed pilot connects an observation, its follow-up and the recorded outcome. Your team helps test whether that makes everyday work easier to manage.</p>
-            <Button href="/aquaos" secondary>Explore the AquaOS direction</Button>
+            <Button href="/aquaos" secondary>Explore CrabDesk + AquaOS</Button>
           </div>
           <div>
             <h3>We agree the pilot before testing</h3>
