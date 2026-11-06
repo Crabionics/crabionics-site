@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Contact · Crabionics</title>
+<meta name="description" content="Tell Crabionics your production stage, location and the question you need to resolve.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/new/site.css?v=15">
+</head>
+<body data-page="contact">
+<main id="main-content">
+	<section class="page-hero">
+		<div class="hero-grid solo">
+			<div class="crumb mono"><a href="/">Home</a><span class="sep">/</span><span>Talk to Crabionics</span></div>
+			<h1><span class="hero-line"><span>Let’s start with</span></span><span class="hero-line"><span class="accent">your setting.</span></span></h1>
+			<p class="lede hero-fade" style="max-width: 62ch">Tell us your production stage, location and the question you need to resolve. We’ll review the setting with you and agree whether a project, research collaboration or pilot is a useful next step.</p>
+		</div>
+	</section>
+
+	<section class="sec mist" id="enquiry">
+		<div class="split top">
+			<div class="sec-copy">
+				<span class="tag"><i></i>Choose a conversation</span>
+				<h2 class="rise">Bring the question<br><span class="accent">that matters to you.</span></h2>
+				<nav class="topics stagger" aria-label="Enquiry topics" style="margin-top: 26px">
+					<a href="#production" data-topic="production">Pond / finishing partnership <span class="arrow r">→</span></a>
+					<a href="#market" data-topic="market">Buyer / cluster requirements <span class="arrow r">→</span></a>
+					<a href="#technical" data-topic="technical">Technical scope <span class="arrow r">→</span></a>
+					<a href="#research" data-topic="research">Research partnership <span class="arrow r">→</span></a>
+					<a href="#aquaos-beta" data-topic="aquaos-beta">AquaOS operator early-access interest <span class="arrow r">→</span></a>
+					<a href="#institutions" data-topic="institutions">Government / institutional collaboration <span class="arrow r">→</span></a>
+					<a href="#investors" data-topic="investors">Company / investment <span class="arrow r">→</span></a>
+				</nav>
+				<div class="cards" style="margin-top: 22px">
+					<div class="card">
+						<span class="mono">What happens next?</span>
+						<p>The team reviews the production setting and discusses fit, responsibilities and useful measurements. Trial scope, costs and timing are agreed individually.</p>
+						<p>Prefer a direct email? <a class="line" href="mailto:info@crabionics.com">info@crabionics.com</a></p>
+					</div>
+				</div>
+			</div>
+			<form class="form fade-up" aria-label="Partnership enquiry" novalidate>
+				<div class="field full">
+					<label for="topic">What would you like to discuss?</label>
+					<select id="topic" name="topic">
+						<option value="production">Pond / finishing partnership</option>
+						<option value="market">Buyer / cluster requirements</option>
+						<option value="technical">Technical scope</option>
+						<option value="research">Research partnership</option>
+						<option value="aquaos-beta">AquaOS operator early-access interest</option>
+						<option value="institutions">Government / institutional collaboration</option>
+						<option value="investors">Company / investment</option>
+					</select>
+				</div>
+				<div class="field"><label for="name">Your name <em>*</em></label><input id="name" name="name" autocomplete="name" required></div>
+				<div class="field"><label for="email">Email address <em>*</em></label><input id="email" name="email" type="email" autocomplete="email" required></div>
+				<div class="field"><label for="organisation">Organisation</label><input id="organisation" name="organisation" autocomplete="organization"></div>
+				<div class="field"><label for="region">Operating region <em>*</em></label><input id="region" name="region" placeholder="State / country" required></div>
+				<div class="field full"><label for="role">Your role <em>*</em></label><input id="role" name="role" placeholder="Pond grower, finishing operator, buyer, researcher…" required></div>
+				<div class="field full"><label for="message">Your setting and question <em>*</em></label><textarea id="message" name="message" placeholder="Tell us about your species, stock, current routines and what you would like to understand." required></textarea></div>
+				<div class="hp" aria-hidden="true"><label for="website">Leave this field empty</label><input id="website" name="website" tabindex="-1" autocomplete="off"></div>
+				<div class="form-foot full">
+					<span>The details you send will be used to respond to your enquiry. <a href="/privacy">Privacy policy</a></span>
+					<button class="btn primary" type="submit">Send enquiry <span class="arrow">↗</span></button>
+				</div>
+				<p class="form-done" tabindex="-1" role="status">Preview only: this design page doesn’t send anything. On the live site this goes to the Crabionics team.</p>
+			</form>
+		</div>
+	</section>
+</main>
+<script src="/new/live.js"></script>
+<script src="/new/site.js?v=15"></script>
+</body>
+</html>

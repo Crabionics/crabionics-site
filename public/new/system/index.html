@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The connected system · Crabionics</title>
+<meta name="description" content="How Crabionics connects the habitat, the water, sensing, local equipment and AquaOS around the people doing the work.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/new/site.css?v=15">
+</head>
+<body data-page="system">
+<main id="main-content">
+	<section class="page-hero compact">
+		<div class="hero-grid wide-media">
+			<div>
+				<div class="crumb mono"><a href="/">Home</a><span class="sep">/</span><span>The connected production system</span></div>
+				<h1><span class="hero-line"><span>The crab. The water.</span></span><span class="hero-line"><span class="accent">The people doing the work.</span></span></h1>
+				<p class="lede hero-fade">A production setting becomes useful when its observations, decisions and physical response stay connected.</p>
+				<div class="actions hero-fade">
+					<a class="btn primary" href="#layers">How it works <span class="arrow r">↓</span></a>
+					<a class="btn ghost" href="/solutions">Explore the components <span class="arrow">↗</span></a>
+				</div>
+			</div>
+			<div class="hero-media">
+				<figure class="media land"><img src="/new/assets/people-at-work-navy.jpg" alt="A farm worker with a head torch lifts a mud crab from its drawer in a row of blue habitat boxes." style="object-position: 58% 50%"></figure>
+			</div>
+		</div>
+	</section>
+
+	<section class="sec compact" id="layers">
+		<div class="sec-head">
+			<div class="sec-copy">
+				<span class="tag"><i></i>How it works</span>
+				<h2 class="rise">Four parts of<br><span class="accent">one setting.</span></h2>
+			</div>
+			<p class="lede">From the crab’s habitat to the decision that follows a reading. Choose a part to see how it fits.</p>
+		</div>
+		<div class="layers">
+			<div class="layer-tabs" role="tablist" aria-label="Parts of the system">
+				<button type="button" role="tab" id="tab-habitat" aria-controls="habitat" aria-selected="true"><small>01</small><b>Physical setting</b><span>The animal’s environment</span></button>
+				<button type="button" role="tab" id="tab-water" aria-controls="water" aria-selected="false"><small>02</small><b>The water</b><span>Recirculate and treat</span></button>
+				<button type="button" role="tab" id="tab-observation" aria-controls="observation" aria-selected="false"><small>03</small><b>Observation</b><span>Readings in context</span></button>
+				<button type="button" role="tab" id="tab-decisions" aria-controls="decisions" aria-selected="false"><small>04</small><b>Decision &amp; response</b><span>Action tied to its reason</span></button>
+			</div>
+			<div class="layer-panels">
+				<article class="layer-panel" id="habitat" role="tabpanel" aria-labelledby="tab-habitat">
+					<figure class="media"><img src="/new/assets/photo-habitat-navy.jpg" alt="A mud crab in an individual blue habitat."><figcaption class="label photo">Production photograph</figcaption></figure>
+					<div class="layer-body">
+						<span class="mono accent">01 / Physical setting</span>
+						<h3>Begin with the animal’s environment.</h3>
+						<p>Habitat, handling and water management define the conditions in which care and observation happen.</p>
+						<div class="text-links"><a href="/solutions/habitat">Habitat &amp; supporting infrastructure <span class="arrow r">→</span></a></div>
+					</div>
+				</article>
+				<article class="layer-panel" id="water" role="tabpanel" aria-labelledby="tab-water" hidden>
+					<figure class="media"><img src="/new/assets/ras-facility.jpg" alt="Rows of blue habitat towers with pipework in a lit hall, with gravel water-treatment beds in the foreground." loading="lazy" style="object-position: 50% 62%"><figcaption class="label">Concept illustration</figcaption></figure>
+					<div class="layer-body">
+						<span class="mono accent">02 / The water</span>
+						<h3>Recirculate and treat the water.</h3>
+						<p>Water from every habitat drains to collection tanks, passes through filtration, skimming and UV, and returns clean. BioPod / RAS supports water management where the setting requires it; treatment is sized to each site and its stock.</p>
+						<ol class="flow"><li>Collect</li><li>Filter</li><li>Treat</li><li>Return</li></ol>
+					</div>
+				</article>
+				<article class="layer-panel" id="observation" role="tabpanel" aria-labelledby="tab-observation" hidden>
+					<figure class="media"><picture><source media="(max-width: 920px)" srcset="/new/assets/sensing-plain.jpg"><img src="/new/assets/sensing-context.jpg" alt="Concept illustration: a mud crab in its habitat with dissolved-oxygen and temperature probes; each reading is linked to its tower and drawer, the crab and its batch, and when the sensor was last calibrated." loading="lazy"></picture><figcaption class="label">Concept illustration</figcaption></figure>
+					<div class="layer-body">
+						<span class="mono accent">03 / Observation</span>
+						<h3>A reading needs context.</h3>
+						<p>CrabSense connects environmental measurements to the right setting. Operators add biological observations and daily work. Measurement quality and maintenance matter as much as collecting data.</p>
+						<div class="text-links"><a href="/solutions/crabsense">Explore the sensing role <span class="arrow r">→</span></a></div>
+					</div>
+				</article>
+				<article class="layer-panel" id="decisions" role="tabpanel" aria-labelledby="tab-decisions" hidden>
+					<figure class="media"><img src="/new/assets/poster-v2-desktop.webp" alt="A real CrabDesk screen showing a Moltie answer with its source links, using demo records." loading="lazy"><figcaption class="label">Real CrabDesk screen · demo records</figcaption></figure>
+					<div class="layer-body">
+						<span class="mono accent">04 / Decision &amp; response</span>
+						<h3>Keep the action connected to its reason.</h3>
+						<p>AquaOS links observations, decisions and operating history. Where integration is available, permitted commands pass to local equipment through CrabPod under operator oversight. Record the response, then observe what changed: an equipment acknowledgement and a biological outcome are different measurements.</p>
+						<p class="note">Software and synthetic foundations exist. Physical integration and biological performance need their own accepted evidence. <a class="line" href="/validation">See what we are validating</a></p>
+						<div class="text-links"><a href="/aquaos">Explore AquaOS <span class="arrow">↗</span></a><a href="/solutions/crabpod">Explore CrabPod <span class="arrow r">→</span></a></div>
+					</div>
+				</article>
+			</div>
+		</div>
+	</section>
+
+	<section class="sec mist compact" id="relationship">
+		<div class="split">
+			<div class="sec-copy">
+				<span class="tag"><i></i>The operating relationship</span>
+				<h2 class="rise">Observe. Decide. Respond.<br><span class="accent">Check what changed.</span></h2>
+				<p class="lede">Follow the observation through to its response. Each part has its own job; the operator stays in charge throughout.</p>
+				<span class="tag dev" style="margin-top: 22px"><i></i>Operating design in development</span>
+			</div>
+			<div class="fade-up">
+				<div class="loop"></div>
+				<p class="loop-foot mono">↶ Observe what changed · connect action, response and history</p>
+			</div>
+		</div>
+	</section>
+
+	<section class="sec compact">
+		<div class="sec-head">
+			<div class="sec-copy">
+				<span class="tag"><i></i>The production direction</span>
+				<h2 class="rise">Connect the stages.<br><span class="accent">Build around the biology.</span></h2>
+			</div>
+			<p class="lede">From suitable starting stock to the condition and consistency buyers need.</p>
+		</div>
+		<div class="path stagger">
+			<a href="/validation"><small>01</small><b>Seed &amp; nursery <span class="arrow">↗</span></b><span>Suitable starting stock</span></a>
+			<a href="/producers#pond-production"><small>02</small><b>Pond grow-out <span class="arrow">↗</span></b><span>Biomass &amp; daily care</span></a>
+			<a href="/producers#buyer-requirements"><small>03</small><b>Aggregation <span class="arrow">↗</span></b><span>Grade &amp; track transfers</span></a>
+			<a href="/producers#controlled-finishing"><small>04</small><b>Controlled finishing <span class="arrow">↗</span></b><span>Defined habitat &amp; intake</span></a>
+			<a href="/contact#market"><small>05</small><b>Buyer requirements <span class="arrow">↗</span></b><span>Size, condition &amp; cadence</span></a>
+		</div>
+		<p class="note">A proposed production connection, not an established supply network. Integration, biology and commercial fit are validated separately.</p>
+	</section>
+
+	<section class="close-cta deep" data-tone="deep">
+		<span class="tag"><i></i>Start a conversation</span>
+		<h2 class="rise">Start with your <span class="accent">production setting.</span></h2>
+		<div class="close-row">
+			<p>Bring your role, region and production question.</p>
+			<div class="actions"><a class="btn primary" href="/contact#technical">Discuss the technical scope <span class="arrow">↗</span></a></div>
+		</div>
+	</section>
+</main>
+<script src="/new/live.js"></script>
+<script src="/new/site.js?v=15"></script>
+</body>
+</html>

@@ -1,0 +1,1687 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Crabionics | Mud-crab aquaculture, connected</title>
+<meta name="description" content="Mud-crab aquaculture, connected.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout concept: a descent into the water. Dark, immersive chapters carry the story;
+   light "surface" chapters carry the reading and the next step. */
+:root {
+	color-scheme: dark;
+	--deep: #03151f;
+	--deep-2: #06232f;
+	--navy: #0a344d;
+	--aqua: #6ce1da;
+	--aqua-dim: #2d8f90;
+	--shell: #e8834f;
+	--shell-soft: rgba(232, 131, 79, .14);
+	--lagoon: linear-gradient(120deg, #6ce1da 0%, #3fb6c9 45%, #2a7fd4 100%);
+	--glass: rgba(10, 52, 77, .38);
+	--foam: #f1f8fb;
+	--mist: #dff0f5;
+	--ink: #0a344d;
+	--ink-soft: #456476;
+	--on-deep: #eaf6f8;
+	--on-deep-soft: #a7c3cc;
+	--line-deep: rgba(108, 225, 218, .2);
+	--line-light: rgba(10, 52, 77, .16);
+	--sans: Manrope, "Helvetica Neue", Arial, sans-serif;
+	--mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+	--gutter: clamp(18px, 4.5vw, 64px);
+	--nav-h: 68px;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: var(--nav-h); -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--deep); color: var(--on-deep); font-family: var(--sans); font-size: 17px; line-height: 1.6; overflow-x: clip; -webkit-font-smoothing: antialiased; }
+img, video { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+h1, h2, h3, p { margin: 0; }
+h1, h2, h3 { text-wrap: balance; letter-spacing: -.035em; font-weight: 500; line-height: 1.04; }
+:focus-visible { outline: 2px solid var(--aqua); outline-offset: 3px; border-radius: 2px; }
+.skip { position: fixed; left: 12px; top: -60px; z-index: 100; background: var(--aqua); color: var(--deep); padding: 10px 14px; }
+.skip:focus { top: 12px; }
+
+.mono { font-family: var(--mono); font-size: 11.5px; letter-spacing: .13em; text-transform: uppercase; line-height: 1.5; }
+.arrow { display: inline-block; transition: transform .35s cubic-bezier(.2, .8, .2, 1); }
+a:hover > .arrow, button:hover > .arrow { transform: translate(3px, -3px); }
+a:hover > .arrow.down { transform: translateY(4px); }
+
+/* The 3D stage sits behind every dark chapter */
+#stage { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; display: block; pointer-events: none; }
+.backdrop { position: fixed; inset: 0; z-index: -1; background: radial-gradient(120% 90% at 70% 15%, #0d4a5c 0%, var(--deep-2) 40%, var(--deep) 75%); }
+main, footer { position: relative; z-index: 1; }
+
+/* Progress and nav */
+.nav { position: fixed; top: 0; left: 0; right: 0; z-index: 50; height: var(--nav-h); display: flex; align-items: center; justify-content: space-between; gap: 20px; padding-inline: var(--gutter); transition: background .4s, color .4s, border-color .4s; border-bottom: 1px solid transparent; color: var(--on-deep); }
+.nav.solid { background: rgba(3, 21, 31, .72); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-color: var(--line-deep); }
+.nav.on-light { background: rgba(108, 225, 218, .82); color: var(--deep); border-color: rgba(3, 21, 31, .15); }
+.nav.on-light .nav-cta:hover { background: var(--deep); color: #fff; border-color: var(--deep); }
+.brand { display: flex; align-items: center; font-weight: 700; letter-spacing: .12em; font-size: 22px; line-height: 1; }
+/* The claw C, the same drawing as AquaOS and Crabi, standing in for the C of Crabionics */
+.claw { width: 1.2em; height: 1.2em; fill: var(--aqua); margin-right: .08em; flex: none; transform: translateY(-.02em); filter: drop-shadow(0 0 10px rgba(108, 225, 218, .45)); }
+.nav.on-light .claw { fill: var(--deep); }
+.nav-links { display: flex; gap: clamp(14px, 2vw, 28px); font-size: 14px; font-weight: 500; }
+.nav-links a { opacity: .8; transition: opacity .25s; }
+.nav-links a:hover { opacity: 1; }
+.nav-cta { display: inline-flex; gap: 10px; align-items: center; font-size: 14px; font-weight: 600; padding: 9px 15px; border: 1px solid currentColor; border-radius: 3px; white-space: nowrap; transition: background .25s, color .25s; }
+.nav-cta:hover { background: var(--aqua); color: var(--deep); border-color: var(--aqua); }
+
+/* Hero */
+.hero { min-height: 100svh; display: flex; flex-direction: column; justify-content: flex-end; padding: calc(var(--nav-h) + 32px) var(--gutter) clamp(28px, 5vh, 56px); gap: clamp(24px, 4vh, 44px); }
+.hero-meta { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px 24px; color: var(--on-deep-soft); margin-bottom: auto; }
+.hero h1 { font-size: clamp(40px, 6.2vw, 96px); line-height: 1; letter-spacing: -.045em; font-weight: 400; }
+.hero h1 span { display: block; }
+.hero h1 .tint { color: var(--aqua); }
+.reveal-line { overflow: hidden; padding-bottom: .2em; margin-bottom: -.2em; }
+.reveal-line > span { animation: rise 1.25s cubic-bezier(.16, 1, .3, 1) both; }
+.reveal-line:nth-child(2) > span { animation-delay: .14s; }
+@keyframes rise { from { transform: translateY(105%); } to { transform: none; } }
+.hero-foot { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 28px; align-items: end; animation: fade 1.2s .5s both; }
+@keyframes fade { from { opacity: .001; } to { opacity: 1; } }
+.hero-lede { display: flex; gap: 16px; align-items: center; max-width: 560px; color: var(--on-deep); }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+.btn { display: inline-flex; justify-content: space-between; align-items: center; gap: 28px; padding: 15px 20px; font-size: 15px; font-weight: 600; border-radius: 3px; border: 1px solid transparent; transition: background .25s, color .25s, border-color .25s; }
+.btn.primary { background: var(--aqua); color: var(--deep); }
+.btn.primary:hover { background: #fff; }
+.btn.ghost { border-color: currentColor; }
+.btn.ghost:hover { background: var(--aqua); color: var(--deep); border-color: var(--aqua); }
+.btn.dark { background: var(--deep); color: #fff; }
+.btn.dark:hover { background: #fff; color: var(--deep); }
+
+/* Inside the production environment */
+.inside { padding: clamp(60px, 10vh, 130px) var(--gutter) clamp(50px, 8vh, 100px); background: linear-gradient(180deg, transparent, var(--deep) 26%); }
+.inside-head { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px 24px; color: var(--on-deep-soft); margin-bottom: 18px; }
+.photo-frame { position: relative; overflow: hidden; border-radius: 4px; aspect-ratio: 20 / 9; background: var(--deep-2); transform-origin: 50% 40%; will-change: clip-path; }
+.photo-frame picture { display: contents; }
+.photo-frame img { width: 100%; height: 116%; object-fit: cover; will-change: transform; }
+.photo-frame::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(3, 21, 31, .15) 40%, rgba(3, 21, 31, .86)); pointer-events: none; }
+.photo-caption { position: absolute; left: clamp(16px, 3vw, 40px); bottom: clamp(16px, 3vw, 36px); z-index: 2; }
+.photo-caption h2 { font-size: clamp(28px, 4.4vw, 68px); margin-top: 8px; }
+.hot { position: absolute; z-index: 2; display: inline-flex; align-items: center; gap: 10px; padding: 9px 13px 9px 11px; background: rgba(3, 21, 31, .78); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border: 1px solid var(--line-deep); border-radius: 3px; font-size: 13.5px; font-weight: 600; transition: background .25s, color .25s; }
+.hot:hover { background: var(--aqua); color: var(--deep); }
+.hot i { width: 8px; height: 8px; border-radius: 50%; background: var(--aqua); position: relative; flex: none; }
+.hot:hover i { background: var(--deep); }
+.hot i::after { content: ""; position: absolute; inset: -5px; border-radius: 50%; border: 1px solid var(--aqua); animation: ping 2.4s infinite; }
+@keyframes ping { 0% { transform: scale(.5); opacity: 1; } 80%, 100% { transform: scale(1.8); opacity: 0; } }
+.hot-1 { left: 13%; top: 25%; }
+.hot-2 { left: 52%; top: 44%; }
+
+/* Five parts: pinned chapter */
+.system { position: relative; height: 720vh; }
+.system-pin { position: sticky; top: 0; height: 100svh; overflow: hidden; display: grid; grid-template-columns: minmax(0, 1fr); padding: calc(var(--nav-h) + 20px) var(--gutter) 22px; }
+.system-title { position: absolute; left: var(--gutter); top: calc(var(--nav-h) + 22px); max-width: 680px; transition: opacity .5s, transform .5s; }
+.system-title h2 { font-size: clamp(38px, 5.6vw, 84px); margin-top: 12px; }
+.system-title p.sub { color: var(--on-deep-soft); margin-top: 14px; }
+.system.past-intro .system-title { opacity: 0; transform: translateY(-16px); pointer-events: none; }
+.system-eyebrow { position: absolute; left: var(--gutter); bottom: 78px; color: var(--on-deep-soft); opacity: 0; transition: opacity .5s; z-index: 1; font-size: 10.5px; }
+.system.past-intro .system-eyebrow { opacity: 1; }
+.part-copy { position: absolute; right: var(--gutter); top: 50%; width: min(410px, 36vw); transform: translateY(-50%); }
+.part { position: absolute; left: 0; right: 0; top: 50%; transform: translateY(calc(-50% + 22px)); opacity: 0; visibility: hidden; transition: opacity .55s, transform .75s cubic-bezier(.16, 1, .3, 1), visibility .55s; }
+.part.on { opacity: 1; visibility: visible; transform: translateY(-50%); }
+.part .num { color: var(--aqua); }
+.part h3 { font-size: clamp(30px, 3.4vw, 50px); margin: 12px 0 14px; }
+.part p { color: var(--on-deep); }
+.part a { display: inline-flex; gap: 14px; margin-top: 18px; padding-bottom: 5px; border-bottom: 1px solid var(--aqua); font-weight: 600; font-size: 15px; }
+.part-role { position: absolute; left: var(--gutter); bottom: 98px; z-index: 1; }
+.part-role b { display: block; font-weight: 500; font-size: 17px; }
+.part-role span { color: var(--on-deep-soft); display: block; margin-top: 3px; }
+.system-pin::after { content: ""; position: absolute; inset: auto 0 0 0; height: 190px; background: linear-gradient(0deg, rgba(3, 21, 31, .94) 40%, rgba(3, 21, 31, 0)); pointer-events: none; }
+.no-3d .system-pin::after { display: none; }
+.rail { z-index: 1; position: absolute; left: var(--gutter); right: var(--gutter); bottom: 20px; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 6px; }
+.rail button { all: unset; cursor: pointer; padding-top: 10px; position: relative; color: var(--on-deep-soft); font-size: 14px; font-weight: 500; }
+.rail button small { display: block; font-family: var(--mono); font-size: 11px; letter-spacing: .1em; }
+.rail button::before, .rail button::after { content: ""; position: absolute; top: 0; left: 0; height: 2px; }
+.rail button::before { right: 0; background: var(--line-deep); }
+.rail button::after { width: calc(var(--fill, 0) * 100%); background: var(--aqua); }
+.rail button.on { color: var(--on-deep); }
+.rail button:focus-visible { outline: 2px solid var(--aqua); outline-offset: 3px; }
+
+.system-pin::before { content: ""; position: absolute; inset: 0 0 0 auto; width: min(620px, 56vw); background: linear-gradient(270deg, rgba(3, 21, 31, .9) 45%, rgba(3, 21, 31, 0)); pointer-events: none; opacity: 0; transition: opacity .5s; }
+.system.past-intro .system-pin::before { opacity: 1; }
+.part-copy { z-index: 1; transition: opacity .4s; }
+.system:not(.past-intro) .part-copy, .system:not(.past-intro) .part-role { opacity: 0; pointer-events: none; }
+.no-3d .system-pin::before { display: none; }
+.no-3d .system .part-copy { opacity: 1; pointer-events: auto; }
+.snap-at main > section:not(.system), .snap-at footer { display: none; }
+.snap-at .system { height: 100vh; }
+.snap-only main > section:not(.snap-keep), .snap-only .nav { display: none; }
+.snap, .snap * { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
+
+.tag { display: inline-flex; align-items: center; gap: 8px; margin-top: 16px; padding: 6px 11px; border-radius: 99px; font-family: var(--mono); font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--aqua); background: rgba(108, 225, 218, .1); border: 1px solid rgba(108, 225, 218, .3); }
+.tag i { width: 6px; height: 6px; border-radius: 50%; background: currentColor; box-shadow: 0 0 10px currentColor; }
+.tag.dev { color: var(--shell); background: var(--shell-soft); border-color: rgba(232, 131, 79, .35); }
+.part .tag ~ a { display: flex; width: max-content; }
+
+/* Who it is for: dark, rows that light up */
+.who { background: var(--deep); padding: clamp(80px, 14vh, 160px) var(--gutter) clamp(60px, 10vh, 110px); position: relative; overflow: hidden; }
+.who::before { content: ""; position: absolute; width: 60vw; aspect-ratio: 1; right: -20vw; top: -30vw; border-radius: 50%; background: radial-gradient(circle, rgba(42, 127, 212, .22), transparent 65%); pointer-events: none; }
+.split { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(30px, 5vw, 80px); align-items: center; position: relative; }
+.sec-copy h2 { font-size: clamp(34px, 3.8vw, 56px); margin-top: 18px; letter-spacing: -.04em; }
+.sec-copy .accent { color: var(--aqua); }
+.sec-copy .lede { color: var(--on-deep-soft); margin-top: 16px; max-width: 44ch; }
+.who-list { border-top: 1px solid var(--line-deep); position: relative; }
+.who-row { position: relative; display: grid; grid-template-columns: 40px minmax(0, 1fr) auto; gap: 4px 16px; align-items: center; padding: 22px 0; border-bottom: 1px solid var(--line-deep); transition: color .3s; isolation: isolate; }
+.who-row::before { content: ""; position: absolute; inset: 0 -16px; z-index: -1; background: linear-gradient(90deg, rgba(108, 225, 218, .12), rgba(42, 127, 212, .06) 60%, transparent); opacity: 0; transition: opacity .4s; }
+.who-row:hover::before { opacity: 1; }
+.who-row:hover { color: var(--aqua); }
+.who-row .n { font-family: var(--mono); font-size: 12px; color: var(--on-deep-soft); letter-spacing: .1em; }
+.who-row strong { grid-column: 2; font-size: clamp(22px, 2.2vw, 30px); font-weight: 500; letter-spacing: -.035em; line-height: 1.1; transition: transform .45s cubic-bezier(.16, 1, .3, 1); }
+.who-row:hover strong { transform: translateX(10px); }
+.who-row .n { grid-row: 1 / 3; }
+.who-row span.d { grid-column: 2; color: var(--on-deep-soft); font-size: 15px; }
+.who-row .arrow { grid-column: 3; grid-row: 1 / 3; }
+.who-row .arrow { font-size: 20px; width: 46px; height: 46px; border-radius: 50%; border: 1px solid var(--line-deep); display: grid; place-items: center; transition: background .3s, color .3s, transform .35s cubic-bezier(.2, .8, .2, 1); }
+.who-row:hover .arrow { background: var(--aqua); color: var(--deep); border-color: var(--aqua); }
+
+/* Research: a deep-teal band with three cards and the backers */
+.research { background: radial-gradient(90% 120% at 0% 0%, #0b4a5e 0%, #072c3b 45%, var(--deep-2) 100%); padding: clamp(80px, 14vh, 160px) var(--gutter); }
+.cards { display: grid; gap: 12px; }
+.card { display: grid; grid-template-columns: 110px minmax(0, 1fr) auto; gap: 18px; align-items: center; position: relative; padding: 20px 22px; border-radius: 6px; background: var(--glass); border: 1px solid var(--line-deep); overflow: hidden; transition: transform .45s cubic-bezier(.16, 1, .3, 1), border-color .3s; }
+.card:hover { transform: translateX(6px); border-color: rgba(108, 225, 218, .5); }
+.card::after { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: var(--lagoon); opacity: .8; }
+.card .big { display: block; font-size: clamp(28px, 2.6vw, 38px); font-weight: 400; letter-spacing: -.05em; line-height: 1; color: var(--on-deep); }
+.card h3 { font-size: 18px; letter-spacing: -.02em; margin: 0 0 4px; line-height: 1.25; }
+.card p { color: var(--on-deep-soft); font-size: 15px; }
+.card .tag { margin-top: 0; white-space: nowrap; }
+.text-links { display: flex; flex-wrap: wrap; gap: 8px 28px; margin-top: 26px; font-weight: 600; font-size: 15px; }
+.text-links a { display: inline-flex; gap: 10px; padding-bottom: 4px; border-bottom: 1px solid var(--aqua); }
+.backers { display: flex; flex-wrap: wrap; align-items: center; gap: 16px clamp(18px, 3vw, 36px); margin-top: clamp(48px, 8vh, 80px); padding-top: 28px; border-top: 1px solid var(--line-deep); }
+.backers .mono { color: var(--on-deep-soft); margin-right: auto; }
+.backer { display: flex; align-items: center; gap: 12px; }
+.backer img { height: 46px; width: 46px; object-fit: contain; background: #fff; border-radius: 8px; padding: 4px; }
+.backer b { display: block; font-weight: 600; font-size: 15px; line-height: 1.3; }
+.backer small { color: var(--on-deep-soft); font-size: 13px; }
+
+/* Film */
+.film { background: var(--deep); padding: clamp(80px, 14vh, 160px) var(--gutter); position: relative; overflow: hidden; }
+.film::before { content: ""; position: absolute; left: 50%; top: 55%; width: 80vw; height: 50vw; transform: translate(-50%, -50%); background: radial-gradient(closest-side, rgba(108, 225, 218, .16), transparent); pointer-events: none; }
+.film > * { position: relative; }
+.film-grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(30px, 5vw, 80px); align-items: center; }
+.film-copy h2 { font-size: clamp(34px, 3.8vw, 56px); margin-top: 18px; letter-spacing: -.04em; }
+.film-copy .plus { color: var(--aqua); font-weight: 300; }
+.film-copy .lede { color: var(--on-deep-soft); margin-top: 16px; max-width: 44ch; }
+.film-points { list-style: none; padding: 0; margin: 22px 0 0; display: grid; gap: 10px; }
+.film-points li { display: flex; gap: 12px; align-items: center; font-size: 15.5px; }
+.film-points li::before { content: ""; width: 18px; height: 1px; background: var(--aqua); flex: none; }
+.film-copy .film-actions { margin-top: 28px; }
+.film-media .note { color: var(--on-deep-soft); font-size: 13px; margin-top: 14px; }
+.film-box { position: relative; aspect-ratio: 16 / 9; overflow: hidden; border-radius: 8px; border: 1px solid rgba(108, 225, 218, .3); background: var(--deep-2); box-shadow: 0 40px 120px -30px rgba(42, 127, 212, .45); }
+.film-box img, .film-box video { width: 100%; height: 100%; object-fit: cover; }
+.film-play { all: unset; cursor: pointer; position: absolute; inset: 0; display: flex; flex-direction: column; gap: 14px; align-items: center; justify-content: center; text-align: center; background: radial-gradient(closest-side, rgba(3, 21, 31, .72), rgba(3, 21, 31, .45)); font-weight: 600; font-size: clamp(15px, 1.5vw, 18px); transition: background .3s; }
+.film-play:hover { background: rgba(3, 21, 31, .3); }
+.film-play:focus-visible { outline: 2px solid var(--aqua); outline-offset: -6px; }
+.film-play i { animation: pulse 2.6s infinite; width: clamp(54px, 5vw, 72px); aspect-ratio: 1; border-radius: 50%; background: var(--aqua); color: var(--deep); display: grid; place-items: center; font-style: normal; font-size: 21px; padding-left: 4px; transition: transform .4s cubic-bezier(.16, 1, .3, 1); }
+.film-play:hover i { transform: scale(1.1); }
+.film-play .mono { color: var(--on-deep); }
+.film-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+
+/* Closing */
+.close-cta { background: radial-gradient(70% 120% at 100% 100%, rgba(42, 127, 212, .35), transparent 60%), radial-gradient(60% 90% at 0% 0%, rgba(108, 225, 218, .16), transparent 60%), #062433; color: var(--on-deep); padding: clamp(80px, 13vh, 150px) var(--gutter); position: relative; overflow: hidden; border-top: 1px solid var(--line-deep); }
+.close-cta::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 2px; background: var(--lagoon); opacity: .7; }
+.close-cta::after { content: ""; position: absolute; right: -4vw; bottom: -10vw; width: 34vw; aspect-ratio: 1; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='4 8 86 88'%3E%3Cpath fill='%236ce1da' d='M88 36C81 15 57 5 36 11C12 18 3 43 7 63C11 83 31 95 52 93C67 92 80 81 84 64C77 70 69 73 62 72L60 64L53 70C41 67 34 54 38 42C42 31 53 27 62 29L62 37L70 31C76 32 82 34 88 36Z'/%3E%3C/svg%3E") center / contain no-repeat; opacity: .06; pointer-events: none; }
+.close-cta > * { position: relative; z-index: 1; }
+.close-cta h2 { font-size: clamp(34px, 3.8vw, 56px); letter-spacing: -.04em; margin-top: 18px; }
+.close-cta h2 .accent { color: var(--aqua); }
+.close-row { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 22px 40px; margin-top: 16px; }
+.close-row p { color: var(--on-deep-soft); max-width: 46ch; }
+.close-actions { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+
+footer { background: var(--deep); color: var(--on-deep-soft); padding: clamp(44px, 7vh, 70px) var(--gutter) 28px; font-size: 14.5px; }
+.foot-grid { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr) minmax(0, 1fr); gap: 32px; }
+.foot-grid .brand { color: var(--on-deep); margin-bottom: 12px; }
+.foot-grid p { max-width: 42ch; }
+.foot-col { display: flex; flex-direction: column; gap: 7px; align-items: flex-start; }
+.foot-col .mono { color: var(--aqua); margin-bottom: 5px; }
+.foot-col a:hover { color: var(--on-deep); }
+.foot-end { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 22px; margin-top: 38px; padding-top: 16px; border-top: 1px solid var(--line-deep); font-size: 13px; }
+.foot-end div { display: flex; gap: 18px; }
+
+/* Lighter version for phones, older devices, reduced motion and if 3D can't start */
+.no-3d #stage { display: none; }
+.no-3d .system { height: auto; padding: clamp(60px, 10vh, 90px) var(--gutter) 40px; }
+.no-3d .system-pin { position: static; height: auto; overflow: visible; display: block; padding: 0; }
+.no-3d .system-title { position: static; max-width: none; opacity: 1 !important; transform: none !important; pointer-events: auto !important; }
+.no-3d .rail, .no-3d .part-role { display: none; }
+.no-3d .system .system-eyebrow { position: static; opacity: 1; margin-top: 16px; }
+.no-3d .part-copy { position: static; width: auto; transform: none; margin-top: 30px; display: grid; gap: 14px; }
+.no-3d .part { position: relative; top: auto; left: auto; right: auto; opacity: 1; visibility: visible; transform: none; padding: 16px; border: 1px solid var(--line-deep); border-radius: 4px; background: rgba(6, 35, 47, .78); overflow: hidden; }
+.no-3d .part::before { content: ""; display: block; aspect-ratio: 16 / 9; margin: -16px -16px 16px; background-image: linear-gradient(0deg, rgba(3, 21, 31, .5), transparent 60%), var(--pic); background-size: cover; background-position: center; }
+.part[data-i="0"] { --pic: url("/new/assets/part-habitat.jpg?v=towers"); }
+.part[data-i="1"] { --pic: url("/new/assets/part-water.jpg?v=plant"); }
+.part[data-i="2"] { --pic: url("/new/assets/part-sense.jpg?v=plant"); }
+.part[data-i="3"] { --pic: url("/new/assets/part-pod.jpg?v=pod"); }
+.no-3d .part[data-i="4"]::before { background-image: linear-gradient(0deg, rgba(3, 21, 31, .5), transparent 60%), url("/new/assets/poster-v2-desktop.webp"); }
+.no-3d .part .role-inline { display: block; }
+.role-inline { display: none; color: var(--on-deep-soft); margin-top: 12px; }
+.no-3d .inside { background: var(--deep); }
+.no-3d .bubbles { display: block; }
+.bubbles { display: none; position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+.bubbles i { position: absolute; bottom: -20px; border-radius: 50%; background: rgba(108, 225, 218, .3); animation: drift linear infinite; }
+@keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(108, 225, 218, .55); } 80%, 100% { box-shadow: 0 0 0 26px rgba(108, 225, 218, 0); } }
+@keyframes drift { to { transform: translate3d(14px, -110vh, 0); } }
+
+@media (max-width: 920px) {
+	.nav-links { display: none; }
+	.hero-foot { grid-template-columns: minmax(0, 1fr); }
+	.photo-frame { aspect-ratio: 4 / 5; }
+	.hot-1 { left: 5%; top: 40%; }
+	.hot-2 { left: 44%; top: 50%; }
+	.who-row { grid-template-columns: 30px minmax(0, 1fr) auto; }
+	.who-row .arrow { width: 40px; height: 40px; }
+	.split, .film-grid { grid-template-columns: minmax(0, 1fr); }
+	.card { grid-template-columns: minmax(0, 1fr) auto; }
+	.card > div { grid-column: 1 / -1; grid-row: 2; }
+	.film-media { order: -1; }
+	.foot-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+	.foot-grid > div:first-child { grid-column: 1 / -1; }
+	.btn { flex: 1 1 auto; }
+}
+@media (max-width: 420px) {
+	.brand { font-size: 13px; }
+	.nav-cta { padding: 8px 11px; font-size: 13px; }
+}
+@media (prefers-reduced-motion: reduce) {
+	html { scroll-behavior: auto; }
+	.reveal-line > span, .hero-foot { animation: none; }
+	.hot i::after, .bubbles i, .film-play i { animation: none; }
+	.part, .who-row { transition: none; }
+}
+
+/* ---------- Surfacing: the page rises to a misty surface for the human part, then dives again ---------- */
+:root { --sea-foam: #eef7f9; --teal-ink: #087c7b; }
+/* Mist: a soft blue-grey surface, as bright as cloudy daylight, so the light sections never glare */
+.tone-mist { --sea-foam: #c9dde2; --teal-ink: #06605f; }
+.tone-mist .surface-zone.lit { --ink-soft: #33566a; --line-deep: rgba(10, 52, 77, .18); }
+.tone-mist .surface-zone.lit .card { background: #dceaee; box-shadow: 0 16px 36px -26px rgba(10, 52, 77, .45); }
+.tone-mist .nav.on-light { background: rgba(201, 221, 226, .85); }
+.surface-zone { --mix: 0; position: relative; background: color-mix(in srgb, var(--sea-foam) calc(var(--mix) * 100%), var(--deep)); transition: color .5s; }
+.surface-zone > section { background: transparent; }
+.surface-zone .who::before { opacity: calc(1 - var(--mix)); }
+.surface-zone.lit { color: var(--ink); --on-deep: var(--ink); --on-deep-soft: var(--ink-soft); --line-deep: rgba(10, 52, 77, .14); --aqua: var(--teal-ink); }
+.surface-zone.lit .tag { color: var(--teal-ink); background: rgba(8, 124, 123, .08); border-color: rgba(8, 124, 123, .28); }
+.surface-zone.lit .tag.dev { color: #c0602c; background: rgba(232, 131, 79, .1); border-color: rgba(232, 131, 79, .35); }
+.surface-zone.lit .who-row::before { background: linear-gradient(90deg, rgba(8, 124, 123, .08), transparent 70%); }
+.surface-zone.lit .who-row:hover .arrow { color: #fff; }
+.surface-zone.lit .card { background: #fff; box-shadow: 0 1px 2px rgba(10, 52, 77, .06), 0 18px 40px -24px rgba(10, 52, 77, .28); }
+.surface-zone .card, .surface-zone .who-row, .surface-zone .tag, .surface-zone .sec-copy * { transition: color .5s, background-color .5s, border-color .5s, box-shadow .5s, transform .45s cubic-bezier(.16, 1, .3, 1), opacity .7s; }
+.nav.on-light { background: rgba(238, 247, 249, .82); color: var(--ink); border-color: rgba(10, 52, 77, .1); }
+.nav.on-light .claw { fill: var(--teal-ink); filter: none; }
+
+/* A soft light that follows the pointer over cards and rows */
+.glow { --gx: 50%; --gy: 50%; }
+.glow:hover { background-image: radial-gradient(260px circle at var(--gx) var(--gy), rgba(108, 225, 218, .14), transparent 70%); }
+.surface-zone.lit .glow:hover { background-image: radial-gradient(260px circle at var(--gx) var(--gy), rgba(8, 124, 123, .09), transparent 70%); }
+
+/* Headings rise line by line; rows and cards arrive one after another. Only things still below the fold wait. */
+.rise-line { display: block; }
+.wait .rise-line { overflow: hidden; }
+.wait .rise-line > span { display: inline-block; transform: translateY(105%); }
+.in .rise-line > span { transform: none; transition: transform 1s cubic-bezier(.16, 1, .3, 1) calc(var(--d, 0) * 1ms); }
+.wait.stagger > * { opacity: .001; transform: translateY(26px); }
+.in.stagger > * { opacity: 1; transform: none; transition: opacity .8s ease calc(var(--i) * 110ms), transform .9s cubic-bezier(.16, 1, .3, 1) calc(var(--i) * 110ms); }
+@media (prefers-reduced-motion: reduce) { .wait .rise-line > span, .wait.stagger > * { transform: none; opacity: 1; } }
+/* Phone menu, the same as the other pages but in the homepage's navy */
+.nav-end { display: flex; align-items: center; gap: 10px; }
+.menu-btn { all: unset; cursor: pointer; display: none; width: 40px; height: 40px; border-radius: 3px; border: 1px solid currentColor; place-items: center; }
+.menu-btn i { display: block; width: 16px; height: 1.5px; background: currentColor; position: relative; }
+.menu-btn i::before, .menu-btn i::after { content: ""; position: absolute; left: 0; width: 16px; height: 1.5px; background: currentColor; transition: transform .3s cubic-bezier(.16, 1, .3, 1); }
+.menu-btn i::before { top: -5px; } .menu-btn i::after { top: 5px; }
+.menu-open .menu-btn i { background: transparent; }
+.menu-open .menu-btn i::before { transform: translateY(5px) rotate(45deg); }
+.menu-open .menu-btn i::after { transform: translateY(-5px) rotate(-45deg); }
+.menu { position: fixed; inset: var(--nav-h) 0 0; z-index: 49; background: var(--deep); color: var(--on-deep); padding: 20px var(--gutter) 40px; display: flex; flex-direction: column; overflow-y: auto; opacity: 0; visibility: hidden; transform: translateY(-8px); transition: opacity .3s, transform .4s cubic-bezier(.16, 1, .3, 1), visibility .3s; }
+.menu-open .menu { opacity: 1; visibility: visible; transform: none; }
+.menu-open .nav { background: var(--deep); color: var(--on-deep); border-color: var(--line-deep); }
+.menu-open .nav .claw { fill: var(--aqua); }
+.menu > a:not(.btn) { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; border-bottom: 1px solid var(--line-deep); font-size: 22px; font-weight: 500; letter-spacing: -.02em; }
+.menu .menu-sub { display: grid; grid-template-columns: 1fr 1fr; gap: 0 18px; margin: 16px 0 24px; }
+.menu .menu-sub a { padding: 11px 0; border-bottom: 1px solid var(--line-deep); font-size: 15px; color: var(--on-deep-soft); }
+@media (max-width: 920px) { .nav-cta { display: none; } .menu-btn { display: grid; } }
+</style>
+</head>
+<body>
+<a class="skip" href="#main-content">Skip to content</a>
+<div class="backdrop"></div>
+<div class="bubbles" aria-hidden="true"></div>
+<canvas id="stage" aria-hidden="true"></canvas>
+
+<header class="nav" id="nav">
+	<a class="brand" href="/" aria-label="Crabionics"><svg class="claw" viewBox="4 8 86 88" aria-hidden="true"><path d="M88 36C81 15 57 5 36 11C12 18 3 43 7 63C11 83 31 95 52 93C67 92 80 81 84 64C77 70 69 73 62 72L60 64L53 70C41 67 34 54 38 42C42 31 53 27 62 29L62 37L70 31C76 32 82 34 88 36Z"/></svg><span aria-hidden="true">RABIONICS</span></a>
+	<nav class="nav-links" aria-label="Main">
+		<a href="/system">Technology</a>
+		<a href="/producers">Producers</a>
+		<a href="/aquaos">AquaOS</a>
+		<a href="/validation">Research</a>
+		<a href="/resources">Resources</a>
+		<a href="/company">Company</a>
+	</nav>
+	<div class="nav-end">
+		<a class="nav-cta" href="/contact#production">Discuss a project <span class="arrow">↗</span></a>
+		<button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu" aria-label="Menu"><i></i></button>
+	</div>
+</header>
+<nav class="menu" id="menu" aria-label="Mobile">
+	<a href="/system">Technology<span class="arrow">↗</span></a>
+	<a href="/producers">Producers<span class="arrow">↗</span></a>
+	<a href="/aquaos">AquaOS<span class="arrow">↗</span></a>
+	<a href="/validation">Research<span class="arrow">↗</span></a>
+	<a href="/resources">Resources<span class="arrow">↗</span></a>
+	<a href="/company">Company<span class="arrow">↗</span></a>
+	<div class="menu-sub">
+		<a href="/solutions/habitat">Habitat</a><a href="/solutions/crabsense">CrabSense</a>
+		<a href="/solutions/crabpod">CrabPod</a><a href="/solutions">All solutions</a>
+		<a href="/demo">Product film</a><a href="/early-access">Early access</a>
+		<a href="/investors">Investors</a><a href="/contact">Contact</a>
+	</div>
+	<a class="btn primary" href="/contact#production">Discuss a project <span class="arrow">↗</span></a>
+</nav>
+
+<main id="main-content">
+	<section class="hero" data-tone="deep">
+		<div class="hero-meta mono"><span>Mud-crab aquaculture / Crabionics</span><span>Biology × Engineering × Software</span></div>
+		<h1>
+			<span class="reveal-line"><span>Built around the crab.</span></span>
+			<span class="reveal-line"><span class="tint">Connected by design.</span></span>
+		</h1>
+		<div class="hero-foot">
+			<div class="hero-lede">
+				<p>Modular habitats, recirculating water, sensing and local equipment—being developed together with AquaOS.</p>
+			</div>
+			<div class="hero-actions">
+				<a class="btn primary" href="#connected-system">Explore the connected system <span class="arrow down">↓</span></a>
+				<a class="btn ghost" href="/contact#production">Discuss a project <span class="arrow">↗</span></a>
+			</div>
+		</div>
+	</section>
+
+	<section class="inside" data-tone="deep">
+		<div class="inside-head mono"><span>Inside the production environment</span><span>Conceptual render · not a site photograph</span></div>
+		<div class="photo-frame" id="photoFrame">
+			<picture>
+				<source media="(max-width: 920px)" srcset="/new/assets/ras-tall.jpg?v=plant">
+				<img id="photo" src="/new/assets/ras-wide.jpg?v=pod" alt="Conceptual 3D render of blue drawer habitat towers beside a treatment line of collection tanks, pumps, a protein skimmer and a sand filter." loading="lazy">
+			</picture>
+			<a class="hot hot-1" href="#connected-system" data-go="0"><i></i>Individual habitats <span class="arrow">↗</span></a>
+			<a class="hot hot-2" href="#connected-system" data-go="1"><i></i>Water infrastructure <span class="arrow">↗</span></a>
+			<div class="photo-caption">
+				<span class="mono">The physical foundation</span>
+				<h2>Individual crab habitats.<br>Shared water treatment.</h2>
+			</div>
+		</div>
+	</section>
+
+	<section class="system" id="connected-system" data-tone="deep">
+		<div class="system-pin">
+			<div class="system-title">
+				<span class="mono">The connected system / 01—05</span>
+				<h2>Five parts.<br>One farming system.</h2>
+				<p class="sub">Scroll to build the farm, one part at a time.</p>
+			</div>
+			<div class="system-eyebrow mono">Conceptual schematic · integration in development</div>
+			<div class="part-copy">
+				<article class="part on" data-i="0" data-role="Individual care &amp; observation">
+					<span class="mono num">01 / The biology</span>
+					<h3>Individual habitats for daily care.</h3>
+					<p>One crab, one compartment. Teams can feed, check and handle each crab without the fighting and losses of shared tanks. The design follows the crab’s size and production stage.</p>
+					<span class="role-inline mono">Individual care &amp; observation</span>
+					<a href="/solutions/habitat">Explore the habitat <span class="arrow">↗</span></a>
+				</article>
+				<article class="part" data-i="1" data-role="Circulation &amp; treatment">
+					<span class="mono num">02 / The water</span>
+					<h3>Recirculate and treat the water.</h3>
+					<p>Water from every habitat drains to collection tanks, passes through filtration, skimming and UV, and returns clean. Treatment is sized to each site and its stock.</p>
+					<span class="role-inline mono">Circulation &amp; treatment</span>
+					<a href="/system#water">Follow the water system <span class="arrow">↗</span></a>
+				</article>
+				<article class="part" data-i="2" data-role="Measurements in context">
+					<span class="mono num">03 / The observation</span>
+					<h3>Measure water conditions.</h3>
+					<p>CrabSense links each reading to the unit and the stock it describes. Sensors need calibration and upkeep, so they work alongside manual checks.</p>
+					<span class="tag dev"><i></i>In development</span>
+					<span class="role-inline mono">Measurements in context</span>
+					<a href="/solutions/crabsense">Explore CrabSense <span class="arrow">↗</span></a>
+				</article>
+				<article class="part" data-i="3" data-role="Local equipment connection">
+					<span class="mono num">04 / The response</span>
+					<h3>Link operators with equipment.</h3>
+					<p>CrabPod connects pumps, aerators and other local equipment to the people running the farm. Every action is acknowledged, then measured, to check it worked.</p>
+					<span class="tag dev"><i></i>In development</span>
+					<span class="role-inline mono">Local equipment connection</span>
+					<a href="/solutions/crabpod">Explore CrabPod <span class="arrow">↗</span></a>
+				</article>
+				<article class="part" data-i="4" data-role="AI prediction &amp; prevention">
+					<span class="mono num">05 / The intelligence</span>
+					<h3>Predict problems. Prevent losses.</h3>
+					<p>AquaOS learns from every reading, feeding and harvest to spot trouble before it reaches the crab, and to say what to do about it. Its early warnings, such as low oxygen, and CrabDesk + Moltie for RAS grow-out already work; AI prediction is in development.</p>
+					<span class="tag"><i></i>Early warnings working · AI in development</span>
+					<span class="role-inline mono">AI prediction &amp; prevention</span>
+					<a href="/aquaos">Explore AquaOS <span class="arrow">↗</span></a>
+				</article>
+			</div>
+			<div class="part-role"><b id="roleText">Individual care &amp; observation</b></div>
+			<div class="rail" id="rail" role="group" aria-label="Parts of the system">
+				<button type="button" data-i="0"><small>01</small>Habitat</button>
+				<button type="button" data-i="1"><small>02</small>RAS</button>
+				<button type="button" data-i="2"><small>03</small>CrabSense</button>
+				<button type="button" data-i="3"><small>04</small>CrabPod</button>
+				<button type="button" data-i="4"><small>05</small>AquaOS</button>
+			</div>
+		</div>
+	</section>
+
+	<div class="surface-zone" id="surfaceZone">
+	<section class="surface who" data-tone="light">
+		<div class="split">
+		<div class="sec-copy">
+			<span class="tag"><i></i>Who we work with</span>
+			<h2 class="rise"><span class="rise-line"><span>From pond <span class="accent">to</span> buyer</span></span></h2>
+			<p class="lede">The same habitats, water and records serve everyone in the chain, from the first stocking to the crab a buyer receives.</p>
+		</div>
+		<div class="who-list stagger">
+			<a class="who-row glow" href="/producers#pond-production"><span class="n">01</span><strong>Pond production</strong><span class="d">Growers &amp; operating teams</span><span class="arrow">↗</span></a>
+			<a class="who-row glow" href="/producers#controlled-finishing"><span class="n">02</span><strong>Controlled finishing</strong><span class="d">Intake, habitat &amp; daily care</span><span class="arrow">↗</span></a>
+			<a class="who-row glow" href="/producers#buyer-requirements"><span class="n">03</span><strong>Buyer &amp; cluster partnerships</strong><span class="d">Condition, quantity &amp; timing</span><span class="arrow">↗</span></a>
+		</div>
+		</div>
+	</section>
+
+	<section class="research" data-tone="light">
+		<div class="split">
+		<div class="sec-copy">
+			<span class="tag"><i></i>Research &amp; development</span>
+			<h2 class="rise"><span class="rise-line"><span>What we’re</span></span><span class="rise-line"><span class="accent" style="--d: 120">working on</span></span></h2>
+			<p class="lede">Funded research and biological trials sit behind every part of the system. Here is where each one stands.</p>
+			<div class="text-links">
+				<a href="/validation">Research and validation <span class="arrow">↗</span></a>
+				<a href="/resources">Practical guides <span class="arrow">↗</span></a>
+			</div>
+		</div>
+		<div class="cards stagger">
+			<article class="card glow">
+				<span class="big">IHMS</span>
+				<div><h3>Monitoring and control research</h3>
+				<p>Funded through BIRAC, building the sensing and control behind CrabSense and CrabPod.</p></div>
+				<span class="tag"><i></i>Funded</span>
+			</article>
+			<article class="card glow">
+				<span class="big">Trials</span>
+				<div><h3>Biological trials</h3>
+				<p>Testing habitats, feeding and daily care on the crab itself, alongside the engineering.</p></div>
+				<span class="tag"><i></i>Under way</span>
+			</article>
+			<article class="card glow">
+				<span class="big">600</span>
+				<div><h3>Box validation facility</h3>
+				<p>A controlled-finishing facility to prove the whole system at production scale.</p></div>
+				<span class="tag dev"><i></i>Proposed</span>
+			</article>
+		</div>
+		</div>
+		<div class="backers">
+			<span class="mono">Incubation &amp; research support</span>
+			<div class="backer"><img src="/new/assets/kiit-tbi.png" alt="" loading="lazy"><div><b>KIIT-TBI</b><small>Technology incubation</small></div></div>
+			<div class="backer"><img src="/new/assets/birac-big.png" alt="" loading="lazy"><div><b>BIRAC / IHMS</b><small>Funded research</small></div></div>
+			<div class="backer"><img src="/new/assets/dpiit-startup-india.png" alt="" loading="lazy"><div><b>DPIIT</b><small>Startup recognition</small></div></div>
+		</div>
+	</section>
+
+	</div>
+
+	<section class="film" id="film" data-tone="deep">
+		<div class="film-grid">
+			<div class="film-copy">
+				<span class="tag"><i></i>AquaOS · working today</span>
+				<h2 class="rise"><span class="rise-line"><span>CrabDesk <span class="plus">+</span> Moltie</span></span></h2>
+				<p class="lede">Run RAS grow-out from one screen, and ask Moltie anything about your farm. It answers from your own records and shows where each answer came from.</p>
+				<ul class="film-points">
+					<li>Intake, batches and habitats</li>
+					<li>Sampling and water tests</li>
+					<li>Answers with their sources</li>
+				</ul>
+				<div class="film-actions">
+					<a class="btn primary" href="/early-access#register">Register interest <span class="arrow">↗</span></a>
+					<a class="btn ghost" href="/aquaos">About AquaOS <span class="arrow">↗</span></a>
+				</div>
+			</div>
+			<div class="film-media">
+				<div class="film-box" id="filmBox">
+					<img src="/new/assets/poster-v2-desktop.webp" alt="CrabDesk product film: actual Moltie stock-count answer and its source links, using demo records." loading="lazy">
+					<button class="film-play" id="filmPlay" type="button"><i aria-hidden="true">▶</i>Watch the product film<span class="mono">85 seconds · Sound on</span></button>
+				</div>
+				<p class="note">Real CrabDesk screens with demo records. Pond workflows are coming; hardware integration needs separate validation.</p>
+			</div>
+		</div>
+	</section>
+
+	<section class="close-cta" data-tone="deep">
+		<span class="tag"><i></i>Start a conversation</span>
+		<h2 class="rise"><span class="rise-line"><span>Planning a <span class="accent" style="white-space: nowrap">mud-crab</span> project?</span></span></h2>
+		<div class="close-row">
+			<p>Tell us where you farm, your production stage and what you need help with. We’ll reply with what fits.</p>
+			<div class="close-actions">
+				<a class="btn primary" href="/contact#production">Discuss a project <span class="arrow">↗</span></a>
+				<a class="btn ghost" href="/early-access#register">Register interest <span class="arrow">↗</span></a>
+			</div>
+		</div>
+	</section>
+</main>
+
+<footer data-tone="deep">
+	<div class="foot-grid">
+		<div>
+			<div class="brand" role="img" aria-label="Crabionics"><svg class="claw" viewBox="4 8 86 88" aria-hidden="true"><path d="M88 36C81 15 57 5 36 11C12 18 3 43 7 63C11 83 31 95 52 93C67 92 80 81 84 64C77 70 69 73 62 72L60 64L53 70C41 67 34 54 38 42C42 31 53 27 62 29L62 37L70 31C76 32 82 34 88 36Z"/></svg><span aria-hidden="true">RABIONICS</span></div>
+			<p>Mud-crab aquaculture, connected. Developing the physical environment and operating tools around the people doing the work.</p>
+		</div>
+		<div class="foot-col">
+			<span class="mono">Explore</span>
+			<a href="/solutions">Solutions</a>
+			<a href="/producers">Producers</a>
+			<a href="/aquaos">AquaOS</a>
+			<a href="/demo">Product film</a>
+			<a href="/early-access">Early access</a>
+			<a href="/system">How it connects</a>
+			<a href="/validation">Research &amp; validation</a>
+			<a href="/resources">Resources</a>
+		</div>
+		<div class="foot-col">
+			<span class="mono">Company</span>
+			<a href="/company">People &amp; company</a>
+			<a href="/investors">Investors</a>
+			<a href="/contact">Discuss a partnership</a>
+			<a href="mailto:info@crabionics.com">info@crabionics.com</a>
+			<a href="https://www.linkedin.com/company/crabionics-aquaculture-private-limited/">Follow company updates ↗</a>
+		</div>
+	</div>
+	<div class="foot-end">
+		<span>© 2026 Crabionics Aquaculture Pvt. Ltd.</span>
+		<div><a href="/privacy">Privacy</a><a href="/terms">Terms</a></div>
+	</div>
+</footer>
+
+<script src="/new/live.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+<script>
+(() => {
+	const snap = location.search.includes('snap');   // test mode: no easing, so each scene can be checked still
+	if (snap) document.documentElement.classList.add('snap');
+	const snapAt = new URLSearchParams(location.search).get('at');
+	if (snapAt) document.documentElement.classList.add('snap-at');
+	const snapOnly = new URLSearchParams(location.search).get('only');
+	if (snapOnly) { document.documentElement.classList.add('snap-only'); document.querySelectorAll(snapOnly).forEach(e => e.classList.add('snap-keep')); }
+	const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+	const small = (innerWidth || screen.width) < 900;
+	const weak = (navigator.deviceMemory && navigator.deviceMemory < 4) || (navigator.hardwareConcurrency && navigator.hardwareConcurrency < 4);
+	let use3d = !reduced && !small && !weak && !!window.THREE;
+	if (use3d) {
+		try {
+			const test = document.createElement('canvas');
+			use3d = !!(test.getContext('webgl2') || test.getContext('webgl'));
+		} catch (e) { use3d = false; }
+	}
+	if (!use3d) document.documentElement.classList.add('no-3d');
+
+	const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+	const smooth = (a, b, v) => { const t = clamp((v - a) / (b - a)); return t * t * (3 - 2 * t); };
+	const lerp = (a, b, t) => a + (b - a) * t;
+
+	const nav = document.getElementById('nav');
+	const system = document.getElementById('connected-system');
+	const parts = [...document.querySelectorAll('.part')];
+	const rail = [...document.querySelectorAll('#rail button')];
+	const roleText = document.getElementById('roleText');
+	const photo = document.getElementById('photo');
+	const frame = document.getElementById('photoFrame');
+	const toned = [...document.querySelectorAll('[data-tone]')];
+
+	// Phone menu
+	const menuBtn = document.querySelector('.menu-btn');
+	const setMenu = open => {
+		document.documentElement.classList.toggle('menu-open', open);
+		menuBtn.setAttribute('aria-expanded', open);
+		document.body.style.overflow = open ? 'hidden' : '';
+	};
+	menuBtn.addEventListener('click', () => setMenu(menuBtn.getAttribute('aria-expanded') !== 'true'));
+	document.getElementById('menu').addEventListener('click', e => { if (e.target.closest('a')) setMenu(false); });
+	addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(false); });
+
+	// Film plays only when asked, from the live site
+	document.getElementById('filmPlay').addEventListener('click', () => {
+		const box = document.getElementById('filmBox');
+		const video = document.createElement('video');
+		video.src = 'https://www.crabionics.com/product/film/crabdesk-v2-desktop.mp4';
+		video.controls = true;
+		video.playsInline = true;
+		video.autoplay = true;
+		box.replaceChildren(video);
+	});
+
+	// Light bubbles for the lighter version
+	if (!use3d && !reduced) {
+		const holder = document.querySelector('.bubbles');
+		for (let i = 0; i < 14; i++) {
+			const b = document.createElement('i');
+			const s = 2 + Math.random() * 5;
+			b.style.cssText = `left:${Math.random() * 100}%;width:${s}px;height:${s}px;animation-duration:${16 + Math.random() * 22}s;animation-delay:-${Math.random() * 30}s`;
+			holder.appendChild(b);
+		}
+	}
+
+	let scrollP = 0;     // whole page, 0 to 1
+	let systemP = 0;     // inside the pinned chapter, 0 to 1
+	let activePart = -1;
+
+	function setPart(i) {
+		if (i === activePart) return;
+		activePart = i;
+		parts.forEach((p, n) => p.classList.toggle('on', n === i));
+		rail.forEach((b, n) => { b.classList.toggle('on', n === i); });
+		roleText.textContent = parts[i].dataset.role;
+	}
+
+	function onScroll() {
+		const y = scrollY;
+		const max = document.documentElement.scrollHeight - innerHeight;
+		scrollP = clamp(y / max);
+
+		// Nav follows the chapter under it
+		const probe = nav.offsetHeight / 2;
+		const under = toned.find(s => { const r = s.getBoundingClientRect(); return r.top <= probe && r.bottom > probe; });
+		nav.classList.toggle('on-light', under?.dataset.tone === 'light');
+		nav.classList.toggle('solid', y > 40);
+
+		// The photo opens out as it arrives
+		if (frame) {
+			const r = frame.getBoundingClientRect();
+			const seen = clamp(1 - (r.top - innerHeight * .12) / (innerHeight * .78));
+			if (use3d) frame.style.clipPath = `inset(${(1 - seen) * 13}% ${(1 - seen) * 14}% ${(1 - seen) * 13}% ${(1 - seen) * 14}% round 6px)`;
+			photo.style.transform = `translateY(${-14 * clamp((innerHeight - r.top) / (innerHeight + r.height))}%)`;
+		}
+
+		if (use3d) {
+			const r = system.getBoundingClientRect();
+			const travel = r.height - innerHeight;
+			systemP = snapAt ? +snapAt : clamp(-r.top / travel);
+			system.classList.toggle('past-intro', systemP > .16);
+			const f = clamp((systemP - .22) / .76) * 5;
+			setPart(Math.min(4, Math.floor(f)));
+			rail.forEach((b, n) => b.style.setProperty('--fill', clamp(f - n)));
+		}
+	}
+	addEventListener('scroll', onScroll, { passive: true });
+
+	// Light preview: surfacing colour, reveals and the pointer glow
+	const zone = document.getElementById('surfaceZone');
+	document.documentElement.classList.add('tone-mist');
+	function surface() {
+		const r = zone.getBoundingClientRect(), vh = innerHeight;
+		const enter = smooth(vh * .95, vh * .2, r.top), leave = smooth(vh * .55, vh * -.05, r.bottom - vh * .45);
+		const mix = snap ? 1 : Math.min(enter, 1 - leave);
+		zone.style.setProperty('--mix', mix.toFixed(3));
+		zone.classList.toggle('lit', mix > .5);
+	}
+	addEventListener('scroll', surface, { passive: true });
+	addEventListener('resize', surface);
+	surface();
+	// Reveal on scroll position, so nothing can stay hidden if the browser skips an observer callback
+	if (!reduced && !snap) {
+		let waiting = [...document.querySelectorAll('.rise, .stagger')].filter(el => el.getBoundingClientRect().top > innerHeight * .9);
+		waiting.forEach(el => {
+			el.classList.add('wait');
+			if (el.classList.contains('stagger')) [...el.children].forEach((c, i) => c.style.setProperty('--i', i));
+		});
+		const reveal = () => {
+			waiting = waiting.filter(el => {
+				if (el.getBoundingClientRect().top > innerHeight * .88) return true;
+				el.classList.add('in');
+				setTimeout(() => el.classList.remove('wait'), 1600);
+				return false;
+			});
+			if (!waiting.length) removeEventListener('scroll', reveal);
+		};
+		addEventListener('scroll', reveal, { passive: true });
+		reveal();
+	}
+	document.querySelectorAll('.glow').forEach(el => el.addEventListener('pointermove', e => {
+		const r = el.getBoundingClientRect();
+		el.style.setProperty('--gx', (e.clientX - r.left) + 'px');
+		el.style.setProperty('--gy', (e.clientY - r.top) + 'px');
+	}));
+
+	addEventListener('resize', onScroll);
+
+	const jump = i => {
+		const r = system.getBoundingClientRect();
+		const travel = r.height - innerHeight;
+		const target = scrollY + r.top + travel * (.22 + (i + .32) / 5 * .76);
+		scrollTo({ top: target, behavior: 'smooth' });
+	};
+	rail.forEach((b, i) => b.addEventListener('click', () => jump(i)));
+	document.querySelectorAll('[data-go]').forEach(a => a.addEventListener('click', e => {
+		if (!use3d) return;
+		e.preventDefault();
+		jump(+a.dataset.go);
+	}));
+
+	onScroll();
+	if (!use3d) return;
+
+	// ---------- The 3D scene: racks, water, sensors, equipment, farm record ----------
+	const T = THREE;
+	const canvas = document.getElementById('stage');
+	const renderer = new T.WebGLRenderer({ canvas, antialias: true, alpha: true, powerPreference: 'high-performance' });
+	renderer.setPixelRatio(Math.min(devicePixelRatio, 1.75));
+	renderer.outputColorSpace = T.SRGBColorSpace;
+	renderer.toneMapping = T.ACESFilmicToneMapping;
+	renderer.toneMappingExposure = 1.15;
+
+	const scene = new T.Scene();
+	scene.fog = new T.FogExp2(0x03151f, .03);
+	const camera = new T.PerspectiveCamera(38, 1, .1, 120);
+
+	scene.add(new T.HemisphereLight(0x9fe6e6, 0x03151f, 1.0));
+	const key = new T.DirectionalLight(0xdffcff, 2.6);
+	key.position.set(6, 12, 8);
+	scene.add(key);
+	const rim = new T.PointLight(0x6ce1da, 40, 30);
+	rim.position.set(-7, 4, -5);
+	scene.add(rim);
+
+	const world = new T.Group();
+	scene.add(world);
+
+	const AQUA = 0x6ce1da, BLUE = 0x1f7fb6, SHELL = 0xe8834f;
+	const fadeMats = [];
+	const mat = (o, group) => {
+		const m = new T.MeshStandardMaterial(Object.assign({ roughness: .5, metalness: .1, transparent: true }, o));
+		m.userData.base = o.opacity ?? 1;
+		if (group !== undefined) { m.userData.group = group; fadeMats.push(m); }
+		return m;
+	};
+
+	// Soft reflections for the glass drawers and the wet shell only
+	const envTex = (() => {
+		const e = new T.Scene();
+		e.background = new T.Color(0x0b3344);
+		[[0, 8, 0, 14, 1, 14, 0xd8fbfb, 5], [-9, 2, 4, 1, 6, 10, AQUA, 2.5], [9, 3, -4, 1, 6, 10, 0x3d9bd6, 2]].forEach(([x, y, z, w, h, d, c, i]) => {
+			const m = new T.Mesh(new T.BoxGeometry(w, h, d), new T.MeshBasicMaterial({ color: new T.Color(c).multiplyScalar(i) }));
+			m.position.set(x, y, z);
+			e.add(m);
+		});
+		return new T.PMREMGenerator(renderer).fromScene(e, .04).texture;
+	})();
+
+	// The mud crab, built from simple parts
+	function mergeParts(parts) {
+		let count = 0, indexCount = 0;
+		parts.forEach(p => { count += p.geo.attributes.position.count; indexCount += p.geo.index.count; });
+		const pos = new Float32Array(count * 3), nor = new Float32Array(count * 3), uv = new Float32Array(count * 2), col = new Float32Array(count * 3);
+		const idx = new Uint32Array(indexCount);
+		let v = 0, i = 0;
+		parts.forEach(({ geo, color }) => {
+			const n = geo.attributes.position.count;
+			pos.set(geo.attributes.position.array, v * 3);
+			nor.set(geo.attributes.normal.array, v * 3);
+			if (geo.attributes.uv) uv.set(geo.attributes.uv.array, v * 2);
+			const c = new T.Color(color);
+			for (let k = 0; k < n; k++) { col[(v + k) * 3] = c.r; col[(v + k) * 3 + 1] = c.g; col[(v + k) * 3 + 2] = c.b; }
+			geo.index.array.forEach((a, k) => { idx[i + k] = a + v; });
+			v += n;
+			i += geo.index.count;
+		});
+		const g = new T.BufferGeometry();
+		g.setAttribute('position', new T.BufferAttribute(pos, 3));
+		g.setAttribute('normal', new T.BufferAttribute(nor, 3));
+		g.setAttribute('uv', new T.BufferAttribute(uv, 2));
+		g.setAttribute('color', new T.BufferAttribute(col, 3));
+		g.setIndex(new T.BufferAttribute(idx, 1));
+		return g;
+	}
+
+	function makeCrab(detail) {
+		const hi = detail === 'high';
+		const parts = [];
+		const SHELL = 0x2c331a, SHELL_DARK = 0x1f2412, LEG = 0x39401f, CLAW = 0x474421, TIP = 0x1e1710, EYE = 0x050605;
+
+		// Carapace: a squashed sphere pulled out into a mud crab's outline, with nine teeth on each front edge
+		const shell = new T.SphereGeometry(1, hi ? 320 : 72, hi ? 110 : 26);
+		const p = shell.attributes.position;
+		const deg = Math.PI / 180;
+		for (let k = 0; k < p.count; k++) {
+			let x = p.getX(k), y = p.getY(k), z = p.getZ(k);
+			const th = Math.atan2(z, x);
+			let r = 1;
+			const teeth = (from, to, n, amp, flip) => {
+				if (th < from * deg || th > to * deg) return 0;
+				let f = (th / deg - from) / (to - from) * n;
+				f = f - Math.floor(f);
+				if (flip) f = 1 - f;
+				return amp * Math.pow(f, 2.2);
+			};
+			r += teeth(14, 74, 9, .085, true) + teeth(106, 166, 9, .085, false);
+			r += teeth(80, 100, 4, .03, false);
+			r -= .05 * Math.exp(-Math.pow((th / deg - 77) / 3, 2)) + .05 * Math.exp(-Math.pow((th / deg - 103) / 3, 2));
+			r = 1 + (r - 1) * Math.pow(1 - Math.abs(y), 6);
+			const back = z < 0 ? 1 - .3 * Math.pow(-z, 1.4) : 1;
+			const front = z > 0 ? 1 - .1 * Math.pow(z, 4) : 1;
+			const lift = y > 0 ? .34 : .13;
+			p.setXYZ(k, x * r * back, Math.sign(y) * Math.pow(Math.abs(y), 1.12) * lift, z * r * .66 * front);
+		}
+		shell.computeVertexNormals();
+		parts.push({ geo: shell, color: SHELL });
+
+		const up = new T.Vector3(0, 1, 0);
+		const capsule = (a, b, r, color, flat = 1) => {
+			const A = new T.Vector3(...a), B = new T.Vector3(...b);
+			const len = Math.max(.001, A.distanceTo(B));
+			const g = new T.CapsuleGeometry(r, len, hi ? 6 : 2, hi ? 14 : 6);
+			g.scale(1, 1, flat);
+			const m = new T.Matrix4().compose(A.clone().add(B).multiplyScalar(.5), new T.Quaternion().setFromUnitVectors(up, B.clone().sub(A).normalize()), new T.Vector3(1, 1, 1));
+			g.applyMatrix4(m);
+			parts.push({ geo: g, color });
+		};
+		const ellipsoid = (c, s, rot, color) => {
+			const g = new T.SphereGeometry(1, hi ? 40 : 12, hi ? 24 : 8);
+			g.applyMatrix4(new T.Matrix4().compose(new T.Vector3(...c), new T.Quaternion().setFromEuler(new T.Euler(...rot)), new T.Vector3(...s)));
+			parts.push({ geo: g, color });
+		};
+		const cone = (a, b, r, color) => {
+			const A = new T.Vector3(...a), B = new T.Vector3(...b);
+			const g = new T.ConeGeometry(r, A.distanceTo(B), hi ? 16 : 6, 1);
+			g.applyMatrix4(new T.Matrix4().compose(A.clone().add(B).multiplyScalar(.5), new T.Quaternion().setFromUnitVectors(up, B.clone().sub(A).normalize()), new T.Vector3(1, 1, 1)));
+			parts.push({ geo: g, color });
+		};
+		const at = (angle, dist, y = 0) => [Math.cos(angle * deg) * dist, y, Math.sin(angle * deg) * dist * .66];
+		const add = (a, b) => a.map((v, i) => v + b[i]);
+		const dir = (angle, len, y = 0) => [Math.cos(angle * deg) * len, y, Math.sin(angle * deg) * len];
+
+		for (const s of [1, -1]) {
+			const mx = v => [v[0] * s, v[1], v[2]];
+
+			// Eyes on short stalks
+			const eyeBase = at(82, .88, .05);
+			const eyeTip = add(eyeBase, [.05, .1, .08]);
+			capsule(mx(eyeBase), mx(eyeTip), .03, SHELL_DARK);
+			ellipsoid(mx(eyeTip), [.045, .045, .045], [0, 0, 0], EYE);
+
+			// Three walking legs and a paddle-shaped swimming leg, swept back
+			[[-8, 0], [-26, 0], [-44, 0], [-62, 0]].forEach(([angle], n) => {
+				const base = at(angle, .8, -.05);
+				const out = angle - 4 - n * 6;
+				const j1 = add(base, dir(out, .4, .16));
+				const j2 = add(j1, dir(out - 10, .2, .02));
+				const j3 = add(j2, dir(out - 16, .2, -.3));
+				capsule(mx(base), mx(j1), .078, LEG, .65);
+				capsule(mx(j1), mx(j2), .066, LEG, .7);
+				capsule(mx(j2), mx(j3), .052, LEG, .75);
+				if (n < 3) {
+					cone(mx(j3), mx(add(j3, dir(out - 20, .06, -.16))), .04, TIP);
+				} else {
+					const paddle = add(j3, dir(out - 30, .1, -.04));
+					ellipsoid(mx(paddle), [.09, .025, .16], [0, s * (out - 30) * deg * -1 + Math.PI / 2, 0], LEG);
+				}
+			});
+
+			// The claws: arm forward, a heavy palm, and two pincers
+			const cBase = at(40, .78, -.03);
+			const merus = add(cBase, dir(52, .42, .1));
+			const carpus = add(merus, dir(86, .26, .03));
+			capsule(mx(cBase), mx(merus), .1, CLAW, .8);
+			capsule(mx(merus), mx(carpus), .1, CLAW);
+			ellipsoid(mx(carpus), [.12, .1, .12], [0, 0, 0], CLAW);
+			const palmDir = 116;
+			const palmC = add(carpus, dir(palmDir, .28, .02));
+			ellipsoid(mx(palmC), [.17, .15, .33], [0, -s * (palmDir - 90) * deg, 0], CLAW);
+			const fingerBase = add(carpus, dir(palmDir, .56, 0));
+			const fixedTip = add(fingerBase, dir(palmDir + 14, .3, -.05));
+			const dactylTip = add(fingerBase, dir(palmDir + 2, .32, .12));
+			cone(mx(add(fingerBase, [0, -.04, 0])), mx(fixedTip), .075, TIP);
+			cone(mx(add(fingerBase, [0, .06, 0])), mx(dactylTip), .07, TIP);
+		}
+		return mergeParts(parts);
+	}
+
+	const crabMat = new T.MeshPhysicalMaterial({ vertexColors: true, envMap: envTex, roughness: .55, clearcoat: .3, clearcoatRoughness: .3, envMapIntensity: .18 });
+
+	// Habitat towers, after the real ones: blue drawer trays with a sloped front and vents, stacked back to back
+	// on a concrete plinth and fed by white pipes. A few drawers are see-through with a crab inside.
+	// The trays fly in from the water and settle into place.
+	const COLS = 10, ROWS = 9, BW = .62, BH = .26, BD = .95, PX = .68, PY = .29, PLINTH = .42, SLOPE = .12, GAP = .22;
+	const colX = c => (c - (COLS - 1) / 2) * PX + (Math.floor(c / 2) - (COLS / 2 - 1) / 2) * GAP;
+	const trayGeo = (() => {
+		const sh = new T.Shape();
+		sh.moveTo(-BD / 2, 0);
+		sh.lineTo(BD / 2 - SLOPE, 0);
+		sh.lineTo(BD / 2, BH);
+		sh.lineTo(-BD / 2, BH);
+		sh.closePath();
+		const g = new T.ExtrudeGeometry(sh, { depth: BW, bevelEnabled: true, bevelSize: .012, bevelThickness: .012, bevelSegments: 2 });
+		g.rotateY(-Math.PI / 2);
+		g.translate(BW / 2, -BH / 2, 0);
+		return g;
+	})();
+	const trays = [];
+	for (const side of [1, -1]) for (let r = 0; r < ROWS; r++) for (let c = 0; c < COLS; c++) {
+		const a = Math.random() * Math.PI * 2;
+		trays.push({
+			home: new T.Vector3(colX(c), PLINTH + BH / 2 + r * PY, side * (BD / 2 + .03)),
+			turn: side > 0 ? 0 : Math.PI,
+			from: new T.Vector3(7 + Math.cos(a) * (2 + Math.random() * 7), 7.2 + (Math.random() - .5) * 6, -5 + Math.sin(a) * (2 + Math.random() * 7)),
+			delay: Math.random() * .42,
+			spin: Math.random() * 3,
+		});
+	}
+	const front = (c, r) => r * COLS + c;
+	const FEATURE = front(6, 2);
+	const filled = new Set([FEATURE, front(1, 6), front(2, 1), front(4, 4), front(7, 7), front(8, 3), front(3, 8), front(9, 5)]);
+	const N = trays.length;
+
+	const solid = new T.InstancedMesh(trayGeo, new T.MeshStandardMaterial({ color: 0xffffff, roughness: .42, metalness: .02, envMap: envTex, envMapIntensity: .3 }), N);
+	const glass = new T.InstancedMesh(trayGeo, new T.MeshPhysicalMaterial({ color: 0x8fd3f2, roughness: .06, metalness: 0, transparent: true, opacity: .1, clearcoat: 1, clearcoatRoughness: .05, depthWrite: false, envMap: envTex, envMapIntensity: .7 }), N);
+	const waterGeo = new T.BoxGeometry(BW * .9, BH * .62, BD * .82);
+	waterGeo.translate(0, -BH * .17, -.02);
+	const water = new T.InstancedMesh(waterGeo, new T.MeshStandardMaterial({ color: 0x14879a, roughness: .1, transparent: true, opacity: .22, depthWrite: false, emissive: 0x0a4f58, emissiveIntensity: .35 }), N);
+	const VENTS = 6;
+	const vents = new T.InstancedMesh(new T.PlaneGeometry(.042, BH * .5), new T.MeshStandardMaterial({ color: 0x06213f, roughness: .7 }), N * VENTS);
+	const crabLow = new T.InstancedMesh(makeCrab('low'), crabMat, N);
+	glass.renderOrder = 2;
+	water.renderOrder = 1;
+	const tint = new T.Color();
+	trays.forEach((tr, i) => { tint.setHSL(.6 + Math.random() * .01, .85, .4 + Math.random() * .06); solid.setColorAt(i, tint); });
+	world.add(solid, vents, crabLow, water, glass);
+
+	// Fixed placements inside a tray: the vents on its sloped front, and where its crab sits
+	const ventLocal = Array.from({ length: VENTS }, (_, v) => new T.Matrix4().compose(
+		new T.Vector3((v - (VENTS - 1) / 2) * .075, 0, BD / 2 - SLOPE / 2 + .016),
+		new T.Quaternion().setFromEuler(new T.Euler(-Math.atan2(SLOPE, BH), 0, 0)),
+		new T.Vector3(1, 1, 1)));
+	const crabLocal = trays.map((tr, i) => new T.Matrix4().compose(
+		new T.Vector3((Math.random() - .5) * .04, -BH / 2 + .075, (Math.random() - .5) * .1 - .02),
+		new T.Quaternion().setFromEuler(new T.Euler(0, i === FEATURE ? -.25 : (Math.random() - .5) * .6, 0)),
+		new T.Vector3().setScalar(i === FEATURE ? .155 : .15)));
+	const ZERO = new T.Matrix4().makeScale(0, 0, 0);
+
+	// Lit edges on the see-through drawers
+	const trayEdges = new T.EdgesGeometry(trayGeo, 30);
+	const edges = new Map();
+	filled.forEach(i => {
+		const line = new T.LineSegments(trayEdges, new T.LineBasicMaterial({ color: i === FEATURE ? AQUA : 0x8fe9ff, transparent: true, opacity: i === FEATURE ? 1 : .45 }));
+		line.matrixAutoUpdate = false;
+		world.add(line);
+		edges.set(i, line);
+	});
+
+	// The detailed crab in the drawer that slides out, with a light over it
+	const crab = new T.Mesh(makeCrab('high'), crabMat);
+	crab.matrixAutoUpdate = false;
+	world.add(crab);
+	const lamp = new T.PointLight(0xfff4e2, 0, 2.4, 1.6);
+	world.add(lamp);
+
+	// Concrete plinth and the white feed pipes: a pipe down each tower, a tap into each drawer, a header along the top
+	const fitMat = o => { const m = new T.MeshStandardMaterial(Object.assign({ transparent: true }, o)); m.userData.base = 1; return m; };
+	const plinthMat = fitMat({ color: 0x4f6b75, roughness: .92 });
+	const plinth = new T.Mesh(new T.BoxGeometry(colX(COLS - 1) - colX(0) + BW + .3, PLINTH, BD * 2 + .4), plinthMat);
+	plinth.position.y = PLINTH / 2;
+	world.add(plinth);
+	// Pipes in slate: it reads as grey pressure pipe and lets the blue drawers and the water stand out
+	const PIPE_SLATE = 0x46565f;
+	const pvcMat = fitMat({ color: PIPE_SLATE, roughness: .35 });
+	const towerTop = PLINTH + ROWS * PY + .12;
+	const pipeGeo = new T.CylinderGeometry(.026, .026, 1, 14);
+	const tapGeo = new T.CylinderGeometry(.011, .011, .08, 8);
+	tapGeo.rotateX(Math.PI / 2);
+	const pipeAt = [], tapAt = [];
+	for (const side of [1, -1]) {
+		const z = side * (BD + .12);
+		for (let c = 0; c < COLS; c += 2) {
+			const x = (colX(c) + colX(c + 1)) / 2;
+			pipeAt.push([[x, (PLINTH + towerTop) / 2 + .05, z], [0, 0, 0], [1, towerTop - PLINTH + .1, 1]]);
+			for (let r = 0; r < ROWS; r++) for (const dx of [-.06, .06]) tapAt.push([[x + dx, PLINTH + BH * .82 + r * PY, z - side * .05], [0, 0, 0], [1, 1, 1]]);
+		}
+		pipeAt.push([[0, towerTop + .1, z], [0, 0, Math.PI / 2], [1, colX(COLS - 1) - colX(0), 1]]);
+	}
+	const pipes = new T.InstancedMesh(pipeGeo, pvcMat, pipeAt.length);
+	const taps = new T.InstancedMesh(tapGeo, pvcMat, tapAt.length);
+	const dummy = new T.Object3D();
+	[[pipes, pipeAt], [taps, tapAt]].forEach(([mesh, list]) => list.forEach(([p, r, s], i) => {
+		dummy.position.set(...p);
+		dummy.rotation.set(...r);
+		dummy.scale.set(...s);
+		dummy.updateMatrix();
+		mesh.setMatrixAt(i, dummy.matrix);
+	}));
+	world.add(pipes, taps);
+
+	// The floor grid
+	const grid = new T.GridHelper(40, 40, AQUA, AQUA);
+	grid.material.transparent = true;
+	grid.material.opacity = .09;
+	world.add(grid);
+
+	// Everything for the water: it rises into place in the RAS chapter
+	const equipG = new T.Group();
+	world.add(equipG);
+	// RAS, after the real one
+	// Behind the towers: water drains from the towers into a floor channel, which runs round into three
+	// collection tanks in front of the pumps. In a row: the sand filter, three pumps, the protein skimmer.
+	// The pump next to the skimmer feeds it, and it returns to the tank in front of that pump; the other two
+	// push water through the filter and the UV tube back up to the towers.
+	const ticks = [];
+	// The treatment line sits behind the towers, towards one end
+	const SHIFT = 1.8;
+	const pvcW = new T.MeshStandardMaterial({ color: PIPE_SLATE, roughness: .32, envMapIntensity: .45 });
+	const black = new T.MeshStandardMaterial({ color: 0x15191c, roughness: .38, metalness: .25, envMapIntensity: .6 });
+	const greyBody = new T.MeshStandardMaterial({ color: 0x66727a, roughness: .5, metalness: .1, envMapIntensity: .22 });
+	const concrete = new T.MeshStandardMaterial({ color: 0x5a7079, roughness: .95, envMapIntensity: .15 });
+	const ringBlue = new T.MeshStandardMaterial({ color: 0x1f6fd1, roughness: .35, envMapIntensity: .5 });
+	const valveBlue = new T.MeshStandardMaterial({ color: 0x2b7fe0, roughness: .4 });
+	const valveRed = new T.MeshStandardMaterial({ color: 0xd8432f, roughness: .45 });
+	const clearLid = new T.MeshPhysicalMaterial({ color: 0xcfe9f2, roughness: .05, transparent: true, opacity: .35, clearcoat: 1, depthWrite: false });
+
+	// White pipe runs: straight lengths with a fitting at every bend
+	function pipeRun(points, r = .045, mat = pvcW) {
+		const g = new T.Group();
+		for (let i = 0; i < points.length - 1; i++) {
+			const a = new T.Vector3(...points[i]), b = new T.Vector3(...points[i + 1]);
+			const m = new T.Mesh(new T.CylinderGeometry(r, r, a.distanceTo(b), 16), mat);
+			m.position.copy(a).add(b).multiplyScalar(.5);
+			m.quaternion.setFromUnitVectors(new T.Vector3(0, 1, 0), b.clone().sub(a).normalize());
+			g.add(m);
+			if (i > 0) {
+				const j = new T.Mesh(new T.SphereGeometry(r * 1.28, 16, 12), mat);
+				j.position.copy(a);
+				g.add(j);
+			}
+		}
+		equipG.add(g);
+		return g;
+	}
+	function ballValve(x, y, z, axis, mat = valveBlue) {
+		const body = new T.Mesh(new T.SphereGeometry(.075, 16, 12), pvcW);
+		body.position.set(x, y, z);
+		const lever = new T.Mesh(new T.BoxGeometry(axis === 'x' ? .03 : .22, .03, axis === 'x' ? .22 : .03), mat);
+		lever.position.set(x, y + .09, z);
+		const stem = new T.Mesh(new T.CylinderGeometry(.015, .015, .08, 8), mat);
+		stem.position.set(x, y + .05, z);
+		equipG.add(body, lever, stem);
+	}
+
+	// Sand filter: a round grey vessel on a short stand, with a black valve head on top
+	const FX = -1.3 + SHIFT, FZ = -4.7;
+	const filterProfile = [[0, .14], [.3, .14], [.5, .22], [.6, .5], [.62, .9], [.58, 1.18], [.44, 1.38], [.24, 1.48], [0, 1.5]].map(p => new T.Vector2(...p));
+	const filter = new T.Mesh(new T.LatheGeometry(new T.SplineCurve(filterProfile).getPoints(60), 64), greyBody);
+	filter.position.set(FX, 0, FZ);
+	const stand = new T.Mesh(new T.CylinderGeometry(.34, .4, .16, 32), black);
+	stand.position.set(FX, .08, FZ);
+	const neck = new T.Mesh(new T.CylinderGeometry(.13, .15, .12, 24), black);
+	neck.position.set(FX, 1.54, FZ);
+	const head = new T.Mesh(new T.CylinderGeometry(.2, .2, .1, 32), black);
+	head.position.set(FX, 1.64, FZ);
+	const knob = new T.Mesh(new T.CylinderGeometry(.06, .06, .1, 16), black);
+	knob.position.set(FX, 1.74, FZ);
+	const handle = new T.Mesh(new T.BoxGeometry(.32, .04, .06), black);
+	handle.position.set(FX + .08, 1.8, FZ);
+	const gauge = new T.Mesh(new T.CylinderGeometry(.045, .045, .03, 20), new T.MeshStandardMaterial({ color: 0xdfe6e9, roughness: .3 }));
+	gauge.rotation.x = Math.PI / 2;
+	gauge.position.set(FX - .14, 1.72, FZ + .12);
+	equipG.add(filter, stand, neck, head, knob, handle, gauge);
+
+	// Three pumps on a concrete block: black motor with cooling fins, a pump body with a blue ring,
+	// and a strainer pot with a see-through lid on top
+	const waterTex0 = () => {
+		const c = document.createElement('canvas');
+		c.width = 256; c.height = 64;
+		const x = c.getContext('2d');
+		x.fillStyle = '#0f8f9a';
+		x.fillRect(0, 0, 256, 64);
+		for (let i = 0; i < 140; i++) {
+			x.strokeStyle = `rgba(200, 255, 250, ${.08 + Math.random() * .2})`;
+			x.lineWidth = 1 + Math.random() * 1.5;
+			const y = Math.random() * 64, l = 10 + Math.random() * 40, x0 = Math.random() * 256;
+			x.beginPath();
+			x.moveTo(x0, y);
+			x.quadraticCurveTo(x0 + l / 2, y + (Math.random() - .5) * 4, x0 + l, y);
+			x.stroke();
+		}
+		const t = new T.CanvasTexture(c);
+		t.wrapS = t.wrapT = T.RepeatWrapping;
+		t.colorSpace = T.SRGBColorSpace;
+		return t;
+	};
+	// Three collection tanks in front of the pumps: open concrete tanks the channel water runs into
+	const TZ = -3.58, tankXs = [.95 + SHIFT, 1.7 + SHIFT, 2.45 + SHIFT], TW = .64, TH = .36;
+	const tankWaterTex = waterTex0();
+	tankXs.forEach((x, i) => {
+		for (const [dx, dz, w, d] of [[0, -TW / 2, TW + .08, .08], [0, TW / 2, TW + .08, .08], [-TW / 2, 0, .08, TW], [TW / 2, 0, .08, TW]]) {
+			const wall = new T.Mesh(new T.BoxGeometry(w, TH, d), concrete);
+			wall.position.set(x + dx, TH / 2, TZ + dz);
+			equipG.add(wall);
+		}
+		const tex = tankWaterTex.clone();
+		tex.needsUpdate = true;
+		tex.repeat.set(.6, .6);
+		const water = new T.Mesh(new T.PlaneGeometry(TW - .04, TW - .04), new T.MeshStandardMaterial({ map: tex, color: 0x9fd9dc, roughness: .08, emissive: 0x06474d, emissiveIntensity: .35, envMapIntensity: .45 }));
+		water.rotation.x = -Math.PI / 2;
+		water.position.set(x, TH - .08, TZ);
+		equipG.add(water);
+		ticks.push((dt, t) => { tex.offset.set(Math.sin(t * .3 + i) * .05, t * .02); });
+	});
+	const PZ0 = -4.5, block = new T.Mesh(new T.BoxGeometry(2.4, .32, 1), concrete);
+	block.position.set(1.7 + SHIFT, .16, PZ0);
+	equipG.add(block);
+	const pumpXs = tankXs.slice();
+	pumpXs.forEach(x => {
+		const g = new T.Group();
+		g.position.set(x, .32, PZ0);
+		const motor = new T.Mesh(new T.CylinderGeometry(.15, .15, .44, 28), black);
+		motor.rotation.x = Math.PI / 2;
+		motor.position.set(0, .2, -.16);
+		g.add(motor);
+		for (let k = 0; k < 4; k++) {
+			const fin = new T.Mesh(new T.TorusGeometry(.151, .006, 6, 32), black);
+			fin.position.set(0, .2, -.31 + k * .07);
+			g.add(fin);
+		}
+		const fanCap = new T.Mesh(new T.CylinderGeometry(.13, .14, .06, 28), new T.MeshStandardMaterial({ color: 0x2a3136, roughness: .5 }));
+		fanCap.rotation.x = Math.PI / 2;
+		fanCap.position.set(0, .2, -.41);
+		const volute = new T.Mesh(new T.CylinderGeometry(.18, .18, .14, 28), black);
+		volute.rotation.x = Math.PI / 2;
+		volute.position.set(0, .2, .13);
+		const ring = new T.Mesh(new T.TorusGeometry(.17, .022, 10, 40), ringBlue);
+		ring.position.set(0, .2, .2);
+		const pot = new T.Mesh(new T.CylinderGeometry(.11, .11, .22, 24), black);
+		pot.position.set(0, .3, .32);
+		const lid = new T.Mesh(new T.CylinderGeometry(.115, .115, .06, 24), clearLid);
+		lid.position.set(0, .44, .32);
+		const lidRing = new T.Mesh(new T.TorusGeometry(.115, .015, 8, 32), black);
+		lidRing.rotation.x = Math.PI / 2;
+		lidRing.position.set(0, .47, .32);
+		const foot = new T.Mesh(new T.BoxGeometry(.3, .06, .6), black);
+		foot.position.set(0, .03, 0);
+		g.add(fanCap, volute, ring, pot, lid, lidRing, foot);
+		equipG.add(g);
+		// Suction from the strainer pot down into the collection tank in front of it
+		pipeRun([[x, .52, PZ0 + .44], [x, .52, TZ], [x, .1, TZ]]);
+	});
+	// The two pumps nearer the filter: discharge up and along to its valve head
+	pumpXs.slice(0, 2).forEach(x => {
+		pipeRun([[x, .52, PZ0 + .13], [x, 1.25, PZ0 + .13], [x, 1.25, FZ + .4]]);
+		ballValve(x, .92, PZ0 + .13, 'z');
+	});
+	pipeRun([[pumpXs[0], 1.25, FZ + .4], [pumpXs[1], 1.25, FZ + .4]]);
+	pipeRun([[pumpXs[0], 1.25, FZ + .4], [FX + .5, 1.25, FZ + .4], [FX + .5, 1.64, FZ + .4], [FX + .5, 1.64, FZ], [FX + .2, 1.64, FZ]]);
+
+	// Protein skimmer on the first pump: a clear column of rising bubbles, foam at the top, and a collection cup
+	const SX = pumpXs[2] + .78, SZ = -4.55, SH = 1.35;
+	const skBase = new T.Mesh(new T.CylinderGeometry(.26, .28, .1, 32), black);
+	skBase.position.set(SX, .05, SZ);
+	const skBody = new T.Mesh(new T.CylinderGeometry(.2, .2, SH, 40, 1, true), new T.MeshPhysicalMaterial({ color: 0xd8f1f6, roughness: .04, transparent: true, opacity: .28, clearcoat: 1, depthWrite: false, side: T.DoubleSide, envMapIntensity: .8 }));
+	skBody.position.set(SX, .1 + SH / 2, SZ);
+	const skWater = new T.Mesh(new T.CylinderGeometry(.185, .185, SH * .72, 32), new T.MeshStandardMaterial({ color: 0x5fb9c0, roughness: .2, transparent: true, opacity: .5, emissive: 0x0b5a60, emissiveIntensity: .4, depthWrite: false }));
+	skWater.position.set(SX, .1 + SH * .36, SZ);
+	const skFoam = new T.Mesh(new T.CylinderGeometry(.185, .185, SH * .22, 32), new T.MeshStandardMaterial({ color: 0xe9efe6, roughness: .9, transparent: true, opacity: .8, depthWrite: false }));
+	skFoam.position.set(SX, .1 + SH * .83, SZ);
+	const cupY = .1 + SH + .17;
+	const skCup = new T.Mesh(new T.CylinderGeometry(.15, .17, .3, 32, 1, true), new T.MeshPhysicalMaterial({ color: 0xd8f1f6, roughness: .05, transparent: true, opacity: .3, clearcoat: 1, depthWrite: false, side: T.DoubleSide }));
+	skCup.position.set(SX, cupY, SZ);
+	const skResidue = new T.Mesh(new T.CylinderGeometry(.14, .14, .06, 32), new T.MeshStandardMaterial({ color: 0x6b5a36, roughness: .8 }));
+	skResidue.position.set(SX, cupY - .1, SZ);
+	const skLid = new T.Mesh(new T.CylinderGeometry(.165, .165, .04, 32), black);
+	skLid.position.set(SX, cupY + .17, SZ);
+	const skNeck = new T.Mesh(new T.CylinderGeometry(.06, .06, .14, 20), new T.MeshPhysicalMaterial({ color: 0xd8f1f6, roughness: .05, transparent: true, opacity: .35, depthWrite: false }));
+	skNeck.position.set(SX, .1 + SH + .02, SZ);
+	equipG.add(skBase, skBody, skWater, skFoam, skCup, skResidue, skLid, skNeck);
+	for (const y of [.1, .1 + SH]) {
+		const flange = new T.Mesh(new T.TorusGeometry(.205, .02, 10, 48), black);
+		flange.rotation.x = Math.PI / 2;
+		flange.position.set(SX, y, SZ);
+		equipG.add(flange);
+	}
+	const SKB = 70;
+	const skBubbles = new T.InstancedMesh(new T.SphereGeometry(.012, 8, 6), new T.MeshBasicMaterial({ color: 0xf2fffd, transparent: true, opacity: .8 }), SKB);
+	const skb = Array.from({ length: SKB }, () => ({ a: Math.random() * Math.PI * 2, r: Math.random() * .16, t: Math.random(), s: .5 + Math.random() }));
+	equipG.add(skBubbles);
+	const skd = new T.Object3D();
+	ticks.push(dt => {
+		skb.forEach((b, i) => {
+			b.t = (b.t + dt * .22 * b.s) % 1;
+			skd.position.set(SX + Math.cos(b.a) * b.r, .14 + b.t * SH * .8, SZ + Math.sin(b.a) * b.r);
+			skd.scale.setScalar(b.s);
+			skd.updateMatrix();
+			skBubbles.setMatrixAt(i, skd.matrix);
+		});
+		skBubbles.instanceMatrix.needsUpdate = true;
+	});
+	// The end pump into the skimmer's side; skimmer outlet back to the end tank; a drain hose from the cup
+	pipeRun([[pumpXs[2], .52, PZ0 + .13], [pumpXs[2], .62, PZ0 + .13], [SX - .2, .62, PZ0 + .13], [SX - .2, .62, SZ]]);
+	ballValve((pumpXs[2] + SX) / 2 - .1, .62, PZ0 + .13, 'x');
+	pipeRun([[SX + .2, .35, SZ], [SX + .38, .35, SZ], [SX + .38, .35, TZ + .14], [tankXs[2] + .2, .35, TZ + .14]]);
+	const hose = new T.Mesh(new T.TubeGeometry(new T.CatmullRomCurve3([new T.Vector3(SX + .15, cupY - .05, SZ), new T.Vector3(SX + .32, cupY - .25, SZ - .1), new T.Vector3(SX + .3, .2, SZ - .3), new T.Vector3(SX + .3, .02, SZ - .35)]), 30, .014, 8), black);
+	equipG.add(hose);
+
+	// UV tube on a post, between the filter's outlet and the return to the towers
+	const UX = -2.6 + SHIFT, UZ = -4.7;
+	const post = new T.Mesh(new T.BoxGeometry(.08, 2.6, .08), greyBody);
+	post.position.set(UX - .16, 1.3, UZ);
+	const uv = new T.Mesh(new T.CylinderGeometry(.07, .07, .9, 24), black);
+	uv.position.set(UX, 1.75, UZ);
+	const capTop = new T.Mesh(new T.CylinderGeometry(.08, .08, .06, 20), pvcW);
+	capTop.position.set(UX, 2.22, UZ);
+	const capBottom = capTop.clone();
+	capBottom.position.y = 1.28;
+	const uvLamp = new T.Mesh(new T.CylinderGeometry(.012, .012, .1, 8), new T.MeshBasicMaterial({ color: new T.Color(0x8fb4ff).multiplyScalar(2) }));
+	uvLamp.position.set(UX, 2.3, UZ);
+	const cable = new T.Mesh(new T.TubeGeometry(new T.CatmullRomCurve3([new T.Vector3(UX, 2.32, UZ), new T.Vector3(UX + .2, 2.5, UZ + .05), new T.Vector3(UX - .1, 2.1, UZ + .1)]), 20, .008, 6), black);
+	equipG.add(post, uv, capTop, capBottom, uvLamp, cable);
+	for (const y of [1.6, 2.0]) {
+		const band = new T.Mesh(new T.TorusGeometry(.075, .012, 8, 24), greyBody);
+		band.rotation.x = Math.PI / 2;
+		band.position.set(UX, y, UZ);
+		equipG.add(band);
+	}
+	// Filter outlet to the bottom of the UV tube, and from its top up to the towers' header
+	pipeRun([[FX - .2, 1.64, FZ], [FX - .62, 1.64, FZ], [FX - .62, .9, FZ], [UX, .9, UZ], [UX, 1.25, UZ]]);
+	ballValve(FX - .62, 1.25, FZ, 'x', valveRed);
+	const headerY = PLINTH + ROWS * PY + .22;
+	// From the top of the UV tube up to the towers' height, then straight into their header pipe, joined with a tee
+	pipeRun([[UX, 2.25, UZ], [UX, headerY, UZ], [UX, headerY, -(BD + .12)]]);
+	const tee = new T.Mesh(new T.SphereGeometry(.062, 16, 12), pvcW);
+	tee.position.set(UX, headerY, -(BD + .12));
+	equipG.add(tee);
+	ballValve(UX, headerY, UZ + .9, 'z', valveRed);
+
+	// The floor channel: a shallow trench in front of the towers and down the right side to a sump under the pumps
+	const waterTex = waterTex0();
+	const channelW = .36, chZ = 1.75, chX = tankXs[2] + TW / 2 + .55;
+	function channel(x0, z0, x1, z1) {
+		const along = Math.abs(x1 - x0) > Math.abs(z1 - z0);
+		const len = along ? Math.abs(x1 - x0) : Math.abs(z1 - z0);
+		const cx = (x0 + x1) / 2, cz = (z0 + z1) / 2;
+		const tex = waterTex.clone();
+		tex.needsUpdate = true;
+		tex.repeat.set(len / 1.2, 1);
+		const water = new T.Mesh(new T.PlaneGeometry(len, channelW), new T.MeshStandardMaterial({ map: tex, roughness: .08, metalness: .1, emissive: 0x06474d, emissiveIntensity: .35, transparent: true, opacity: .95, envMapIntensity: .45, color: 0x9fd9dc }));
+		water.rotation.x = -Math.PI / 2;
+		if (!along) water.rotation.z = Math.PI / 2;
+		water.position.set(cx, -.04, cz);
+		equipG.add(water);
+		for (const side of [-1, 1]) {
+			const kerb = new T.Mesh(new T.BoxGeometry(along ? len + .16 : .08, .1, along ? .08 : len + .16), concrete);
+			kerb.position.set(along ? cx : cx + side * (channelW / 2 + .04), .0, along ? cz + side * (channelW / 2 + .04) : cz);
+			equipG.add(kerb);
+		}
+		const dir = along ? Math.sign(x1 - x0) : Math.sign(z1 - z0);
+		ticks.push(dt => { tex.offset.x -= dt * .18 * dir * (along ? 1 : -1); });
+	}
+	channel(-3.9, chZ, chX, chZ);
+	channel(chX, chZ, chX, TZ);
+	channel(chX, TZ, tankXs[2] + TW / 2 + .04, TZ);
+
+	// Return pipes from the bottom of the towers, pouring into the channel
+	const STREAM = 3;
+	[-2.6, 0, 2.6].forEach(x => {
+		pipeRun([[x, .26, BD + .25], [x, .26, chZ - .02], [x, .12, chZ - .02]], .04);
+		const fall = new T.Mesh(new T.CylinderGeometry(.022, .03, .17, 12, 1, true), new T.MeshStandardMaterial({ color: 0xcffaf6, transparent: true, opacity: .55, roughness: .05, emissive: 0x2a8c8f, emissiveIntensity: .6, depthWrite: false }));
+		fall.position.set(x, .02, chZ - .02);
+		equipG.add(fall);
+		const splash = new T.Mesh(new T.RingGeometry(.03, .09, 24), new T.MeshBasicMaterial({ color: 0xe8fffc, transparent: true, opacity: .6, depthWrite: false, side: T.DoubleSide }));
+		splash.rotation.x = -Math.PI / 2;
+		splash.position.set(x, -.035, chZ - .02);
+		equipG.add(splash);
+		ticks.push((dt, t) => { const q = (t * 1.6 + x) % 1; splash.scale.setScalar(1 + q * 1.4); splash.material.opacity = .6 * (1 - q); });
+	});
+
+
+	// Reflections on the equipment, and fading it in with its chapter
+	const equipMats = new Set();
+	equipG.traverse(o => {
+		if (!o.material) return;
+		const m = o.material;
+		if ((m.isMeshStandardMaterial || m.isMeshPhysicalMaterial) && !m.envMap) m.envMap = envTex;
+		if (!equipMats.has(m)) { m.userData.base = m.opacity; m.transparent = true; equipMats.add(m); }
+	});
+	equipG.traverse(o => { if (o.isInstancedMesh) o.frustumCulled = false; });
+
+	// The path the water takes: down from the towers into the channel, round to the collection tanks,
+	// through a pump into the sand filter and the UV tube, and up to the towers' header
+	const loopPts = [
+		[0, .26, BD + .25], [0, -.02, chZ], [chX, -.02, chZ], [chX, -.02, TZ], [tankXs[2], .2, TZ], [tankXs[1], .2, TZ],
+		[pumpXs[1], .52, PZ0 + .44], [pumpXs[1], 1.25, PZ0 + .13], [pumpXs[0], 1.25, FZ + .4], [FX + .5, 1.64, FZ + .4],
+		[FX - .62, 1.64, FZ], [FX - .62, .9, FZ], [UX, .9, UZ], [UX, 2.25, UZ], [UX, headerY, UZ],
+		[UX, headerY, -(BD + .12)], [-3, headerY + .1, -(BD + .12)], [-3.5, headerY, 0], [-3, headerY + .1, BD + .12], [-1.5, 1.2, BD + .2],
+	].map(p => new T.Vector3(...p));
+	const loop = new T.CatmullRomCurve3(loopPts, true, 'catmullrom', .12);
+	const FLOW = 170;
+	const flowGeo = new T.SphereGeometry(.045, 8, 6);
+	const flow = new T.InstancedMesh(flowGeo, new T.MeshBasicMaterial({ color: AQUA, transparent: true, opacity: 1 }), FLOW);
+	world.add(flow);
+
+	// CrabSense: nodes tied to a unit, with rings that pulse
+	const sensorSpots = [[-2.4, 2.9, -1.15], [1.2, 1.6, -1.15], [3, 2.6, -1.15], [FX, 1, FZ + .64], [SX, .95, SZ + .22], [tankXs[1], .5, TZ + .34]].map(p => new T.Vector3(...p));
+	const sensorMat = new T.MeshBasicMaterial({ color: SHELL, transparent: true, depthTest: false });
+	const nodes = sensorSpots.map(p => {
+		const g = new T.Group();
+		g.position.copy(p);
+		const dot = new T.Mesh(new T.SphereGeometry(.095, 16, 12), sensorMat);
+		const rings = [0, 1].map(() => {
+			const ring = new T.Mesh(new T.RingGeometry(.14, .17, 40), new T.MeshBasicMaterial({ color: SHELL, transparent: true, side: T.DoubleSide, depthWrite: false, depthTest: false }));
+			g.add(ring);
+			return ring;
+		});
+		g.add(dot);
+		world.add(g);
+		return { g, rings };
+	});
+
+	// CrabPod: a waist-high cabinet on a concrete pad, wired along the floor to the pumps
+	const pod = new T.Group();
+	pod.position.set(6.6, 0, 1.9);
+	const podPad = new T.Mesh(new T.BoxGeometry(1.3, .12, .9), mat({ color: 0x4f6b75, roughness: .92 }, 3));
+	podPad.position.y = .06;
+	const podMat = mat({ color: 0x2a7e94, roughness: .4, metalness: .3 }, 3);
+	const podBody = new T.Mesh(new T.BoxGeometry(1, 1.35, .6), podMat);
+	podBody.position.y = .12 + .675;
+	const podFace = new T.Mesh(new T.PlaneGeometry(.72, .42), mat({ color: AQUA, emissive: AQUA, emissiveIntensity: 1, opacity: .85 }, 3));
+	podFace.position.set(0, 1.18, .302);
+	const podEdges = new T.LineSegments(new T.EdgesGeometry(podBody.geometry), new T.LineBasicMaterial({ color: AQUA }));
+	podEdges.position.copy(podBody.position);
+	pod.add(podPad, podBody, podFace, podEdges);
+	const podLeds = [];
+	for (let i = 0; i < 3; i++) {
+		const led = new T.Mesh(new T.SphereGeometry(.04, 12, 8), new T.MeshBasicMaterial({ color: SHELL, transparent: true }));
+		led.position.set(-.2 + i * .2, .8, .31);
+		pod.add(led);
+		podLeds.push(led);
+	}
+	world.add(pod);
+	// The cable leaves the back of the pad and runs along the floor, round the outside of the channel, to the end of the pump block
+	const podLinkCurve = new T.CatmullRomCurve3([
+		[6.6, .1, 1.45], [6.6, .03, 1.1], [6.15, .03, .6], [6.1, .03, -3.6], [5.8, .03, -5.1], [4.9, .03, -5.12], [4.72, .2, -5.02],
+	].map(p => new T.Vector3(...p)), false, 'catmullrom', .2);
+	const podLink = new T.Mesh(new T.TubeGeometry(podLinkCurve, 120, .028, 8), new T.MeshBasicMaterial({ color: SHELL, transparent: true }));
+	world.add(podLink);
+
+	// AquaOS: readings rise from every part into one record
+	const panelCanvas = document.createElement('canvas');
+	panelCanvas.width = 1024; panelCanvas.height = 576;
+	const pc = panelCanvas.getContext('2d');
+	const panelTex = new T.CanvasTexture(panelCanvas);
+	panelTex.colorSpace = T.SRGBColorSpace;
+	const panel = new T.Mesh(new T.PlaneGeometry(6.6, 3.71), new T.MeshBasicMaterial({ map: panelTex, transparent: true, side: T.DoubleSide, depthWrite: false }));
+	panel.position.set(-1, 7.3, -2);
+	panel.rotation.x = -.06;
+	world.add(panel);
+
+	function drawPanel(show) {
+		const w = panelCanvas.width, h = panelCanvas.height;
+		pc.clearRect(0, 0, w, h);
+		pc.fillStyle = 'rgba(6, 35, 47, .9)';
+		pc.fillRect(0, 0, w, h);
+		pc.strokeStyle = 'rgba(108, 225, 218, .75)';
+		pc.lineWidth = 3;
+		pc.strokeRect(2, 2, w - 4, h - 4);
+		pc.fillStyle = '#6ce1da';
+		pc.font = '600 40px Manrope, Arial';
+		pc.fillText('AquaOS', 48, 78);
+		pc.fillStyle = '#a7c3cc';
+		pc.font = '500 23px "JetBrains Mono", monospace';
+		pc.textAlign = 'right';
+		pc.fillText('AI PREDICTION & PREVENTION', w - 48, 74);
+		pc.textAlign = 'left';
+		pc.fillRect(48, 104, w - 96, 1.5);
+		const rows = ['Habitat', 'Water', 'Sensors', 'Equipment', 'Farm records'];
+		rows.forEach((label, i) => {
+			const y = 164 + i * 76;
+			pc.fillStyle = '#eaf6f8';
+			pc.font = '500 28px Manrope, Arial';
+			pc.fillText(label, 48, y + 10);
+			pc.fillStyle = 'rgba(108, 225, 218, .15)';
+			pc.fillRect(320, y - 14, w - 368, 26);
+			pc.fillStyle = '#6ce1da';
+			for (let t = 0; t < 26; t++) {
+				if ((t * 7 + i * 3) % 5 === 0) continue;
+				if (t / 26 > show * 1.12 - i * .03) break;
+				pc.fillRect(322 + t * ((w - 372) / 26), y - 12, (w - 372) / 26 - 5, 22);
+			}
+		});
+		panelTex.needsUpdate = true;
+	}
+	let panelShown = -1;
+
+	const RISE = 80;
+	const riseGeo = new T.SphereGeometry(.035, 6, 4);
+	const rise = new T.InstancedMesh(riseGeo, new T.MeshBasicMaterial({ color: AQUA, transparent: true }), RISE);
+	const riseData = Array.from({ length: RISE }, (_, i) => {
+		const s = i % 3 === 0 ? new T.Vector3(6.6, 1.5, 1.9) : sensorSpots[i % sensorSpots.length];
+		return { s, t: Math.random(), speed: .13 + Math.random() * .14, wob: Math.random() * 6 };
+	});
+	world.add(rise);
+
+	// Suspended particles in the water, always present
+	const SNOW = 1300;
+	const snowPos = new Float32Array(SNOW * 3);
+	for (let i = 0; i < SNOW; i++) {
+		snowPos[i * 3] = (Math.random() - .5) * 46;
+		snowPos[i * 3 + 1] = Math.random() * 24 - 4;
+		snowPos[i * 3 + 2] = (Math.random() - .5) * 46;
+	}
+	const snowGeo = new T.BufferGeometry();
+	snowGeo.setAttribute('position', new T.BufferAttribute(snowPos, 3));
+	const snow = new T.Points(snowGeo, new T.PointsMaterial({ color: 0xa8f2ee, size: .06, transparent: true, opacity: .55, depthWrite: false, map: (() => { const c = document.createElement('canvas'); c.width = c.height = 32; const g = c.getContext('2d'); const r = g.createRadialGradient(16, 16, 0, 16, 16, 16); r.addColorStop(0, '#fff'); r.addColorStop(.6, 'rgba(255,255,255,.6)'); r.addColorStop(1, 'rgba(255,255,255,0)'); g.fillStyle = r; g.fillRect(0, 0, 32, 32); return new T.CanvasTexture(c); })() }));
+	scene.add(snow);
+
+	// Camera path, one stop per chapter
+	const stops = [
+		{ pos: [9, 3.1, 15], look: [4.2, 3.1, 0] },        // hero: rack still scattered in the water
+		{ pos: [-8.5, 5.5, 13.5], look: [1.8, 2.2, -1] },  // into the five parts
+		{ pos: [-6.6, 4, 11], look: [-1.3, 1.45, .4] },    // habitat: the whole of the towers, with the drawer and its crab
+		{ pos: [10.2, 5.2, -11], look: [1.6, 1, -3.1] },   // RAS: round the back, to the tanks, pumps, filter and skimmer
+		{ pos: [-6.5, 6.8, -12.5], look: [2, 1.1, -3.1] }, // CrabSense: from the other side, over the equipment to the towers
+		{ pos: [-1.5, 4.4, 12.5], look: [6.2, 1.6, .8] },  // CrabPod: at the cabinet
+		{ pos: [-3, 7, 19], look: [.6, 4, -1] },           // AquaOS: up to the record
+	];
+	const V = [new T.Vector3(), new T.Vector3()];
+	const lookNow = new T.Vector3(...stops[0].look);
+
+	let mx = 0, my = 0, smx = 0, smy = 0;
+	addEventListener('pointermove', e => { mx = e.clientX / innerWidth - .5; my = e.clientY / innerHeight - .5; }, { passive: true });
+
+	function resize() {
+		const w = innerWidth, h = innerHeight;
+		renderer.setSize(w, h, false);
+		camera.aspect = w / h;
+		camera.updateProjectionMatrix();
+	}
+	addEventListener('resize', resize);
+	resize();
+
+	const pullM = new T.Matrix4(), trayM = new T.Matrix4(), tmpM = new T.Matrix4();
+	const tmpV = new T.Vector3(), tmpQ = new T.Quaternion(), tmpE = new T.Euler(), tmpS = new T.Vector3();
+
+	let sp = 0;       // smoothed progress inside the chapter
+	let heroP = 0;    // smoothed progress from the hero to the chapter
+	const clock = new T.Clock();
+	const col = new T.Color();
+	let running = true;
+	document.addEventListener('visibilitychange', () => { running = !document.hidden; if (running) { clock.getDelta(); tick(); } });
+
+	// Stop drawing when the scene is covered by light chapters
+	const covers = [...document.querySelectorAll('.surface, .research, .film, .close-cta, footer')];
+	const isCovered = () => covers.some(s => { const r = s.getBoundingClientRect(); return r.top <= 0 && r.bottom >= innerHeight; });
+
+	function tick() {
+		if (!running) return;
+		requestAnimationFrame(tick);
+		if (isCovered()) return;
+		draw();
+	}
+
+	function draw() {
+		const dt = Math.min(clock.getDelta(), .05);
+		const t = clock.elapsedTime;
+
+		const r = system.getBoundingClientRect();
+		const toSystem = clamp(1 - r.top / (innerHeight * 1.2));
+		const ease = snap ? 1 : 1 - Math.pow(.0015, dt);
+		sp = lerp(sp, systemP, ease);
+		heroP = lerp(heroP, toSystem, ease);
+		smx = lerp(smx, mx, ease * .6);
+		smy = lerp(smy, my, ease * .6);
+
+		const f = clamp((sp - .22) / .76) * 5;
+		// How much of each part is on: each comes in as its own chapter starts and stays.
+		// The racks build over the first fifth of the chapter, slowly enough to watch.
+		const assembled = heroP * .15 + smooth(.01, .2, sp) * .85;
+		const show = [smooth(.15, 1, assembled), smooth(.75, 1.25, f), smooth(1.75, 2.25, f), smooth(2.75, 3.25, f), smooth(3.75, 4.25, f)];
+
+		// Camera
+		// The camera starts moving in as soon as the racks are built (no idle pause), then follows the parts as before
+		const into = f < 1 ? .5 * clamp((sp - .17) / (.22 + .76 / 5 - .17)) : f - .5;
+		const cf = heroP + smooth(.02, .2, sp) + clamp(into, 0, 4);
+		const stopF = clamp(cf, 0, stops.length - 1.001);
+		const a = Math.floor(stopF), b = Math.min(stops.length - 1, a + 1);
+		const k = smooth(.12, .88, stopF - a);
+		V[0].set(...stops[a].pos).lerp(V[1].set(...stops[b].pos), k);
+		camera.position.copy(V[0]);
+		camera.position.x += smx * 1.1;
+		camera.position.y -= smy * .7;
+		V[0].set(...stops[a].look).lerp(V[1].set(...stops[b].look), k);
+		lookNow.lerp(V[0], snap ? 1 : 1 - Math.pow(.0005, dt));
+		camera.lookAt(lookNow);
+		const offsetX = innerWidth * .15 * smooth(.6, 1.4, cf);
+		camera.setViewOffset(innerWidth, innerHeight, offsetX, 0, innerWidth, innerHeight);
+
+		// Trays settle, with a slow idle drift while they are scattered; the feature drawer slides out in its chapter
+		const settle = show[0];
+		// The feature drawer slides out as the habitat chapter opens, so that moment has something to watch
+		const crabOn = smooth(.85, 1, settle) * smooth(0, .4, f) * (1 - smooth(1.05, 1.5, f));
+		pullM.makeTranslation(0, 0, .62 * crabOn);
+		for (let i = 0; i < N; i++) {
+			const tr = trays[i];
+			const q = smooth(tr.delay, tr.delay + .58, settle);
+			const d = 1 - q;
+			tmpV.lerpVectors(tr.from, tr.home, q);
+			tmpV.y += Math.sin(t * .5 + tr.spin) * .35 * d;
+			tmpQ.setFromEuler(tmpE.set(d * (tr.spin + t * .07), tr.turn + d * (tr.spin * 2 + t * .05), d * tr.spin));
+			trayM.compose(tmpV, tmpQ, tmpS.setScalar(.65 + q * .35));
+			const open = filled.has(i);
+			if (i === FEATURE) trayM.multiply(pullM);
+			solid.setMatrixAt(i, open ? ZERO : trayM);
+			glass.setMatrixAt(i, open ? trayM : ZERO);
+			water.setMatrixAt(i, open ? trayM : ZERO);
+			for (let v = 0; v < VENTS; v++) vents.setMatrixAt(i * VENTS + v, open ? ZERO : tmpM.multiplyMatrices(trayM, ventLocal[v]));
+			crabLow.setMatrixAt(i, open && i !== FEATURE ? tmpM.multiplyMatrices(trayM, crabLocal[i]) : ZERO);
+			if (open) edges.get(i).matrix.copy(trayM);
+			if (i === FEATURE) {
+				crab.matrix.multiplyMatrices(trayM, crabLocal[i]);
+				lamp.position.set(.1, .45, .55).applyMatrix4(trayM);
+			}
+		}
+		[solid, glass, water, vents, crabLow].forEach(m => { m.instanceMatrix.needsUpdate = true; });
+		lamp.intensity = 1.2 * crabOn;
+		const fitted = smooth(.55, 1, settle);
+		[plinthMat, pvcMat].forEach(m => { m.opacity = fitted; });
+		plinth.visible = pipes.visible = taps.visible = fitted > .01;
+
+		// Fade each part's materials
+		fadeMats.forEach(m => {
+			if (m.userData.group === 0) return;
+			const s = show[m.userData.group];
+			m.opacity = m.userData.base * s;
+			m.visible = s > .01;
+		});
+
+		// Water runs round the loop
+		const flowOn = show[1];
+		flow.visible = flowOn > .01;
+		flow.material.opacity = flowOn;
+		if (flow.visible) {
+			const p = new T.Vector3();
+			for (let i = 0; i < FLOW; i++) {
+				loop.getPointAt(((i / FLOW) + t * .035) % 1, p);
+				dummy.position.copy(p);
+				dummy.rotation.set(0, 0, 0);
+				dummy.scale.setScalar(.8 + .5 * Math.sin(i * 1.7 + t * 2));
+				dummy.updateMatrix();
+				flow.setMatrixAt(i, dummy.matrix);
+			}
+			flow.instanceMatrix.needsUpdate = true;
+		}
+		equipG.visible = flowOn > .01;
+		equipG.position.y = (1 - flowOn) * -.8;
+		equipMats.forEach(m => { m.opacity = m.userData.base * flowOn; });
+		if (equipG.visible && !reduced) ticks.forEach(fn => fn(dt, t));
+
+		// Sensors pulse, facing the camera
+		const senseOn = show[2];
+		sensorMat.opacity = senseOn;
+		nodes.forEach((n, i) => {
+			n.g.visible = senseOn > .01;
+			n.g.quaternion.copy(camera.quaternion);
+			n.rings.forEach((ring, j) => {
+				const q = (t * .5 + i * .17 + j * .5) % 1;
+				ring.scale.setScalar(1 + q * 3.4);
+				ring.material.opacity = (1 - q) * senseOn * .9;
+			});
+		});
+
+		// Pod: in with its chapter
+		const podOn = show[3];
+		pod.visible = podOn > .01;
+		pod.position.y = (1 - podOn) * -1.6;
+		podLink.visible = podOn > .01;
+		podLink.material.opacity = podOn;
+		podLeds.forEach((led, i) => { led.material.opacity = podOn * (.35 + .65 * (Math.sin(t * 3 - i * .9) > .2 ? 1 : 0)); });
+
+		// Record: panel fills and readings rise into it
+		const osOn = show[4];
+		panel.visible = osOn > .01;
+		panel.material.opacity = osOn;
+		panel.position.y = 5.9 + osOn * .9 + Math.sin(t * .7) * .05;
+		const shown = Math.round(osOn * 40) / 40;
+		if (shown !== panelShown) { panelShown = shown; drawPanel(osOn); }
+		rise.visible = osOn > .01;
+		rise.material.opacity = osOn;
+		if (rise.visible) {
+			const top = panel.position.y - 1.85;
+			riseData.forEach((d, i) => {
+				d.t = (d.t + dt * d.speed) % 1;
+				dummy.position.set(
+					lerp(d.s.x, -3.6 + (i % 12) * .6, d.t) + Math.sin(d.wob + t) * .05,
+					lerp(d.s.y, top, d.t),
+					lerp(d.s.z, panel.position.z, d.t)
+				);
+				dummy.rotation.set(0, 0, 0);
+				dummy.scale.setScalar(.8 + (1 - d.t));
+				dummy.updateMatrix();
+				rise.setMatrixAt(i, dummy.matrix);
+			});
+			rise.instanceMatrix.needsUpdate = true;
+		}
+
+		// Suspended particles drift up
+		snow.rotation.y = t * .006;
+		snow.position.y = (t * .05) % 1;
+
+		// Lift the scene off the text on the hero
+		world.position.x = 0;
+		col.setHex(0x03151f);
+		scene.fog.density = lerp(.05, .018, smooth(0, 1, heroP));
+
+		renderer.render(scene, camera);
+	}
+	[solid, glass, water, vents, crabLow, crab, pipes, taps, flow, rise].forEach(m => { m.frustumCulled = false; });
+	edges.forEach(line => { line.frustumCulled = false; });
+	drawPanel(0);
+	if (document.fonts?.ready) document.fonts.ready.then(() => { panelShown = -1; });
+	tick();
+})();
+</script>
+</body>
+</html>

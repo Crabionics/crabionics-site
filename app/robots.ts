@@ -6,17 +6,17 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
-        disallow: ["/control-tower", "/sign-in", "/sign-up"],
+        disallow: ["/control-tower", "/sign-in", "/sign-up", "/new/"],
       },
       {
         userAgent: "OAI-SearchBot",
         allow: "/",
-        disallow: ["/control-tower", "/sign-in", "/sign-up"],
+        disallow: ["/control-tower", "/sign-in", "/sign-up", "/new/"],
       },
       {
         userAgent: "GPTBot",
         allow: "/",
-        disallow: ["/control-tower", "/sign-in", "/sign-up"],
+        disallow: ["/control-tower", "/sign-in", "/sign-up", "/new/"],
       },
     ],
     sitemap: "https://www.crabionics.com/sitemap.xml",

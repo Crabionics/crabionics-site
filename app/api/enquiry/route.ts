@@ -79,7 +79,7 @@ export async function POST(request: Request) {
         from: process.env.CONTACT_FROM_EMAIL,
         to: ["info@crabionics.com"],
         reply_to: data.email,
-        subject: `Website enquiry: ${topics[data.topic]}`,
+        subject: `${process.env.ENQUIRY_SUBJECT_PREFIX ? `${process.env.ENQUIRY_SUBJECT_PREFIX} ` : ""}Website enquiry: ${topics[data.topic]}`,
         text: enquiryMessage(data),
       }),
       signal: AbortSignal.timeout(10000),
