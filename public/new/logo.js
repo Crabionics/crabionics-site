@@ -1,13 +1,16 @@
-/* The menu-bar logo comes to life: on the first page of a visit the claw's outline is drawn and filled,
+/* The menu-bar logo comes to life: on the first page of a visit, and on any reload, the claw's outline is drawn and filled,
    the letters slide in, and the claw snaps once; after that it snaps whenever the logo is hovered.
    Loaded in <head> so the logo is hidden before it first shows, never flashing in and out. */
 (() => {
 	const root = document.documentElement;
 	const still = location.search.includes('snap') || matchMedia('(prefers-reduced-motion: reduce)').matches;
 	if (still) return;
+	// The first page of a visit, and any reload; not when moving on to another page (owner's choice)
 	let seen = false;
 	try { seen = sessionStorage.getItem('crabionics-logo') === '1'; sessionStorage.setItem('crabionics-logo', '1'); } catch (e) {}
-	const intro = !seen;
+	const nav = performance.getEntriesByType && performance.getEntriesByType('navigation')[0];
+	const reload = nav ? nav.type === 'reload' : (performance.navigation && performance.navigation.type === 1);
+	const intro = !seen || reload;
 
 	const css = `
 .nav .brand .claw .lj { fill-opacity: 1; }
@@ -80,6 +83,22 @@ html.logo-wait .nav .brand { visibility: hidden; }
 		}
 	}
 
-	if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', setup);
-	else setup();
+	// Start only once the page is on screen and its font has loaded (at most a second's wait),
+	// so a slow load or a background tab doesn't play the letters before anyone sees them
+	function whenShown() {
+		if (document.hidden) {
+			document.addEventListener('visibilitychange', whenShown, { once: true });
+			return;
+		}
+		const fonts = document.fonts ? document.fonts.ready : Promise.resolve();
+		Promise.race([fonts, new Promise(r => setTimeout(r, 1000))])
+			.then(() => {
+				let done = false;
+				const go = () => { if (!done) { done = true; setup(); } };
+				requestAnimationFrame(() => requestAnimationFrame(go));
+				setTimeout(go, 120);   // in case frames are paused
+			});
+	}
+	if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', whenShown);
+	else whenShown();
 })();
