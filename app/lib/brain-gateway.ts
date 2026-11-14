@@ -1,4 +1,4 @@
-import type { BrainUsage } from "./brain-store";
+import type { BrainUsage, BrainMessage } from "./brain-store";
 
 type GatewayBody = {
   id?: string;
@@ -29,7 +29,7 @@ export function brainUsage(raw:GatewayBody):BrainUsage {
   const cost=typeof costValue==="number"&&Number.isFinite(costValue)&&costValue>=0?costValue:null;
   return {inputTokens:input,outputTokens:output,totalTokens:total,cachedInputTokens:cached,costUsd:cost};
 }
-export async function brainGenerate(instruction:string):Promise<{text:string;model:string;usage:BrainUsage;requestId:string|null}> {
+export async function brainGenerate(instruction:string,history:BrainMessage[]=[]):Promise<{text:string;model:string;usage:BrainUsage;requestId:string|null}> {
   if(!brainGatewayConfigured())throw Error("MODEL_NOT_ENABLED");
   const auth=process.env.AI_GATEWAY_API_KEY || process.env.VERCEL_OIDC_TOKEN;
   const model=process.env.BRAIN_AI_MODEL!;
@@ -40,7 +40,9 @@ export async function brainGenerate(instruction:string):Promise<{text:string;mod
       max_completion_tokens:1024,
       messages:[
         {role:"system",content:"You are a bounded text-work assistant. Produce a useful deliverable for the user's task. You have no tool access and cannot inspect live company documents, run code, execute agents, send messages, or change external systems. Never claim such actions occurred. Mark missing evidence and assumptions clearly. Avoid private data beyond what the user provided. Be structured and practical."},
-        {role:"user",content:instruction}
+        ...(history.length?history.slice(-12).map(item=>({
+          role:item.role, content:item.content.slice(0,3000)
+        })):[{role:"user",content:instruction}])
       ]}),
     signal:AbortSignal.timeout(45000)
   });
