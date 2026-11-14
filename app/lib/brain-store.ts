@@ -9,11 +9,12 @@ export type BrainUsage = {
   cachedInputTokens: number | null;
   costUsd: number | null;
 };
+export type BrainMessage = {id:string;role:"user"|"assistant";content:string;at:string};
 export type BrainTask = {
   id: string; ownerId: string; title: string; instruction: string; status: BrainStatus;
   createdAt: string; updatedAt: string; runCount: number;
   output: string | null; model: string | null; error: string | null;
-  usage: BrainUsage | null;
+  usage: BrainUsage | null; messages: BrainMessage[];
 };
 export type BrainRun = {
   id: string; taskId: string; occurredAt: string; model: string | null;
@@ -34,7 +35,8 @@ export function brainStorageAvailable() { return storageConfigured(); }
 export async function createBrainTask(ownerId: string, title: string, instruction: string): Promise<BrainTask> {
   const id = randomUUID(), now = new Date().toISOString();
   const task: BrainTask = { id, ownerId, title, instruction, status:"ready",
-    createdAt:now,updatedAt:now,runCount:0,output:null,model:null,error:null,usage:null };
+    createdAt:now,updatedAt:now,runCount:0,output:null,model:null,error:null,usage:null,
+    messages:[{id:randomUUID(),role:"user",content:instruction,at:now}] };
   const script = `if redis.call('ZCARD',KEYS[1])>=200 then return 0 end
 redis.call('SET',KEYS[2],ARGV[1],'EX',ARGV[3]);
 redis.call('ZADD',KEYS[1],ARGV[2],ARGV[4]);
@@ -81,6 +83,7 @@ local obj=cjson.decode(raw);if obj.ownerId~=ARGV[2] then return 0 end
 obj.status=ARGV[3];obj.output=ARGV[4]~='' and ARGV[4] or cjson.null;
 obj.error=ARGV[5]~='' and ARGV[5] or cjson.null;obj.model=ARGV[6]~='' and ARGV[6] or cjson.null;
 obj.usage=ARGV[7]~='' and cjson.decode(ARGV[7]) or cjson.null;
+if ARGV[4]~='' then if obj.messages==cjson.null or not obj.messages then obj.messages={} end; table.insert(obj.messages,{id=ARGV[12],role='assistant',content=ARGV[4],at=ARGV[8]});end
 obj.runCount=(obj.runCount or 0)+1;obj.updatedAt=ARGV[8];
 redis.call('SET',KEYS[1],cjson.encode(obj),'KEEPTTL');
 redis.call('SET',KEYS[3],ARGV[9],'EX',ARGV[10]);
@@ -112,4 +115,19 @@ export async function getBrainUsage(ownerId:string) {
     else unpricedRuns++;
   }catch{}}
   return {runs,measuredRuns,inputTokens,outputTokens,cachedInputTokens,costUsd:pricedRuns>0?costUsd:null,unpricedRuns,failedRuns};
+}
+
+/** Append an authenticated follow-up, preserving original instructions and past outputs. */
+export async function appendBrainFollowup(ownerId:string,id:string,content:string):Promise<boolean>{
+ if(!/^[a-f0-9-]{36}$/.test(id)||content.length<3||content.length>2000)return false;
+ const message:BrainMessage={id:randomUUID(),role:"user",content,at:new Date().toISOString()};
+ const script=`if redis.call('EXISTS',KEYS[2])==1 then return 0 end
+local raw=redis.call('GET',KEYS[1]);if not raw then return 0 end
+local obj=cjson.decode(raw);if obj.ownerId~=ARGV[1] then return 0 end
+if not obj.messages or obj.messages==cjson.null then obj.messages={} end
+if #obj.messages>=30 then return 0 end
+table.insert(obj.messages,cjson.decode(ARGV[2]));
+obj.status='ready';obj.error=cjson.null;obj.updatedAt=ARGV[3];
+redis.call('SET',KEYS[1],cjson.encode(obj),'KEEPTTL');return 1`;
+ return (await redis<number>(["EVAL",script,2,taskKey(ownerId,id),lockKey(ownerId,id),ownerId,JSON.stringify(message),message.at]))===1;
 }
