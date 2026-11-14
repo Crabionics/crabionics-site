@@ -28,7 +28,7 @@ export async function POST(request:Request,{params}:{params:Promise<{id:string}>
  catch{return brainJson({error:"Storage unavailable"},503)}
  const runId=randomUUID();
  try{
-   const result=await brainGenerate(task.instruction);
+   const result=await brainGenerate(task.instruction,task.messages||[]);
    const run:BrainRun={id:runId,taskId:id,occurredAt:new Date().toISOString(),model:result.model,outcome:"completed",usage:result.usage};
    const saved=await finishBrainRun(owner,id,lease,run,result.text,null);
    if(!saved)return brainJson({error:"Run completed but storage result could not be confirmed; check task before retry"},503);
