@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import s from "./workspace.module.css";
 
-type Task={id:string;title:string;instruction:string;createdAt:string;updatedAt:string;status:"ready"|"running"|"completed"|"failed";runCount:number;output:string|null;model:string|null;error:string|null;usage:{inputTokens:number|null;outputTokens:number|null;totalTokens:number|null;cachedInputTokens:number|null;costUsd:number|null}|null};
+type Task={id:string;title:string;instruction:string;createdAt:string;updatedAt:string;status:"ready"|"running"|"completed"|"failed";runCount:number;output:string|null;model:string|null;error:string|null;messages?:Array<{id:string;role:"user"|"assistant";content:string;at:string}>;usage:{inputTokens:number|null;outputTokens:number|null;totalTokens:number|null;cachedInputTokens:number|null;costUsd:number|null}|null};
 type Activity={number:number;title:string;url:string;state:string;updatedAt:string};
 type Usage={runs:number;measuredRuns:number;inputTokens:number;outputTokens:number;cachedInputTokens:number;costUsd:number|null;unpricedRuns:number;failedRuns:number};
 type System={persistence:"configured"|"unavailable";textExecution:"enabled"|"disabled";codexAgents:string;whatsapp:string;historicalCliSessions:string;model:string|null;providerCreditBalance:null};
@@ -34,6 +34,7 @@ export default function BrainWorkspace(){
  const [error,setError]=useState("");
  const [title,setTitle]=useState("");
  const [instruction,setInstruction]=useState("");
+ const [followup,setFollowup]=useState("");
  const [activityNote,setActivityNote]=useState("");
  const [usageNote,setUsageNote]=useState("");
  const [notice,setNotice]=useState("");
@@ -85,6 +86,24 @@ export default function BrainWorkspace(){
   }catch(e){setError(e instanceof Error?e.message:"Execution failed.");await refresh();}
   finally{setWorking(false)}
  }
+ async function addFollowup(e:React.FormEvent<HTMLFormElement>){
+  e.preventDefault();if(!chosen||!followup.trim())return;setWorking(true);setError("");setNotice("");
+  try{const response=await postJSON<{task:Task}>(`/api/brain/tasks/${chosen.id}/messages`,{message:followup.trim()});
+    setTasks(x=>x.map(v=>v.id===chosen.id?response.task:v));setFollowup("");
+    setNotice("Follow-up added to the same task. The conversation history is preserved.");
+  }catch(e){setError(e instanceof Error?e.message:"Follow-up could not be saved.")}
+  finally{setWorking(false)}
+ }
+ async function trackActivity(a:Activity){
+  setWorking(true);setError("");setNotice("");
+  try{const response=await postJSON<{task:Task}>("/api/brain/tasks",{
+    title:`Follow up on PR #${a.number}: ${a.title}`.slice(0,99),
+    instruction:`Follow up on the existing GitHub change. Source: ${a.url}\nPR title: ${a.title}\nReview the source directly before making any evidence or completion claim. Record what to verify and the next action.`
+   });setTasks(x=>[response.task,...x]);setSelected(response.task.id);setTab("Work");
+   setNotice("GitHub reference tracked as a new Brain task. The PR source is linked, not ingested into the model.");
+  }catch(e){setError(e instanceof Error?e.message:"Could not track this PR.")}
+  finally{setWorking(false)}
+ }
  const pending=tasks.filter(t=>t.status==="ready").length;
  const completed=tasks.filter(t=>t.status==="completed").length;
  return <div className={s.shell}>
@@ -124,8 +143,20 @@ export default function BrainWorkspace(){
          <div className={s.cardHead}><h2>{chosen?"Task detail":"Create a task"}</h2><button onClick={()=>setSelected(null)} type="button" className={s.tinyButton}>+ New task</button></div>
          {chosen?<div className={s.taskDetail}>
            <div className={s.taskBanner}><div className={s.eyebrow}>TASK ID · {chosen.id.slice(0,8)}</div><h2>{chosen.title}</h2><div className={s.smallText}>Created {dt(chosen.createdAt)} · Last updated {dt(chosen.updatedAt)}</div></div>
-           <div className={s.message}><span className={s.messageLabel}>INSTRUCTION</span><p>{chosen.instruction}</p></div>
-           {chosen.output&&<div className={s.result}><span className={s.messageLabel}>SAVED OUTPUT · {chosen.model||"model"}</span><div className={s.resultBody}>{chosen.output}</div></div>}
+           <div className={s.thread} aria-label="Saved task conversation">
+              {(chosen.messages?.length?chosen.messages:[{id:"initial",role:"user" as const,content:chosen.instruction,at:chosen.createdAt}]).map(m=>
+                <div className={m.role==="assistant"?s.threadAssistant:s.threadUser} key={m.id}>
+                  <span className={s.messageLabel}>{m.role==="assistant"?"BRAIN OUTPUT":"TASK INSTRUCTION"} · {dt(m.at)}</span>
+                  <p>{m.content}</p>
+                </div>)}
+            </div>
+            <form className={s.followupForm} onSubmit={e=>void addFollowup(e)}>
+              <label htmlFor="brain-followup">Continue this task</label>
+              <textarea id="brain-followup" value={followup} onChange={e=>setFollowup(e.target.value)}
+                placeholder="Add a correction, new constraint or follow-up instruction…" rows={3} minLength={3} maxLength={2000} required/>
+              <button type="submit" className={s.secondaryButton} disabled={working}>Save follow-up</button>
+            </form>
+           {chosen.output&&!(chosen.messages||[]).some(m=>m.role==="assistant")&&<div className={s.result}><span className={s.messageLabel}>SAVED OUTPUT · {chosen.model||"model"}</span><div className={s.resultBody}>{chosen.output}</div></div>}
            {chosen.error&&<div className={s.error}><span>Last run: {chosen.error}</span></div>}
            <div className={s.actionbar}>
              <button className={s.primaryButton} disabled={working||system?.textExecution!=="enabled"} onClick={()=>void runTask(chosen)}>
@@ -150,9 +181,10 @@ export default function BrainWorkspace(){
       {!loading&&tab==="Sources"&&<div className={s.wideCard}>
        <div className={s.cardHead}><div><h2>GitHub — recent company work</h2><p className={s.smallText}>These are real linked pull requests, not reconstructed CLI sessions.</p></div><button className={s.tinyButton} onClick={()=>void refresh()}>Refresh</button></div>
        {activities.length===0?<div className={s.placeholder}>{activityNote||"No source history available."}</div>:<div className={s.activityList}>
-         {activities.map(a=><a key={a.number} className={s.activity} href={a.url} target="_blank" rel="noopener noreferrer">
-            <div className={s.activityNum}>#{a.number}</div><div><strong>{a.title}</strong><small>{dt(a.updatedAt)} · {a.state}</small></div><span className={s.outIcon}>↗</span>
-         </a>)}
+         {activities.map(a=><div key={a.number} className={s.activity}>
+            <div className={s.activityNum}>#{a.number}</div><div><a href={a.url} target="_blank" rel="noopener noreferrer"><strong>{a.title} ↗</strong></a><small>{dt(a.updatedAt)} · {a.state}</small></div>
+             <button type="button" className={s.tinyButton} disabled={working} onClick={()=>void trackActivity(a)}>Track</button>
+         </div>)}
         </div>}
        <div className={s.footnote}>Local Codex CLI session transcripts are not yet connected. This list is sourced from the authorized GitHub repository only.</div>
       </div>}
