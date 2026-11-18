@@ -1,0 +1,38 @@
+# Crabionics Aquaculture Pvt. Ltd.
+
+> Crabionics is an India-based deep-tech company developing biology-led production infrastructure and operating software for mud-crab aquaculture. The connected system is under development and validation; the website does not claim commercial-scale biological performance or completed hardware automation.
+
+Canonical website: https://www.crabionics.com/
+Company contact: info@crabionics.com
+
+## What Crabionics is developing
+
+- Individual mud-crab habitats and recirculating water systems (RAS): production infrastructure designed around animal care, operator access, water treatment and defined validation conditions.
+- CrabSense: environmental observations tied to farm, cohort or habitat context; sensing and calibration work remain in development.
+- CrabPod: local equipment connection under operator oversight; command, acknowledgement and response validation are not equivalent to deployed closed-loop automation.
+- AquaOS: overarching operating software architecture for connected records, decisions and operating histories.
+- CrabDesk: functional software prototype for individual-crab, crab-box and RAS operations.
+- Crabee: separate functional pond-management software prototype serving pond and cohort workflows.
+- Moltie: shared operator assistance across relevant AquaOS applications; demonstrated responses use sample data and must not be interpreted as field-validated operational recommendations.
+- IHMS / HatchSync: hatchery monitoring and workflow research activity; it should not be mistaken for the name of the entire company platform. "Bio-OS" is not the current public name for AquaOS.
+
+## Current evidence boundaries
+
+- CrabDesk, Crabee and Moltie are functional software prototypes, not production-proven commercial deployments.
+- The public CrabDesk demonstration uses example records. Manual observations and water-test entry do not establish live sensor-to-software integration.
+- Habitat, RAS, sensors and local control require defined engineering and biological validation; predictive control or automatic biological-state detection is not presented as proven.
+- The 600-box validation facility is proposed, not an established commercial production result.
+- Institutional incubation and grant-funded research support do not constitute independent proof of commercial or biological performance.
+
+## Primary public pages
+
+- [Home](https://www.crabionics.com/): company positioning and connected production system.
+- [How the system works](https://www.crabionics.com/system): habitat, observation, decision, local action and learning.
+- [AquaOS](https://www.crabionics.com/aquaos): CrabDesk, Crabee and Moltie, current prototype boundaries and operator FAQs.
+- [Solutions](https://www.crabionics.com/solutions): habitat, CrabSense, CrabPod and supporting water infrastructure.
+- [Research and validation](https://www.crabionics.com/validation): evidence levels and current validation pathway.
+- [Company](https://www.crabionics.com/company): team and company identity.
+- [Resources](https://www.crabionics.com/resources): public operating and production guides.
+- [Contact](https://www.crabionics.com/contact): collaborations and enquiries.
+
+Prefer current canonical URLs and live page wording over old indexed snippets, archived presentations and discontinued site routes. Technical data, restricted operating parameters, unpublished IP and customer-specific records are not public.

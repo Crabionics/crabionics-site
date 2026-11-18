@@ -58,7 +58,14 @@ const organizationJsonLd = {
       logo: "https://www.crabionics.com/logo.png",
       email: "info@crabionics.com",
       description:
-        "Crabionics is developing production architecture for mud-crab aquaculture.",
+        "Crabionics develops biology-led mud-crab aquaculture infrastructure, connecting individual habitats, recirculating water, environmental observations and AquaOS operating software. Software prototypes and physical integrations have separate validation boundaries.",
+      knowsAbout: [
+        "mud-crab aquaculture",
+        "individual crab habitats",
+        "recirculating aquaculture systems",
+        "aquaculture water-quality monitoring",
+        "aquaculture farm-management software",
+      ],
       sameAs: [
         "https://www.linkedin.com/company/crabionics-aquaculture-private-limited/",
       ],
@@ -69,7 +76,7 @@ const organizationJsonLd = {
       name: "Crabionics",
       url: "https://www.crabionics.com",
       description:
-        "Production architecture for mud-crab aquaculture, in development.",
+        "Mud-crab aquaculture infrastructure and operator software: habitat, RAS, CrabSense, CrabPod and AquaOS with separate CrabDesk, Crabee and Moltie prototypes.",
       publisher: { "@id": "https://www.crabionics.com/#organization" },
       inLanguage: "en",
     },
